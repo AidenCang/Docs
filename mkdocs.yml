@@ -19,9 +19,10 @@
 # IN THE SOFTWARE.
 
 # Project information
-site_name: Material for MkDocs
-site_description: A Material Design theme for MkDocs
-site_author: Martin Donath
+site_name: Aige  Docs
+site_description: 苍成坤的 blog
+site_author: Aige
+#配置站点的域名
 site_url: https://squidfunk.github.io/mkdocs-material/
 
 # Repository
@@ -30,7 +31,7 @@ repo_url: https://github.com/squidfunk/mkdocs-material
 edit_uri: ""
 
 # Copyright
-copyright: 'Copyright &copy; 2016 - 2019 Martin Donath'
+copyright: 'Copyright &copy; 2016 - 2019  Aige'
 
 # Configuration
 theme:
@@ -47,7 +48,7 @@ theme:
   search_index_only: true
 
   # Default values, taken from mkdocs_theme.yml
-  language: en
+  language: zh  #配置语言
   feature:
     tabs: true
   palette:
@@ -66,11 +67,13 @@ extra:
     - type: globe
       link: http://struct.cc
     - type: github-alt
-      link: https://github.com/squidfunk
+      link: https://github.com/cangchengkun/Docs
     - type: twitter
       link: https://twitter.com/squidfunk
     - type: linkedin
       link: https://linkedin.com/in/squidfunk
+  search:
+    language: 'jp'
 
 # Extensions
 markdown_extensions:
@@ -104,14 +107,33 @@ markdown_extensions:
   - pymdownx.tilde
 
 # Page tree
+#没有缩减的会显示在第一个标头栏中，缩减的是一个条目
 nav:
-  - Material: index.md
+  - Home: index.md
+  #设置底部导航，从上到下依次执行
   - Getting started: getting-started.md
-  - Extensions:
+  #头部导航
+  - Android:
     - Admonition: extensions/admonition.md
     - CodeHilite: extensions/codehilite.md
     - Footnotes: extensions/footnotes.md
     - Metadata: extensions/metadata.md
+    - Permalinks: extensions/permalinks.md
+    - PyMdown: extensions/pymdown.md
+  #头部水平导航栏
+  - Python:
+    - Admonition: extensions/admonition.md
+    - CodeHilite: extensions/codehilite.md
+    - Footnotes: extensions/footnotes.md
+    - Metadata: extensions/metadata.md
+    - Permalinks: extensions/permalinks.md
+    - PyMdown: extensions/pymdown.md
+  #头部水平导航栏
+  - Tools:
+    - AndroidStudio: extensions/admonition.md
+    - Atom: extensions/codehilite.md
+    - Vim: extensions/footnotes.md
+    - Chrome: extensions/metadata.md
     - Permalinks: extensions/permalinks.md
     - PyMdown: extensions/pymdown.md
   - Specimen: specimen.md
