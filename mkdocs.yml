@@ -134,9 +134,7 @@ nav:
     - Atom: extensions/codehilite.md
     - Vim: extensions/footnotes.md
     - Chrome: extensions/metadata.md
-    - Permalinks: extensions/permalinks.md
-    - PyMdown: extensions/pymdown.md
-  - Specimen: specimen.md
+    - Markdown: tools/markdown.md
   - Customization: customization.md
   - Compliance with GDPR: compliance.md
   - Release notes: release-notes.md

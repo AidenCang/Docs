@@ -9,10 +9,17 @@ A Material Design theme for [MkDocs][1].
 
 ## 环境设置
 
-使用`pip`安装最新的版本：
+使用`pip`安装最新的版本:
 
 ``` sh
 pip install mkdocs-material
 ```
 
 配置文件路径`mkdocs.yml`
+
+
+https://www.markdownguide.org/
+https://github.com/cangchengkun/Docs/wiki
+https://www.mkdocs.org/#mkdocs
+https://squidfunk.github.io/mkdocs-material/authors-notes/#authors-notes
+https://blog.csdn.net/codedoctor/article/details/78969571
