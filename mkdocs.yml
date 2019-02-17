@@ -131,10 +131,11 @@ nav:
   #头部水平导航栏
   - Tools:
     - AndroidStudio: extensions/admonition.md
-    - Atom: extensions/codehilite.md
+    - Atom: tools/atom.md
     - Vim: extensions/footnotes.md
     - Chrome: extensions/metadata.md
     - Markdown: tools/markdown.md
+    - Material for MkDocs: tools/material.md
   - Customization: customization.md
   - Compliance with GDPR: compliance.md
   - Release notes: release-notes.md
