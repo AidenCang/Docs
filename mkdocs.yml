@@ -48,7 +48,7 @@ theme:
   search_index_only: true
 
   # Default values, taken from mkdocs_theme.yml
-  language: zh
+  language: en
   feature:
     tabs: true
   palette:
@@ -69,9 +69,11 @@ extra:
     - type: github-alt
       link: https://github.com/cangchengkun/Docs
     - type: twitter
-      link: https://twitter.com/squidfunk
-    - type: linkedin
-      link: https://linkedin.com/in/squidfunk
+      link: https://twitter.com/Aige25868905
+    - type: facebook
+      link: https://www.facebook.com/cangck.danmo
+    - type: youtube
+      link: https://www.youtube.com/
   search:
     language: 'jp'
 
