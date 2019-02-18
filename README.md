@@ -9,7 +9,7 @@ A Material Design theme for [MkDocs][1].
 
 ## 环境设置
 
-使用`pip`安装最新的版本:
+使用`pip`安装最新版本的软件:
 
 ``` sh
 pip install mkdocs-material
