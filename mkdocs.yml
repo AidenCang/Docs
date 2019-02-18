@@ -25,9 +25,9 @@ site_author: Aige
 #配置站点的域名
 site_url: https://squidfunk.github.io/mkdocs-material/
 
-# Repository
-repo_name: squidfunk/mkdocs-material
-repo_url: https://github.com/squidfunk/mkdocs-material
+# Repository  配置头部显示的数据
+repo_name: Aige github
+repo_url: https://github.com/cangchengkun/Docs
 edit_uri: ""
 
 # Copyright
@@ -48,7 +48,7 @@ theme:
   search_index_only: true
 
   # Default values, taken from mkdocs_theme.yml
-  language: zh  #配置语言
+  language: en
   feature:
     tabs: true
   palette:
@@ -69,9 +69,11 @@ extra:
     - type: github-alt
       link: https://github.com/cangchengkun/Docs
     - type: twitter
-      link: https://twitter.com/squidfunk
-    - type: linkedin
-      link: https://linkedin.com/in/squidfunk
+      link: https://twitter.com/Aige25868905
+    - type: facebook
+      link: https://www.facebook.com/cangck.danmo
+    - type: youtube
+      link: https://www.youtube.com/
   search:
     language: 'jp'
 
@@ -106,41 +108,31 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
+
 # Page tree
-#没有缩减的会显示在第一个标头栏中，缩减的是一个条目
 nav:
   - Home: index.md
-  #设置底部导航，从上到下依次执行
   - Getting started: getting-started.md
-  #头部导航
+
   - Android:
-    - Admonition: extensions/admonition.md
-    - CodeHilite: extensions/codehilite.md
-    - Footnotes: extensions/footnotes.md
-    - Metadata: extensions/metadata.md
-    - Permalinks: extensions/permalinks.md
-    - PyMdown: extensions/pymdown.md
-  #头部水平导航栏
+    - Admonition: extensions/pymdown.md
   - Python:
-    - Admonition: extensions/admonition.md
     - CodeHilite: extensions/codehilite.md
-    - Footnotes: extensions/footnotes.md
-    - Metadata: extensions/metadata.md
-    - Permalinks: extensions/permalinks.md
-    - PyMdown: extensions/pymdown.md
-  #头部水平导航栏
   - Tools:
     - AndroidStudio: extensions/admonition.md
-    - Atom: extensions/codehilite.md
+    - Atom: tools/atom.md
     - Vim: extensions/footnotes.md
     - Chrome: extensions/metadata.md
     - Markdown: tools/markdown.md
-  - Customization: customization.md
-  - Compliance with GDPR: compliance.md
-  - Release notes: release-notes.md
-  - Author's notes: authors-notes.md
-  - Contributing: contributing.md
-  - License: license.md
+    - Material for MkDocs: tools/material.md
+  - download:
+    - download: download/download.md
+  # - Customization: customization.md
+  # - Compliance with GDPR: compliance.md
+  # - Release notes: release-notes.md
+  # - Author's notes: authors-notes.md
+  # - Contributing: contributing.md
+  # - License: license.md
 
 # Google Analytics
 google_analytics:
