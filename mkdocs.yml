@@ -116,6 +116,7 @@ nav:
 
   - Android:
     - Admonition: extensions/pymdown.md
+    - Flutter: android/flutter.md
   - Python:
     - CodeHilite: extensions/codehilite.md
   - Tools:
