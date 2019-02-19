@@ -2,57 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/</loc>
-     <lastmod>2019-02-17</lastmod>
+     <lastmod>2019-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/getting-started/</loc>
-     <lastmod>2019-02-17</lastmod>
+     <lastmod>2019-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/extensions/pymdown/</loc>
-     <lastmod>2019-02-17</lastmod>
+     <lastmod>2019-02-19</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://squidfunk.github.io/mkdocs-material/android/flutter/</loc>
+     <lastmod>2019-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/extensions/codehilite/</loc>
-     <lastmod>2019-02-17</lastmod>
+     <lastmod>2019-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/extensions/admonition/</loc>
-     <lastmod>2019-02-17</lastmod>
+     <lastmod>2019-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/tools/atom/</loc>
-     <lastmod>2019-02-17</lastmod>
+     <lastmod>2019-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/extensions/footnotes/</loc>
-     <lastmod>2019-02-17</lastmod>
+     <lastmod>2019-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/extensions/metadata/</loc>
-     <lastmod>2019-02-17</lastmod>
+     <lastmod>2019-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/tools/markdown/</loc>
-     <lastmod>2019-02-17</lastmod>
+     <lastmod>2019-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/tools/material/</loc>
-     <lastmod>2019-02-17</lastmod>
+     <lastmod>2019-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/download/download/</loc>
-     <lastmod>2019-02-17</lastmod>
+     <lastmod>2019-02-19</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
