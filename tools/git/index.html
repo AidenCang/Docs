@@ -1,0 +1,1221 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="苍成坤的 blog">
+      
+      
+        <link rel="canonical" href="https://squidfunk.github.io/mkdocs-material/tools/git/">
+      
+      
+        <meta name="author" content="Aige">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
+    
+    
+      
+        <title>Git - Aige  Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "None", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#git" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Aige  Docs
+            </span>
+            <span class="md-header-nav__topic">
+              Git
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." title="Home" class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../extensions/pymdown/" title="Android" class="md-tabs__link">
+          Android
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../extensions/codehilite/" title="Python" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../extensions/admonition/" title="Tools" class="md-tabs__link md-tabs__link--active">
+          Tools
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../download/download/" title="download" class="md-tabs__link">
+          download
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Aige  Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/" title="Getting started" class="md-nav__link">
+      Getting started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Android
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Android
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../extensions/pymdown/" title="Admonition" class="md-nav__link">
+      Admonition
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/" title="Flutter" class="md-nav__link">
+      Flutter
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Python
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../extensions/codehilite/" title="CodeHilite" class="md-nav__link">
+      CodeHilite
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Tools
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../extensions/admonition/" title="AndroidStudio" class="md-nav__link">
+      AndroidStudio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../atom/" title="Atom" class="md-nav__link">
+      Atom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../extensions/footnotes/" title="Vim" class="md-nav__link">
+      Vim
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../extensions/metadata/" title="Chrome" class="md-nav__link">
+      Chrome
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../markdown/" title="Markdown" class="md-nav__link">
+      Markdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../material/" title="Material for MkDocs" class="md-nav__link">
+      Material for MkDocs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Git
+      </label>
+    
+    <a href="./" title="Git" class="md-nav__link md-nav__link--active">
+      Git
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#git_1" title="Git的诞生" class="md-nav__link">
+    Git的诞生
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vs" title="集中式vs分布式" class="md-nav__link">
+    集中式vs分布式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git_2" title="Git 安装" class="md-nav__link">
+    Git 安装
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="版本回退" class="md-nav__link">
+    版本回退
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git_3" title="Git的区域" class="md-nav__link">
+    Git的区域
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="本地分支和远程分支关联" class="md-nav__link">
+    本地分支和远程分支关联
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="合并分支" class="md-nav__link">
+    合并分支
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="暂存代码" class="md-nav__link">
+    暂存代码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="远程分支操作" class="md-nav__link">
+    远程分支操作
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tag" title="打tag标记" class="md-nav__link">
+    打tag标记
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-ssh-httpsgit-scmcombookzhv2e69c8de58aa1e599a8e4b88ae79a84-git-e7949fe68890-ssh-e585ace992a5" title="服务器上的 Git - 生成 SSH 公钥(https://git-scm.com/book/zh/v2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E7%94%9F%E6%88%90-SSH-%E5%85%AC%E9%92%A5)" class="md-nav__link">
+    服务器上的 Git - 生成 SSH 公钥(https://git-scm.com/book/zh/v2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E7%94%9F%E6%88%90-SSH-%E5%85%AC%E9%92%A5)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitosis" title="Gitosis:" class="md-nav__link">
+    Gitosis:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="安装" class="md-nav__link">
+    安装
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      download
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        download
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../download/download/" title="download" class="md-nav__link">
+      download
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#git_1" title="Git的诞生" class="md-nav__link">
+    Git的诞生
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vs" title="集中式vs分布式" class="md-nav__link">
+    集中式vs分布式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git_2" title="Git 安装" class="md-nav__link">
+    Git 安装
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="版本回退" class="md-nav__link">
+    版本回退
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git_3" title="Git的区域" class="md-nav__link">
+    Git的区域
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="本地分支和远程分支关联" class="md-nav__link">
+    本地分支和远程分支关联
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="合并分支" class="md-nav__link">
+    合并分支
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="暂存代码" class="md-nav__link">
+    暂存代码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="远程分支操作" class="md-nav__link">
+    远程分支操作
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tag" title="打tag标记" class="md-nav__link">
+    打tag标记
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-ssh-httpsgit-scmcombookzhv2e69c8de58aa1e599a8e4b88ae79a84-git-e7949fe68890-ssh-e585ace992a5" title="服务器上的 Git - 生成 SSH 公钥(https://git-scm.com/book/zh/v2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E7%94%9F%E6%88%90-SSH-%E5%85%AC%E9%92%A5)" class="md-nav__link">
+    服务器上的 Git - 生成 SSH 公钥(https://git-scm.com/book/zh/v2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E7%94%9F%E6%88%90-SSH-%E5%85%AC%E9%92%A5)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitosis" title="Gitosis:" class="md-nav__link">
+    Gitosis:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="安装" class="md-nav__link">
+    安装
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="git">搭建Git仓库<a class="headerlink" href="#git" title="Permanent link">&para;</a></h1>
+<p>Git 是一个开源的分布式代码管理工具，对代码进行跟踪，能够提供团队协作开发，管理源代码，目前很多软件都支持Git代码管理工具，Github，Gitlab、<a href="http://www.nongnu.org/cvs/">CVS</a>、<a href="https://opencores.org/howto/svn">SVN</a></p>
+<h2 id="git_1">Git的诞生<a class="headerlink" href="#git_1" title="Permanent link">&para;</a></h2>
+<p>很多人都知道，Linus在1991年创建了开源的Linux，从此，Linux系统不断发展，已经成为最大的服务器系统软件了。</p>
+<p>Linus虽然创建了Linux，但Linux的壮大是靠全世界热心的志愿者参与的，这么多人在世界各地为Linux编写代码，那Linux的代码是如何管理的呢？</p>
+<p>事实是，在2002年以前，世界各地的志愿者把源代码文件通过<code>diff</code>的方式发给<code>Linus</code>，然后由Linus本人通过手工方式合并代码！</p>
+<p>你也许会想，为什么Linus不把Linux代码放到版本控制系统里呢？不是有CVS、SVN这些免费的版本控制系统吗？因为Linus坚定地反对CVS和SVN，这些集中式的版本控制系统不但速度慢，而且必须联网才能使用。有一些商用的版本控制系统，虽然比CVS、SVN好用，但那是付费的，和Linux的开源精神不符。</p>
+<p>不过，到了2002年，Linux系统已经发展了十年了，代码库之大让Linus很难继续通过手工方式管理了，社区的弟兄们也对这种方式表达了强烈不满，于是Linus选择了一个商业的版本控制系统BitKeeper，BitKeeper的东家BitMover公司出于人道主义精神，授权Linux社区免费使用这个版本控制系统。</p>
+<p>安定团结的大好局面在2005年就被打破了，原因是Linux社区牛人聚集，不免沾染了一些梁山好汉的江湖习气。开发Samba的Andrew试图破解BitKeeper的协议（这么干的其实也不只他一个），被BitMover公司发现了（监控工作做得不错！），于是BitMover公司怒了，要收回Linux社区的免费使用权。</p>
+<p>Linus可以向BitMover公司道个歉，保证以后严格管教弟兄们，嗯，这是不可能的。实际情况是这样的：</p>
+<p>Linus花了两周时间自己用C写了一个分布式版本控制系统，这就是Git！一个月之内，Linux系统的源码已经由Git管理了！牛是怎么定义的呢？大家可以体会一下。</p>
+<p>Git迅速成为最流行的分布式版本控制系统，尤其是2008年，GitHub网站上线了，它为开源项目免费提供Git存储，无数开源项目开始迁移至GitHub，包括jQuery，PHP，Ruby等等。</p>
+<p>历史就是这么偶然，如果不是当年BitMover公司威胁Linux社区，可能现在我们就没有免费而超级好用的Git了。</p>
+<h2 id="vs">集中式vs分布式<a class="headerlink" href="#vs" title="Permanent link">&para;</a></h2>
+<p>Linus一直痛恨的CVS及SVN都是集中式的版本控制系统，而Git是分布式版本控制系统，集中式和分布式版本控制系统有什么区别呢？</p>
+<p>先说集中式版本控制系统，版本库是集中存放在中央服务器的，而干活的时候，用的都是自己的电脑，所以要先从中央服务器取得最新的版本，然后开始干活，干完活了，再把自己的活推送给中央服务器。中央服务器就好比是一个图书馆，你要改一本书，必须先从图书馆借出来，然后回到家自己改，改完了，再放回图书馆。</p>
+<p><img alt="server" src="../../assets/images/git/git0.jpeg" /></p>
+<p>集中式版本控制系统最大的毛病就是必须联网才能工作，如果在局域网内还好，带宽够大，速度够快，可如果在互联网上，遇到网速慢的话，可能提交一个10M的文件就需要5分钟，这还不得把人给憋死啊。</p>
+<p>那分布式版本控制系统与集中式版本控制系统有何不同呢？首先，分布式版本控制系统根本没有“中央服务器”，每个人的电脑上都是一个完整的版本库，这样，你工作的时候，就不需要联网了，因为版本库就在你自己的电脑上。既然每个人电脑上都有一个完整的版本库，那多个人如何协作呢？比方说你在自己电脑上改了文件A，你的同事也在他的电脑上改了文件A，这时，你们俩之间只需把各自的修改推送给对方，就可以互相看到对方的修改了。</p>
+<p>和集中式版本控制系统相比，分布式版本控制系统的安全性要高很多，因为每个人电脑里都有完整的版本库，某一个人的电脑坏掉了不要紧，随便从其他人那里复制一个就可以了。而集中式版本控制系统的中央服务器要是出了问题，所有人都没法干活了。</p>
+<p>在实际使用分布式版本控制系统的时候，其实很少在两人之间的电脑上推送版本库的修改，因为可能你们俩不在一个局域网内，两台电脑互相访问不了，也可能今天你的同事病了，他的电脑压根没有开机。因此，分布式版本控制系统通常也有一台充当“中央服务器”的电脑，但这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它大家也一样干活，只是交换修改不方便而已。</p>
+<p><img alt="" src="../../assets/images/git/git1.jpeg" /></p>
+<p>当然，Git的优势不单是不必联网这么简单，后面我们还会看到Git极其强大的分支管理，把SVN等远远抛在了后面。</p>
+<p>CVS作为最早的开源而且免费的集中式版本控制系统，直到现在还有不少人在用。由于CVS自身设计的问题，会造成提交文件不完整，版本库莫名其妙损坏的情况。同样是开源而且免费的SVN修正了CVS的一些稳定性问题，是目前用得最多的集中式版本库控制系统。</p>
+<p>除了免费的外，还有收费的集中式版本控制系统，比如IBM的ClearCase（以前是Rational公司的，被IBM收购了），特点是安装比Windows还大，运行比蜗牛还慢，能用ClearCase的一般是世界500强，他们有个共同的特点是财大气粗，或者人傻钱多。</p>
+<p>微软自己也有一个集中式版本控制系统叫VSS，集成在Visual Studio中。由于其反人类的设计，连微软自己都不好意思用了。</p>
+<p>分布式版本控制系统除了Git以及促使Git诞生的BitKeeper外，还有类似Git的Mercurial和Bazaar等。这些分布式版本控制系统各有特点，但最快、最简单也最流行的依然是Git！</p>
+<h2 id="git_2">Git 安装<a class="headerlink" href="#git_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><a href="https://git-scm.com/about">Git 官网</a></p>
+</li>
+<li>
+<p><a href="https://git-scm.com/book/en/v2">Git文档</a></p>
+</li>
+<li>
+<p>Download for Linux and Unix <a href="https://git-scm.com/download/linux">Link</a></p>
+</li>
+<li>
+<p>Windown <a href="https://git-scm.com/download/win">Link</a></p>
+</li>
+<li>
+<p>Mac <a href="https://git-scm.com/download/mac">Link</a></p>
+</li>
+<li>
+<p>Git基础教程<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">Link</a></p>
+</li>
+<li>
+<p>支持WEb版本<a href="http://zodiacg.net/2014/05/gitolite_gitweb_nginx/">Link</a></p>
+</li>
+<li>
+<p>安装<a href="http://perthcharles.github.io/2015/08/24/setup-gitolite-service-git-1/">Link</a></p>
+</li>
+<li>
+<p>参考文档<a href="https://wiki.archlinux.org/index.php/gitweb#Nginx">Link</a></p>
+</li>
+<li>
+<p>配置文件github <a href="https://gist.github.com/alanbriolat/1259389">Link</a></p>
+</li>
+</ul>
+<h2 id="_1">版本回退<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Git 代码对每一次提交都作为一次comment id，回退也是在现有的堆栈只是做了一次基本，并不会把最后的内容回滚掉
+1.回退到上一个版本
+查看当前的提交记录<code>最上面的记录是最新提交的</code></p>
+<div class="codehilite"><pre><span></span>git@cuco:~/testing$ git log
+commit 8ae3a92ed8db9ede3f5c0799419c5abc1e222d49 <span class="o">(</span>HEAD -&gt; master, origin/master<span class="o">)</span>
+Author: Aige &lt;shenzhencuco@gmail.com&gt;
+Date:   Tue Feb <span class="m">19</span> <span class="m">15</span>:13:24 <span class="m">2019</span> +0800
+
+    添加测试log
+
+commit 35ea583ac4ee6834f2de39cefd550c1e8782fb8f
+Author: Aige &lt;shenzhencuco@gmail.com&gt;
+Date:   Tue Feb <span class="m">19</span> <span class="m">15</span>:12:11 <span class="m">2019</span> +0800
+
+    <span class="nb">test</span>
+</pre></div>
+
+<p>2.回退到上一个版本<code>commit 35ea583ac4ee6834f2de39cefd550c1e8782fb8f</code></p>
+<p><div class="codehilite"><pre><span></span>git@cuco:~/testing$ git reset --hard 35ea583ac4ee6834f2de39cefd550c1e8782fb8f
+HEAD is now at 35ea583 <span class="nb">test</span>
+</pre></div>
+回退后可以看到的提交记录:
+<div class="codehilite"><pre><span></span>git@cuco:~/testing$ git log
+commit 35ea583ac4ee6834f2de39cefd550c1e8782fb8f <span class="o">(</span>HEAD -&gt; master<span class="o">)</span>
+Author: Aige &lt;shenzhencuco@gmail.com&gt;
+Date:   Tue Feb <span class="m">19</span> <span class="m">15</span>:12:11 <span class="m">2019</span> +0800
+
+    <span class="nb">test</span>
+</pre></div></p>
+<p>3.此时又想回退到回退操作的最后一次提交<code>查看全部的提交记录，找到最后提交的comment id</code></p>
+<div class="codehilite"><pre><span></span>git@cuco:~/testing$ git reflog
+35ea583 <span class="o">(</span>HEAD -&gt; master<span class="o">)</span> HEAD@<span class="o">{</span><span class="m">0</span><span class="o">}</span>: reset: moving to 35ea583ac4ee6834f2de39cefd550c1e8782fb8f
+8ae3a92 <span class="o">(</span>origin/master<span class="o">)</span> HEAD@<span class="o">{</span><span class="m">1</span><span class="o">}</span>: pull: Fast-forward
+35ea583 <span class="o">(</span>HEAD -&gt; master<span class="o">)</span> HEAD@<span class="o">{</span><span class="m">2</span><span class="o">}</span>: reset: moving to 35ea583ac4ee6834f2de39cefd550c1e8782fb8f
+8ae3a92 <span class="o">(</span>origin/master<span class="o">)</span> HEAD@<span class="o">{</span><span class="m">3</span><span class="o">}</span>: reset: moving to 8ae3a92
+35ea583 <span class="o">(</span>HEAD -&gt; master<span class="o">)</span> HEAD@<span class="o">{</span><span class="m">4</span><span class="o">}</span>: reset: moving to 35ea583ac4ee6834f2de39cefd550c1e8782fb8f
+35ea583 <span class="o">(</span>HEAD -&gt; master<span class="o">)</span> HEAD@<span class="o">{</span><span class="m">5</span><span class="o">}</span>: reset: moving to 35ea583ac4ee6834f2de39cefd550c1e8782fb8f
+8ae3a92 <span class="o">(</span>origin/master<span class="o">)</span> HEAD@<span class="o">{</span><span class="m">6</span><span class="o">}</span>: reset: moving to 8ae3a92ed8db9ede3f5c0799419c5abc1e222d49
+8ae3a92 <span class="o">(</span>origin/master<span class="o">)</span> HEAD@<span class="o">{</span><span class="m">7</span><span class="o">}</span>: commit: 添加测试log
+35ea583 <span class="o">(</span>HEAD -&gt; master<span class="o">)</span> HEAD@<span class="o">{</span><span class="m">8</span><span class="o">}</span>: commit <span class="o">(</span>initial<span class="o">)</span>: <span class="nb">test</span>
+</pre></div>
+
+<p>4.回退到想要的版本
+<div class="codehilite"><pre><span></span>git@cuco:~/testing$ git reset --hard 35ea583ac4ee6834f2de39cefd550c1e8782fb8f
+HEAD is now at 35ea583 <span class="nb">test</span>
+</pre></div></p>
+<h2 id="git_3">Git的区域<a class="headerlink" href="#git_3" title="Permanent link">&para;</a></h2>
+<p>工作区---&gt;暂存区---&gt;本地代码仓库---&gt;远程代码工具</p>
+<ul>
+<li>
+<p>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。</p>
+</li>
+<li>
+<p>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD <file>，就回到了场景1，第二步按场景1操作。</p>
+</li>
+<li>
+<p>场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。</p>
+</li>
+</ul>
+<h2 id="_2">本地分支和远程分支关联<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
+
+关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
+
+此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+</pre></div>
+
+
+<h2 id="_3">合并分支<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>Git鼓励大量使用分支：
+
+查看分支：git branch
+
+创建分支：git branch &amp;lt;name&amp;gt;
+
+切换分支：git checkout &amp;lt;name&amp;gt;
+
+创建+切换分支：git checkout -b &amp;lt;name&amp;gt;
+
+合并某分支到当前分支：git merge &amp;lt;name&amp;gt;
+
+删除分支：git branch -d &amp;lt;name&amp;gt;
+</pre></div>
+
+
+<h2 id="_4">暂存代码<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：</p>
+<p>一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；</p>
+<p>另一种方式是用git stash pop，恢复的同时把stash内容也删了：</p>
+<p>再用git stash list查看，就看不到任何stash内容了：</p>
+<p>修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；</p>
+<p>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。</p>
+<h2 id="_5">远程分支操作<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>查看远程库信息，使用git remote -v；</p>
+<p>本地新建的分支如果不推送到远程，对其他人就是不可见的；</p>
+<p>从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；</p>
+<p>在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；</p>
+<p>建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；</p>
+<p>从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</p>
+<h2 id="tag">打tag标记<a class="headerlink" href="#tag" title="Permanent link">&para;</a></h2>
+<p>命令git tag <tagname>用于新建一个标签，默认为HEAD，也可以指定一个commit id；</p>
+<p>命令git tag -a <tagname> -m "blablabla..."可以指定标签信息；</p>
+<p>命令git tag可以查看所有标签。</p>
+<p>命令git push origin <tagname>可以推送一个本地标签；</p>
+<p>命令git push origin --tags可以推送全部未推送过的本地标签；</p>
+<p>命令git tag -d <tagname>可以删除一个本地标签；</p>
+<p>命令git push origin :refs/tags/<tagname>可以删除一个远程标签。</p>
+<h2 id="git-ssh-httpsgit-scmcombookzhv2e69c8de58aa1e599a8e4b88ae79a84-git-e7949fe68890-ssh-e585ace992a5">服务器上的 Git - 生成 SSH 公钥(<a href="https://git-scm.com/book/zh/v2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E7%94%9F%E6%88%90-SSH-%E5%85%AC%E9%92%A5">https://git-scm.com/book/zh/v2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-%E7%94%9F%E6%88%90-SSH-%E5%85%AC%E9%92%A5</a>)<a class="headerlink" href="#git-ssh-httpsgit-scmcombookzhv2e69c8de58aa1e599a8e4b88ae79a84-git-e7949fe68890-ssh-e585ace992a5" title="Permanent link">&para;</a></h2>
+<h2 id="gitosis">Gitosis:<a class="headerlink" href="#gitosis" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>配置</p>
+</blockquote>
+<p><a href="https://github.com/sitaramc/gitolite">https://github.com/sitaramc/gitolite</a></p>
+<div class="admonition info">
+<p class="admonition-title">系统需求</p>
+<ul>
+<li>any unix system</li>
+<li>sh</li>
+<li>git 1.6.6 or later</li>
+<li>perl 5.8.8 or later</li>
+<li>openssh 5.0 or later</li>
+<li>a dedicated userid to host the repos (in this document, we assume it is "git", but it can be anything; substitute accordingly)</li>
+<li>this user id does NOT currently have any ssh pubkey-based access</li>
+<li>ideally, this user id has shell access ONLY by "su - git" from some other userid on the same server (this ensure minimal confusion for ssh newbies!)</li>
+</ul>
+</div>
+<h2 id="_6">安装<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>参考文档<a href="https://www.cnblogs.com/hupengcool/p/3919201.html">Link</a></p>
+<div class="codehilite"><pre><span></span><span class="c1"># 切换为 git 用户</span>
+<span class="c1"># su git</span>
+<span class="o">[</span>git@server ~<span class="o">]</span>$ <span class="nb">cd</span> ~
+<span class="o">[</span>git@server ~<span class="o">]</span>$ git clone git://github.com/sitaramc/gitolite
+</pre></div>
+
+<p>下载源码之后安装:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># 创建 ~/bin 目录</span>
+<span class="o">[</span>git@server ~<span class="o">]</span>$ mkdir bin
+<span class="c1"># 把 /home/git/bin 添加到环境变量里, 通过修改git 家下面的.bashrc</span>
+<span class="o">[</span>git@server ~<span class="o">]</span>$ vim .bashrc
+<span class="c1"># 在文件最后添加</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/home/git/bin:<span class="nv">$PATH</span>
+<span class="c1"># Install gitolite into $HOME/git/bin</span>
+<span class="o">[</span>git@server ~<span class="o">]</span>$ gitolite/install -ln
+<span class="o">[</span>git@server ~<span class="o">]</span>$
+</pre></div>
+
+<p>上传客户端管理员的SSH 公钥 {#ssh_key}
+<small>客户端如果生成ssh key, 参考: <a href="https://help.github.com/articles/connecting-to-github-with-ssh/">Github - Generating SSH Keys</a><small></p>
+<div class="codehilite"><pre><span></span><span class="o">[</span>ahnniu@client ~<span class="o">]</span> <span class="nb">cd</span> ~/.ssh
+<span class="o">[</span>ahnniu@client .ssh<span class="o">]</span> ls -al
+<span class="c1"># 如果不存在 id_rsa, id_rsa.pub 则运行下面的命令创建</span>
+<span class="o">[</span>ahnniu@client .ssh<span class="o">]</span> ssh-keygen -t rsa -C <span class="s2">&quot;your_email@example.com&quot;</span>
+<span class="c1"># 复制一份id_rsa.pub并重命名为 ahnniu.pub, 注 ahnniu为 gitolite管理员的用户名</span>
+<span class="o">[</span>ahnniu@client .ssh<span class="o">]</span> cp id_rsa.pub ahnniu.pub
+<span class="c1"># 通过ssh上传到服务器上(/home/git/)，特别注意文件的owern应该为git</span>
+<span class="o">[</span>ahnniu@client .ssh<span class="o">]</span> scp ~/.ssh/ahnniu.pub git@192.168.2.223:/home/git/
+</pre></div>
+
+<p>设置Gitolite
+<div class="codehilite"><pre><span></span><span class="o">[</span>git@server ~<span class="o">]</span>$ <span class="nb">cd</span> ~
+<span class="c1"># 基于提供的ahnniu.pub 创建 gitolite-admin 管理仓库</span>
+<span class="o">[</span>git@server ~<span class="o">]</span>$ gitolite setup -pk <span class="nv">$HOME</span>/ahnniu.pub
+Initialized empty Git repository in /home/git/repositories/gitolite-admin.git/
+Initialized empty Git repository in /home/git/repositories/testing.git/
+WARNING: /home/git/.ssh missing<span class="p">;</span> creating a new one
+    <span class="o">(</span>this is normal on a brand new install<span class="o">)</span>
+WARNING: /home/git/.ssh/authorized_keys missing<span class="p">;</span> creating a new one
+    <span class="o">(</span>this is normal on a brand new install<span class="o">)</span>
+</pre></div>
+至此，SSH方式的Git服务已经搭建好了</p>
+<p>客户端SSH方式clone, push
+<div class="codehilite"><pre><span></span><span class="c1"># 首先需确保，上传的管理员key ahnniu.pub是在这台电脑上生成的，否则是没有权限的</span>
+<span class="o">[</span>ahnniu@client ~<span class="o">]</span> git clone git@192.168.2.223:gitolite-admin.git
+Cloning into <span class="s1">&#39;gitolite-admin&#39;</span>...
+remote: Counting objects: <span class="m">6</span>, <span class="k">done</span>.
+remote: Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>, <span class="k">done</span>.
+remote: Total <span class="m">6</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>
+Receiving objects: <span class="m">100</span>% <span class="o">(</span><span class="m">6</span>/6<span class="o">)</span>, <span class="k">done</span>.
+Checking connectivity... <span class="k">done</span>.
+</pre></div></p>
+<p>团队开发过程中建议的Gitolite使用方式</p>
+<p>Gitolite的管理方式
+我认为Gitolite是典型的吃自己的狗粮，他的管理完全是操作Git来完成， 他可以允许多个管理员同时管理，因为是基于一个git仓库，那么通过merge可以解决冲突的问题</p>
+<p>Gitolite有一个gitolite-admin.git的仓库, 通过操作：</p>
+<p>/keydir/ 来管理SSH用户
+/conf/gitolite.conf 来管理repo（增删，权限）
+下面我们探讨如果通过gitolite打造Github那样的Git Server.</p>
+<p>Git仓库的几种权限
+Public / Private
+Public: 仓库可以给任何人Clone,pull
+Private: 仓库只能给指定的人Clone,pull</p>
+<p>几种权限组
+权限组: Owner
+仓库的拥有者，可以对仓库做任何想做的事情，比如push, 修改其它人访问这个仓库的权限，甚至删除，至少需要有一个人</p>
+<p>权限组: RW
+可读写组, clone, push, pull</p>
+<p>权限组: R
+可读组, clone, pull</p>
+<p>其中 Owner包含 RW, RW权限 包含 R</p>
+<p>准备工作
+克隆gitolite管理仓库</p>
+<div class="admonition info">
+<p class="admonition-title">NOTE: 需使用安装Gitolite指定的SSH Key对应的电脑（或者Copy 对应的 id_rsa到你使用的电脑~/.ssh）, HTTP方式好像不能操作gitolite-admin.git仓库。</p>
+</div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../material/" title="Material for MkDocs" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Material for MkDocs
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../download/download/" title="download" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                download
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019  Aige
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="http://struct.cc" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/cangchengkun/Docs" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/Aige25868905" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.facebook.com/cangck.danmo" class="md-footer-social__link fa fa-facebook"></a>
+    
+      <a href="https://www.youtube.com/" class="md-footer-social__link fa fa-youtube"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.43ad2ac2.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
