@@ -26,6 +26,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://squidfunk.github.io/mkdocs-material/python/spiderdemo/</loc>
+     <lastmod>2019-02-22</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://squidfunk.github.io/mkdocs-material/extensions/admonition/</loc>
      <lastmod>2019-02-22</lastmod>
      <changefreq>daily</changefreq>
