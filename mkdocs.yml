@@ -118,7 +118,7 @@ nav:
     - Admonition: extensions/pymdown.md
     - Flutter: android/flutter.md
   - Python:
-    - CodeHilite: extensions/codehilite.md
+    - Base : python/pythonweb.md
   - Tools:
     - AndroidStudio: extensions/admonition.md
     - Atom: tools/atom.md
@@ -127,7 +127,7 @@ nav:
     - Markdown: tools/markdown.md
     - Material for MkDocs: tools/material.md
     - Git: tools/git.md
-    
+
   - download:
     - download: download/download.md
   # - Customization: customization.md
