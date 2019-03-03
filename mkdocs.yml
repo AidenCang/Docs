@@ -117,8 +117,16 @@ nav:
   - Android:
     - Admonition: extensions/pymdown.md
     - Flutter: android/flutter.md
+    - FlutterSdk: android/flutterTools.md
+
   - Python:
+<<<<<<< HEAD
     - Base : python/pythonweb.md
+=======
+    - spider: python/scrapylib.md
+    - scrapydemo: python/spiderdemo.md
+
+>>>>>>> ad6de3856a1236e4093336cb188cdc32cc705c02
   - Tools:
     - AndroidStudio: extensions/admonition.md
     - Atom: tools/atom.md
