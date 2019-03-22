@@ -118,6 +118,7 @@ nav:
     - Admonition: extensions/pymdown.md
     - Flutter: android/flutter.md
     - FlutterSdk: android/flutterTools.md
+    - FlutterEngineInit: android/flutterEngineInit.md
 
   - Python:
     - spider: python/scrapylib.md
