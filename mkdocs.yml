@@ -116,9 +116,20 @@ nav:
 
   - Android:
     - Admonition: extensions/pymdown.md
+
+
+  - Flutter:
     - Flutter: android/flutter.md
-    - FlutterSdk: android/flutterTools.md
-    - FlutterEngineInit: android/flutterEngineInit.md
+    - FlutterSdk: android/FlutterTools.md
+    - Android加载Dart文件: android/flutterAndroidInit.md
+    - Android初始化View: android/AndroidViewinit.md
+    - Engine初始化: android/EngineInit.md
+    - EngineView初始化: android/EngineView.md
+    - C++智能指针: android/SmartPtr.md
+    - MessageLoop: android/MessageLoop.md
+    - 初始化DartVM: android/DartVM.md
+    - PlatformChannel: android/platformplugin.md
+    - 资料: android/DevResource.md
 
   - Python:
     - spider: python/scrapylib.md
