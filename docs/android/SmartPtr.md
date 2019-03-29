@@ -58,3 +58,7 @@ make_unique(size_t __n)
     return unique_ptr<_Tp>(new _Up[__n]());
 }
 ```
+## 参考资料
+
+[智能指针](https://baike.baidu.com/item/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/10784135?fr=aladdin)
+[C++指针转换](https://www.cnblogs.com/QG-whz/p/4509710.html)

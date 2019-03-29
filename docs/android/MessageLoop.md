@@ -1,4 +1,4 @@
-
+[MessageLoop](https://segmentfault.com/a/1190000008800122)
 
 初始化消息队列在ThreadHost初始化是线程关联到`MessageLoop`时进行初始化
 ```c++
