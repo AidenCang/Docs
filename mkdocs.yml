@@ -116,11 +116,12 @@ nav:
 
   - Android:
     - Admonition: extensions/pymdown.md
-    - Admonition: extensions/pymdown.md
+
 
   - Flutter:
     - Flutter: android/flutter.md
     - FlutterSdk: android/FlutterTools.md
+    - 编译模式: android/ComplieMode.md
     - FlutterEngine编译: android/EngineCompile.md
     - GNTools: android/GNTools.md
     - Ninja编译系统 : android/NinjaSystem.md
@@ -150,12 +151,13 @@ nav:
 
   - Secret:
     - 安全: secret/reousrce.md
-    - 安全: secret/reousrce.md
 
   - Linux:
     - 资料: linux/resource.md
-    - 资料: linux/resource.md
 
+  - Shell:
+    - Shell: shell/shellresource.md
+    
   - Tools:
     - AndroidStudio: extensions/admonition.md
     - Atom: tools/atom.md

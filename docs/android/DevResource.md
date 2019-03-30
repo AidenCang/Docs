@@ -2,6 +2,7 @@
 
 [AndroidStudio And IOS][43]
 
+[Android极致压缩](http://mobile.51cto.com/ahot-587958.htm)
 ## 开发资料链接
 
 [中文开发社区][32]
