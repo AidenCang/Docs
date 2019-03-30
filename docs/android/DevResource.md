@@ -97,7 +97,14 @@ Flutter | 如何优雅的解决依赖版本冲突[Link][40]，[iirokrankka.com][
 Flutter 错误和解决汇总[Link][42]
 
 AndroidStudio导入Flutter项目的问题[Link](https://blog.csdn.net/LXStrt01/article/details/83033723)
+[Flutter应用结构分析，iOS/Android的ipa/apk结构分析](https://blog.csdn.net/z529905310/article/details/85993409)
 
+[FlutterPluginRegistrar](https://docs.flutter.io/objcdoc/Protocols/FlutterPluginRegistrar.html#/c:objc(pl)FlutterPluginRegistrar(im)lookupKeyForAsset:)
+
+[Flutter杂症](https://www.jianshu.com/p/04684df6d829)
+
+[Flutter在混合项目中的构建和集成](https://blog.csdn.net/Kinsomy/article/details/82878711)
+[Flutter发布配置](https://www.cnblogs.com/gdsblog/p/10100972.html)
 
 [4]: www.dartlang.org/
 [5]: news.dartlang.org

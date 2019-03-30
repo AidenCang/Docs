@@ -116,7 +116,7 @@ nav:
 
   - Android:
     - Admonition: extensions/pymdown.md
-
+    - Admonition: extensions/pymdown.md
 
   - Flutter:
     - Flutter: android/flutter.md
@@ -146,6 +146,15 @@ nav:
   - Python:
     - spider: python/scrapylib.md
     - scrapydemo: python/spiderdemo.md
+    - 资料: python/resource.md
+
+  - Secret:
+    - 安全: secret/reousrce.md
+    - 安全: secret/reousrce.md
+
+  - Linux:
+    - 资料: linux/resource.md
+    - 资料: linux/resource.md
 
   - Tools:
     - AndroidStudio: extensions/admonition.md
@@ -157,7 +166,7 @@ nav:
     - Git: tools/git.md
     - VSCode: tools/VSCode.md
 
-  - download:
+  - Download:
     - download: download/download.md
   # - Customization: customization.md
   # - Compliance with GDPR: compliance.md

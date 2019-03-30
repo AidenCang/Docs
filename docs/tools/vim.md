@@ -48,4 +48,4 @@
 [把vim配置成顺手的python轻量级IDE](https://www.jianshu.com/p/f0513d18742a)
 
 
-[]()
+[ctags使用详解](https://blog.csdn.net/gangyanliang/article/details/6889860)
