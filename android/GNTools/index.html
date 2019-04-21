@@ -1,0 +1,1851 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="苍成坤的 blog">
+      
+      
+        <link rel="canonical" href="https://squidfunk.github.io/mkdocs-material/android/GNTools/">
+      
+      
+        <meta name="author" content="Aige">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
+    
+    
+      
+        <title>GNTools - Aige  Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "None", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#flutter-engine-gn-tools" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Aige  Docs
+            </span>
+            <span class="md-header-nav__topic">
+              GNTools
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." title="Home" class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../extensions/pymdown/" title="Android" class="md-tabs__link">
+          Android
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../flutter/" title="Flutter" class="md-tabs__link md-tabs__link--active">
+          Flutter
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../python/scrapylib/" title="Python" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../secret/reousrce/" title="Secret" class="md-tabs__link">
+          Secret
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../linux/resource/" title="Linux" class="md-tabs__link">
+          Linux
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../shell/shellresource/" title="Shell" class="md-tabs__link">
+          Shell
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../extensions/admonition/" title="Tools" class="md-tabs__link">
+          Tools
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../download/download/" title="Download" class="md-tabs__link">
+          Download
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Aige  Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/" title="Getting started" class="md-nav__link">
+      Getting started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Android
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Android
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../extensions/pymdown/" title="Admonition" class="md-nav__link">
+      Admonition
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Flutter
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Flutter
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutter/" title="Flutter" class="md-nav__link">
+      Flutter
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterTools.md" title="FlutterSdk" class="md-nav__link">
+      FlutterSdk
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ComplieMode/" title="编译模式" class="md-nav__link">
+      编译模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../EngineCompile/" title="FlutterEngine编译" class="md-nav__link">
+      FlutterEngine编译
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        GNTools
+      </label>
+    
+    <a href="./" title="GNTools" class="md-nav__link md-nav__link--active">
+      GNTools
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="介绍" class="md-nav__link">
+    介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="如何使用" class="md-nav__link">
+    如何使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="语法" class="md-nav__link">
+    语法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="命名" class="md-nav__link">
+    命名
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="构建配置" class="md-nav__link">
+    构建配置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="目标" class="md-nav__link">
+    目标
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configs" title="CONFIGS" class="md-nav__link">
+    CONFIGS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="工具链" class="md-nav__link">
+    工具链
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="模板" class="md-nav__link">
+    模板
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" title="其他功能" class="md-nav__link">
+    其他功能
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blaze" title="与Blaze的区别和相似之处" class="md-nav__link">
+    与Blaze的区别和相似之处
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" title="参考资料" class="md-nav__link">
+    参考资料
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../NinjaSystem/" title="Ninja编译系统" class="md-nav__link">
+      Ninja编译系统
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterComplieFile/" title="Flutter编译产物" class="md-nav__link">
+      Flutter编译产物
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterAndroidInit/" title="Android加载Dart文件" class="md-nav__link">
+      Android加载Dart文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../AndroidViewinit/" title="Android初始化View" class="md-nav__link">
+      Android初始化View
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../EngineInit/" title="Engine初始化" class="md-nav__link">
+      Engine初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../EngineView/" title="EngineView初始化" class="md-nav__link">
+      EngineView初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../SmartPtr/" title="C++智能指针" class="md-nav__link">
+      C++智能指针
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../NativeExtensions/" title="NativeExtensions" class="md-nav__link">
+      NativeExtensions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../MessageLoop/" title="MessageLoop" class="md-nav__link">
+      MessageLoop
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DartVM/" title="初始化DartVM" class="md-nav__link">
+      初始化DartVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../platformplugin/" title="PlatformChannel" class="md-nav__link">
+      PlatformChannel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterexample/" title="example" class="md-nav__link">
+      example
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runApp/" title="runApp" class="md-nav__link">
+      runApp
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DartVMServiceProtocol/" title="DartVMServiceProtocol" class="md-nav__link">
+      DartVMServiceProtocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterSupportView/" title="FlutterSupportView" class="md-nav__link">
+      FlutterSupportView
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../profile/" title="性能优化" class="md-nav__link">
+      性能优化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reviewCode/" title="reviewCode" class="md-nav__link">
+      reviewCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DevResource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Python
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/scrapylib/" title="spider" class="md-nav__link">
+      spider
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/spiderdemo/" title="scrapydemo" class="md-nav__link">
+      scrapydemo
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/resource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Secret
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Secret
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../secret/reousrce/" title="安全" class="md-nav__link">
+      安全
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Linux
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Linux
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux/resource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Shell
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Shell
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../shell/shellresource/" title="Shell" class="md-nav__link">
+      Shell
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Tools
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../extensions/admonition/" title="AndroidStudio" class="md-nav__link">
+      AndroidStudio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/atom/" title="Atom" class="md-nav__link">
+      Atom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/vim/" title="Vim" class="md-nav__link">
+      Vim
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../extensions/metadata/" title="Chrome" class="md-nav__link">
+      Chrome
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/markdown/" title="Markdown" class="md-nav__link">
+      Markdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/material/" title="Material for MkDocs" class="md-nav__link">
+      Material for MkDocs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/git/" title="Git" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/VSCode/" title="VSCode" class="md-nav__link">
+      VSCode
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      Download
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        Download
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../download/download/" title="download" class="md-nav__link">
+      download
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="介绍" class="md-nav__link">
+    介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="如何使用" class="md-nav__link">
+    如何使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="语法" class="md-nav__link">
+    语法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="命名" class="md-nav__link">
+    命名
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="构建配置" class="md-nav__link">
+    构建配置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="目标" class="md-nav__link">
+    目标
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configs" title="CONFIGS" class="md-nav__link">
+    CONFIGS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="工具链" class="md-nav__link">
+    工具链
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="模板" class="md-nav__link">
+    模板
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" title="其他功能" class="md-nav__link">
+    其他功能
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blaze" title="与Blaze的区别和相似之处" class="md-nav__link">
+    与Blaze的区别和相似之处
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" title="参考资料" class="md-nav__link">
+    参考资料
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="flutter-engine-gn-tools">Flutter Engine 编译使用 GN Tools<a class="headerlink" href="#flutter-engine-gn-tools" title="Permanent link">&para;</a></h1>
+<h2 id="_1">介绍<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>gn 是一款构建系统，用于编译大规模代码生成ninja文件</p>
+<div class="admonition info">
+<p class="admonition-title">优点</p>
+<ul>
+<li>1.可读性好</li>
+<li>2.速度更快</li>
+<li>3.修改gn 之后 构建ninja文件时候会自动更新</li>
+<li>4.依赖分明</li>
+</ul>
+</div>
+<p>经过几天的摸索发现这种构建系统非常有层次性，通常每个模块可以单独写一个gn文件，但是一般采用层级结构
+文件根目录下通常有一个BUILD.gn文件，该文件是所有的代码模块组装的集合</p>
+<p>.gni 文件：一般用来添加一些参数的配置，在gn文件中import这些文件或者里面定义的变量参数值</p>
+<p>本文描述了许多GN的语法细节和行为。</p>
+<p>1.1 使用内置的帮助！
+GN具有广泛的内置帮助系统，为每个函数和内置变量提供参考。 这个页面更高级。</p>
+<div class="codehilite"><pre><span></span>GN help
+</pre></div>
+
+
+<p>您还可以阅读2016年3月的GN介绍的幻灯片。演讲者备注包含完整内容。</p>
+<p>1.2 设计理念</p>
+<p>编写构建文件不应该有太多的创造性的工作。理想情况下，给定相同的要求，两个人应该生成相同的构建文件。
+除非确实需要，否则不应有灵活性。因为许多事情应该尽可能作为致命错误。
+定义应该更像代码而不是规则。我不想写或调试Prolog。但是我们团队中的每个人都可以编写和调试C ++和Python。
+应该考虑构建语言应该如何工作。它没必要去容易甚至是可能表达抽象事物。
+我们应该通过改变源码或工具来使构建更加简单，而不是使构建加以复杂来满足外部需求（在合理的范围内）。
+像Blaze，它什么时候是有意义的（见下文“与Blaze的区别和相似之处”）。</p>
+<h2 id="_2">如何使用<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>重要参数讲解</p>
+<p>group ：一个拥有命名的目标集合，这个集合包含很多的依赖模块
+可配置项：</p>
+<p>1.依赖的模块 data_deps,deps,public_deps
+2. 配置参数 ：all_dependent_configs,public_configs
+chrome 根目录的gn文件就是一个个的group组成，根据不同的条件添加或者减少模块依赖，所有在根目录的子目录中创建的模块想发挥作用需要在这个文件中进行添加依赖</p>
+<p>config ：定义一个配置对象
+通俗的解释，config就是构造一个模板，这个模板有各种各样的属性</p>
+<p>source_set :需要被编译的资源的一个集合，被编译但是不产生任何的库
+static_library :生成静态库目标
+target : 指定目标的类型并生成该目标
+template: 定义一个函数名字，这个名字类似于一个函数
+component ： 定义一个组件相当于使用gn的component模板替代了静态库、动态库或者sourceset，当允许使用这个（编译参数 is_component_build 为true的时候），模板会生成一个动态库，不允许的话会生成一个动态库，这个很复杂，详情键component官方详解
+define :定义字符串，被传递给编译器，功能类似于# defines
+include_dirs ：添加额外路径文件
+inputs ： 添加当前编译目标在编译的时候需要的target
+ldflags ：传递给链接器的标志 ，现在大部分可以用libs和lib_dirs替代使用
+lib_dirs :额外的库路径列表</p>
+<h2 id="_3">语法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>GN使用了一个非常简单的动态类型语言。的类型是：</p>
+<ul>
+<li>布尔（true，false）。</li>
+<li>64位有符号整数。</li>
+<li>字符串。</li>
+<li>列表（任何其它类型）。</li>
+<li>作用域（有点像字典，只是内置的东西）。</li>
+</ul>
+<p>有一些内置的变量，其值取决于当前的环境。参见gn help更多。
+GN中有许多故意的遗漏。例如没有用户定义的函数调用（模板是最接近的了）。 根据上述设计理念，如果你需要这种东西，已经不符合其设计理念了。
+变量sources有一个特殊的规则：当分配给它时，排除模式的列表会应用于它。 这是为了自动过滤掉一些类型的文件。 有关更多信息，请参阅gn help set_sources_assignment_filter和gn help label_pattern。
+书呆子似的GN的完整语法在gn help grammar中提供。</p>
+<p>2.1 字符串</p>
+<p>字符串用双引号和反斜线使用作为转义字符。唯一支持的转义序列是：</p>
+<ul>
+<li>\” （字符引用）</li>
+<li>$ （字符美元符号）</li>
+<li> （字符反斜杠）</li>
+</ul>
+<p>反斜杠的任何其他用法被视为字符反斜杠。 因此，例如在模式中使用的\b不需要转义，Windows路径，如“C\foo\bar.h”也不需要转义。
+通过支持简单的变量替换，其中美元符号后面的字替换为变量的值。如果没有非variable−name字符以终止变量名，可以使用选择性地包围名称。不支持更复杂的表达式，只支持变量名称替换。
+<div class="codehilite"><pre><span></span><span class="nv">a</span><span class="o">=</span>“mypath”b<span class="o">=</span>“a/foo.cc” <span class="c1"># b -&gt; “mypath/foo.cc”</span>
+<span class="nv">c</span> <span class="o">=</span> “foo<span class="o">{</span>a<span class="o">}</span>bar.cc”  <span class="c1"># c -&gt; “foomypathbar.cc”</span>
+</pre></div>
+你可以使用“0xFF”语法编码8位字符，所以带有换行符（十六进制0A）的字符串如下：`“look0x0Alike0x0Athis”。</p>
+<p>2.2 清单</p>
+<p>我们是没有办法得到列表的长度的。 如果你发现自己想做这样的事情，那是你在构建中做了太多的工作。
+列表支持附加：</p>
+<div class="codehilite"><pre><span></span><span class="nv">a</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;first&quot;</span> <span class="o">]</span>
+<span class="nv">a</span> <span class="o">+=</span> <span class="o">[</span> <span class="s2">&quot;second&quot;</span> <span class="o">]</span>  <span class="c1"># [ &quot;first&quot;, &quot;second&quot; ]</span>
+<span class="nv">a</span> <span class="o">+=</span> <span class="o">[</span> <span class="s2">&quot;third&quot;</span>, <span class="s2">&quot;fourth&quot;</span> <span class="o">]</span>  <span class="c1"># [ &quot;first&quot;, &quot;second&quot;, &quot;third&quot;, &quot;fourth&quot; ]</span>
+<span class="nv">b</span> <span class="o">=</span> a + <span class="o">[</span> <span class="s2">&quot;fifth&quot;</span> <span class="o">]</span>  <span class="c1"># [ &quot;first&quot;, &quot;second&quot;, &quot;third&quot;, &quot;fourth&quot;, &quot;fifth&quot; ]</span>
+</pre></div>
+
+<p>将列表附加到另一个列表将项目附加在第二个列表中，而不是将列表附加为嵌套成员。
+您可以从列表中删除项目：</p>
+<div class="codehilite"><pre><span></span><span class="nv">a</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;first&quot;</span>, <span class="s2">&quot;second&quot;</span>, <span class="s2">&quot;third&quot;</span>, <span class="s2">&quot;first&quot;</span> <span class="o">]</span>
+<span class="nv">b</span> <span class="o">=</span> a - <span class="o">[</span> <span class="s2">&quot;first&quot;</span> <span class="o">]</span>  <span class="c1"># [ &quot;second&quot;, &quot;third&quot; ]</span>
+a -<span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;second&quot;</span> <span class="o">]</span>  <span class="c1"># [ &quot;first&quot;, &quot;third&quot;, &quot;fourth&quot; ]</span>
+</pre></div>
+
+<p>列表中的 - 运算符搜索匹配项并删除所有匹配的项。 从另一个列表中减去列表将删除第二个列表中的每个项目。
+如果没有找到匹配的项目，将抛出一个错误，因此您需要提前知道该项目在那里，然后再删除它。 假定没有办法测试是否包含，主要用例是设置文件或标志的主列表，并根据各种条件删除不适用于当前构建的主列表。</p>
+<p>在文体风格上，只喜欢添加到列表，并让每个源文件或依赖项出现一次。 这与Chrome团队为GYP提供的建议（GYP更愿意列出所有文件，然后删除在条件语中不需要的文件）相反。
+列表支持基于零的下标来提取值：</p>
+<div class="codehilite"><pre><span></span><span class="nv">a</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;first&quot;</span>, <span class="s2">&quot;second&quot;</span>, <span class="s2">&quot;third&quot;</span> <span class="o">]</span>
+<span class="nv">b</span> <span class="o">=</span> a<span class="o">[</span><span class="m">1</span><span class="o">]</span>  <span class="c1"># -&gt; &quot;second&quot;</span>
+</pre></div>
+
+<p>[]运算符是只读的，不能用于改变列表。 主要用例是当外部脚本返回几个已知值，并且要提取它们时。
+在某些情况下，当你想要附加到列表时，很容易覆盖列表。 为了帮助捕获这种情况，将非空列表赋给包含非空列表的变量是一个错误。如果要解决此限制，请先将空列表赋给目标变量。如下：
+a = [ “one” ]
+a = [ “two” ] # Error: overwriting nonempty list with a nonempty list.
+a = [] # OK
+a = [ “two” ] # OK
+注意，构建脚本执行时并不理解潜在数据的含义。这意味着它并不知道sources是一个文件名的列表。例如，如果你想删除其中一项，它必须字符串完全匹配，而不是指定一个不带后缀的名称，它并不会解析为相同的文件名。</p>
+<p>2.3 条件语句</p>
+<p>条件表达式看起来像C：</p>
+<div class="codehilite"><pre><span></span><span class="k">if</span> <span class="o">(</span>is_linux <span class="o">||</span> <span class="o">(</span>is_win <span class="o">&amp;&amp;</span> <span class="nv">target_cpu</span> <span class="o">==</span> <span class="s2">&quot;x86&quot;</span><span class="o">))</span> <span class="o">{</span>
+  sources -<span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;something.cc&quot;</span> <span class="o">]</span>
+<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span>...<span class="o">)</span> <span class="o">{</span>
+  ...
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+  ...
+<span class="o">}</span>
+</pre></div>
+
+<p>如果目标只应在某些情况下声明，你就可以使用条件语句，甚至是整个目标。</p>
+<p>2.4 循环</p>
+<p>你可以用foreach遍历一个列表。 但不鼓励这样做。构建做的大多数事情应该都可以表达，而不是循环，如果你发现有必要使用循环，这可能说明你在构建中做了一些无用的工作。</p>
+<div class="codehilite"><pre><span></span>foreach<span class="o">(</span>i, mylist<span class="o">)</span> <span class="o">{</span>
+  print<span class="o">(</span>i<span class="o">)</span>  <span class="c1"># Note: i is a copy of each element, not a reference to it.</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>2.5 函数调用</p>
+<p>简单的函数调用看起来像大多数其他的语言：
+print(“hello, world”)
+assert(is_win, “This should only be executed on Windows”)
+这些功能是内置的，用户不能定义新的功能。
+一些函数接受一个由{}括起来的代码块：</p>
+<div class="codehilite"><pre><span></span>static_library(&quot;mylibrary&quot;) {
+  sources = [ &quot;a.cc&quot; ]
+}
+</pre></div>
+
+<p>其中大多数定义目标。 用户可以使用下面讨论的模板机制来定义这样的functions。
+确切地说，这个表达式意味着该块变成用于函数执行的函数的参数。 大多数块风格函数执行块并将结果作为要读取的变量的字典。</p>
+<p>2.6 作用域和执行</p>
+<p>文件和函数调用后跟{}块将引入新作用域。 作用域是嵌套的。 当你读取变量时，将以相反的顺序搜索包含的作用域，直到找到匹配的名称。 变量写入始终位于最内层。
+没有办法修改除最内层之外的任何封闭作用域。 这意味着，当你定义一个目标，例如，你在块里面做的什么都不会“泄漏”到文件的其余部分。
+if/else/foreach语句，即使他们使用{}，不会引入一个新的作用域，所以更改会影响到语句之外。</p>
+<h2 id="_4">命名<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>3.1文件和目录名
+文件和目录名称是字符串，并且被解释为相对于当前构建文件的目录。 有三种可能的形式：
+相对名称：</p>
+<div class="codehilite"><pre><span></span>“foo.cc”
+“SRC/foo.cc”
+“../src/foo.cc”
+</pre></div>
+
+<p>Source-tree绝对名称：</p>
+<div class="codehilite"><pre><span></span>“//net/foo.cc”
+“//base/test/foo.cc”
+</pre></div>
+
+<p>系统绝对名称（很少，通常用于包含目录）：</p>
+<div class="codehilite"><pre><span></span><span class="s2">&quot;/usr/local/include/&quot;</span>
+<span class="s2">&quot;/C:/Program Files/Windows Kits/Include&quot;</span>
+</pre></div>
+
+<p>3.2 标识</p>
+<p>标识是有着预定义格式的字符串，依赖图中所有的元素（目标，配置和工具链）都由标识唯一识别。通常情况下，标识看去是以下样子。</p>
+<div class="admonition info">
+<p class="admonition-title">"它由三部分组成</p>
+<ul>
+<li>source-tree绝对路径</li>
+<li>冒号</li>
+<li>名称</li>
+</ul>
+</div>
+<p>上面这个标识指示到/base/test/BUILD.gn中查找名称是“test_support”的标识。</p>
+<p>当加载构建文件时，如果在相对于source root给定的路径不存在时，GN将查找build/secondary中的辅助树。该树的镜像结构主存储库是一种从其它存储库添加构建文件的方式（那些我们无法简单地合入BUILD文件） 辅助树只是备用而不是覆盖，因此正常位置中的文件始终优先。
+完整的标识还包括处理该标识要使用的工具链。工具链通常是以继承的方式被默认指定，当然你也可以显示指定。</p>
+<p>“//base/test:test_support(//build/toolchain/win:msvc)”</p>
+<p>上面这个标识会去“//build/toolchain/win”文件查到名叫”msvc”的工具链定义，那个定义会知道如何处理“test_support”这个标识。
+如果你指向的标识就在此个build文件，你可以省略路径，而只是从冒号开始。</p>
+<p>“:base”</p>
+<p>你可以以相对于当前目录的方式指定路径。标准上说，要引用非本文件中标识时，除了它要在不同上下文运行，我们建议使用绝对路径。什么是要在不同上下文运行？举个列子，一个项目它既要能构造独立版本，又可能是其它项目的子模块。</p>
+<p>“source/plugin:myplugin” # Prefer not to do these.</p>
+<p>“../net:url_request”</p>
+<p>书写时，可以省略标识的第二部分、第三部分，即冒号和名称，这时名称默认使用目录的最后一段。标准上说，在这种情况建议省略第二、三部分。（以下的“=”表示等同）</p>
+<p>“//net” = “//net:net”
+“//tools/gn” = “//tools/gn:gn”</p>
+<h2 id="_5">构建配置<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>4.1 总体构建流程</p>
+<p>在当前目录查找.gn文件，如果不存在则向上一级目录查找直到找到一个。将这个目录设为”souce root”, 解析该目录下的gn文件以获取build confing文件名称。
+执行build config文件（这是一个默认工具链），在chromium中是//build/config/BUILDCONFIG.gn;
+加载root目录下的BUILD.gn文件;
+根据root目录下的BUILD.gn内容加载其依赖的其它目录下的BUILD.gn文件，如果在指定位置找不到一个gn文件，GN将查找 build/secondary 的相应位置；
+当一个目标的依赖都解决了，编译出.ninja文件保存到out_dir/dir，例如./out/arm/obj/ui/web_dialogs/web_dialogs.ninja;
+当所有的目标都解决了， 编译出一个根 build.ninja 文件存放在out_dir根目录下。</p>
+<p>4.2 构建配置文件</p>
+<p>第一个要执行的是构建配置文件，它在指示源码库根目录的“.gn”文件中指定。Chrome源码树中该文件是“//build/config/BUILDCONFIG.gn”。整个系统有且只有一个构造配置文件。
+除设置其它build文件执行时的工作域外，该文件还设置参数、变量、默认值，等等。设置在该文件的值对所有build文件可见。
+每个工具链会执行一次该文件（见“工具链”）。</p>
+<p>4.3 构建参数</p>
+<p>参数可以从命令行（和其他工具链，参见下面的“工具链”）传入。 你可以通过declare_args声明接受哪些参数和指定默认值。
+有关参数是如何工作的，请参阅gn help buildargs。 有关声明它们的细节，请参阅gn help declare_args。
+在给定作用域内多次声明给定的参数是一个错误。 通常，参数将在导入文件中声明（在构建的某些子集之间共享它们）或在主构建配置文件中（使它们是全局的）。</p>
+<p>4.4 默认目标</p>
+<p>您可以为给定的目标类型设置一些默认值。 这通常在构建配置文件中完成，以设置一个默认配置列表，它定义每个目标类型的构建标志和其他设置信息。
+请参阅gn help set_defaults。
+例如，当您声明static_library时，将应用静态库的目标默认值。 这些值可以由目标覆盖，修改或保留。</p>
+<div class="codehilite"><pre><span></span><span class="c1">#This call is typically in the build config file (see above).</span>
+set_defaults<span class="o">(</span><span class="s2">&quot;static_library&quot;</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nv">configs</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;//build:rtti_setup&quot;</span>, <span class="s2">&quot;//build:extra_warnings&quot;</span> <span class="o">]</span>
+<span class="o">}</span>
+
+<span class="c1"># This would be in your directory&#39;s BUILD.gn file.</span>
+static_library<span class="o">(</span><span class="s2">&quot;mylib&quot;</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1"># At this point configs is set to [ &quot;//build:rtti_setup&quot;, &quot;//build:extra_warnings&quot; ]</span>
+  <span class="c1"># by default but may be modified.</span>
+  configs -<span class="o">=</span> <span class="s2">&quot;//build:extra_warnings&quot;</span>  <span class="c1"># Don&#39;t want these warnings.</span>
+  <span class="nv">configs</span> <span class="o">+=</span> <span class="s2">&quot;:mylib_config&quot;</span>  <span class="c1"># Add some more configs.</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>用于设置目标默认值的其他用例是，当您通过模板定义自己的目标类型并想要指定某些默认值。</p>
+<h2 id="_6">目标<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>目标是构造表中的一个节点，通常用于表示某个要产生的可执行或库文件。目标经常会依赖其它目标，以下是内置的目标类型（参考gn help ）：</p>
+<div class="admonition info">
+<p class="admonition-title">gn help</p>
+<ul>
+<li>action：运行一个脚本来生成一个文件。</li>
+<li>action_foreach：循环运行脚本依次产生文件。</li>
+<li>bundle_data：产生要加入Mac/iOS包的数据。</li>
+<li>create_bundle：产生Mac/iOS包。</li>
+<li>executable：生成一个可执行文件。</li>
+<li>group：包含一个或多个目标的虚拟节点（目标）。</li>
+<li>shared_library：一个.dll或的.so。</li>
+<li>loadable_module：一个只用于运行时的.dll或.so。</li>
+<li>source_set：一个轻量的虚拟静态库（通常指向一个真实静态库）。</li>
+<li>static_library：一个的.lib或某文件（正常情况下你会想要一个source_set代替）。</li>
+<li>你可以用模板（templates）来扩展可使用的目标。Chrome就定义了以下类型。</li>
+<li>component：基于构造类型，或是源文件集合或是共享库。</li>
+<li>test：可执行测试。在移动平台，它用于创建测试原生app。</li>
+<li>app：可执行程序或Mac/iOS应用。</li>
+<li>android_apk：生成一个APK。有许多Android应用，参考//build/config/android/rules.gni。</li>
+</ul>
+</div>
+<h2 id="configs">CONFIGS<a class="headerlink" href="#configs" title="Permanent link">&para;</a></h2>
+<p>配置是指定标志集，包含目录和定义的命名对象。 它们可以应用于目标并推送到依赖目标。</p>
+<div class="codehilite"><pre><span></span>config<span class="o">(</span><span class="s2">&quot;myconfig&quot;</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nv">includes</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;src/include&quot;</span> <span class="o">]</span>
+  <span class="nv">defines</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;ENABLE_DOOM_MELON&quot;</span> <span class="o">]</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>将配置应用于目标：</p>
+<p><div class="codehilite"><pre><span></span>executable<span class="o">(</span><span class="s2">&quot;doom_melon&quot;</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nv">configs</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;:myconfig&quot;</span> <span class="o">]</span>
+<span class="o">}</span>
+</pre></div>
+build config文件通常指定设置默认配置列表的目标默认值。 根据需要，目标可以添加或删除到此列表。 所以在实践中，你通常使用configs + =“：myconfig”附加到默认列表。
+有关如何声明和应用配置的更多信息，请参阅gn help config。
+公共CONFIGS
+目标可以将设置应用于依赖它的目标。 最常见的例子是第三方目标，它需要一些定义或包含目录来使其头文件正确include。 希望这些设置适用于第三方库本身，以及使用该库的所有目标。
+为此，我们需要为要应用的设置编写config：</p>
+<div class="codehilite"><pre><span></span>config<span class="o">(</span><span class="s2">&quot;my_external_library_config&quot;</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nv">includes</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span>
+  <span class="nv">defines</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;DISABLE_JANK&quot;</span> <span class="o">]</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>然后将这个配置被添加到public_configs。 它将应用于该目标以及直接依赖该目标的目标。</p>
+<div class="codehilite"><pre><span></span>shared_library<span class="o">(</span><span class="s2">&quot;my_external_library&quot;</span><span class="o">)</span> <span class="o">{</span>
+  ...
+  <span class="c1"># Targets that depend on this get this config applied.</span>
+  <span class="nv">public_configs</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;:my_external_library_config&quot;</span> <span class="o">]</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>依赖目标可以通过将你的目标作为“公共”依赖来将该依赖树转发到另一个级别。</p>
+<div class="codehilite"><pre><span></span>static_library<span class="o">(</span><span class="s2">&quot;intermediate_library&quot;</span><span class="o">)</span> <span class="o">{</span>
+  ...
+  <span class="c1"># Targets that depend on this one also get the configs from &quot;my external library&quot;.</span>
+  <span class="nv">public_deps</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;:my_external_library&quot;</span> <span class="o">]</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>目标可以将配置转发到所有依赖项，直到达到链接边界，将其设置为all_dependent_config。 但建议不要这样做，因为它可以喷涂标志和定义超过必要的更多的构建。 相反，使用public_deps控制哪些标志适用于哪里。
+在Chrome中，更喜欢使用构建标志头系统（build/buildflag_header.gni）来防止编译器定义导致的大多数编译错误。</p>
+<h2 id="_7">工具链<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>Toolchains 是一组构建命令来运行不同类型的输入文件和链接的任务。
+可以设置有多个 Toolchains 的 build。 不过最简单的方法是每个 toolchains 分开 build同时在他们之间加上依赖关系。 这意味着,例如,32 位 Windows 建立可能取决于一个 64 位助手的 target。 他们每个可以依赖“//base:base”将 32 位基础背景下的 32 位工具链,和 64 位背景下的 64 位工具链。
+当 target 指定依赖于另一个 target,当前的 toolchains 是继承的,除非它是明确覆盖(请参见上面的“Labels”)。</p>
+<p>7.1 工具链和构建配置</p>
+<p>当你有一个简单的版本只有一个 toolchain，build config 文件是在构建之初只加载一次。它必须调用 set_default_toolchain 告诉 GN toolchain 定义的 label 标签。 此 toolchain 定义了需要用的编译器和连接器的命令。 toolchain 定义的 toolchain_args 被忽略。当 target 对使用不同的 toolchain target 的依赖， GN 将使用辅助工具链来解决目标开始构建。 GN 将加载与工具链定义中指定的参数生成配置文件。 由于工具链已经知道， 调用 set_default_toolchain 将被忽略。所以 oolchain configuration 结构是双向的。 在默认的 toolchain（即主要的构建 target）的配置从构建配置文件的工具链流向： 构建配置文件着眼于构建（操作系统类型， CPU 架构等）的状态， 并决定使用哪些 toolchain（通过 set_default_toolchin）。 在二次 toolchain，配置从 toolchain 流向构建配置文件：在 toolchain 定义 toolchain_args 指定的参数重新调用构建。</p>
+<p>7.2 工具链例子</p>
+<p>假设默认的构建是一个 64 位版本。 无论这是根据当前系统默认的 CPU 架构， 或者用户在命令行上传递 target_cpu=“64”。 build config file 应该像这样设置默认的工具链：</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Set default toolchain only has an effect when run in the context of</span>
+<span class="c1"># the default toolchain. Pick the right one according to the current CPU</span>
+<span class="c1"># architecture.</span>
+<span class="k">if</span> <span class="o">(</span><span class="nv">target_cpu</span> <span class="o">==</span> <span class="s2">&quot;x64&quot;</span><span class="o">)</span> <span class="o">{</span>
+  set_default_toolchain<span class="o">(</span><span class="s2">&quot;//toolchains:64&quot;</span><span class="o">)</span>
+<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nv">target_cpu</span> <span class="o">==</span> <span class="s2">&quot;x86&quot;</span><span class="o">)</span> <span class="o">{</span>
+  set_default_toolchain<span class="o">(</span><span class="s2">&quot;//toolchains:32&quot;</span><span class="o">)</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>如果一个 64 位的 target 要依靠一个 32 位二进制数， 它会使用 data_deps 指定的依赖关系（data_deps 依赖库在运行时才需要链接时不需要， 因为你不能直接链接 32 位和 64位的库）。</p>
+<div class="codehilite"><pre><span></span>executable<span class="o">(</span><span class="s2">&quot;my_program&quot;</span><span class="o">)</span> <span class="o">{</span>
+  ...
+  <span class="k">if</span> <span class="o">(</span><span class="nv">target_cpu</span> <span class="o">==</span> <span class="s2">&quot;x64&quot;</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1"># The 64-bit build needs this 32-bit helper.</span>
+    <span class="nv">data_deps</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;:helper(//toolchains:32)&quot;</span> <span class="o">]</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="nv">target_cpu</span> <span class="o">==</span> <span class="s2">&quot;x86&quot;</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1"># Our helper library is only compiled in 32-bits.</span>
+  shared_library<span class="o">(</span><span class="s2">&quot;helper&quot;</span><span class="o">)</span> <span class="o">{</span>
+    ...
+  <span class="o">}</span>
+<span class="o">}</span>
+
+上述（引用的工具链文件toolchains/BUILD.gn）将定义两个工具链：
+
+toolchain<span class="o">(</span><span class="s2">&quot;32&quot;</span><span class="o">)</span> <span class="o">{</span>
+  tool<span class="o">(</span><span class="s2">&quot;cc&quot;</span><span class="o">)</span> <span class="o">{</span>
+    ...
+  <span class="o">}</span>
+  ... more tools ...
+
+  <span class="c1"># Arguments to the build when re-invoking as a secondary toolchain.</span>
+  <span class="nv">toolchain_args</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="nv">current_cpu</span> <span class="o">=</span> <span class="s2">&quot;x86&quot;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+toolchain<span class="o">(</span><span class="s2">&quot;64&quot;</span><span class="o">)</span> <span class="o">{</span>
+  tool<span class="o">(</span><span class="s2">&quot;cc&quot;</span><span class="o">)</span> <span class="o">{</span>
+    ...
+  <span class="o">}</span>
+  ... more tools ...
+
+  <span class="c1"># Arguments to the build when re-invoking as a secondary toolchain.</span>
+  <span class="nv">toolchain_args</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="nv">current_cpu</span> <span class="o">=</span> <span class="s2">&quot;x64&quot;</span>
+  <span class="o">}</span>
+</pre></div>
+
+<p>工具链args明确指定CPU体系结构，因此如果目标依赖于使用该工具链的东西，那么在重新调用该生成时，将设置该cpu体系结构。 这些参数被忽略为默认工具链，因为当他们知道的时候，构建配置已经运行。 通常，工具链args和用于设置默认工具链的条件应该一致。
+有关多版本设置的好处是， 你可以写你的目标条件语句来引用当前 toolchain 的状态。构建文件将根据每个 toolchain 不同的状态重新运行。 对于上面的例子 my_program， 你可以看到它查询 CPU 架构， 加入了只依赖该程序的 64 位版本。 32 位版本便不会得到这种依赖性。</p>
+<p>7.3 声明工具链</p>
+<p>工具链均使用 toolchain 的命令声明， 它的命令用于每个编译和链接操作。 该toolchain 在执行时还指定一组参数传递到 build config 文件。 这使您可以配置信息传递给备用 toolchain。</p>
+<h2 id="_8">模板<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>模板是 GN 重复使用代码的主要方式。 通常， 模板会扩展到一个或多个其他目标类型。</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Declares a script that compiles IDL files to source, and then compiles those</span>
+<span class="c1"># source files.</span>
+template<span class="o">(</span><span class="s2">&quot;idl&quot;</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1"># Always base helper targets on target_name so they&#39;re unique. Target name</span>
+  <span class="c1"># will be the string passed as the name when the template is invoked.</span>
+  <span class="nv">idl_target_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">target_name</span><span class="si">}</span><span class="s2">_generate&quot;</span>
+  action_foreach<span class="o">(</span>idl_target_name<span class="o">)</span> <span class="o">{</span>
+    ...
+  <span class="o">}</span>
+
+  <span class="c1"># Your template should always define a target with the name target_name.</span>
+  <span class="c1"># When other targets depend on your template invocation, this will be the</span>
+  <span class="c1"># destination of that dependency.</span>
+  source_set<span class="o">(</span>target_name<span class="o">)</span> <span class="o">{</span>
+    ...
+    <span class="nv">deps</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;:</span><span class="nv">$idl_target_name</span><span class="s2">&quot;</span> <span class="o">]</span>  <span class="c1"># Require the sources to be compiled.</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>通常情况下你的模板定义在一个.gni 文件中， 用户 import 该文件看到模板的定义：</p>
+<div class="codehilite"><pre><span></span>import<span class="o">(</span><span class="s2">&quot;//tools/idl_compiler.gni&quot;</span><span class="o">)</span>
+
+idl<span class="o">(</span><span class="s2">&quot;my_interfaces&quot;</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nv">sources</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;a.idl&quot;</span>, <span class="s2">&quot;b.idl&quot;</span> <span class="o">]</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>声明模板会在当时在范围内的变量周围创建一个闭包。 当调用模板时，魔术变量调用器用于从调用作用域读取变量。 模板通常将其感兴趣的值复制到其自己的范围中：</p>
+<div class="codehilite"><pre><span></span>template<span class="o">(</span><span class="s2">&quot;idl&quot;</span><span class="o">)</span> <span class="o">{</span>
+  source_set<span class="o">(</span>target_name<span class="o">)</span> <span class="o">{</span>
+    <span class="nv">sources</span> <span class="o">=</span> invoker.sources
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>模板执行时的当前目录将是调用构建文件的目录，而不是模板源文件。 这是从模板调用器传递的文件将是正确的（这通常说明大多数文件处理模板）。 但是，如果模板本身有文件（也许它生成一个运行脚本的动作），你将需要使用绝对路径（“// foo / …”）来引用这些文件， 当前目录在调用期间将不可预测。 有关更多信息和更完整的示例，请参阅gn帮助模板。</p>
+<h2 id="_9">其他功能<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>9.1 Imports</p>
+<p>您可以 import .gni 文件到当前文件中。 这不是 C++中的 include。 Import 的文件将独立执行并将执行的结果复制到当前文件中（C ++执行的时候， 当遇到 include 指令时才会在当前环境中 include 文件）。 Import 允许导入的结果被缓存， 并且还防止了一些“creative”的用途包括像嵌套 include 文件。通常一个.gni 文件将定义 build 的参数和模板。 命令 gn help import 查看更多信息。.gni 文件可以定义像_this 名字前使用一个下划线的临时变量， 从而它不会被传出文件外。。</p>
+<p>9.2 路径处理</p>
+<p>通常你想使一个文件名或文件列表名相对于不同的目录。 这在运行 scripts 时特别常见的， 当构建输出目录为当前目录执行的时候， 构建文件通常是指相对于包含他们的目录的文件。您可以使用 rebase_path 转化目录。命令 gn help rebase_path 查看纤细信息。</p>
+<p>9.3 模式</p>
+<p>Patterns 被用来在一个部分表示一个或多个标签。</p>
+<p>命令： gn help set_sources_assignment_filter
+       gn help label_pattern 查看更多信息。</p>
+<p>9.4 执行脚本</p>
+<p>有两种方式来执行脚本。 GN中的所有外部脚本都在Python中。第一种方式是构建步骤。这样的脚本将需要一些输入并生成一些输出作为构建的一部分。调用脚本的目标使用“action”目标类型声明（请参阅gn help action）。
+在构建文件执行期间，执行脚本的第二种方式是同步的。在某些情况下，这是必要的，以确定要编译的文件集，或者获取构建文件可能依赖的某些系统配置。构建文件可以读取脚本的stdout并以不同的方式对其执行操作。
+同步脚本执行由exec_script函数完成（有关详细信息和示例，请参阅gn help exec_script）。因为同步执行脚本需要暂停当前的buildfile执行，直到Python进程完成执行，所以依赖外部脚本很慢，应该最小化。
+为了防止滥用，允许调用exec_script的文件可以在toplevel .gn文件中列入白名单。 Chrome会执行此操作，需要对此类添加进行其他代码审核。请参阅gn help dotfile。
+您可以同步读取和写入在同步运行脚本时不鼓励但偶尔需要的文件。典型的用例是传递比当前平台的命令行限制更长的文件名列表。有关如何读取和写入文件，请参阅gn help read_file和gn help write_file。如果可能，应避免这些功能。
+超过命令行长度限制的操作可以使用响应文件来解决此限制，而不同步写入文件。请参阅gn help response_file_contents。</p>
+<h2 id="blaze">与Blaze的区别和相似之处<a class="headerlink" href="#blaze" title="Permanent link">&para;</a></h2>
+<p>Blaze是Google的内部构建系统，现在作为Bazel公开发布。它启发了许多其他系统，如Pants和buck。
+在Google的同类环境中，对条件的需求非常低，他们可以通过一些hacks（abi_deps）来实现。 Chrome在所有地方使用条件，需要添加这些是文件看起来不同的主要原因。
+GN还添加了“configs”的概念来管理一些棘手的依赖和配置问题，这些问题同样不会出现在服务器上。 Blaze有一个“配置”的概念，它像GN工具链，但内置到工具本身。工具链在GN中的工作方式是尝试将这个概念以干净的方式分离到构建文件中的结果。
+GN保持一些GYP概念像“所有依赖”设置，在Blaze中工作方式有点不同。这部分地使得从现有GYP代码的转换更容易，并且GYP构造通常提供更细粒度的控制（其取决于情况是好还是坏）。
+GN也使用像“sources”而不是“srcs”的GYP名称，因为缩写这似乎不必要地模糊，虽然它使用Blaze的“deps”，因为“dependencies”很难键入。 Chromium还在一个目标中编译多种语言，因此指定了目标名称前缀的语言类型（例如从cc_library）。</p>
+<h2 id="_10">参考资料<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p><a href="https://gn.googlesource.com/gn/+/master/docs/quick_start.md#declaring-dependencies">GN官方文档</a>
+<a href="https://gn.googlesource.com/gn/+/master/">源代码仓库</a>
+<a href="https://gn.googlesource.com/gn/+/master/docs/cross_compiles.md">How GN handles cross-compiling</a>
+<a href="http://dev.chromium.org/developers/how-tos/depottools">depot_tools_tutorial</a></p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../EngineCompile/" title="FlutterEngine编译" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                FlutterEngine编译
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../NinjaSystem/" title="Ninja编译系统" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Ninja编译系统
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019  Aige
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="http://struct.cc" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/cangchengkun/Docs" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/Aige25868905" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.facebook.com/cangck.danmo" class="md-footer-social__link fa fa-facebook"></a>
+    
+      <a href="https://www.youtube.com/" class="md-footer-social__link fa fa-youtube"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.43ad2ac2.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
