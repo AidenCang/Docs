@@ -2,8 +2,28 @@
 
 MkDocs是一套静态工程文档网站模板，使用的是markdown语法编写的页面，同时Material for MkDocs在Mkdocs上使用了google的材料设计开发的网站模板，通过配置方式能够快速搭建工程文档项目，同时可以发布到githubpage，Amazon S3，其他自己搭建的服务器上
 
+
+
 官网:[Material for MkDocs][1]
+
 官网:[MkDocs][6]
+
+## 定制主题
+
+定制主题:[MkDocs定制主题](https://www.mkdocs.org/user-guide/custom-themes/)
+
+定制自己的样子:[Styling your docs](https://www.mkdocs.org/user-guide/styling-your-docs/#readthedocs)
+
+MkDocs GitHub定制主题:[MkDocs](https://github.com/mkdocs/mkdocs/wiki/MkDocs-Themes)
+
+## Deploying
+
+发布到GitHub: [发布到Github](https://help.github.com/articles/creating-project-pages-manually/)
+
+Hosting a Static Website on Amazon S3: [Hosting a Static Website on Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html)
+
+发布GitHub: [发布GitHub](https://www.mkdocs.org/user-guide/deploying-your-docs/)
+
 
 ## Python支持
 ```sh

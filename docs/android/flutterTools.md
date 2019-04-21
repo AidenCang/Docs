@@ -1,8 +1,4 @@
-1.乐鑫sdk临时库
-  状态:
-2.升级失败了之后，能否正常使用
-
-3.flutter 相关：
+1.flutter 相关：
   1.android studio插件
   2.pub依赖库的管理
   3.flutter工具链
