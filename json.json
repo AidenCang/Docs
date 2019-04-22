@@ -1,0 +1,15 @@
+aws apigateway create-rest-api --name DynamoDBOperations {"id": "bs8fqo6bp0","name": "DynamoDBOperations","createdDate": 1539803980,"apiKeySource": "HEADER","endpointConfiguration": {"types": ["EDGE"]}}
+
+
+➜  ~ aws apigateway create-rest-api --name DynamoDBOperations
+{
+    "apiKeySource": "HEADER",
+    "name": "DynamoDBOperations",
+    "createdDate": 1555501283,
+    "endpointConfiguration": {
+        "types": [
+            "EDGE"
+        ]
+    },
+    "id": "xnmxaq6lp8"
+}

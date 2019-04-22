@@ -157,7 +157,14 @@ nav:
 
   - Shell:
     - Shell: shell/shellresource.md
-    
+
+  - IOT:
+    - UserManager: iot/usermanager.md
+    - 语音助手: iot/Alexa.md
+    - IOT平台: iot/iotCore.md
+    - IOT协议: iot/protocol.md
+    - awsIOT方案: iot/awsiot.md
+
   - Tools:
     - AndroidStudio: extensions/admonition.md
     - Atom: tools/atom.md
@@ -167,6 +174,7 @@ nav:
     - Material for MkDocs: tools/material.md
     - Git: tools/git.md
     - VSCode: tools/VSCode.md
+    - 数据分析: tools/datareporting.md
 
   - Download:
     - download: download/download.md
