@@ -158,6 +158,7 @@ nav:
   - Shell:
     - Shell: shell/shellresource.md
 
+<<<<<<< HEAD
   - IOT:
     - UserManager: iot/usermanager.md
     - 语音助手: iot/Alexa.md
@@ -165,6 +166,8 @@ nav:
     - IOT协议: iot/protocol.md
     - awsIOT方案: iot/awsiot.md
 
+=======
+>>>>>>> 2e0db93d0b10bd80b5601e439abeb1a0d56b9b06
   - Tools:
     - AndroidStudio: extensions/admonition.md
     - Atom: tools/atom.md
