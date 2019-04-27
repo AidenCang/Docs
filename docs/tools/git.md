@@ -1,5 +1,8 @@
 # 搭建Git仓库
 
+## git
+
+[git文档](https://git-scm.com/download)
 
 Git 是一个开源的分布式代码管理工具，对代码进行跟踪，能够提供团队协作开发，管理源代码，目前很多软件都支持Git代码管理工具，Github，Gitlab、[CVS](http://www.nongnu.org/cvs/)、[SVN](https://opencores.org/howto/svn)
 

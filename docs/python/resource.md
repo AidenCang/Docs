@@ -32,6 +32,10 @@
 
 [uWSGI 管理标志](https://uwsgi-docs-zh.readthedocs.io/zh_CN/latest/ManagementFlag.html)
 
-[]()
+[xadmin前后台模板](http://x.xuebingsi.com/)
 
-[]()
+[xadmin前后台模板](https://xadmin.readthedocs.io/en/docs-chinese/)
+
+[VsVisualCode Python教程](https://code.visualstudio.com/docs/python/python-tutorial)
+
+[Cool URIs don't change](https://www.w3.org/Provider/Style/URI)
