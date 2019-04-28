@@ -2,212 +2,232 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/getting-started/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/extensions/pymdown/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/flutter/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc></loc>
-     
+     <loc>https://squidfunk.github.io/mkdocs-material/android/FlutterTools/</loc>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/ComplieMode/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/EngineCompile/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/GNTools/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/NinjaSystem/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/FlutterComplieFile/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/flutterAndroidInit/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/AndroidViewinit/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/EngineInit/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/EngineView/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/SmartPtr/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/NativeExtensions/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/MessageLoop/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/DartVM/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/platformplugin/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/flutterexample/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/runApp/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/DartVMServiceProtocol/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/FlutterSupportView/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/profile/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/Architecture/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/reviewCode/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/android/DevResource/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/python/scrapylib/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/python/spiderdemo/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://squidfunk.github.io/mkdocs-material/python/pyaws/</loc>
+     <lastmod>2019-04-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://squidfunk.github.io/mkdocs-material/python/pythonTools/</loc>
+     <lastmod>2019-04-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://squidfunk.github.io/mkdocs-material/python/BasePython/</loc>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/python/resource/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/secret/reousrce/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/linux/resource/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/shell/shellresource/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/extensions/admonition/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/tools/atom/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/tools/vim/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/extensions/metadata/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/tools/markdown/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/tools/material/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/tools/git/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/tools/VSCode/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://squidfunk.github.io/mkdocs-material/tools/datareporting/</loc>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://squidfunk.github.io/mkdocs-material/download/download/</loc>
-     <lastmod>2019-04-21</lastmod>
+     <lastmod>2019-04-28</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

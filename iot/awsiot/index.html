@@ -1,0 +1,1478 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="苍成坤的 blog">
+      
+      
+        <link rel="canonical" href="https://squidfunk.github.io/mkdocs-material/iot/awsiot/">
+      
+      
+        <meta name="author" content="Aige">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
+    
+    
+      
+        <title>aws IOT 实现方案 - Aige  Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "None", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#aws-iot" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Aige  Docs
+            </span>
+            <span class="md-header-nav__topic">
+              aws IOT 实现方案
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." title="Home" class="md-tabs__link md-tabs__link--active">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../extensions/pymdown/" title="Android" class="md-tabs__link">
+          Android
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../android/flutter/" title="Flutter" class="md-tabs__link">
+          Flutter
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../python/scrapylib/" title="Python" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../secret/reousrce/" title="Secret" class="md-tabs__link">
+          Secret
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../linux/resource/" title="Linux" class="md-tabs__link">
+          Linux
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../shell/shellresource/" title="Shell" class="md-tabs__link">
+          Shell
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../extensions/admonition/" title="Tools" class="md-tabs__link">
+          Tools
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../download/download/" title="Download" class="md-tabs__link">
+          Download
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Aige  Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/" title="Getting started" class="md-nav__link">
+      Getting started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Android
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Android
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../extensions/pymdown/" title="Admonition" class="md-nav__link">
+      Admonition
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Flutter
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Flutter
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/" title="Flutter" class="md-nav__link">
+      Flutter
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/FlutterTools/" title="FlutterSdk" class="md-nav__link">
+      FlutterSdk
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/ComplieMode/" title="编译模式" class="md-nav__link">
+      编译模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/EngineCompile/" title="FlutterEngine编译" class="md-nav__link">
+      FlutterEngine编译
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/GNTools/" title="GNTools" class="md-nav__link">
+      GNTools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/NinjaSystem/" title="Ninja编译系统" class="md-nav__link">
+      Ninja编译系统
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/FlutterComplieFile/" title="Flutter编译产物" class="md-nav__link">
+      Flutter编译产物
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutterAndroidInit/" title="Android加载Dart文件" class="md-nav__link">
+      Android加载Dart文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/AndroidViewinit/" title="Android初始化View" class="md-nav__link">
+      Android初始化View
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/EngineInit/" title="Engine初始化" class="md-nav__link">
+      Engine初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/EngineView/" title="EngineView初始化" class="md-nav__link">
+      EngineView初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/SmartPtr/" title="C++智能指针" class="md-nav__link">
+      C++智能指针
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/NativeExtensions/" title="NativeExtensions" class="md-nav__link">
+      NativeExtensions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/MessageLoop/" title="MessageLoop" class="md-nav__link">
+      MessageLoop
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/DartVM/" title="初始化DartVM" class="md-nav__link">
+      初始化DartVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/platformplugin/" title="PlatformChannel" class="md-nav__link">
+      PlatformChannel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutterexample/" title="example" class="md-nav__link">
+      example
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/runApp/" title="runApp" class="md-nav__link">
+      runApp
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/DartVMServiceProtocol/" title="DartVMServiceProtocol" class="md-nav__link">
+      DartVMServiceProtocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/FlutterSupportView/" title="FlutterSupportView" class="md-nav__link">
+      FlutterSupportView
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/profile/" title="性能优化" class="md-nav__link">
+      性能优化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/Architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/reviewCode/" title="reviewCode" class="md-nav__link">
+      reviewCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/DevResource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Python
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/scrapylib/" title="spider" class="md-nav__link">
+      spider
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/spiderdemo/" title="scrapydemo" class="md-nav__link">
+      scrapydemo
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pyaws/" title="awsPython操作" class="md-nav__link">
+      awsPython操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pythonTools/" title="PythonTools" class="md-nav__link">
+      PythonTools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/BasePython/" title="Python基础" class="md-nav__link">
+      Python基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/resource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Secret
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Secret
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../secret/reousrce/" title="安全" class="md-nav__link">
+      安全
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Linux
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Linux
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux/resource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Shell
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Shell
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../shell/shellresource/" title="Shell" class="md-nav__link">
+      Shell
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Tools
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../extensions/admonition/" title="AndroidStudio" class="md-nav__link">
+      AndroidStudio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/atom/" title="Atom" class="md-nav__link">
+      Atom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/vim/" title="Vim" class="md-nav__link">
+      Vim
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../extensions/metadata/" title="Chrome" class="md-nav__link">
+      Chrome
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/markdown/" title="Markdown" class="md-nav__link">
+      Markdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/material/" title="Material for MkDocs" class="md-nav__link">
+      Material for MkDocs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/git/" title="Git" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/VSCode/" title="VSCode" class="md-nav__link">
+      VSCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/datareporting/" title="数据分析" class="md-nav__link">
+      数据分析
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      Download
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        Download
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../download/download/" title="download" class="md-nav__link">
+      download
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="需要解决的问题" class="md-nav__link">
+    需要解决的问题
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cli" title="安装CLI" class="md-nav__link">
+    安装CLI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="如何标记一款产品和多个设备" class="md-nav__link">
+    如何标记一款产品和多个设备
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="物联网设备往往没有屏幕，也没有工作人员在设备前进行手动管理。" class="md-nav__link">
+    物联网设备往往没有屏幕，也没有工作人员在设备前进行手动管理。
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="在物联网多人权限管理的场景中" class="md-nav__link">
+    在物联网多人权限管理的场景中
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#app" title="多个APP的交互问题" class="md-nav__link">
+    多个APP的交互问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iot" title="在 IoT 场景下，考虑到设备与服务端的交互的高可用性，以及对时间和资源调度的不可预知性" class="md-nav__link">
+    在 IoT 场景下，考虑到设备与服务端的交互的高可用性，以及对时间和资源调度的不可预知性
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="那么设备又如何连接到云端呢？" class="md-nav__link">
+    那么设备又如何连接到云端呢？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="云端又如何做身份识别的呢？" class="md-nav__link">
+    云端又如何做身份识别的呢？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws" title="AWS 提供了多种证书下发的方式" class="md-nav__link">
+    AWS 提供了多种证书下发的方式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aws-iot-api" title="根据自己的需求使用 AWS IOT API 定制自己的身份认证过程。" class="md-nav__link">
+    根据自己的需求使用 AWS IOT API 定制自己的身份认证过程。
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="区域设置" class="md-nav__link">
+    区域设置
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-gateway" title="API GateWay授权控制" class="md-nav__link">
+    API GateWay授权控制
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-gateway_1" title="API Gateway" class="md-nav__link">
+    API Gateway
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iot_1" title="IoT设备的状态控制和数据分析" class="md-nav__link">
+    IoT设备的状态控制和数据分析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apigateway-access-dynamodb" title="APIGateway  Access DynamoDB" class="md-nav__link">
+    APIGateway  Access DynamoDB
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cvm" title="CVM 实现架构" class="md-nav__link">
+    CVM 实现架构
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="乐鑫代码" class="md-nav__link">
+    乐鑫代码
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="aws-iot">aws IOT 实现方案<a class="headerlink" href="#aws-iot" title="Permanent link">&para;</a></h1>
+<p>角色:
+arn:aws:iam::223598429371:role/lambda_invoke_function_assume_apigw_role
+/2015-03-31/functions/arn:aws:lambda:us-east-1:223598429371:function:Calc/invocations</p>
+<h2 id="_1">需要解决的问题<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="cli">安装CLI<a class="headerlink" href="#cli" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.aws.amazon.com/zh_cn/cli/latest/userguide/install-macos.html">命令行接口安装</a></p>
+<h3 id="_2">如何标记一款产品和多个设备<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>productid : IoT 设备 ID
+accessToken: IoT 设备 Token
+timestamp : 证书申请时间戳
+applyState : 申请状态（如果申请过证书设置为-1，标记此设备已经注册过证书了）
+certID : 设备关联的证书 ID</p>
+<h3 id="_3">物联网设备往往没有屏幕，也没有工作人员在设备前进行手动管理。<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>升级操作如何触发？升级失败后如何回滚，并上报升级状态？</p>
+<h3 id="_4">在物联网多人权限管理的场景中<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>我们使用 STS 服务分发临时凭证，以满足权限的细粒度控制</p>
+<h3 id="app">多个APP的交互问题<a class="headerlink" href="#app" title="Permanent link">&para;</a></h3>
+<p><a href="https://aws.amazon.com/cn/blogs/china/aws-iot-series-5/">多个控制端 APP 交互管理多个设备</a></p>
+<h3 id="iot">在 IoT 场景下，考虑到设备与服务端的交互的高可用性，以及对时间和资源调度的不可预知性<a class="headerlink" href="#iot" title="Permanent link">&para;</a></h3>
+<p>利用 API Gateway 和 Lambda 组合的无服务器架构方式可以更好的满足实际使用需求。这是因为 API Gateway 和 Lambda 按照请求数量和持续时间进行计费，无需管理服务器，并获得持续扩展的能力。</p>
+<h3 id="_5">那么设备又如何连接到云端呢？<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>AWS IoT 提供了 MQTT, MQTT over WebSocket,  HTTP 三种接入方式
+MQTT 或 MQTT over WebSocket 支持云端主动向客户端发送消息，而 HTTP 则不能。</p>
+<h3 id="_6">云端又如何做身份识别的呢？<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>X.509 设备证书和 HTTP SigV4 两种认证方式</p>
+<h3 id="aws">AWS 提供了多种证书下发的方式<a class="headerlink" href="#aws" title="Permanent link">&para;</a></h3>
+<p>如果使用您自己的 CA 签发的设备证书，您可以通过 JITR(Just-In-Time-Registration) 或 JITP(Just-In-Time-Provision) 的方式将设备连接至云端并指定相关控制策略；如果使用 AWS IoT Core 签发的设备证书，您可以通过 CVM(Certificate Vendor Machine) 的方式将设备连接至云端并控制相关控制策略；当然，用户也可以根据自己的需求使用 AWS IOT API 定制自己的身份认证过程。</p>
+<h3 id="aws-iot-api">根据自己的需求使用 AWS IOT API 定制自己的身份认证过程。<a class="headerlink" href="#aws-iot-api" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.aws.amazon.com/zh_cn/iot/latest/developerguide/iot-provision.html">设备预配置</a></p>
+<div class="admonition info">
+<p class="admonition-title">如果使用您自己的 CA 签发的设备证书</p>
+<ul>
+<li>您可以通过 JITR(Just-In-Time-Registration)</li>
+<li>JITP(Just-In-Time-Provision)</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">AWS 的服务进行架构设计和业务逻辑设计</p>
+<ul>
+<li>IoT Core: 用于设备连接，设备管理，设备认证，消息转发。</li>
+<li>Lambda: 提供设备配置信息，调用 AWS IoT Core API, DynamoDB API。</li>
+<li>API Gateway: 管理维护 Restful API，并且触发 Lambda。</li>
+<li>DynamoDB: 存放用户和设备的绑定关系。</li>
+<li>STS: 获得 AWS 临时授权，用于设备连接至 IoT Core。</li>
+<li>CloudFormation: 帮助用户在不同地区快速部署相同的架构、服务。</li>
+</ul>
+</div>
+<p>物联网场景中，终端设备的生产者和销售者往往并不是同一个，而产品的最终使用地点也可能因为销售路径的不同而有差异。为了在全球区域提供相同的使用体验，设备应该能够根据其所在的区域进行自发性的连接选择，并通过这种方式提供更低的网络时延。作为 IoT 服务提供者，需要设计部署一套跨区域的合理架构从而满足这样的需求。</p>
+<p><a href="https://aws.amazon.com/cn/blogs/china/aws-iot-series-6/">物联网设备全球部署架构方案</a></p>
+<h3 id="_7">区域设置<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>要将 REST API 与 Lambda 集成，您必须选择一个同时提供 API Gateway 和 Lambda 服务的区域。有关区域可用性，请参阅区域和终端节点。</p>
+<p>API 终端节点
+API Gateway 中部署到特定区域的 API 的主机名。主机名的格式是 {api-id}.execute-api.{region}.amazonaws.com。支持以下类型的 API 终端节点：</p>
+<p>边缘优化的 API 终端节点</p>
+<p>私有 API 终端节点</p>
+<p>区域 API 终端节点</p>
+<h4 id="api-gateway">API GateWay授权控制<a class="headerlink" href="#api-gateway" title="Permanent link">&para;</a></h4>
+<div class="admonition info">
+<p class="admonition-title">API Gateway授权控制</p>
+</div>
+<ul>
+<li><a href="https://docs.aws.amazon.com/zh_cn/apigateway/latest/developerguide/permissions.html">IAM 权限</a></li>
+<li><a href="https://docs.aws.amazon.com/zh_cn/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html">Lambda 授权方</a></li>
+<li><a href="https://docs.aws.amazon.com/zh_cn/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html"> Amazon Cognito 用户池</a></li>
+<li><a href="https://docs.aws.amazon.com/zh_cn/apigateway/latest/developerguide/api-gateway-api-usage-plans.html">统计使用情况</a></li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">使用方式</p>
+<ul>
+<li>您可以使用 API Gateway 控制台</li>
+<li>API Gateway REST API</li>
+<li>AWS CLI</li>
+<li>某个 AWS 软件开发工具包执行这些任务和其他任务</li>
+</ul>
+</div>
+<p><a href="https://docs.aws.amazon.com/general/latest/gr/rande.html#apigateway_region">区域和终端节点</a></p>
+<h4 id="api-gateway_1">API Gateway<a class="headerlink" href="#api-gateway_1" title="Permanent link">&para;</a></h4>
+<p><a href="https://stackoverflow.com/questions/55594587/setup-a-basic-websocket-mock-in-aws-apigateway">https://stackoverflow.com/questions/55594587/setup-a-basic-websocket-mock-in-aws-apigateway</a></p>
+<h3 id="iot_1">IoT设备的状态控制和数据分析<a class="headerlink" href="#iot_1" title="Permanent link">&para;</a></h3>
+<p><a href="http://aws.amazon.bokecc.com/news/show-1062.html">AWS IoT DAY-Shenzhen-AWS IoT设备的状态控制和数据分析</a></p>
+<h3 id="apigateway-access-dynamodb">APIGateway  Access DynamoDB<a class="headerlink" href="#apigateway-access-dynamodb" title="Permanent link">&para;</a></h3>
+<p><a href="https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/with-on-demand-https-example.html">将 AWS Lambda 与 Amazon API Gateway 结合使用</a>
+<a href="https://docs.aws.amazon.com/zh_cn/apigateway/latest/developerguide/integrating-api-with-aws-services-lambda.html">在 API Gateway 中为 AWS Lambda 函数创建 REST API</a>
+<a href="https://docs.aws.amazon.com/zh_cn/apigateway/latest/developerguide/integrating-api-with-aws-services-s3.html">在 API Gateway 中创建 REST API 作为 Amazon S3 代理</a></p>
+<h3 id="cvm">CVM 实现架构<a class="headerlink" href="#cvm" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/awslabs">https://github.com/awslabs</a></p>
+<h3 id="_8">乐鑫代码<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/EspressifApp/EsptouchForAndroid">https://github.com/EspressifApp/EsptouchForAndroid</a>
+乐鑫Android 代码:<a href="https://github.com/EspressifApp/IOT-Espressif-Android">https://github.com/EspressifApp/IOT-Espressif-Android</a>
+<a href="https://github.com/aws-samples/aws-iot-elf">https://github.com/aws-samples/aws-iot-elf</a>
+<a href="https://github.com/aws-samples/aws-iot-elf/blob/master/elf.py">https://github.com/aws-samples/aws-iot-elf/blob/master/elf.py</a></p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019  Aige
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="http://struct.cc" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/cangchengkun/Docs" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/Aige25868905" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.facebook.com/cangck.danmo" class="md-footer-social__link fa fa-facebook"></a>
+    
+      <a href="https://www.youtube.com/" class="md-footer-social__link fa fa-youtube"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.43ad2ac2.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
