@@ -147,6 +147,7 @@ nav:
   - Python:
     - spider: python/scrapylib.md
     - scrapydemo: python/spiderdemo.md
+    - Djando中间件: python/middleware.md
     - 资料: python/resource.md
 
   - Secret:
