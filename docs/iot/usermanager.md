@@ -1,5 +1,18 @@
 # 用户管理和权限
 
+## 无服务开发工具
+
+[聊天程序](https://github.com/aws-samples/aws-iot-chat-example)
+
+[无服务架构开发发布工具](https://serverless.com/)
+## 通过ip地址获取位置
+[ipstack](https://ipstack.com/)
+[jq GSON 命令行处理工具](https://stedolan.github.io/jq/)
+
+
+
+
+
 ## Cognito
 
 Amazon Cognito 为您的 Web 和移动应用程序提供身份验证、授权和用户管理。您的用户可使用用户名和密码直接登录，也可以通过第三方 (如 Facebook、Amazon 或 Google) 登录。

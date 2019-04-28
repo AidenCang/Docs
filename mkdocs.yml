@@ -147,6 +147,9 @@ nav:
   - Python:
     - spider: python/scrapylib.md
     - scrapydemo: python/spiderdemo.md
+    - awsPython操作: python/pyaws.md
+    - PythonTools: python/pythonTools.md
+    - Python基础: python/BasePython.md
     - 资料: python/resource.md
 
   - Secret:
@@ -158,16 +161,6 @@ nav:
   - Shell:
     - Shell: shell/shellresource.md
 
-<<<<<<< HEAD
-  - IOT:
-    - UserManager: iot/usermanager.md
-    - 语音助手: iot/Alexa.md
-    - IOT平台: iot/iotCore.md
-    - IOT协议: iot/protocol.md
-    - awsIOT方案: iot/awsiot.md
-
-=======
->>>>>>> 2e0db93d0b10bd80b5601e439abeb1a0d56b9b06
   - Tools:
     - AndroidStudio: extensions/admonition.md
     - Atom: tools/atom.md

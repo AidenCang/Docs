@@ -81,7 +81,7 @@ API Gateway 中部署到特定区域的 API 的主机名。主机名的格式是
 
 区域 API 终端节点
 
-#### API GageWay授权控制
+#### API GateWay授权控制
 
 !!! info "API Gateway授权控制"
 
@@ -99,6 +99,9 @@ API Gateway 中部署到特定区域的 API 的主机名。主机名的格式是
 
 [区域和终端节点](https://docs.aws.amazon.com/general/latest/gr/rande.html#apigateway_region)
 
+#### API Gateway
+https://stackoverflow.com/questions/55594587/setup-a-basic-websocket-mock-in-aws-apigateway
+
 ### IoT设备的状态控制和数据分析
 
 [AWS IoT DAY-Shenzhen-AWS IoT设备的状态控制和数据分析](http://aws.amazon.bokecc.com/news/show-1062.html)
@@ -108,3 +111,14 @@ API Gateway 中部署到特定区域的 API 的主机名。主机名的格式是
 [将 AWS Lambda 与 Amazon API Gateway 结合使用](https://docs.aws.amazon.com/zh_cn/lambda/latest/dg/with-on-demand-https-example.html)
 [在 API Gateway 中为 AWS Lambda 函数创建 REST API](https://docs.aws.amazon.com/zh_cn/apigateway/latest/developerguide/integrating-api-with-aws-services-lambda.html)
 [在 API Gateway 中创建 REST API 作为 Amazon S3 代理](https://docs.aws.amazon.com/zh_cn/apigateway/latest/developerguide/integrating-api-with-aws-services-s3.html)
+
+
+### CVM 实现架构
+https://github.com/awslabs
+
+
+### 乐鑫代码
+https://github.com/EspressifApp/EsptouchForAndroid
+乐鑫Android 代码:https://github.com/EspressifApp/IOT-Espressif-Android
+https://github.com/aws-samples/aws-iot-elf
+https://github.com/aws-samples/aws-iot-elf/blob/master/elf.py
