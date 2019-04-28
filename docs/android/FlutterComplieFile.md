@@ -1,7 +1,5 @@
 # Flutter 编译后的产物
 
-<<<<<<< HEAD
-=======
 Flutter本质上是什么？
 
 Flutter运行在什么上面？
@@ -15,7 +13,6 @@ Flutter的竞争对手是谁，它们占据绝对优势了吗？
 Flutter是否会成为你的核心竞争力？
 
 
->>>>>>> 5fad774afdf597e881b4228f2271308a7ba2d024
 
 理解 Flutter 编译产物之前需要理解 `Flutter 的编译模式`。 任何语言在运行之前都需要编译，常见的编译模式如 `JIT 和 AOT`。JIT 可以在运行时即时编译，优势是可以动态下发和执行代码，劣势也是对应的会影响设备运行速度。AOT 即提前编译生成类 C 的二进制代码，优势是可以较快速度生成和执行平台代码，劣势就是需要提前知道对应平台的架构，甚至要为不同平台架构生成不同的代码。
 
@@ -38,8 +35,6 @@ snapshot 文件由 Flutter SDK 中的 flutter/bin/cache/artifacts/engine/android
 理解 Flutter 编译产物的性质，有助于我们更加方便的集成 Flutter/Dart 运行时或者 Debug 时所需要的依赖到现有 Android / iOS 工程中，从而更加方便的模块化开发。
 
 
-<<<<<<< HEAD
-=======
 #  Android 代码加载Flutter文件
 Flutter在开发完成之后会打包到apk中，最终和apk一起发布，下载安装之后App启动的时候是如何启动flutter的代码？？
 
@@ -55,6 +50,5 @@ snapshot 文件由 Flutter SDK 中的 flutter/bin/cache/artifacts/engine/android
 
 
 
->>>>>>> 5fad774afdf597e881b4228f2271308a7ba2d024
 # Android Apk 运行时加载Flutter代码
 # Flutter调用Android原生接口
