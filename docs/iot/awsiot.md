@@ -122,3 +122,9 @@ https://github.com/EspressifApp/EsptouchForAndroid
 乐鑫Android 代码:https://github.com/EspressifApp/IOT-Espressif-Android
 https://github.com/aws-samples/aws-iot-elf
 https://github.com/aws-samples/aws-iot-elf/blob/master/elf.py
+
+
+### aws example
+
+[亚马逊开发案例](https://github.com/aws-samples)
+[Python注册亚马逊IOT Core Things](https://github.com/aws-samples/aws-iot-elf)
