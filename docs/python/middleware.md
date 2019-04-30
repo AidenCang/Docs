@@ -42,3 +42,81 @@ django.contrib.sessions.middleware.SessionMiddleware
     性能
 
     最后，Cookie的大小会对您网站的速度产生影响。
+
+
+## Django模板
+
+### setting中配置
+
+```json
+  TEMPLATES = [
+      {
+          'BACKEND': 'django.template.backends.django.DjangoTemplates',
+          'DIRS': [],
+          'APP_DIRS': True,
+          'OPTIONS': {
+              'context_processors': [
+                  'django.template.context_processors.debug',
+                  'django.template.context_processors.request',
+                  'django.contrib.auth.context_processors.auth',
+                  'django.contrib.messages.context_processors.messages',
+              ],
+          },
+      },
+  ]
+```
+### 在View中继承`TemplateResponseMixin`这个类来对View侧获取模板名称的处理，同时使用`TemplateResponse`关联View和HTTTResponse的逻辑处理
+
+```Python
+class TemplateResponseMixin:
+    """A mixin that can be used to render a template."""
+    template_name = None
+    template_engine = None
+    response_class = TemplateResponse
+    content_type = None
+
+    def render_to_response(self, context, **response_kwargs):
+        """
+        Return a response, using the `response_class` for this view, with a
+        template rendered with the given context.
+
+        Pass response_kwargs to the constructor of the response class.
+        """
+        response_kwargs.setdefault('content_type', self.content_type)
+        return self.response_class(
+            request=self.request,
+            template=self.get_template_names(),
+            context=context,
+            using=self.template_engine,
+            **response_kwargs
+        )
+
+    def get_template_names(self):
+        """
+        Return a list of template names to be used for the request. Must return
+        a list. May not be called if render_to_response() is overridden.
+        """
+        if self.template_name is None:
+            raise ImproperlyConfigured(
+                "TemplateResponseMixin requires either a definition of "
+                "'template_name' or an implementation of 'get_template_names()'")
+        else:
+            return [self.template_name]
+
+```
+
+调用`python3.7/site-packages/django/template/loader.py`文件调用配置的引擎模块，在方法`select_template`中调用`django/template/__init__.py`中导入`EngineHandler`对`Engine`做一个逻辑处理，在`Engine`中加载``模板类
+
+```Python
+def get_template(self, template_name):
+        """
+        Return a compiled Template object for the given template name,
+        handling template inheritance recursively.
+        """
+        template, origin = self.find_template(template_name)
+        if not hasattr(template, 'render'):
+            # template needs to be compiled
+            template = Template(template, origin, template_name, engine=self)
+        return template
+```
+Template类中对Html节点数据的填充和渲染
