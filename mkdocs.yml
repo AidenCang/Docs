@@ -152,6 +152,14 @@ nav:
     - Python基础: python/BasePython.md
     - 资料: python/resource.md
 
+  - IoT:
+    - Alexa: iot/Alexa.md
+    - AWSIOT: iot/awsiot.md
+    - IotCore: iot/iotCore.md
+    - program: iot/program.md
+    - protocol: iot/protocol.md
+    - UserManager: iot/usermanager.md
+
   - Secret:
     - 安全: secret/reousrce.md
 

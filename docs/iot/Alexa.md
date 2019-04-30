@@ -49,3 +49,11 @@ Echo,Echo dot
 ### GoogleHome help
 
 [GoogleHome Help](https://support.google.com/googlehome/topic/7196250)
+
+### Built in
+
+[语音控制硬件](https://www.nxp.com/support/developer-resources/nxp-designs/mcu-based-solution-for-alexa-voice-service:MCU-VOICE-CONTROL-AVS?tid=vanmcu-avs#0)
+
+[语音实验室](https://www.nxp.com/support/developer-resources/software-support-and-services/professional-support-for-amazon-self-test-services-of-alexa-built-in-products-audio-lab-services:AUDIO-LAB-SERVICES)
+
+[翻墙工具](https://shadowsocks.org/en/download/clients.html)
