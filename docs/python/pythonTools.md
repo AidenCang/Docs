@@ -1,5 +1,9 @@
 # Python 开发相关工具
 
+## aws Python网站
+
+[aws Python 网站](https://aws.amazon.com/cn/getting-started/projects/build-modern-app-fargate-lambda-dynamodb-python/)
+[aws Python 开发站点](https://aws.amazon.com/cn/developer/)
 ## tox
 
 What is tox?
@@ -15,8 +19,17 @@ acting as a frontend to Continuous Integration servers, greatly reducing boilerp
 [tox](https://tox.readthedocs.io/en/latest/)
 
 
+
 ## 调试工具
 [Debug工具](https://github.com/jazzband/django-debug-toolbar)
 
 ## LRU Cache
 [LRUCache](/usr/local/Cellar/python/3.7.2_2/Frameworks/Python.framework/Versions/3.7/lib/python3.7/functools.py)
+
+[django-uniauth对用户进行身份验证](https://github.com/lgoodridge/django-uniauth/)
+
+[JWT认证方式:JSON Web令牌（JWT）](https://jwt.io/)
+
+[ServerLess](https://serverless.com/)
+
+[AWS 远程开发调试工具](https://console.aws.amazon.com/lambda/home?region=us-east-1#/applications/myService-dev)

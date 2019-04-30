@@ -1,6 +1,9 @@
 # Python 操作亚马逊服务器相关的服务
 
 ## DynamoDB for Python
+您也可以构建由事件触发的函数组成的无服务器应用程序，并使用 CodePipeline 和 AWS CodeBuild 自动部署这些应用程序
+AWS Lambda 管理提供内存、CPU、网络和其他资源均衡的计算机群
+
 
 ### Profile
 

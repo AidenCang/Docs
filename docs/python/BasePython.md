@@ -1,5 +1,5 @@
 # Python 基础
-Python 文档
+[Python 文档](https://python3-cookbook.readthedocs.io/zh_CN/latest/index.html)
 
 # os 包
 ## 文件读取

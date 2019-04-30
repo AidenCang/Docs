@@ -3,6 +3,24 @@
 arn:aws:iam::223598429371:role/lambda_invoke_function_assume_apigw_role
 /2015-03-31/functions/arn:aws:lambda:us-east-1:223598429371:function:Calc/invocations
 
+## AWS CloudFormation 概念
+
+### 模板
+### 堆栈
+### 更改集
+
+### 利用 CodePipeline 进行持续交付
+
+持续交付是一种发布实践，通过该实践可以自动构建、测试和准备代码更改以便投产
+
+### 持续交付
+https://aws.amazon.com/cn/devops/continuous-delivery/
+
+### AWS CodeBuild
+
+https://aws.amazon.com/cn/codebuild/
+
+
 ## 需要解决的问题
 
 ### 安装CLI
@@ -81,6 +99,13 @@ API Gateway 中部署到特定区域的 API 的主机名。主机名的格式是
 
 区域 API 终端节点
 
+
+### Alexa 案例
+[Alexa 案例](https://serverlessrepo.aws.amazon.com/applications)
+[Alexa 开发源代码](https://github.com/awslabs/serverless-application-model/tree/master/examples/apps/alexa-smart-home-skill-adapter)
+
+[Lambda校验身份流程](https://docs.aws.amazon.com/zh_cn/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html)
+
 #### API GateWay授权控制
 
 !!! info "API Gateway授权控制"
@@ -122,3 +147,9 @@ https://github.com/EspressifApp/EsptouchForAndroid
 乐鑫Android 代码:https://github.com/EspressifApp/IOT-Espressif-Android
 https://github.com/aws-samples/aws-iot-elf
 https://github.com/aws-samples/aws-iot-elf/blob/master/elf.py
+
+
+### aws example
+
+[亚马逊开发案例](https://github.com/aws-samples)
+[Python注册亚马逊IOT Core Things](https://github.com/aws-samples/aws-iot-elf)
