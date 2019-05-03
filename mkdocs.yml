@@ -150,6 +150,9 @@ nav:
     - awsPython操作: python/pyaws.md
     - PythonTools: python/pythonTools.md
     - Python基础: python/BasePython.md
+    - Django:
+      - Django: python/django/django.md
+      - Signals: python/django/djangosignals.md
     - 资料: python/resource.md
 
   - IoT:
