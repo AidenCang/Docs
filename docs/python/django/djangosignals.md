@@ -382,4 +382,5 @@ def receiver(signal, **kwargs):
 ```
 ## 参考:
 [Django信号文档](https://docs.djangoproject.com/en/2.2/topics/signals/#listening-to-signals)
+
 [Django 内置信号文档](https://docs.djangoproject.com/en/2.2/ref/signals/)

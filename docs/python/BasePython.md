@@ -1,6 +1,8 @@
 # Python 基础
 [Python 文档](https://python3-cookbook.readthedocs.io/zh_CN/latest/index.html)
 
+global nolocal 分别代表的意思
+
 # os 包
 ## 文件读取
 ## 加载JSON文件
