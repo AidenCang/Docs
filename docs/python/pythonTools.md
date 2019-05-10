@@ -19,6 +19,14 @@ acting as a frontend to Continuous Integration servers, greatly reducing boilerp
 
 [tox](https://tox.readthedocs.io/en/latest/)
 
+
+
+## 调试工具
+[Debug工具](https://github.com/jazzband/django-debug-toolbar)
+
+## LRU Cache
+[LRUCache](/usr/local/Cellar/python/3.7.2_2/Frameworks/Python.framework/Versions/3.7/lib/python3.7/functools.py)
+
 [django-uniauth对用户进行身份验证](https://github.com/lgoodridge/django-uniauth/)
 
 [JWT认证方式:JSON Web令牌（JWT）](https://jwt.io/)

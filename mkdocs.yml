@@ -154,6 +154,12 @@ nav:
     - awsPython操作: python/pyaws.md
     - PythonTools: python/pythonTools.md
     - Python基础: python/BasePython.md
+    - Django:
+      - Django: python/django/django.md
+      - Signals: python/django/djangosignals.md
+      - Messages: python/django/djangomessage.md
+      - JSONEncoder: python/django/JSONEncoder.md
+      - Django日志配置: python/django/djangoLogger.md
     - 资料: python/resource.md
 
   - IoT:
