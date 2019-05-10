@@ -1,5 +1,6 @@
 ## 如何在Android和iOS中集成Flutter？
 
+[JDFlutter 京东跨平台开发框架！](https://mp.weixin.qq.com/s/3JU9ztdq6H684-AltJRqqQ)
 [AndroidStudio And IOS][43]
 
 [Android极致压缩](http://mobile.51cto.com/ahot-587958.htm)

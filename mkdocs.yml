@@ -116,33 +116,37 @@ nav:
 
   - Android:
     - Admonition: extensions/pymdown.md
-
-
-  - Flutter:
-    - Flutter: android/flutter.md
-    - FlutterSdk: android/FlutterTools.md
-    - 编译模式: android/ComplieMode.md
-    - FlutterEngine编译: android/EngineCompile.md
-    - GNTools: android/GNTools.md
-    - Ninja编译系统 : android/NinjaSystem.md
-    - Flutter编译产物: android/FlutterComplieFile.md
-    - Android加载Dart文件: android/flutterAndroidInit.md
-    - Android初始化View: android/AndroidViewinit.md
-    - Engine初始化: android/EngineInit.md
-    - EngineView初始化: android/EngineView.md
-    - C++智能指针: android/SmartPtr.md
-    - NativeExtensions: android/NativeExtensions.md
-    - MessageLoop: android/MessageLoop.md
-    - 初始化DartVM: android/DartVM.md
-    - PlatformChannel: android/platformplugin.md
-    - example: android/flutterexample.md
-    - runApp: android/runApp.md
-    - DartVMServiceProtocol: android/DartVMServiceProtocol.md
-    - FlutterSupportView: android/FlutterSupportView.md
-    - 性能优化: android/profile.md
-    - Architecture: android/Architecture.md
-    - reviewCode: android/reviewCode.md
-    - 资料: android/DevResource.md
+    - Flutter:
+      - Flutter: android/flutter.md
+      - FlutterSdk: android/FlutterTools.md
+      - 编译模式: android/ComplieMode.md
+      - FlutterEngine编译: android/EngineCompile.md
+      - GNTools: android/GNTools.md
+      - Ninja编译系统 : android/NinjaSystem.md
+      - Flutter编译产物: android/FlutterComplieFile.md
+      - Android加载Dart文件: android/flutterAndroidInit.md
+      - Android初始化View: android/AndroidViewinit.md
+      - Engine初始化: android/EngineInit.md
+      - EngineView初始化: android/EngineView.md
+      - C++智能指针: android/SmartPtr.md
+      - NativeExtensions: android/NativeExtensions.md
+      - MessageLoop: android/MessageLoop.md
+      - 初始化DartVM: android/DartVM.md
+      - PlatformChannel: android/platformplugin.md
+      - example: android/flutterexample.md
+      - runApp: android/runApp.md
+      - DartVMServiceProtocol: android/DartVMServiceProtocol.md
+      - FlutterSupportView: android/FlutterSupportView.md
+      - 性能优化: android/profile.md
+      - Architecture: android/Architecture.md
+      - reviewCode: android/reviewCode.md
+      - 资料: android/DevResource.md
+    - ReactNative:
+      - ReactNative: android/rn/react_native.md
+    - Awsamplify:
+      - Awsamplify: android/aws-android/awsamplify.md
+    - Android开发库:
+      - AndroidTools: android/androidTools.md
 
   - Python:
     - spider: python/scrapylib.md
