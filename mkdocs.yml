@@ -169,6 +169,7 @@ nav:
     - program: iot/program.md
     - protocol: iot/protocol.md
     - UserManager: iot/usermanager.md
+    - aws开发工具: iot/developerTools.md
 
   - Secret:
     - 安全: secret/reousrce.md
