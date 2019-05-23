@@ -173,6 +173,7 @@ nav:
 
   - Secret:
     - 安全: secret/reousrce.md
+    - 端口扫描工具: tools/networktools.md
 
   - Linux:
     - 资料: linux/resource.md
