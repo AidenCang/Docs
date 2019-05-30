@@ -117,6 +117,7 @@ nav:
   - Android:
     - Admonition: extensions/pymdown.md
     - Flutter:
+      - FlutterKey: android/FlutterKey.md
       - Flutter: android/flutter.md
       - FlutterSdk: android/FlutterTools.md
       - 编译模式: android/ComplieMode.md
@@ -149,6 +150,7 @@ nav:
       - AndroidTools: android/androidTools.md
 
   - Python:
+    - Python环境搭建: python/pythonEnv.md
     - spider: python/scrapylib.md
     - scrapydemo: python/spiderdemo.md
     - awsPython操作: python/pyaws.md
