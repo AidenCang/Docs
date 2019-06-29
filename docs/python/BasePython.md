@@ -3,6 +3,40 @@
 
 global nolocal 分别代表的意思
 
+!!! info "关键技术点"
+
+    * 1.Python 参数解析库: argparse
+    * 2.pkgutil 包的遍历解析模块
+    * 3.difflib 对象的差分比较
+    * 4.importlib 导入库的便捷函数
+    * 5.vars 快速生成字典
+    * 6.命令行的颜色显示
+    * 7.itertools
+    * import functools
+    * import itertools
+    * import logging
+    * import os
+    * import pathlib
+    * import signal
+    * import subprocess
+    * import sys
+    * import threading
+    * import time
+    * import traceback
+    * import weakref
+    * from collections import defaultdict
+    * from pathlib import Path
+    * from types import ModuleType
+    * from zipimport import zipimporter
+    * import hashlib
+    * import json
+    * import os
+    * import posixpath
+    * import re
+    * import warnings
+    * from collections import OrderedDict
+    * from urllib.parse import unquote, urldefrag, urlsplit, urlunsplit
+
 # os 包
 ## 文件读取
 ## 加载JSON文件

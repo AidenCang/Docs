@@ -156,6 +156,10 @@ nav:
       - Messages: python/django/djangomessage.md
       - JSONEncoder: python/django/JSONEncoder.md
       - Django日志配置: python/django/djangoLogger.md
+      - 管理器模块: python/django/manage.md
+      - 静态文件管理: python/django/staticmanage.md
+      - 表单: python/django/form.md
+      - 实战项目: python/django/project.md
     - 资料: python/resource.md
 
   - IoT:
