@@ -57,3 +57,5 @@ Echo,Echo dot
 [语音实验室](https://www.nxp.com/support/developer-resources/software-support-and-services/professional-support-for-amazon-self-test-services-of-alexa-built-in-products-audio-lab-services:AUDIO-LAB-SERVICES)
 
 [翻墙工具](https://shadowsocks.org/en/download/clients.html)
+
+[Aws Avs 认证开发套件](https://www.xmos.com/developer/node/37028)

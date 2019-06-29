@@ -1,8 +1,23 @@
 ## 如何在Android和iOS中集成Flutter？
 
+[JDFlutter 京东跨平台开发框架！](https://mp.weixin.qq.com/s/3JU9ztdq6H684-AltJRqqQ)
 [AndroidStudio And IOS][43]
 
+介绍Flutter工具包安装、控件、文件与网络、包与插件、国际化、Flutter核心系统
+Flutter UI
+currentElement和BuildContext
+RenderObject与RenderBox
+Flutter从启动到显示
+
+[Flutter教程](https://book.flutterchina.club/chapter14/)
+
+
+介绍Dart基本的语法、打包、Redux、主题、国际化
+
+[Flutter开发实战详解系列教程](https://juejin.im/post/5bc450dff265da0a951f032b#heading-6)
 [Android极致压缩](http://mobile.51cto.com/ahot-587958.htm)
+
+
 ## 开发资料链接
 
 [中文开发社区][32]
