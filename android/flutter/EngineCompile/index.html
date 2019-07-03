@@ -1,0 +1,2451 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="苍成坤的 blog">
+      
+      
+        <link rel="canonical" href="https://squidfunk.github.io/mkdocs-material/android/flutter/EngineCompile/">
+      
+      
+        <meta name="author" content="Aige">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
+    
+    
+      
+        <title>FlutterEngine编译 - Aige  Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "None", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#flutter-engine" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Aige  Docs
+            </span>
+            <span class="md-header-nav__topic">
+              FlutterEngine编译
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." title="Home" class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../FlutterKey/" title="Android" class="md-tabs__link md-tabs__link--active">
+          Android
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../python/base/pythonlang/" title="Python" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../iot/Alexa/" title="IoT" class="md-tabs__link">
+          IoT
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../secret/reousrce/" title="Secret" class="md-tabs__link">
+          Secret
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../linux/resource/" title="Linux" class="md-tabs__link">
+          Linux
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../shell/shellresource/" title="Shell" class="md-tabs__link">
+          Shell
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../extensions/admonition/" title="Tools" class="md-tabs__link">
+          Tools
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../download/download/" title="Download" class="md-tabs__link">
+          Download
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Aige  Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../getting-started/" title="Getting started" class="md-nav__link">
+      Getting started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Android
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Android
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1" checked>
+    
+    <label class="md-nav__link" for="nav-3-1">
+      Flutter
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        Flutter
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterKey/" title="FlutterKey" class="md-nav__link">
+      FlutterKey
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutter/" title="Flutter" class="md-nav__link">
+      Flutter
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterTools/" title="FlutterSdk" class="md-nav__link">
+      FlutterSdk
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ComplieMode/" title="编译模式" class="md-nav__link">
+      编译模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        FlutterEngine编译
+      </label>
+    
+    <a href="./" title="FlutterEngine编译" class="md-nav__link md-nav__link--active">
+      FlutterEngine编译
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="介绍" class="md-nav__link">
+    介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="预处理编译文件" class="md-nav__link">
+    预处理编译文件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gn" title="生成的GN命令参数" class="md-nav__link">
+    生成的GN命令参数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ninja" title="ninja配置文件" class="md-nav__link">
+    ninja配置文件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#argsgn" title="args.gn" class="md-nav__link">
+    args.gn
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buildninja" title="build.ninja" class="md-nav__link">
+    build.ninja
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buildninjad" title="build.ninja.d" class="md-nav__link">
+    build.ninja.d
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="执行编译命令" class="md-nav__link">
+    执行编译命令
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../GNTools/" title="GNTools" class="md-nav__link">
+      GNTools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../NinjaSystem/" title="Ninja编译系统" class="md-nav__link">
+      Ninja编译系统
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterComplieFile/" title="Flutter编译产物" class="md-nav__link">
+      Flutter编译产物
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterAndroidInit/" title="Android加载Dart文件" class="md-nav__link">
+      Android加载Dart文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../AndroidViewinit/" title="Android初始化View" class="md-nav__link">
+      Android初始化View
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../EngineInit/" title="Engine初始化" class="md-nav__link">
+      Engine初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../EngineView/" title="EngineView初始化" class="md-nav__link">
+      EngineView初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../SmartPtr/" title="C++智能指针" class="md-nav__link">
+      C++智能指针
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../NativeExtensions/" title="NativeExtensions" class="md-nav__link">
+      NativeExtensions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../MessageLoop/" title="MessageLoop" class="md-nav__link">
+      MessageLoop
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DartVM/" title="初始化DartVM" class="md-nav__link">
+      初始化DartVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../platformplugin/" title="PlatformChannel" class="md-nav__link">
+      PlatformChannel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterexample/" title="example" class="md-nav__link">
+      example
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runApp/" title="runApp" class="md-nav__link">
+      runApp
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DartVMServiceProtocol/" title="DartVMServiceProtocol" class="md-nav__link">
+      DartVMServiceProtocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterSupportView/" title="FlutterSupportView" class="md-nav__link">
+      FlutterSupportView
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../profile/" title="性能优化" class="md-nav__link">
+      性能优化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reviewCode/" title="reviewCode" class="md-nav__link">
+      reviewCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DevResource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      ReactNative
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        ReactNative
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rn/react_native/" title="ReactNative" class="md-nav__link">
+      ReactNative
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
+    
+    <label class="md-nav__link" for="nav-3-3">
+      Awsamplify
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-3">
+        Awsamplify
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../aws-android/awsamplify/" title="Awsamplify" class="md-nav__link">
+      Awsamplify
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../androidTools/" title="AndroidTools" class="md-nav__link">
+      AndroidTools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../issue/Androidissue/" title="Issue常见问题" class="md-nav__link">
+      Issue常见问题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Python
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      基础
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        基础
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/pythonlang/" title="语言基础" class="md-nav__link">
+      语言基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/advancesPython/" title="高级开发" class="md-nav__link">
+      高级开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1-3" type="checkbox" id="nav-4-1-3">
+    
+    <label class="md-nav__link" for="nav-4-1-3">
+      开发环境
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-4-1-3">
+        开发环境
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/pythonEnv/" title="环境" class="md-nav__link">
+      环境
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      爬虫
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        爬虫
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/scrapyBase/" title="爬虫基础" class="md-nav__link">
+      爬虫基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/scrapylib/" title="爬虫库" class="md-nav__link">
+      爬虫库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/spiderdemo/" title="爬虫实战" class="md-nav__link">
+      爬虫实战
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      服务器开发
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        服务器开发
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3-1" type="checkbox" id="nav-4-3-1">
+    
+    <label class="md-nav__link" for="nav-4-3-1">
+      WEB
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-4-3-1">
+        WEB
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/pythonweb/" title="主流服务器介绍" class="md-nav__link">
+      主流服务器介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/serverbase/" title="服务器常用软件" class="md-nav__link">
+      服务器常用软件
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3-2" type="checkbox" id="nav-4-3-2">
+    
+    <label class="md-nav__link" for="nav-4-3-2">
+      aws
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-4-3-2">
+        aws
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/aws/pyaws/" title="AWSpython使用" class="md-nav__link">
+      AWSpython使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/aws/serverless/" title="无服务" class="md-nav__link">
+      无服务
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3-3" type="checkbox" id="nav-4-3-3">
+    
+    <label class="md-nav__link" for="nav-4-3-3">
+      Django开发
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-4-3-3">
+        Django开发
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangosignals/" title="Dajngo信号机制" class="md-nav__link">
+      Dajngo信号机制
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangoLogger/" title="日志配置" class="md-nav__link">
+      日志配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangosignals/" title="Djangomessage" class="md-nav__link">
+      Djangomessage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/JSONEncoder/" title="JsonEncoder" class="md-nav__link">
+      JsonEncoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/middleware/" title="中间件" class="md-nav__link">
+      中间件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/question/" title="常见问题" class="md-nav__link">
+      常见问题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pythonTools/" title="开发工具" class="md-nav__link">
+      开发工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      IoT
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        IoT
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/Alexa/" title="Alexa" class="md-nav__link">
+      Alexa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/awsiot/" title="AWSIOT" class="md-nav__link">
+      AWSIOT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/iotCore/" title="IotCore" class="md-nav__link">
+      IotCore
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/program/" title="program" class="md-nav__link">
+      program
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/protocol/" title="protocol" class="md-nav__link">
+      protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/usermanager/" title="UserManager" class="md-nav__link">
+      UserManager
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/developerTools/" title="aws开发工具" class="md-nav__link">
+      aws开发工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Secret
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Secret
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../secret/reousrce/" title="安全" class="md-nav__link">
+      安全
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/networktools/" title="端口扫描工具" class="md-nav__link">
+      端口扫描工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Linux
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Linux
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../linux/resource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Shell
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Shell
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../shell/shellresource/" title="Shell" class="md-nav__link">
+      Shell
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Tools
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../extensions/admonition/" title="AndroidStudio" class="md-nav__link">
+      AndroidStudio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/atom/" title="Atom" class="md-nav__link">
+      Atom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/vim/" title="Vim" class="md-nav__link">
+      Vim
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../extensions/metadata/" title="Chrome" class="md-nav__link">
+      Chrome
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/markdown/" title="Markdown" class="md-nav__link">
+      Markdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/material/" title="Material for MkDocs" class="md-nav__link">
+      Material for MkDocs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/git/" title="Git" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/VSCode/" title="VSCode" class="md-nav__link">
+      VSCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/datareporting/" title="数据分析" class="md-nav__link">
+      数据分析
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      Download
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        Download
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../download/download/" title="download" class="md-nav__link">
+      download
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="介绍" class="md-nav__link">
+    介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="预处理编译文件" class="md-nav__link">
+    预处理编译文件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gn" title="生成的GN命令参数" class="md-nav__link">
+    生成的GN命令参数
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ninja" title="ninja配置文件" class="md-nav__link">
+    ninja配置文件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#argsgn" title="args.gn" class="md-nav__link">
+    args.gn
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buildninja" title="build.ninja" class="md-nav__link">
+    build.ninja
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buildninjad" title="build.ninja.d" class="md-nav__link">
+    build.ninja.d
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="执行编译命令" class="md-nav__link">
+    执行编译命令
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="flutter-engine">Flutter Engine 编译<a class="headerlink" href="#flutter-engine" title="Permanent link">&para;</a></h1>
+<h2 id="_1">介绍<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>通过上一篇文件的介绍，已经了解了Flutter Engine相关的一下概念，接下来，继续分析执行编译命令调用的命令，文件，和相关的逻辑，有与篇幅问题，只介绍相关的这些逻辑和构建的文件说明(纸上得来终觉浅,....)，整个思维架构打通了之后，剩下的就是时间问题，这个可以克服。。。。。。。</p>
+<div class="admonition info">
+<p class="admonition-title">优点</p>
+<ul>
+<li>1.可读性好</li>
+<li>2.速度更快</li>
+<li>3.修改gn 之后 构建ninja文件时候会自动更新</li>
+<li>4.依赖分明</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">两种文件类型</p>
+<ul>
+<li>BUILID.gn</li>
+<li>.gni</li>
+</ul>
+</div>
+<p>经过几天的摸索发现这种构建系统非常有层次性，通常每个模块可以单独写一个gn文件，但是一般采用层级结构
+文件根目录下通常有一个BUILD.gn文件，该文件是所有的代码模块组装的集合</p>
+<p>.gni 文件：一般用来添加一些参数的配置，在gn文件中import这些文件或者里面定义的变量参数值</p>
+<p>本文描述了许多GN的语法细节和行为。</p>
+<h2 id="_2">预处理编译文件<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">预处理编译文件</p>
+<ul>
+<li>./flutter/tools/gn --android --unoptimized for device-side executables.</li>
+<li>./flutter/tools/gn --android --android-cpu x86 --unoptimized for x86 emulators.</li>
+<li>./flutter/tools/gn --android --android-cpu x64 --unoptimized for x64 emulators.</li>
+<li>./flutter/tools/gn --unoptimized for host-side executables, needed to compile the code.</li>
+</ul>
+</div>
+<p>通过这些上述的命令，跟踪命令的执行过程:<code>./flutter/tools/gn --android --unoptimized</code>，参加<a href="../ComplieMode">Flutter Engine 编译模式</a></p>
+<ul>
+<li><code>flutter/tools/gn</code> python脚本下列代码</li>
+<li><code>--android</code> 指定平台</li>
+<li><code>--android-cpu x86</code> cpu架构</li>
+<li><code>--unoptimized</code> 是否需要优化</li>
+</ul>
+<p>执行下列脚本主要是在构建<code>GN</code>构建脚本参数:</p>
+<div class="codehilite"><pre><span></span><span class="n">SRC_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))))</span>
+<span class="o">/*</span> <span class="err">根据传入的参数判断平台的输出路径</span> <span class="o">*/</span>
+<span class="k">def</span> <span class="nf">get_out_dir</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">target_os</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">target_dir</span> <span class="o">=</span> <span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">target_os</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">target_dir</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">]</span>
+    <span class="o">........</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">out_dir</span><span class="p">,</span> <span class="s1">&#39;out&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">target_dir</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">to_command_line</span><span class="p">(</span><span class="n">gn_args</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">merge</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="s1">&#39;true&#39;</span> <span class="k">if</span> <span class="n">value</span> <span class="k">else</span> <span class="s1">&#39;false&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">=&quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">merge</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">gn_args</span><span class="o">.</span><span class="n">iteritems</span><span class="p">()]</span>
+
+<span class="k">def</span> <span class="nf">cpu_for_target_arch</span><span class="p">(</span><span class="n">arch</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">arch</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;ia32&#39;</span><span class="p">,</span> <span class="s1">&#39;arm&#39;</span><span class="p">,</span> <span class="s1">&#39;armv6&#39;</span><span class="p">,</span> <span class="s1">&#39;armv5te&#39;</span><span class="p">,</span> <span class="s1">&#39;mips&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;simarm&#39;</span><span class="p">,</span> <span class="s1">&#39;simarmv6&#39;</span><span class="p">,</span> <span class="s1">&#39;simarmv5te&#39;</span><span class="p">,</span> <span class="s1">&#39;simmips&#39;</span><span class="p">,</span> <span class="s1">&#39;simdbc&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;armsimdbc&#39;</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="s1">&#39;x86&#39;</span>
+  <span class="k">if</span> <span class="n">arch</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;x64&#39;</span><span class="p">,</span> <span class="s1">&#39;arm64&#39;</span><span class="p">,</span> <span class="s1">&#39;simarm64&#39;</span><span class="p">,</span> <span class="s1">&#39;simdbc64&#39;</span><span class="p">,</span> <span class="s1">&#39;armsimdbc64&#39;</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="s1">&#39;x64&#39;</span>
+
+<span class="k">def</span> <span class="nf">to_gn_args</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">gn_args</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Skia GN args.</span>
+    <span class="n">gn_args</span><span class="p">[</span><span class="s1">&#39;skia_enable_flutter_defines&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span> <span class="c1"># Enable Flutter API guards in Skia.</span>
+    <span class="n">gn_args</span><span class="p">[</span><span class="s1">&#39;skia_use_dng_sdk&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>    <span class="c1"># RAW image handling.</span>
+    <span class="n">gn_args</span><span class="p">[</span><span class="s1">&#39;skia_use_sfntly&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>     <span class="c1"># PDF handling depedency.</span>
+  <span class="o">...............</span>
+
+    <span class="k">return</span> <span class="n">gn_args</span>
+
+<span class="k">def</span> <span class="nf">parse_args</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+  <span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+  <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;A script run` gn gen`.&#39;</span><span class="p">)</span>
+
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--unoptimized&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;store_true&#39;</span><span class="p">)</span>
+
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--runtime-mode&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="s1">&#39;profile&#39;</span><span class="p">,</span> <span class="s1">&#39;release&#39;</span><span class="p">],</span> <span class="n">default</span><span class="o">=</span><span class="s1">&#39;debug&#39;</span><span class="p">)</span>
+<span class="o">..........</span>
+  <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">argv</span><span class="p">):</span>
+  <span class="n">args</span> <span class="o">=</span> <span class="n">parse_args</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s1">&#39;cygwin&#39;</span><span class="p">,</span> <span class="s1">&#39;win&#39;</span><span class="p">)):</span>
+    <span class="n">subdir</span> <span class="o">=</span> <span class="s1">&#39;win&#39;</span>
+  <span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s1">&#39;darwin&#39;</span><span class="p">:</span>
+    <span class="n">subdir</span> <span class="o">=</span> <span class="s1">&#39;mac-x64&#39;</span>
+  <span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;linux&#39;</span><span class="p">):</span>
+     <span class="n">subdir</span> <span class="o">=</span> <span class="s1">&#39;linux-x64&#39;</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="n">Error</span><span class="p">(</span><span class="s1">&#39;Unknown platform: &#39;</span> <span class="o">+</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="p">)</span>
+
+  <span class="n">command</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/buildtools/</span><span class="si">%s</span><span class="s1">/gn&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">SRC_ROOT</span><span class="p">,</span> <span class="n">subdir</span><span class="p">),</span>
+    <span class="s1">&#39;gen&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;--check&#39;</span><span class="p">,</span>
+  <span class="p">]</span>
+
+  <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s1">&#39;darwin&#39;</span><span class="p">:</span>
+    <span class="c1"># On the Mac, also generate Xcode projects for ease of editing.</span>
+    <span class="n">command</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;--ide=xcode&#39;</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;win&#39;</span><span class="p">):</span>
+    <span class="c1"># On Windows, also generate Visual Studio project for ease of editing.</span>
+    <span class="n">command</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;--ide=vs&#39;</span><span class="p">)</span>
+
+  <span class="n">gn_args</span> <span class="o">=</span> <span class="n">to_command_line</span><span class="p">(</span><span class="n">to_gn_args</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+  <span class="n">out_dir</span> <span class="o">=</span> <span class="n">get_out_dir</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+  <span class="k">print</span> <span class="s2">&quot;gn gen --check in </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">out_dir</span>
+  <span class="n">command</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out_dir</span><span class="p">)</span>
+  <span class="n">command</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;--args=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">gn_args</span><span class="p">))</span>
+  <span class="n">gn_call_result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="n">SRC_ROOT</span><span class="p">)</span>
+  <span class="k">print</span> <span class="n">command</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+  <span class="k">if</span> <span class="n">gn_call_result</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="c1"># Generate/Replace the compile commands database in out.</span>
+    <span class="n">compile_cmd_gen_cmd</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="s1">&#39;ninja&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;-C&#39;</span><span class="p">,</span>
+      <span class="n">out_dir</span><span class="p">,</span>
+      <span class="s1">&#39;-t&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;compdb&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;cc&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;cxx&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;objc&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;objcxx&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;asm&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="k">print</span>  <span class="n">compile_cmd_gen_cmd</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="err">调用</span><span class="sb">`GN`</span><span class="err">生成构建文件</span>
+
+    <span class="n">contents</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="n">compile_cmd_gen_cmd</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="n">SRC_ROOT</span><span class="p">)</span>
+    <span class="n">compile_commands</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/out/compile_commands.json&#39;</span> <span class="o">%</span> <span class="n">SRC_ROOT</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span>
+    <span class="n">compile_commands</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+    <span class="n">compile_commands</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+  <span class="k">return</span> <span class="n">gn_call_result</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">))</span>
+</pre></div>
+
+<h2 id="gn">生成的GN命令参数<a class="headerlink" href="#gn" title="Permanent link">&para;</a></h2>
+<p><code>./flutter/tools/gn --android --unoptimized</code></p>
+<p>[1] 处使用打印命令输出这些构建命令生成的参数类型,通过查看生成的命令行参数，就能够理解在<a href="../ComplieMode">Flutter Engine 编译模式</a>提到的不同模式，是怎么组织代码和相关的编译文件相关的内容，基本的思路和框架理解了之后，接下来就是<code>GN</code>工具调用<code>BUILD.gn</code>相关的文件，提供给Ninja去编译的文件</p>
+<p><div class="codehilite"><pre><span></span>[&#39;buildtools/mac-x64/gn&#39;, &#39;gen&#39;, &#39;--check&#39;, &#39;--ide=xcode&#39;,
+&#39;out/android_debug_unopt&#39;, &#39;--args=skia_enable_pdf=false enable_lto=false
+use_clang_static_analyzer=false
+full_dart_sdk=false
+dart_runtime_mode=&quot;develop&quot;
+skia_use_fontconfig=false
+skia_use_dng_sdk=false
+skia_enable_flutter_defines=true
+use_goma=false
+dart_custom_version_for_pub=&quot;flutter&quot;
+embedder_for_target=false
+is_official_build=true
+host_cpu=&quot;x86&quot; # 编译主机架构
+is_clang=true
+skia_use_sfntly=false
+ dart_target_arch=&quot;arm&quot;
+flutter_runtime_mode=&quot;debug&quot;
+goma_dir=&quot;None&quot;
+android_full_debug=true
+target_os=&quot;android&quot;  # 生成的目标平台
+mac_sdk_path=&quot;&quot;
+skia_use_x11=false
+enable_coverage=false
+target_cpu=&quot;arm&quot;  # 目标cpu架构
+skia_use_expat=true
+dart_lib_export_symbols=false
+is_debug=true  # debug模式
+flutter_aot=false&#39; # 不需要优化
+]
+</pre></div>
+[2] 处构建的命令</p>
+<div class="codehilite"><pre><span></span>[&#39;ninja&#39;, &#39;-C&#39;, &#39;out/android_debug_unopt&#39;, &#39;-t&#39;, &#39;compdb&#39;, &#39;cc&#39;, &#39;cxx&#39;, &#39;objc&#39;, &#39;objcxx&#39;, &#39;asm&#39;]
+</pre></div>
+
+<p>在[1]构建的命令中指定使用的<code>GN</code>路径<code>'buildtools/mac-x64/gn'</code>接着会调用执行<code>/engine/src# ./flutter/tools/gn</code>的Build.gn文件<code>engine/src/BUILD.gn</code>,会根据当前目录中的<code>BUILD.gn</code>文件配置一层一层的目录去查找指定的目录中的<code>BUILD.gn</code>,文件每一个目录中都会定义当前目录编译的规则和依赖参数，所以可以理解为一颗倒挂的树：从叶子结点开始配置，配置父节点，如果需要添加新的功能模块，就在上一级模块中把下一级的<code>BUILD.gn</code>文件引用就能够向下包含需要的文件依赖。最终生成<code>ninja</code>的配置文件。</p>
+<p><div class="codehilite"><pre><span></span>/* This target will be built <span class="k">if</span> no target is specified when invoking ninja. */
+group<span class="o">(</span><span class="s2">&quot;default&quot;</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nv">testonly</span> <span class="o">=</span> <span class="nb">true</span>
+  <span class="nv">deps</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s2">&quot;//flutter&quot;</span>,
+  <span class="o">]</span>
+<span class="o">}</span>
+group<span class="o">(</span><span class="s2">&quot;dist&quot;</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nv">testonly</span> <span class="o">=</span> <span class="nb">true</span>
+  <span class="nv">deps</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s2">&quot;//flutter:dist&quot;</span>,
+  <span class="o">]</span>
+<span class="o">}</span>
+</pre></div>
+接着进入 <code>//Flutter</code>目录查找`# Copyright 2013 The Flutter Authors. All rights reserved.
+<div class="codehilite"><pre><span></span>import<span class="o">(</span><span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/common/config.gni&quot;</span><span class="o">)</span>
+import<span class="o">(</span><span class="s2">&quot;//third_party/dart/build/dart/dart_action.gni&quot;</span><span class="o">)</span>
+
+&lt;!-- <span class="c1"># Temporary snapshot copy rules until we can use the full SDK. --&gt;</span>
+<span class="nv">_flutter_sdk_snapshots</span> <span class="o">=</span> <span class="o">[</span>
+  <span class="o">[</span>
+    <span class="s2">&quot;dart2js&quot;</span>,
+    <span class="s2">&quot;//third_party/dart/utils/compiler:dart2js&quot;</span>,
+  <span class="o">]</span>,
+  <span class="o">[</span>
+    <span class="s2">&quot;kernel_worker&quot;</span>,
+    <span class="s2">&quot;//third_party/dart/utils/bazel:kernel_worker&quot;</span>,
+  <span class="o">]</span>,
+<span class="o">]</span>
+
+group<span class="o">(</span><span class="s2">&quot;flutter&quot;</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nv">testonly</span> <span class="o">=</span> <span class="nb">true</span>
+
+  <span class="nv">public_deps</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/lib/snapshot:generate_snapshot_bin&quot;</span>,
+    <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/lib/snapshot:kernel_platform_files&quot;</span>,
+    <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/shell/platform/embedder:flutter_engine&quot;</span>,
+    <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/sky&quot;</span>,
+  <span class="o">]</span>
+
+  <span class="k">if</span> <span class="o">(</span><span class="nv">current_toolchain</span> <span class="o">==</span> host_toolchain<span class="o">)</span> <span class="o">{</span>
+    <span class="nv">public_deps</span> <span class="o">+=</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/shell/testing&quot;</span> <span class="o">]</span>
+  <span class="o">}</span>
+
+  <span class="k">if</span> <span class="o">(</span>!is_fuchsia <span class="o">&amp;&amp;</span> !is_fuchsia_host<span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="nv">current_toolchain</span> <span class="o">==</span> host_toolchain<span class="o">)</span> <span class="o">{</span>
+      <span class="nv">public_deps</span> <span class="o">+=</span> <span class="o">[</span>
+        <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/frontend_server&quot;</span>,
+        <span class="s2">&quot;//third_party/dart:create_sdk&quot;</span>,
+        <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/lib/stub_ui:stub_ui&quot;</span>,
+        <span class="s2">&quot;:dart2js_platform_files&quot;</span>,
+        <span class="s2">&quot;:flutter_dartdevc_kernel_sdk&quot;</span>,
+      <span class="o">]</span>
+      foreach<span class="o">(</span>snapshot, _flutter_sdk_snapshots<span class="o">)</span> <span class="o">{</span>
+        <span class="nv">public_deps</span> <span class="o">+=</span> <span class="o">[</span> <span class="s2">&quot;:copy_flutter_</span><span class="si">${</span><span class="nv">snapshot</span><span class="p">[0]</span><span class="si">}</span><span class="s2">_snapshot&quot;</span> <span class="o">]</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  &lt;!-- <span class="c1"># If on the host, compile all unittests targets. --&gt;</span>
+  <span class="k">if</span> <span class="o">(</span><span class="nv">current_toolchain</span> <span class="o">==</span> host_toolchain<span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span>is_mac<span class="o">)</span> <span class="o">{</span>
+      <span class="nv">public_deps</span> <span class="o">+=</span>
+          <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/shell/platform/darwin:flutter_channels_unittests&quot;</span> <span class="o">]</span>
+    <span class="o">}</span>
+
+    <span class="nv">public_deps</span> <span class="o">+=</span> <span class="o">[</span>
+      <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/flow:flow_unittests&quot;</span>,
+      <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/fml:fml_unittests&quot;</span>,
+      <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/runtime:runtime_unittests&quot;</span>,
+      <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/shell/common:shell_unittests&quot;</span>,
+      <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/shell/platform/embedder:embedder_unittests&quot;</span>,
+      <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/shell/platform/embedder:embedder_a11y_unittests&quot;</span>, <span class="c1"># TODO(cbracken) build these into a different kernel blob in the embedder tests and load that in a test in embedder_unittests</span>
+      <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/synchronization:synchronization_unittests&quot;</span>,
+      <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/third_party/txt:txt_unittests&quot;</span>,
+    <span class="o">]</span>
+
+    <span class="k">if</span> <span class="o">(</span>!is_win<span class="o">)</span> <span class="o">{</span>
+      <span class="nv">public_deps</span> <span class="o">+=</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/shell/common:shell_benchmarks&quot;</span> <span class="o">]</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+config<span class="o">(</span><span class="s2">&quot;config&quot;</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nv">include_dirs</span> <span class="o">=</span> <span class="o">[</span> <span class="s2">&quot;..&quot;</span> <span class="o">]</span>
+<span class="o">}</span>
+
+group<span class="o">(</span><span class="s2">&quot;dist&quot;</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nv">testonly</span> <span class="o">=</span> <span class="nb">true</span>
+
+  <span class="nv">deps</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/sky/dist&quot;</span>,
+  <span class="o">]</span>
+<span class="o">}</span>
+
+foreach<span class="o">(</span>snapshot, _flutter_sdk_snapshots<span class="o">)</span> <span class="o">{</span>
+  copy<span class="o">(</span><span class="s2">&quot;copy_flutter_</span><span class="si">${</span><span class="nv">snapshot</span><span class="p">[0]</span><span class="si">}</span><span class="s2">_snapshot&quot;</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nv">deps</span> <span class="o">=</span> <span class="o">[</span>
+      snapshot<span class="o">[</span><span class="m">1</span><span class="o">]</span>,
+    <span class="o">]</span>
+    <span class="nv">sources</span> <span class="o">=</span> <span class="o">[</span>
+      <span class="s2">&quot;</span><span class="nv">$root_gen_dir</span><span class="s2">/</span><span class="si">${</span><span class="nv">snapshot</span><span class="p">[0]</span><span class="si">}</span><span class="s2">.dart.snapshot&quot;</span>,
+    <span class="o">]</span>
+    <span class="nv">outputs</span> <span class="o">=</span> <span class="o">[</span>
+      <span class="s2">&quot;</span><span class="nv">$root_out_dir</span><span class="s2">/dart-sdk/bin/snapshots/flutter_{{source_file_part}}&quot;</span>,
+    <span class="o">]</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+copy<span class="o">(</span><span class="s2">&quot;dart2js_platform_files&quot;</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nv">deps</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s2">&quot;//third_party/dart/utils/compiler:compile_dart2js_platform&quot;</span>
+  <span class="o">]</span>
+
+  <span class="nv">sources</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s2">&quot;</span><span class="nv">$root_out_dir</span><span class="s2">/dart2js_outline.dill&quot;</span>,
+    <span class="s2">&quot;</span><span class="nv">$root_out_dir</span><span class="s2">/dart2js_platform.dill&quot;</span>,
+  <span class="o">]</span>
+
+  <span class="nv">outputs</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s2">&quot;</span><span class="nv">$root_out_dir</span><span class="s2">/flutter_patched_sdk/{{source_file_part}}&quot;</span>,
+  <span class="o">]</span>
+<span class="o">}</span>
+
+
+prebuilt_dart_action<span class="o">(</span><span class="s2">&quot;flutter_dartdevc_kernel_sdk&quot;</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nv">deps</span> <span class="o">=</span> <span class="o">[</span>
+     <span class="s2">&quot;//third_party/dart:create_sdk&quot;</span>,
+  <span class="o">]</span>
+
+  <span class="nv">packages</span> <span class="o">=</span> <span class="s2">&quot;//third_party/dart/.packages&quot;</span>
+
+  <span class="nv">script</span> <span class="o">=</span> <span class="s2">&quot;//third_party/dart/pkg/dev_compiler/tool/kernel_sdk.dart&quot;</span>
+
+  <span class="nv">inputs</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s2">&quot;//third_party/dart/pkg/dev_compiler/tool/kernel_sdk.dart&quot;</span>,
+  <span class="o">]</span>
+
+  <span class="nv">outputs</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s2">&quot;</span><span class="nv">$target_gen_dir</span><span class="s2">/kernel/amd/dart_sdk.js&quot;</span>,
+    <span class="s2">&quot;</span><span class="nv">$target_gen_dir</span><span class="s2">/kernel/amd/dart_sdk.js.map&quot;</span>,
+    <span class="s2">&quot;</span><span class="nv">$target_gen_dir</span><span class="s2">/kernel/common/dart_sdk.js&quot;</span>,
+    <span class="s2">&quot;</span><span class="nv">$target_gen_dir</span><span class="s2">/kernel/common/dart_sdk.js.map&quot;</span>,
+    <span class="s2">&quot;</span><span class="nv">$target_gen_dir</span><span class="s2">/kernel/es6/dart_sdk.js&quot;</span>,
+    <span class="s2">&quot;</span><span class="nv">$target_gen_dir</span><span class="s2">/kernel/es6/dart_sdk.js.map&quot;</span>,
+    <span class="s2">&quot;</span><span class="nv">$target_gen_dir</span><span class="s2">/kernel/legacy/dart_sdk.js&quot;</span>,
+    <span class="s2">&quot;</span><span class="nv">$target_gen_dir</span><span class="s2">/kernel/legacy/dart_sdk.js.map&quot;</span>,
+  <span class="o">]</span>
+
+  <span class="nv">libraries_path</span> <span class="o">=</span> rebase_path<span class="o">(</span><span class="s2">&quot;</span><span class="nv">$flutter_root</span><span class="s2">/lib/snapshot/libraries.json&quot;</span><span class="o">)</span>
+  <span class="nv">output_path</span> <span class="o">=</span> rebase_path<span class="o">(</span><span class="s2">&quot;</span><span class="nv">$target_gen_dir</span><span class="s2">/kernel/flutter_ddc_sdk.dill&quot;</span><span class="o">)</span>
+
+  <span class="nv">args</span> <span class="o">=</span> <span class="o">[</span>
+    <span class="s2">&quot;--output=</span><span class="nv">$output_path</span><span class="s2">&quot;</span>,
+    <span class="s2">&quot;--libraries=</span><span class="nv">$libraries_path</span><span class="s2">&quot;</span>,
+  <span class="o">]</span>
+<span class="o">}</span>
+</pre></div></p>
+<h2 id="ninja">ninja配置文件<a class="headerlink" href="#ninja" title="Permanent link">&para;</a></h2>
+<p>通过<code>GN</code>工具生成配置文件之后会在<code>out</code>目录中生成相关的<code>Ninja</code>配置文件</p>
+<div class="admonition info">
+<p class="admonition-title">GN产生的文件说明</p>
+<ul>
+<li>args.gn  # 使用<code>GN</code>工具构建是生成的配置参数，可以验证配置参数是否正确</li>
+<li>build.ninja # Ninja 配置文件，也是默认的编译脚本</li>
+<li>build.ninja.d # GN 产生构建文件查找的文件路径</li>
+</ul>
+</div>
+<div class="codehilite"><pre><span></span>➜  android_debug_unopt_x86 git:<span class="o">(</span>master<span class="o">)</span> ✗ tree -L <span class="m">3</span>
+.
+├── all.xcworkspace
+│   └── contents.xcworkspacedata
+├── args.gn  <span class="c1"># 使用`GN`工具构建是生成的配置参数，可以验证配置参数是否正确</span>
+├── build.ninja <span class="c1"># Ninja 配置文件，也是默认的编译脚本</span>
+├── build.ninja.d <span class="c1"># GN 产生构建文件查找的文件路径</span>
+├── clang_x64
+│   ├── obj
+│   │   └── third_party
+│   └── toolchain.ninja
+├── clang_x86
+│   ├── obj
+│   │   └── third_party
+│   └── toolchain.ninja
+├── dart-sdk
+│   └── bin
+│       └── snapshots
+├── gyp-mac-tool
+├── obj
+│   ├── flutter
+│   │   ├── assets
+│   │   ├── benchmarking
+│   │   ├── common
+│   │   ├── flow
+│   │   ├── fml
+│   │   ├── lib
+│   │   ├── runtime
+│   │   ├── shell
+│   │   ├── synchronization
+│   │   ├── testing
+│   │   ├── third_party
+│   │   └── vulkan
+│   └── third_party
+│       ├── android_tools
+│       ├── benchmark
+│       ├── boringssl
+│       ├── cpu-features
+│       ├── dart
+│       ├── expat
+│       ├── freetype2
+│       ├── googletest
+│       ├── harfbuzz
+│       ├── icu
+│       ├── libcxx
+│       ├── libcxxabi
+│       ├── libjpeg-turbo
+│       ├── libpng
+│       ├── libwebp
+│       ├── rapidjson
+│       ├── skia
+│       ├── tonic
+│       └── zlib
+├── products.xcodeproj
+│   └── project.pbxproj
+└── toolchain.ninja
+
+<span class="m">45</span> directories, <span class="m">9</span> files
+</pre></div>
+
+<h2 id="argsgn">args.gn<a class="headerlink" href="#argsgn" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="nv">skia_enable_pdf</span> <span class="o">=</span> <span class="nb">false</span>
+<span class="nv">enable_lto</span> <span class="o">=</span> <span class="nb">false</span>
+<span class="nv">use_clang_static_analyzer</span> <span class="o">=</span> <span class="nb">false</span>
+<span class="nv">full_dart_sdk</span> <span class="o">=</span> <span class="nb">false</span>
+<span class="nv">dart_runtime_mode</span> <span class="o">=</span> <span class="s2">&quot;develop&quot;</span>
+<span class="nv">skia_use_fontconfig</span> <span class="o">=</span> <span class="nb">false</span>
+<span class="nv">skia_use_dng_sdk</span> <span class="o">=</span> <span class="nb">false</span>
+<span class="nv">skia_enable_flutter_defines</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="nv">use_goma</span> <span class="o">=</span> <span class="nb">false</span>
+<span class="nv">dart_custom_version_for_pub</span> <span class="o">=</span> <span class="s2">&quot;flutter&quot;</span>
+<span class="nv">embedder_for_target</span> <span class="o">=</span> <span class="nb">false</span>
+<span class="nv">is_official_build</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="nv">host_cpu</span> <span class="o">=</span> <span class="s2">&quot;x86&quot;</span>
+<span class="nv">is_clang</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="nv">skia_use_sfntly</span> <span class="o">=</span> <span class="nb">false</span>
+<span class="nv">dart_target_arch</span> <span class="o">=</span> <span class="s2">&quot;x86&quot;</span>
+<span class="nv">flutter_runtime_mode</span> <span class="o">=</span> <span class="s2">&quot;debug&quot;</span>
+<span class="nv">goma_dir</span> <span class="o">=</span> <span class="s2">&quot;None&quot;</span>
+<span class="nv">android_full_debug</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="nv">target_os</span> <span class="o">=</span> <span class="s2">&quot;android&quot;</span>
+<span class="nv">mac_sdk_path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="nv">skia_use_x11</span> <span class="o">=</span> <span class="nb">false</span>
+<span class="nv">enable_coverage</span> <span class="o">=</span> <span class="nb">false</span>
+<span class="nv">target_cpu</span> <span class="o">=</span> <span class="s2">&quot;x86&quot;</span>
+<span class="nv">skia_use_expat</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="nv">dart_lib_export_symbols</span> <span class="o">=</span> <span class="nb">false</span>
+<span class="nv">is_debug</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="nv">flutter_aot</span> <span class="o">=</span> <span class="nb">false</span>
+</pre></div>
+
+<h2 id="buildninja">build.ninja<a class="headerlink" href="#buildninja" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="nv">ninja_required_version</span> <span class="o">=</span> <span class="m">1</span>.7.2
+
+rule gn
+  <span class="nb">command</span> <span class="o">=</span> ../../buildtools/mac-x64/gn --root<span class="o">=</span>../.. -q --check --ide<span class="o">=</span>xcode gen .
+  <span class="nv">description</span> <span class="o">=</span> Regenerating ninja files
+
+build build.ninja: gn
+  <span class="nv">generator</span> <span class="o">=</span> <span class="m">1</span>
+  <span class="nv">depfile</span> <span class="o">=</span> build.ninja.d
+
+subninja toolchain.ninja
+subninja clang_x64/toolchain.ninja
+subninja clang_x86/toolchain.ninja
+
+build default: phony obj/default.stamp
+build dist: phony obj/dist.stamp
+build flutter: phony obj/flutter/flutter.stamp
+build _http: phony obj/flutter/sky/packages/sky_engine/_http.stamp
+build android: phony obj/flutter/shell/platform/android/android.stamp
+build android_arch_lifecycle_common: phony obj/flutter/shell/platform/android/android_arch_lifecycle_common.stamp
+
+build all: phony $
+    obj/default.stamp $
+    obj/dist.stamp $
+    ...........
+    obj/third_party/zlib/libzlib_x86_simd.a
+
+default default
+</pre></div>
+
+<h2 id="buildninjad">build.ninja.d<a class="headerlink" href="#buildninjad" title="Permanent link">&para;</a></h2>
+<p>该文件中记录了<code>GN</code>文件保存的构建文件的路径，</p>
+<div class="codehilite"><pre><span></span>build.ninja:
+../../BUILD.gn
+../../build/compiled_action.gni
+../../build/config/BUILD.gn
+./args.gn dart-sdk/bin/snapshots/resources/dartdoc/.packages
+..........
+../../third_party/zlib/BUILD.gn
+</pre></div>
+
+<h2 id="_3">执行编译命令<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p><a href="https://ninja-build.org/manual.html#_using_ninja_for_your_project">NinjaComplie</a>
+<code>ninja -C out/android_debug_unopt_x86</code>开始编译<code>android_debug_unopt_x86</code>目录下<code>GN</code>生成的构建文件关联的源文件,读取<code>android_debug_unopt_x86</code>目录下的<code>engine/src/out/android_debug_unopt_x86/build.ninja</code>从该文件开始查找</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../ComplieMode/" title="编译模式" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                编译模式
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../GNTools/" title="GNTools" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                GNTools
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019  Aige
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="http://struct.cc" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/cangchengkun/Docs" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/Aige25868905" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.facebook.com/cangck.danmo" class="md-footer-social__link fa fa-facebook"></a>
+    
+      <a href="https://www.youtube.com/" class="md-footer-social__link fa fa-youtube"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.43ad2ac2.js"></script>
+      
+        
+        
+          
+          <script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>

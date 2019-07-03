@@ -1,0 +1,2888 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="苍成坤的 blog">
+      
+      
+        <link rel="canonical" href="https://squidfunk.github.io/mkdocs-material/android/flutter/EngineInit/">
+      
+      
+        <meta name="author" content="Aige">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
+    
+    
+      
+        <title>Engine初始化 - Aige  Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "None", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#flutterengine" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Aige  Docs
+            </span>
+            <span class="md-header-nav__topic">
+              Engine初始化
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." title="Home" class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../FlutterKey/" title="Android" class="md-tabs__link md-tabs__link--active">
+          Android
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../python/base/pythonlang/" title="Python" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../iot/Alexa/" title="IoT" class="md-tabs__link">
+          IoT
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../secret/reousrce/" title="Secret" class="md-tabs__link">
+          Secret
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../linux/resource/" title="Linux" class="md-tabs__link">
+          Linux
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../shell/shellresource/" title="Shell" class="md-tabs__link">
+          Shell
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../extensions/admonition/" title="Tools" class="md-tabs__link">
+          Tools
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../download/download/" title="Download" class="md-tabs__link">
+          Download
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Aige  Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../getting-started/" title="Getting started" class="md-nav__link">
+      Getting started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Android
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Android
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1" checked>
+    
+    <label class="md-nav__link" for="nav-3-1">
+      Flutter
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        Flutter
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterKey/" title="FlutterKey" class="md-nav__link">
+      FlutterKey
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutter/" title="Flutter" class="md-nav__link">
+      Flutter
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterTools/" title="FlutterSdk" class="md-nav__link">
+      FlutterSdk
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ComplieMode/" title="编译模式" class="md-nav__link">
+      编译模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../EngineCompile/" title="FlutterEngine编译" class="md-nav__link">
+      FlutterEngine编译
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../GNTools/" title="GNTools" class="md-nav__link">
+      GNTools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../NinjaSystem/" title="Ninja编译系统" class="md-nav__link">
+      Ninja编译系统
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterComplieFile/" title="Flutter编译产物" class="md-nav__link">
+      Flutter编译产物
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterAndroidInit/" title="Android加载Dart文件" class="md-nav__link">
+      Android加载Dart文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../AndroidViewinit/" title="Android初始化View" class="md-nav__link">
+      Android初始化View
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Engine初始化
+      </label>
+    
+    <a href="./" title="Engine初始化" class="md-nav__link md-nav__link--active">
+      Engine初始化
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2" title="初始化2个步骤" class="md-nav__link">
+    初始化2个步骤
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attachjni" title="AttachJNI" class="md-nav__link">
+    AttachJNI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#androidshellholder" title="AndroidShellHolder" class="md-nav__link">
+    AndroidShellHolder
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jni" title="创建一个线程处理JNI退出任务" class="md-nav__link">
+    创建一个线程处理JNI退出任务
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flutter-engine" title="Flutter Engine线程池模式" class="md-nav__link">
+    Flutter Engine线程池模式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="自定义一个线程来代理系统线程" class="md-nav__link">
+    自定义一个线程来代理系统线程
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#platform-task-runner" title="Platform Task Runner:" class="md-nav__link">
+    Platform Task Runner:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ui-task-runner-threaddart-runner" title="UI Task Runner Thread（Dart Runner）" class="md-nav__link">
+    UI Task Runner Thread（Dart Runner）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpu-task-runner" title="GPU Task Runner" class="md-nav__link">
+    GPU Task Runner
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io-task-runner" title="IO Task Runner" class="md-nav__link">
+    IO Task Runner
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taskrunner" title="TaskRunner" class="md-nav__link">
+    TaskRunner
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taskrunners" title="TaskRunners" class="md-nav__link">
+    TaskRunners
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shell" title="Shell类初始化:" class="md-nav__link">
+    Shell类初始化:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#createshellonplatformthread" title="CreateShellOnPlatformThread" class="md-nav__link">
+    CreateShellOnPlatformThread
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#android-nativelibflutter" title="Android Native层与libFlutter通信接口:" class="md-nav__link">
+    Android Native层与libFlutter通信接口:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../EngineView/" title="EngineView初始化" class="md-nav__link">
+      EngineView初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../SmartPtr/" title="C++智能指针" class="md-nav__link">
+      C++智能指针
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../NativeExtensions/" title="NativeExtensions" class="md-nav__link">
+      NativeExtensions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../MessageLoop/" title="MessageLoop" class="md-nav__link">
+      MessageLoop
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DartVM/" title="初始化DartVM" class="md-nav__link">
+      初始化DartVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../platformplugin/" title="PlatformChannel" class="md-nav__link">
+      PlatformChannel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterexample/" title="example" class="md-nav__link">
+      example
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../runApp/" title="runApp" class="md-nav__link">
+      runApp
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DartVMServiceProtocol/" title="DartVMServiceProtocol" class="md-nav__link">
+      DartVMServiceProtocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterSupportView/" title="FlutterSupportView" class="md-nav__link">
+      FlutterSupportView
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../profile/" title="性能优化" class="md-nav__link">
+      性能优化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reviewCode/" title="reviewCode" class="md-nav__link">
+      reviewCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DevResource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      ReactNative
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        ReactNative
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rn/react_native/" title="ReactNative" class="md-nav__link">
+      ReactNative
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-3" type="checkbox" id="nav-3-3">
+    
+    <label class="md-nav__link" for="nav-3-3">
+      Awsamplify
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-3">
+        Awsamplify
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../aws-android/awsamplify/" title="Awsamplify" class="md-nav__link">
+      Awsamplify
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../androidTools/" title="AndroidTools" class="md-nav__link">
+      AndroidTools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../issue/Androidissue/" title="Issue常见问题" class="md-nav__link">
+      Issue常见问题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Python
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      基础
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        基础
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/pythonlang/" title="语言基础" class="md-nav__link">
+      语言基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/advancesPython/" title="高级开发" class="md-nav__link">
+      高级开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1-3" type="checkbox" id="nav-4-1-3">
+    
+    <label class="md-nav__link" for="nav-4-1-3">
+      开发环境
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-4-1-3">
+        开发环境
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/pythonEnv/" title="环境" class="md-nav__link">
+      环境
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      爬虫
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        爬虫
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/scrapyBase/" title="爬虫基础" class="md-nav__link">
+      爬虫基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/scrapylib/" title="爬虫库" class="md-nav__link">
+      爬虫库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/spiderdemo/" title="爬虫实战" class="md-nav__link">
+      爬虫实战
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      服务器开发
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        服务器开发
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3-1" type="checkbox" id="nav-4-3-1">
+    
+    <label class="md-nav__link" for="nav-4-3-1">
+      WEB
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-4-3-1">
+        WEB
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/pythonweb/" title="主流服务器介绍" class="md-nav__link">
+      主流服务器介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/serverbase/" title="服务器常用软件" class="md-nav__link">
+      服务器常用软件
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3-2" type="checkbox" id="nav-4-3-2">
+    
+    <label class="md-nav__link" for="nav-4-3-2">
+      aws
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-4-3-2">
+        aws
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/aws/pyaws/" title="AWSpython使用" class="md-nav__link">
+      AWSpython使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/aws/serverless/" title="无服务" class="md-nav__link">
+      无服务
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3-3" type="checkbox" id="nav-4-3-3">
+    
+    <label class="md-nav__link" for="nav-4-3-3">
+      Django开发
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-4-3-3">
+        Django开发
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangosignals/" title="Dajngo信号机制" class="md-nav__link">
+      Dajngo信号机制
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangoLogger/" title="日志配置" class="md-nav__link">
+      日志配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangosignals/" title="Djangomessage" class="md-nav__link">
+      Djangomessage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/JSONEncoder/" title="JsonEncoder" class="md-nav__link">
+      JsonEncoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/middleware/" title="中间件" class="md-nav__link">
+      中间件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/question/" title="常见问题" class="md-nav__link">
+      常见问题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pythonTools/" title="开发工具" class="md-nav__link">
+      开发工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      IoT
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        IoT
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/Alexa/" title="Alexa" class="md-nav__link">
+      Alexa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/awsiot/" title="AWSIOT" class="md-nav__link">
+      AWSIOT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/iotCore/" title="IotCore" class="md-nav__link">
+      IotCore
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/program/" title="program" class="md-nav__link">
+      program
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/protocol/" title="protocol" class="md-nav__link">
+      protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/usermanager/" title="UserManager" class="md-nav__link">
+      UserManager
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/developerTools/" title="aws开发工具" class="md-nav__link">
+      aws开发工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Secret
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Secret
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../secret/reousrce/" title="安全" class="md-nav__link">
+      安全
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/networktools/" title="端口扫描工具" class="md-nav__link">
+      端口扫描工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Linux
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Linux
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../linux/resource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Shell
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Shell
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../shell/shellresource/" title="Shell" class="md-nav__link">
+      Shell
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Tools
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../extensions/admonition/" title="AndroidStudio" class="md-nav__link">
+      AndroidStudio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/atom/" title="Atom" class="md-nav__link">
+      Atom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/vim/" title="Vim" class="md-nav__link">
+      Vim
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../extensions/metadata/" title="Chrome" class="md-nav__link">
+      Chrome
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/markdown/" title="Markdown" class="md-nav__link">
+      Markdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/material/" title="Material for MkDocs" class="md-nav__link">
+      Material for MkDocs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/git/" title="Git" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/VSCode/" title="VSCode" class="md-nav__link">
+      VSCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/datareporting/" title="数据分析" class="md-nav__link">
+      数据分析
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      Download
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        Download
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../download/download/" title="download" class="md-nav__link">
+      download
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2" title="初始化2个步骤" class="md-nav__link">
+    初始化2个步骤
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attachjni" title="AttachJNI" class="md-nav__link">
+    AttachJNI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#androidshellholder" title="AndroidShellHolder" class="md-nav__link">
+    AndroidShellHolder
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jni" title="创建一个线程处理JNI退出任务" class="md-nav__link">
+    创建一个线程处理JNI退出任务
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flutter-engine" title="Flutter Engine线程池模式" class="md-nav__link">
+    Flutter Engine线程池模式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="自定义一个线程来代理系统线程" class="md-nav__link">
+    自定义一个线程来代理系统线程
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#platform-task-runner" title="Platform Task Runner:" class="md-nav__link">
+    Platform Task Runner:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ui-task-runner-threaddart-runner" title="UI Task Runner Thread（Dart Runner）" class="md-nav__link">
+    UI Task Runner Thread（Dart Runner）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gpu-task-runner" title="GPU Task Runner" class="md-nav__link">
+    GPU Task Runner
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#io-task-runner" title="IO Task Runner" class="md-nav__link">
+    IO Task Runner
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taskrunner" title="TaskRunner" class="md-nav__link">
+    TaskRunner
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taskrunners" title="TaskRunners" class="md-nav__link">
+    TaskRunners
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shell" title="Shell类初始化:" class="md-nav__link">
+    Shell类初始化:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#createshellonplatformthread" title="CreateShellOnPlatformThread" class="md-nav__link">
+    CreateShellOnPlatformThread
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#android-nativelibflutter" title="Android Native层与libFlutter通信接口:" class="md-nav__link">
+    Android Native层与libFlutter通信接口:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="flutterengine">FlutterEngine引擎初始化<a class="headerlink" href="#flutterengine" title="Permanent link">&para;</a></h1>
+<p>在<a href="../flutterAndroidInit">Android加载Dart文件</a>和<a href="../AndroidViewinit">Android初始化View</a>两篇代码分析的过程中，已经分析了加载<code>libflutter.so</code> 的初始化话过程，<code>platform_view_android_jni.cc</code>中调用<code>AttachJNI</code>初始化<code>AndroidShellHolder</code>对象对平台进行初始化,进行来分析FlutterEngine初始化过程。</p>
+<div class="admonition info">
+<p class="admonition-title">Flutter Engine初始化过程</p>
+<ul>
+<li>1.<code>Platfrom,UI,IO,GUP</code>线程的管理，配置参数的的加载</li>
+<li>2.创建一个线程清理虚拟机退出的清理工作</li>
+<li>3.<code>thread_host_</code>负责管理相关的线程,托管四个相处<code>TaskRunner</code>,<code>TaskRunners</code></li>
+<li>4.<code>PlatformViewAndroid</code>的创建，负责管理平台侧是事件处理在UI线程执行</li>
+<li>5.<code>Rasterizer</code>的初始化栅格化在GPU线程执行</li>
+<li>6.<code>MessageLoop</code>的创建，在platfrom中运行</li>
+<li>7.<code>TaskRunners</code>管理添加到不同平台中的线程执行，负责管理四个任务运行器</li>
+<li>8.<code>Shell</code>加载第三方库，Java虚拟机的创建</li>
+</ul>
+</div>
+<h2 id="2">初始化2个步骤<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>在Android端初始化Flutter 相关的环境通过两个步骤来完成：</p>
+<p>在下图中:</p>
+<ul>
+<li>1.初始化Flutter Engine 运行FlutterUI库的环境，初始化AndroidShellHolder：来管理Flutter相关的引环境</li>
+<li>2.<a href="../EngineView">PlatformViewAndroid</a>在JNI层进行View的绘制和事件处理,注册SurfaceView给Flutter Eingine，提供给引擎进行绘制的画布，调用ANative_window类来连接FlutterUI和AndroidUI的桥梁</li>
+</ul>
+<p><img alt="pic" src="../../../assets/images/android/flutter/fluttersurfaceView.png" />
+</p>
+<h2 id="attachjni">AttachJNI<a class="headerlink" href="#attachjni" title="Permanent link">&para;</a></h2>
+<p>接下来进行分析在JNI层的调用过程:AttachJNI中调用<code>std::make_unique&lt;AndroidShellHolder&gt;</code>方法创建<code>AndroidShellHolder</code>实例<code>engine/src/flutter/shell/platform/android/platform_view_android_jni.cc</code>
+<div class="codehilite"><pre><span></span>    <span class="c1">// Called By Java</span>
+    <span class="c1">// 方法注册进入JNI</span>
+    <span class="k">static</span> <span class="n">jlong</span> <span class="nf">AttachJNI</span><span class="p">(</span><span class="n">JNIEnv</span><span class="o">*</span> <span class="n">env</span><span class="p">,</span>
+                           <span class="n">jclass</span> <span class="n">clazz</span><span class="p">,</span>
+                           <span class="n">jobject</span> <span class="n">flutterJNI</span><span class="p">,</span>
+                           <span class="n">jboolean</span> <span class="n">is_background_view</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">fml</span><span class="o">::</span><span class="n">jni</span><span class="o">::</span><span class="n">JavaObjectWeakGlobalRef</span> <span class="n">java_object</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">flutterJNI</span><span class="p">);</span>
+      <span class="k">auto</span> <span class="n">shell_holder</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">AndroidShellHolder</span><span class="o">&gt;</span><span class="p">(</span>
+          <span class="n">FlutterMain</span><span class="o">::</span><span class="n">Get</span><span class="p">().</span><span class="n">GetSettings</span><span class="p">(),</span> <span class="n">java_object</span><span class="p">,</span> <span class="n">is_background_view</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">shell_holder</span><span class="o">-&gt;</span><span class="n">IsValid</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">jlong</span><span class="o">&gt;</span><span class="p">(</span><span class="n">shell_holder</span><span class="p">.</span><span class="n">release</span><span class="p">());</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div></p>
+<p><code>AndroidShellHolder</code>类是对Platfrom层调用JNI的接口作为一个代理对象来进行统一的代理入口，使用C++11的智能指针对象来统一管理一个对象<a href="../SmartPtr">C++智能指针</a></p>
+<h2 id="androidshellholder">AndroidShellHolder<a class="headerlink" href="#androidshellholder" title="Permanent link">&para;</a></h2>
+<p>AndroidShellHolder：主要是管理flutter engine 在Platform端的入口:</p>
+<ul>
+<li>1.Platfrom,UI,IO,GUP线程的管理，配置参数的的加载</li>
+<li>2.创建一个线程清理虚拟机退出的清理工作</li>
+<li>3.thread_host_负责管理相关的线程,托管四个相处</li>
+<li>4.PlatformViewAndroid的创建，负责管理平台侧是事件处理在UI线程执行</li>
+<li>5.Rasterizer的初始化栅格化在GPU线程执行</li>
+<li>6.MessageLoop的创建，在platfrom中运行</li>
+<li>7.TaskRunners管理添加到不同平台中的线程执行，负责管理四个任务运行器</li>
+<li>8.Shell加载第三方库，Java虚拟机的创建</li>
+</ul>
+<p><img alt="pic" src="../../../assets/images/android/flutter/AndroidShellHolder.png" /></p>
+<div class="codehilite"><pre><span></span><span class="c1">//  参数说明:</span>
+<span class="c1">//</span>
+<span class="c1">//   blink::Settings settings,//配置数据</span>
+<span class="c1">//   fml::jni::JavaObjectWeakGlobalRef java_object,//FlutterJNI 对象</span>
+<span class="c1">//   bool is_background_view</span>
+<span class="c1">//   static size_t shell_count = 1;  Shell:对象的个数为一个</span>
+<span class="c1">//   完成：</span>
+<span class="c1">//     1.加载Settings配置文件，绑定全局对象java_object</span>
+<span class="c1">//     2.创建一个线程清理虚拟机退出的清理工作</span>
+<span class="c1">//     3.ThreadHost类来管理Flutter engine的Platform，io，GPU，UI线程</span>
+<span class="c1">//     4.初始化消息队列：fml::MessageLoop::EnsureInitializedForCurrentThread();</span>
+    <span class="c1">//FlutterEngine的初始化入口</span>
+<span class="n">AndroidShellHolder</span><span class="o">::</span><span class="n">AndroidShellHolder</span><span class="p">(</span>
+    <span class="n">blink</span><span class="o">::</span><span class="n">Settings</span> <span class="n">settings</span><span class="p">,</span>
+    <span class="n">fml</span><span class="o">::</span><span class="n">jni</span><span class="o">::</span><span class="n">JavaObjectWeakGlobalRef</span> <span class="n">java_object</span><span class="p">,</span>
+    <span class="kt">bool</span> <span class="n">is_background_view</span><span class="p">)</span>
+    <span class="o">:</span> <span class="n">settings_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">settings</span><span class="p">)),</span> <span class="n">java_object_</span><span class="p">(</span><span class="n">java_object</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">static</span> <span class="kt">size_t</span> <span class="n">shell_count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">auto</span> <span class="n">thread_label</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">shell_count</span><span class="o">++</span><span class="p">);</span>
+  <span class="c1">// 创建一个线程清理虚拟机退出的清理工作</span>
+  <span class="n">FML_CHECK</span><span class="p">(</span><span class="n">pthread_key_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">thread_destruct_key_</span><span class="p">,</span> <span class="n">ThreadDestructCallback</span><span class="p">)</span> <span class="o">==</span>
+            <span class="mi">0</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">is_background_view</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">thread_host_</span> <span class="o">=</span> <span class="p">{</span><span class="n">thread_label</span><span class="p">,</span> <span class="n">ThreadHost</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">UI</span><span class="p">};</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">thread_host_</span> <span class="o">=</span> <span class="p">{</span><span class="n">thread_label</span><span class="p">,</span> <span class="n">ThreadHost</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">UI</span> <span class="o">|</span> <span class="n">ThreadHost</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">GPU</span> <span class="o">|</span>
+                                      <span class="n">ThreadHost</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">IO</span><span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Detach from JNI when the UI and GPU threads exit.</span>
+  <span class="k">auto</span> <span class="n">jni_exit_task</span><span class="p">([</span><span class="n">key</span> <span class="o">=</span> <span class="n">thread_destruct_key_</span><span class="p">]()</span> <span class="p">{</span>
+    <span class="n">FML_CHECK</span><span class="p">(</span><span class="n">pthread_setspecific</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="p">});</span>
+  <span class="n">thread_host_</span><span class="p">.</span><span class="n">ui_thread</span><span class="o">-&gt;</span><span class="n">GetTaskRunner</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">jni_exit_task</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">is_background_view</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">thread_host_</span><span class="p">.</span><span class="n">gpu_thread</span><span class="o">-&gt;</span><span class="n">GetTaskRunner</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">jni_exit_task</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">fml</span><span class="o">::</span><span class="n">WeakPtr</span><span class="o">&lt;</span><span class="n">PlatformViewAndroid</span><span class="o">&gt;</span> <span class="n">weak_platform_view</span><span class="p">;</span>
+  <span class="n">Shell</span><span class="o">::</span><span class="n">CreateCallback</span><span class="o">&lt;</span><span class="n">PlatformView</span><span class="o">&gt;</span> <span class="n">on_create_platform_view</span> <span class="o">=</span>
+      <span class="p">[</span><span class="n">is_background_view</span><span class="p">,</span> <span class="n">java_object</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">weak_platform_view</span><span class="p">](</span><span class="n">Shell</span><span class="o">&amp;</span> <span class="n">shell</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">PlatformViewAndroid</span><span class="o">&gt;</span> <span class="n">platform_view_android</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">is_background_view</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">platform_view_android</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">PlatformViewAndroid</span><span class="o">&gt;</span><span class="p">(</span>
+              <span class="n">shell</span><span class="p">,</span>                   <span class="c1">// delegate</span>
+              <span class="n">shell</span><span class="p">.</span><span class="n">GetTaskRunners</span><span class="p">(),</span>  <span class="c1">// task runners</span>
+              <span class="n">java_object</span>              <span class="c1">// java object handle for JNI interop</span>
+          <span class="p">);</span>
+
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="n">platform_view_android</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">PlatformViewAndroid</span><span class="o">&gt;</span><span class="p">(</span>
+              <span class="n">shell</span><span class="p">,</span>                   <span class="c1">// delegate</span>
+              <span class="n">shell</span><span class="p">.</span><span class="n">GetTaskRunners</span><span class="p">(),</span>  <span class="c1">// task runners</span>
+              <span class="n">java_object</span><span class="p">,</span>             <span class="c1">// java object handle for JNI interop</span>
+              <span class="n">shell</span><span class="p">.</span><span class="n">GetSettings</span><span class="p">()</span>
+                  <span class="p">.</span><span class="n">enable_software_rendering</span>  <span class="c1">// use software rendering</span>
+          <span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">weak_platform_view</span> <span class="o">=</span> <span class="n">platform_view_android</span><span class="o">-&gt;</span><span class="n">GetWeakPtr</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">platform_view_android</span><span class="p">;</span>
+      <span class="p">};</span>
+
+  <span class="n">Shell</span><span class="o">::</span><span class="n">CreateCallback</span><span class="o">&lt;</span><span class="n">Rasterizer</span><span class="o">&gt;</span> <span class="n">on_create_rasterizer</span> <span class="o">=</span> <span class="p">[](</span><span class="n">Shell</span><span class="o">&amp;</span> <span class="n">shell</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Rasterizer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">shell</span><span class="p">.</span><span class="n">GetTaskRunners</span><span class="p">());</span>
+  <span class="p">};</span>
+
+  <span class="c1">// The current thread will be used as the platform thread. Ensure that the</span>
+  <span class="c1">// message loop is initialized.</span>
+  <span class="n">fml</span><span class="o">::</span><span class="n">MessageLoop</span><span class="o">::</span><span class="n">EnsureInitializedForCurrentThread</span><span class="p">();</span>
+  <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span> <span class="n">gpu_runner</span><span class="p">;</span>
+  <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span> <span class="n">ui_runner</span><span class="p">;</span>
+  <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span> <span class="n">io_runner</span><span class="p">;</span>
+  <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span> <span class="n">platform_runner</span> <span class="o">=</span>
+      <span class="n">fml</span><span class="o">::</span><span class="n">MessageLoop</span><span class="o">::</span><span class="n">GetCurrent</span><span class="p">().</span><span class="n">GetTaskRunner</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">is_background_view</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">auto</span> <span class="n">single_task_runner</span> <span class="o">=</span> <span class="n">thread_host_</span><span class="p">.</span><span class="n">ui_thread</span><span class="o">-&gt;</span><span class="n">GetTaskRunner</span><span class="p">();</span>
+    <span class="n">gpu_runner</span> <span class="o">=</span> <span class="n">single_task_runner</span><span class="p">;</span>
+    <span class="n">ui_runner</span> <span class="o">=</span> <span class="n">single_task_runner</span><span class="p">;</span>
+    <span class="n">io_runner</span> <span class="o">=</span> <span class="n">single_task_runner</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">gpu_runner</span> <span class="o">=</span> <span class="n">thread_host_</span><span class="p">.</span><span class="n">gpu_thread</span><span class="o">-&gt;</span><span class="n">GetTaskRunner</span><span class="p">();</span>
+    <span class="n">ui_runner</span> <span class="o">=</span> <span class="n">thread_host_</span><span class="p">.</span><span class="n">ui_thread</span><span class="o">-&gt;</span><span class="n">GetTaskRunner</span><span class="p">();</span>
+    <span class="n">io_runner</span> <span class="o">=</span> <span class="n">thread_host_</span><span class="p">.</span><span class="n">io_thread</span><span class="o">-&gt;</span><span class="n">GetTaskRunner</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="n">blink</span><span class="o">::</span><span class="n">TaskRunners</span> <span class="n">task_runners</span><span class="p">(</span><span class="n">thread_label</span><span class="p">,</span>     <span class="c1">// label</span>
+                                  <span class="n">platform_runner</span><span class="p">,</span>  <span class="c1">// platform</span>
+                                  <span class="n">gpu_runner</span><span class="p">,</span>       <span class="c1">// gpu</span>
+                                  <span class="n">ui_runner</span><span class="p">,</span>        <span class="c1">// ui</span>
+                                  <span class="n">io_runner</span>         <span class="c1">// io</span>
+  <span class="p">);</span>
+
+  <span class="n">shell_</span> <span class="o">=</span>
+      <span class="n">Shell</span><span class="o">::</span><span class="n">Create</span><span class="p">(</span><span class="n">task_runners</span><span class="p">,</span>             <span class="c1">// task runners</span>
+                    <span class="n">settings_</span><span class="p">,</span>                <span class="c1">// settings</span>
+                    <span class="n">on_create_platform_view</span><span class="p">,</span>  <span class="c1">// platform view create callback</span>
+                    <span class="n">on_create_rasterizer</span>      <span class="c1">// rasterizer create callback</span>
+      <span class="p">);</span>
+
+  <span class="n">platform_view_</span> <span class="o">=</span> <span class="n">weak_platform_view</span><span class="p">;</span>
+  <span class="n">FML_DCHECK</span><span class="p">(</span><span class="n">platform_view_</span><span class="p">);</span>
+
+  <span class="n">is_valid_</span> <span class="o">=</span> <span class="n">shell_</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">is_valid_</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">task_runners</span><span class="p">.</span><span class="n">GetGPUTaskRunner</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">([]()</span> <span class="p">{</span>
+      <span class="c1">// Android describes -8 as &quot;most important display threads, for</span>
+      <span class="c1">// compositing the screen and retrieving input events&quot;. Conservatively</span>
+      <span class="c1">// set the GPU thread to slightly lower priority than it.</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">::</span><span class="n">setpriority</span><span class="p">(</span><span class="n">PRIO_PROCESS</span><span class="p">,</span> <span class="n">gettid</span><span class="p">(),</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Defensive fallback. Depending on the OEM, it may not be possible</span>
+        <span class="c1">// to set priority to -5.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">::</span><span class="n">setpriority</span><span class="p">(</span><span class="n">PRIO_PROCESS</span><span class="p">,</span> <span class="n">gettid</span><span class="p">(),</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">FML_LOG</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Failed to set GPU task runner priority&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="n">task_runners</span><span class="p">.</span><span class="n">GetUITaskRunner</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">([]()</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">::</span><span class="n">setpriority</span><span class="p">(</span><span class="n">PRIO_PROCESS</span><span class="p">,</span> <span class="n">gettid</span><span class="p">(),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">FML_LOG</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Failed to set UI task runner priority&quot;</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="jni">创建一个线程处理JNI退出任务<a class="headerlink" href="#jni" title="Permanent link">&para;</a></h2>
+<p>创建一个线程来对DartVM虚拟机退出后做一起扫尾工作,并且添加到<code>ui_thread</code>,如果<code>is_background_view</code>(该参数是在FlutterJNI调用是传入)是在后台工作，也添加到GPU_Thread里面</p>
+<div class="codehilite"><pre><span></span><span class="c1">// 创建一个线程清理虚拟机退出的清理工作</span>
+<span class="n">FML_CHECK</span><span class="p">(</span><span class="n">pthread_key_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">thread_destruct_key_</span><span class="p">,</span> <span class="n">ThreadDestructCallback</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="c1">// Detach from JNI when the UI and GPU threads exit.</span>
+<span class="k">auto</span> <span class="nf">jni_exit_task</span><span class="p">([</span><span class="n">key</span> <span class="o">=</span> <span class="n">thread_destruct_key_</span><span class="p">]()</span> <span class="p">{</span>
+  <span class="n">FML_CHECK</span><span class="p">(</span><span class="n">pthread_setspecific</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="n">thread_host_</span><span class="p">.</span><span class="n">ui_thread</span><span class="o">-&gt;</span><span class="n">GetTaskRunner</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">jni_exit_task</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">is_background_view</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">thread_host_</span><span class="p">.</span><span class="n">gpu_thread</span><span class="o">-&gt;</span><span class="n">GetTaskRunner</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span><span class="n">jni_exit_task</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="flutter-engine">Flutter Engine线程池模式<a class="headerlink" href="#flutter-engine" title="Permanent link">&para;</a></h2>
+<p>Flutter Engine要求Embeder提供四个Task Runner，Embeder指的是将引擎移植到平台的中间层代码。这四个主要的Task Runner包括：</p>
+<p><img alt="pic" src="../../../assets/images/android/flutter/flutterThread.jpeg" /></p>
+<p>根据在java层调用native层的调用是传入的参数判断创建线程的类型:</p>
+<ul>
+<li>1.创建一个ThreadHost来管理4个线程对象</li>
+<li>2.定义一个线程类的代理类<code>/engine/src/flutter/fml/thread.cc</code></li>
+<li>3.在线程代理类中创建MessageLoop、绑定TaskRunner,同时启动MessageLoop</li>
+<li>4.创建一个TaskRunners类来管理四个任务运行器</li>
+</ul>
+<p><div class="codehilite"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">is_background_view</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">thread_host_</span> <span class="o">=</span> <span class="p">{</span><span class="n">thread_label</span><span class="p">,</span> <span class="n">ThreadHost</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">UI</span><span class="p">};</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="n">thread_host_</span> <span class="o">=</span> <span class="p">{</span><span class="n">thread_label</span><span class="p">,</span> <span class="n">ThreadHost</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">UI</span> <span class="o">|</span> <span class="n">ThreadHost</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">GPU</span> <span class="o">|</span>
+                                    <span class="n">ThreadHost</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">IO</span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+<code>ThreadHost</code> 类主要是创建的Platform，UI，IO，GPU线程，主要用来对四个线程的宿主对象,定义一个枚举类型来标记四种线程的类型:</p>
+<p><div class="codehilite"><pre><span></span><span class="k">enum</span> <span class="n">Type</span> <span class="p">{</span>
+  <span class="n">Platform</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="n">UI</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="n">GPU</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="n">IO</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">,</span>
+<span class="p">};</span>
+</pre></div>
+构造方法创建四个线程<a href="../SmartPtr">C++智能指针</a>:
+<div class="codehilite"><pre><span></span><span class="n">ThreadHost</span><span class="o">::</span><span class="n">ThreadHost</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name_prefix</span><span class="p">,</span> <span class="kt">uint64_t</span> <span class="n">mask</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">mask</span> <span class="o">&amp;</span> <span class="n">ThreadHost</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">Platform</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">platform_thread</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">Thread</span><span class="o">&gt;</span><span class="p">(</span><span class="n">name_prefix</span> <span class="o">+</span> <span class="s">&quot;.platform&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">mask</span> <span class="o">&amp;</span> <span class="n">ThreadHost</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">UI</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ui_thread</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">Thread</span><span class="o">&gt;</span><span class="p">(</span><span class="n">name_prefix</span> <span class="o">+</span> <span class="s">&quot;.ui&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">mask</span> <span class="o">&amp;</span> <span class="n">ThreadHost</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">GPU</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">gpu_thread</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">Thread</span><span class="o">&gt;</span><span class="p">(</span><span class="n">name_prefix</span> <span class="o">+</span> <span class="s">&quot;.gpu&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">mask</span> <span class="o">&amp;</span> <span class="n">ThreadHost</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">IO</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">io_thread</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">Thread</span><span class="o">&gt;</span><span class="p">(</span><span class="n">name_prefix</span> <span class="o">+</span> <span class="s">&quot;.io&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></p>
+<h2 id="_1">自定义一个线程来代理系统线程<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>在<code>engine/src/flutter/fml/thread.cc</code>构造方法中创建线程类，同时初始化<a href="../MessageLoop">MessageLoop</a>,关联任务运行器到消息队列，同时启动消息队列<code>loop.Run()</code>,是个线程创建的时候分别创建了四个不同的MessageLoop</p>
+<div class="codehilite"><pre><span></span><span class="n">Thread</span><span class="o">::</span><span class="n">Thread</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> <span class="o">:</span> <span class="n">joined_</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">fml</span><span class="o">::</span><span class="n">AutoResetWaitableEvent</span> <span class="n">latch</span><span class="p">;</span>
+  <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span> <span class="n">runner</span><span class="p">;</span>
+  <span class="n">thread_</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="o">&gt;</span><span class="p">([</span><span class="o">&amp;</span><span class="n">latch</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">runner</span><span class="p">,</span> <span class="n">name</span><span class="p">]()</span> <span class="o">-&gt;</span> <span class="kt">void</span> <span class="p">{</span>
+    <span class="n">SetCurrentThreadName</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+    <span class="n">fml</span><span class="o">::</span><span class="n">MessageLoop</span><span class="o">::</span><span class="n">EnsureInitializedForCurrentThread</span><span class="p">();</span><span class="c1">//初始化消息队列</span>
+    <span class="k">auto</span><span class="o">&amp;</span> <span class="n">loop</span> <span class="o">=</span> <span class="n">MessageLoop</span><span class="o">::</span><span class="n">GetCurrent</span><span class="p">();</span>
+    <span class="n">runner</span> <span class="o">=</span> <span class="n">loop</span><span class="p">.</span><span class="n">GetTaskRunner</span><span class="p">();</span>
+    <span class="n">latch</span><span class="p">.</span><span class="n">Signal</span><span class="p">();</span>
+    <span class="n">loop</span><span class="p">.</span><span class="n">Run</span><span class="p">();</span><span class="c1">//启动消息队列</span>
+  <span class="p">});</span>
+  <span class="c1">// 当前线程等待状态</span>
+  <span class="n">latch</span><span class="p">.</span><span class="n">Wait</span><span class="p">();</span>
+  <span class="n">task_runner_</span> <span class="o">=</span> <span class="n">runner</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="platform-task-runner"><code>Platform Task Runner:</code><a class="headerlink" href="#platform-task-runner" title="Permanent link">&para;</a></h3>
+<p>Flutter Engine的主Task Runner，类似于Android Main Thread或者iOS的Main Thread。但是需要注意他们还是有区别的。</p>
+<p>一般来说，一个Flutter应用启动的时候会创建一个Engine实例，Engine创建的时候会创建一个线程供Platform Runner使用。</p>
+<p>跟Flutter Engine的所有交互（接口调用）必须在Platform Thread进行，否则可能导致无法预期的异常。这跟iOS UI相关的操作都必须在主线程进行相类似。需要注意的是在Flutter Engine中有很多模块都是非线程安全的。</p>
+<p>规则很简单，对于Flutter Engine的接口调用都需保证在Platform Thread进行。</p>
+<p>阻塞Platform Thread不会直接导致Flutter应用的卡顿（跟iOS android主线程不同）。尽管如此，也不建议在这个Runner执行繁重的操作，长时间卡住Platform Thread应用有可能会被系统Watchdog强杀。</p>
+<h3 id="ui-task-runner-threaddart-runner"><code>UI Task Runner Thread（Dart Runner）</code><a class="headerlink" href="#ui-task-runner-threaddart-runner" title="Permanent link">&para;</a></h3>
+<p>UI Task Runner用于执行Dart root isolate代码（isolate我们后面会讲到，姑且先简单理解为Dart VM里面的线程）。Root isolate比较特殊，它绑定了不少Flutter需要的函数方法，以便进行渲染相关操作。对于每一帧，引擎要做的事情有：</p>
+<p>Root isolate通知Flutter Engine有帧需要渲染。
+Flutter Engine通知平台，需要在下一个vsync的时候得到通知。
+平台等待下一个vsync
+对创建的对象和Widgets进行Layout并生成一个Layer Tree，这个Tree马上被提交给Flutter Engine。当前阶段没有进行任何光栅化，这个步骤仅是生成了对需要绘制内容的描述。
+创建或者更新Tree，这个Tree包含了用于屏幕上显示Widgets的语义信息。这个东西主要用于平台相关的辅助Accessibility元素的配置和渲染。
+除了渲染相关逻辑之外Root Isolate还是处理来自Native Plugins的消息，Timers，Microtasks和异步IO等操作。Root Isolate负责创建管理的Layer Tree最终决定绘制到屏幕上的内容。因此这个线程的过载会直接导致卡顿掉帧。</p>
+<h3 id="gpu-task-runner"><code>GPU Task Runner</code><a class="headerlink" href="#gpu-task-runner" title="Permanent link">&para;</a></h3>
+<p>GPU Task Runner主要用于执行设备GPU的指令。UI Task Runner创建的Layer Tree是跨平台的，它不关心到底由谁来完成绘制。GPU Task Runner负责将Layer Tree提供的信息转化为平台可执行的GPU指令。GPU Task Runner同时负责绘制所需要的GPU资源的管理。资源主要包括平台Framebuffer，Surface，Texture和Buffers等。</p>
+<p>一般来说UI Runner和GPU Runner跑在不同的线程。GPU Runner会根据目前帧执行的进度去向UI Runner要求下一帧的数据，在任务繁重的时候可能会告诉UI Runner延迟任务。这种调度机制确保GPU Runner不至于过载，同时也避免了UI Runner不必要的消耗。</p>
+<p>建议为每一个Engine实例都新建一个专用的GPU Runner线程。</p>
+<h3 id="io-task-runner"><code>IO Task Runner</code><a class="headerlink" href="#io-task-runner" title="Permanent link">&para;</a></h3>
+<p>前面讨论的几个Runner对于执行流畅度有比较高的要求。Platform Runner过载可能导致系统WatchDog强杀，UI和GPU Runner过载则可能导致Flutter应用的卡顿。但是GPU线程的一些必要操作，例如IO，放到哪里执行呢？答案正是IO Runner。</p>
+<p>IO Runner的主要功能是从图片存储（比如磁盘）中读取压缩的图片格式，将图片数据进行处理为GPU Runner的渲染做好准备。IO Runner首先要读取压缩的图片二进制数据（比如PNG，JPEG），将其解压转换成GPU能够处理的格式然后将数据上传到GPU。</p>
+<p>获取诸如ui.Image这样的资源只有通过async call去调用，当调用发生的时候Flutter Framework告诉IO Runner进行加载的异步操作。</p>
+<p>IO Runner直接决定了图片和其它一些资源加载的延迟间接影响性能。所以建议为IO Runner创建一个专用的线程。</p>
+<h2 id="taskrunner">TaskRunner<a class="headerlink" href="#taskrunner" title="Permanent link">&para;</a></h2>
+<p>ThreadHost创建完成四个线程之后，在创建四个<code>TaskRunner</code>来管理Platform，UI，GPU，IO线程中的任务<code>engine/src/flutter/fml/task_runner.h</code></p>
+<p>提供四个方法处理提交到MessageLoop的任务的执行时间和关联到消息队列</p>
+<ul>
+<li>PostTask</li>
+<li>PostTaskForTime</li>
+<li>PostDelayedTask</li>
+<li>RunNowOrPostTask</li>
+<li>RefPtr<MessageLoopImpl> loop_</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="k">namespace</span> <span class="n">fml</span> <span class="p">{</span>
+
+<span class="k">class</span> <span class="nc">MessageLoopImpl</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">TaskRunner</span> <span class="o">:</span> <span class="k">public</span> <span class="n">fml</span><span class="o">::</span><span class="n">RefCountedThreadSafe</span><span class="o">&lt;</span><span class="n">TaskRunner</span><span class="o">&gt;</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">PostTask</span><span class="p">(</span><span class="n">fml</span><span class="o">::</span><span class="n">closure</span> <span class="n">task</span><span class="p">);</span>
+
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">PostTaskForTime</span><span class="p">(</span><span class="n">fml</span><span class="o">::</span><span class="n">closure</span> <span class="n">task</span><span class="p">,</span> <span class="n">fml</span><span class="o">::</span><span class="n">TimePoint</span> <span class="n">target_time</span><span class="p">);</span>
+
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">PostDelayedTask</span><span class="p">(</span><span class="n">fml</span><span class="o">::</span><span class="n">closure</span> <span class="n">task</span><span class="p">,</span> <span class="n">fml</span><span class="o">::</span><span class="n">TimeDelta</span> <span class="n">delay</span><span class="p">);</span>
+
+  <span class="k">virtual</span> <span class="kt">bool</span> <span class="nf">RunsTasksOnCurrentThread</span><span class="p">();</span>
+
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">TaskRunner</span><span class="p">();</span>
+
+  <span class="k">static</span> <span class="kt">void</span> <span class="nf">RunNowOrPostTask</span><span class="p">(</span><span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span> <span class="n">runner</span><span class="p">,</span>
+                               <span class="n">fml</span><span class="o">::</span><span class="n">closure</span> <span class="n">task</span><span class="p">);</span>
+
+ <span class="k">protected</span><span class="o">:</span>
+  <span class="n">TaskRunner</span><span class="p">(</span><span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">MessageLoopImpl</span><span class="o">&gt;</span> <span class="n">loop</span><span class="p">);</span>
+
+ <span class="k">private</span><span class="o">:</span>
+  <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">MessageLoopImpl</span><span class="o">&gt;</span> <span class="n">loop_</span><span class="p">;</span>
+
+  <span class="n">FML_FRIEND_MAKE_REF_COUNTED</span><span class="p">(</span><span class="n">TaskRunner</span><span class="p">);</span>
+  <span class="n">FML_FRIEND_REF_COUNTED_THREAD_SAFE</span><span class="p">(</span><span class="n">TaskRunner</span><span class="p">);</span>
+  <span class="n">FML_DISALLOW_COPY_AND_ASSIGN</span><span class="p">(</span><span class="n">TaskRunner</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="p">}</span>  <span class="c1">// namespace fml</span>
+
+<span class="cp">#endif  </span><span class="c1">// FLUTTER_FML_TASK_RUNNER_H_</span>
+</pre></div>
+
+<h2 id="taskrunners">TaskRunners<a class="headerlink" href="#taskrunners" title="Permanent link">&para;</a></h2>
+<p>创建一个TaskRunners统一管理四个线程中的任务</p>
+<div class="codehilite"><pre><span></span><span class="n">TaskRunners</span> <span class="n">task_runners</span><span class="p">(</span><span class="n">thread_label</span><span class="p">,</span>     <span class="c1">// label</span>
+                                <span class="n">platform_runner</span><span class="p">,</span>  <span class="c1">// platform</span>
+                                <span class="n">gpu_runner</span><span class="p">,</span>       <span class="c1">// gpu</span>
+                                <span class="n">ui_runner</span><span class="p">,</span>        <span class="c1">// ui</span>
+                                <span class="n">io_runner</span>         <span class="c1">// io</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span><span class="k">namespace</span> <span class="n">blink</span> <span class="p">{</span>
+
+<span class="err">记录平台相关的四个相关的线程的任务统一的管理。</span>
+<span class="k">class</span> <span class="nc">TaskRunners</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="n">TaskRunners</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">label</span><span class="p">,</span>
+              <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span> <span class="n">platform</span><span class="p">,</span> <span class="c1">//平台线程关联</span>
+              <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span> <span class="n">gpu</span><span class="p">,</span><span class="c1">//gpu线程关联</span>
+              <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span> <span class="n">ui</span><span class="p">,</span><span class="c1">//ui相处的关联</span>
+              <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span> <span class="n">io</span><span class="p">);</span><span class="c1">//io相处</span>
+<span class="p">........</span>
+ <span class="k">private</span><span class="o">:</span>
+  <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">label_</span><span class="p">;</span>
+  <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span> <span class="n">platform_</span><span class="p">;</span>
+  <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span> <span class="n">gpu_</span><span class="p">;</span>
+  <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span> <span class="n">ui_</span><span class="p">;</span>
+  <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">&gt;</span> <span class="n">io_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="p">}</span>  <span class="c1">// namespace blink</span>
+
+<span class="cp">#endif  </span><span class="c1">// FLUTTER_COMMON_TASK_RUNNERS_H_</span>
+</pre></div>
+
+<h2 id="shell">Shell类初始化:<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h2>
+<p>Shell 类的初始化，主要负责管理客户端相关的资源<code>/engine/src/flutter/shell/platform/android/android_shell_holder.cc</code>,创建的地方</p>
+<p><img alt="pic" src="../../../assets/images/android/flutter/shell.png" /></p>
+<div class="admonition info">
+<p class="admonition-title">Shell主要的功能初始化以下四个对象</p>
+<ul>
+<li>platform_view_ = std::move(platform_view);</li>
+<li>engine_ = std::move(engine);</li>
+<li>rasterizer_ = std::move(rasterizer);</li>
+<li>io_manager_ = std::move(io_manager);</li>
+<li>创建DartVM虚拟机</li>
+</ul>
+</div>
+<p>主要执行的动作:</p>
+<div class="admonition waring">
+<p class="admonition-title">在new Shell时候有从新创建了一个DartVM</p>
+</div>
+<ul>
+<li>1.记录开始时间</li>
+<li>2.初始化日志设置</li>
+<li>3.初始化Skia：InitSkiaEventTracer</li>
+<li>4.初始化：SkGraphics</li>
+<li>5.初始化本地化库:InitializeICU</li>
+<li>6.创建虚拟机:blink::DartVM::ForProcess(settings);</li>
+<li>7.开启平台任务任务<ul>
+<li>7.1:new Shell</li>
+<li>7.2:在new Shell时候有从新创建了一个DartVM：
+<div class="codehilite"><pre><span></span><span class="n">Shell</span><span class="o">::</span><span class="n">Shell</span><span class="p">(</span><span class="n">blink</span><span class="o">::</span><span class="n">TaskRunners</span> <span class="n">task_runners</span><span class="p">,</span> <span class="n">blink</span><span class="o">::</span><span class="n">Settings</span> <span class="n">settings</span><span class="p">)</span>
+<span class="o">:</span> <span class="n">task_runners_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">task_runners</span><span class="p">)),</span><span class="c1">//任务运行器</span>
+<span class="n">settings_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">settings</span><span class="p">)),</span>
+<span class="n">vm_</span><span class="p">(</span><span class="n">blink</span><span class="o">::</span><span class="n">DartVM</span><span class="o">::</span><span class="n">ForProcess</span><span class="p">(</span><span class="n">settings_</span><span class="p">))</span> <span class="p">{</span><span class="c1">//创建一个新的DartVM</span>
+<span class="n">FML_DCHECK</span><span class="p">(</span><span class="n">task_runners_</span><span class="p">.</span><span class="n">IsValid</span><span class="p">());</span>
+<span class="n">FML_DCHECK</span><span class="p">(</span><span class="n">task_runners_</span><span class="p">.</span><span class="n">GetPlatformTaskRunner</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">RunsTasksOnCurrentThread</span><span class="p">());</span>
+</pre></div></li>
+<li>7.3 Install service protocol handlers.</li>
+</ul>
+</li>
+<li>8.真正创建平台操作的对象<code>/engine/src/flutter/shell/platform/android/platform_view_android.cc</code></li>
+<li>9.创建一个CreateVSyncWaiter对象</li>
+<li>10.创建<code>IOManager</code>管理器，在IO线程执行</li>
+<li>11.创建Rasterizer执行在GPU线程</li>
+<li>12.创建engine在UI线程执行</li>
+</ul>
+<p><div class="codehilite"><pre><span></span><span class="n">shell_</span> <span class="o">=</span>
+    <span class="n">Shell</span><span class="o">::</span><span class="n">Create</span><span class="p">(</span><span class="n">task_runners</span><span class="p">,</span>             <span class="c1">// task runners</span>
+                  <span class="n">settings_</span><span class="p">,</span>                <span class="c1">// settings</span>
+                  <span class="n">on_create_platform_view</span><span class="p">,</span>  <span class="c1">// platform view create callback</span>
+                  <span class="n">on_create_rasterizer</span>      <span class="c1">// rasterizer create callback</span>
+    <span class="p">);</span>
+
+<span class="err">在</span><span class="n">Shell</span><span class="err">创建时</span><span class="o">:</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Shell</span><span class="o">&gt;</span> <span class="n">Shell</span><span class="o">::</span><span class="n">Create</span><span class="p">(</span>
+      <span class="n">blink</span><span class="o">::</span><span class="n">TaskRunners</span> <span class="n">task_runners</span><span class="p">,</span>
+      <span class="n">blink</span><span class="o">::</span><span class="n">Settings</span> <span class="n">settings</span><span class="p">,</span>
+      <span class="n">Shell</span><span class="o">::</span><span class="n">CreateCallback</span><span class="o">&lt;</span><span class="n">PlatformView</span><span class="o">&gt;</span> <span class="n">on_create_platform_view</span><span class="p">,</span>
+      <span class="n">Shell</span><span class="o">::</span><span class="n">CreateCallback</span><span class="o">&lt;</span><span class="n">Rasterizer</span><span class="o">&gt;</span> <span class="n">on_create_rasterizer</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//初始化第三方库</span>
+    <span class="n">PerformInitializationTasks</span><span class="p">(</span><span class="n">settings</span><span class="p">);</span>
+
+    <span class="c1">//初始化DartVM虚拟机</span>
+    <span class="k">auto</span> <span class="n">vm</span> <span class="o">=</span> <span class="n">blink</span><span class="o">::</span><span class="n">DartVM</span><span class="o">::</span><span class="n">ForProcess</span><span class="p">(</span><span class="n">settings</span><span class="p">);</span>
+    <span class="n">FML_CHECK</span><span class="p">(</span><span class="n">vm</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Must be able to initialize the VM.&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">Shell</span><span class="o">::</span><span class="n">Create</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">task_runners</span><span class="p">),</span>             <span class="c1">//</span>
+                         <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">settings</span><span class="p">),</span>                 <span class="c1">//</span>
+                         <span class="n">vm</span><span class="o">-&gt;</span><span class="n">GetIsolateSnapshot</span><span class="p">(),</span>            <span class="c1">//</span>
+                         <span class="n">blink</span><span class="o">::</span><span class="n">DartSnapshot</span><span class="o">::</span><span class="n">Empty</span><span class="p">(),</span>        <span class="c1">//</span>
+                         <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">on_create_platform_view</span><span class="p">),</span>  <span class="c1">//</span>
+                         <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">on_create_rasterizer</span><span class="p">)</span>      <span class="c1">//</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+</pre></div>
+##  初始化<code>DartVM</code></p>
+<p><a href="DartVM">DartVM::ForProcess</a></p>
+<p>Dart VM 虚拟机在Shell创建的时候初始化：<code>auto vm = blink::DartVM::ForProcess(settings);</code>,<code>/engine/src/flutter/shell/common/shell.cc</code>,Shell::Create，Dart虚拟机的分析，在后续在进行扩展</p>
+<ul>
+<li>1.加载dart虚拟机快照</li>
+<li>2.加载Isolate快照</li>
+<li>3.调用DartVM构造方法初始化虚拟机</li>
+</ul>
+<div class="codehilite"><pre><span></span>  <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">DartVM</span><span class="o">&gt;</span> <span class="n">DartVM</span><span class="o">::</span><span class="n">ForProcess</span><span class="p">(</span>
+    <span class="n">Settings</span> <span class="n">settings</span><span class="p">,</span>
+    <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">DartSnapshot</span><span class="o">&gt;</span> <span class="n">vm_snapshot</span><span class="p">,</span>
+    <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">DartSnapshot</span><span class="o">&gt;</span> <span class="n">isolate_snapshot</span><span class="p">,</span>
+    <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">DartSnapshot</span><span class="o">&gt;</span> <span class="n">shared_snapshot</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span> <span class="n">lock</span><span class="p">(</span><span class="n">gVMMutex</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">call_once</span><span class="p">(</span><span class="n">gVMInitialization</span><span class="p">,</span> <span class="p">[</span><span class="n">settings</span><span class="p">,</span>          <span class="c1">//</span>
+                                     <span class="n">vm_snapshot</span><span class="p">,</span>       <span class="c1">//</span>
+                                     <span class="n">isolate_snapshot</span><span class="p">,</span>  <span class="c1">//</span>
+                                     <span class="n">shared_snapshot</span>    <span class="c1">//</span>
+  <span class="p">]()</span> <span class="k">mutable</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">vm_snapshot</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">vm_snapshot</span> <span class="o">=</span> <span class="n">DartSnapshot</span><span class="o">::</span><span class="n">VMSnapshotFromSettings</span><span class="p">(</span><span class="n">settings</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">vm_snapshot</span> <span class="o">&amp;&amp;</span> <span class="n">vm_snapshot</span><span class="o">-&gt;</span><span class="n">IsValid</span><span class="p">()))</span> <span class="p">{</span>
+      <span class="n">FML_LOG</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;VM snapshot must be valid.&quot;</span><span class="p">;</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isolate_snapshot</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">isolate_snapshot</span> <span class="o">=</span> <span class="n">DartSnapshot</span><span class="o">::</span><span class="n">IsolateSnapshotFromSettings</span><span class="p">(</span><span class="n">settings</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">isolate_snapshot</span> <span class="o">&amp;&amp;</span> <span class="n">isolate_snapshot</span><span class="o">-&gt;</span><span class="n">IsValid</span><span class="p">()))</span> <span class="p">{</span>
+      <span class="n">FML_LOG</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Isolate snapshot must be valid.&quot;</span><span class="p">;</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">shared_snapshot</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">shared_snapshot</span> <span class="o">=</span> <span class="n">DartSnapshot</span><span class="o">::</span><span class="n">Empty</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">gVM</span> <span class="o">=</span> <span class="n">fml</span><span class="o">::</span><span class="n">MakeRefCounted</span><span class="o">&lt;</span><span class="n">DartVM</span><span class="o">&gt;</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span>                     <span class="c1">//</span>
+                                      <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">vm_snapshot</span><span class="p">),</span>       <span class="c1">//</span>
+                                      <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">isolate_snapshot</span><span class="p">),</span>  <span class="c1">//</span>
+                                      <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">shared_snapshot</span><span class="p">)</span>    <span class="c1">//</span>
+    <span class="p">);</span>
+  <span class="p">});</span>
+  <span class="k">return</span> <span class="n">gVM</span><span class="p">;</span>
+  <span class="p">}</span>
+</pre></div>
+
+<p>Shell创建时第三方库初始化位置<code>PerformInitializationTasks</code>,<code>/engine/src/flutter/shell/common/shell.cc</code></p>
+<ul>
+<li>RecordStartupTimestamp()记录时间戳</li>
+<li>fml::SetLogSettings(log_settings) 设置日志信息</li>
+<li>InitSkiaEventTracer(settings.trace_skia) 初始化Skia2d图像引擎库跟踪器</li>
+<li>SkGraphics::Init();  初始化2d图形引擎库</li>
+<li>fml::icu::InitializeICU(settings.icu_data_path); 初始化国际化处理ICU</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="c1">// Though there can be multiple shells, some settings apply to all components in</span>
+<span class="c1">// the process. These have to be setup before the shell or any of its</span>
+<span class="c1">// sub-components can be initialized. In a perfect world, this would be empty.</span>
+<span class="c1">// TODO(chinmaygarde): The unfortunate side effect of this call is that settings</span>
+<span class="c1">// that cause shell initialization failures will still lead to some of their</span>
+<span class="c1">// settings being applied.</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">PerformInitializationTasks</span><span class="p">(</span><span class="k">const</span> <span class="n">blink</span><span class="o">::</span><span class="n">Settings</span><span class="o">&amp;</span> <span class="n">settings</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">once_flag</span> <span class="n">gShellSettingsInitialization</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">call_once</span><span class="p">(</span><span class="n">gShellSettingsInitialization</span><span class="p">,</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">settings</span><span class="p">]</span> <span class="p">{</span>
+    <span class="n">RecordStartupTimestamp</span><span class="p">();</span>
+
+    <span class="p">{</span>
+      <span class="n">fml</span><span class="o">::</span><span class="n">LogSettings</span> <span class="n">log_settings</span><span class="p">;</span>
+      <span class="n">log_settings</span><span class="p">.</span><span class="n">min_log_level</span> <span class="o">=</span>
+          <span class="n">settings</span><span class="p">.</span><span class="n">verbose_logging</span> <span class="o">?</span> <span class="n">fml</span><span class="o">::</span><span class="nl">LOG_INFO</span> <span class="p">:</span> <span class="n">fml</span><span class="o">::</span><span class="n">LOG_ERROR</span><span class="p">;</span>
+      <span class="n">fml</span><span class="o">::</span><span class="n">SetLogSettings</span><span class="p">(</span><span class="n">log_settings</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">tonic</span><span class="o">::</span><span class="n">SetLogHandler</span><span class="p">(</span>
+        <span class="p">[](</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span> <span class="n">FML_LOG</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">message</span><span class="p">;</span> <span class="p">});</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">settings</span><span class="p">.</span><span class="n">trace_skia</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">InitSkiaEventTracer</span><span class="p">(</span><span class="n">settings</span><span class="p">.</span><span class="n">trace_skia</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">settings</span><span class="p">.</span><span class="n">skia_deterministic_rendering_on_cpu</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">SkGraphics</span><span class="o">::</span><span class="n">Init</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">FML_DLOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Skia deterministic rendering is enabled.&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">settings</span><span class="p">.</span><span class="n">icu_initialization_required</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">settings</span><span class="p">.</span><span class="n">icu_data_path</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fml</span><span class="o">::</span><span class="n">icu</span><span class="o">::</span><span class="n">InitializeICU</span><span class="p">(</span><span class="n">settings</span><span class="p">.</span><span class="n">icu_data_path</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">settings</span><span class="p">.</span><span class="n">icu_mapper</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">fml</span><span class="o">::</span><span class="n">icu</span><span class="o">::</span><span class="n">InitializeICUFromMapping</span><span class="p">(</span><span class="n">settings</span><span class="p">.</span><span class="n">icu_mapper</span><span class="p">());</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">FML_DLOG</span><span class="p">(</span><span class="n">WARNING</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Skipping ICU initialization in the shell.&quot;</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="createshellonplatformthread">CreateShellOnPlatformThread<a class="headerlink" href="#createshellonplatformthread" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">以下代码片段是真正初始化对象的地方</p>
+</div>
+<div class="codehilite"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Shell</span><span class="o">&gt;</span> <span class="n">Shell</span><span class="o">::</span><span class="n">Create</span><span class="p">(</span>
+    <span class="n">blink</span><span class="o">::</span><span class="n">TaskRunners</span> <span class="n">task_runners</span><span class="p">,</span>
+    <span class="n">blink</span><span class="o">::</span><span class="n">Settings</span> <span class="n">settings</span><span class="p">,</span>
+    <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">blink</span><span class="o">::</span><span class="n">DartSnapshot</span><span class="o">&gt;</span> <span class="n">isolate_snapshot</span><span class="p">,</span>
+    <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">blink</span><span class="o">::</span><span class="n">DartSnapshot</span><span class="o">&gt;</span> <span class="n">shared_snapshot</span><span class="p">,</span>
+    <span class="n">Shell</span><span class="o">::</span><span class="n">CreateCallback</span><span class="o">&lt;</span><span class="n">PlatformView</span><span class="o">&gt;</span> <span class="n">on_create_platform_view</span><span class="p">,</span>
+    <span class="n">Shell</span><span class="o">::</span><span class="n">CreateCallback</span><span class="o">&lt;</span><span class="n">Rasterizer</span><span class="o">&gt;</span> <span class="n">on_create_rasterizer</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">PerformInitializationTasks</span><span class="p">(</span><span class="n">settings</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">task_runners</span><span class="p">.</span><span class="n">IsValid</span><span class="p">()</span> <span class="o">||</span> <span class="o">!</span><span class="n">on_create_platform_view</span> <span class="o">||</span>
+      <span class="o">!</span><span class="n">on_create_rasterizer</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">fml</span><span class="o">::</span><span class="n">AutoResetWaitableEvent</span> <span class="n">latch</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Shell</span><span class="o">&gt;</span> <span class="n">shell</span><span class="p">;</span>
+  <span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">::</span><span class="n">RunNowOrPostTask</span><span class="p">(</span><span class="c1">//提交任务到Platform线程运行</span>
+      <span class="n">task_runners</span><span class="p">.</span><span class="n">GetPlatformTaskRunner</span><span class="p">(),</span>
+      <span class="p">[</span><span class="o">&amp;</span><span class="n">latch</span><span class="p">,</span>                                          <span class="c1">//</span>
+       <span class="o">&amp;</span><span class="n">shell</span><span class="p">,</span>                                          <span class="c1">//</span>
+       <span class="n">task_runners</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">task_runners</span><span class="p">),</span>          <span class="c1">//</span>
+       <span class="n">settings</span><span class="p">,</span>                                        <span class="c1">//</span>
+       <span class="n">isolate_snapshot</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">isolate_snapshot</span><span class="p">),</span>  <span class="c1">//</span>
+       <span class="n">shared_snapshot</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">shared_snapshot</span><span class="p">),</span>    <span class="c1">//</span>
+       <span class="n">on_create_platform_view</span><span class="p">,</span>                         <span class="c1">//</span>
+       <span class="n">on_create_rasterizer</span>                             <span class="c1">//</span>
+  <span class="p">]()</span> <span class="p">{</span>
+        <span class="n">shell</span> <span class="o">=</span> <span class="n">CreateShellOnPlatformThread</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">task_runners</span><span class="p">),</span>      <span class="c1">//</span>
+                                            <span class="n">settings</span><span class="p">,</span>                     <span class="c1">//</span>
+                                            <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">isolate_snapshot</span><span class="p">),</span>  <span class="c1">//</span>
+                                            <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">shared_snapshot</span><span class="p">),</span>   <span class="c1">//</span>
+                                            <span class="n">on_create_platform_view</span><span class="p">,</span>      <span class="c1">//</span>
+                                            <span class="n">on_create_rasterizer</span>          <span class="c1">//</span>
+        <span class="p">);</span>
+        <span class="n">latch</span><span class="p">.</span><span class="n">Signal</span><span class="p">();</span>
+      <span class="p">});</span>
+  <span class="n">latch</span><span class="p">.</span><span class="n">Wait</span><span class="p">();</span>
+  <span class="k">return</span> <span class="n">shell</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p><code>CreateShellOnPlatformThread</code>完成Shell分的一下初始化信息</p>
+<ul>
+<li>1.创建一个Shell实例对象<code>auto shell = std::unique_ptr&lt;Shell&gt;(new Shell(task_runners, settings));</code></li>
+<li>2.创建平台View在平台线程<code>auto platform_view = on_create_platform_view(*shell.get());</code></li>
+<li>3.创建一个Syncwaiter<code>auto vsync_waiter = platform_view-&gt;CreateVSyncWaiter();</code></li>
+<li>4.创建一个IO管理io线程<code>std::unique_ptr&lt;IOManager&gt; io_manager;</code></li>
+<li>5.在UI线程创建engine：<code>fml::AutoResetWaitableEvent ui_latch;</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Shell</span><span class="o">&gt;</span> <span class="n">Shell</span><span class="o">::</span><span class="n">CreateShellOnPlatformThread</span><span class="p">(</span>
+  <span class="n">blink</span><span class="o">::</span><span class="n">TaskRunners</span> <span class="n">task_runners</span><span class="p">,</span>
+  <span class="n">blink</span><span class="o">::</span><span class="n">Settings</span> <span class="n">settings</span><span class="p">,</span>
+  <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">blink</span><span class="o">::</span><span class="n">DartSnapshot</span><span class="o">&gt;</span> <span class="n">isolate_snapshot</span><span class="p">,</span>
+  <span class="n">fml</span><span class="o">::</span><span class="n">RefPtr</span><span class="o">&lt;</span><span class="n">blink</span><span class="o">::</span><span class="n">DartSnapshot</span><span class="o">&gt;</span> <span class="n">shared_snapshot</span><span class="p">,</span>
+  <span class="n">Shell</span><span class="o">::</span><span class="n">CreateCallback</span><span class="o">&lt;</span><span class="n">PlatformView</span><span class="o">&gt;</span> <span class="n">on_create_platform_view</span><span class="p">,</span>
+  <span class="n">Shell</span><span class="o">::</span><span class="n">CreateCallback</span><span class="o">&lt;</span><span class="n">Rasterizer</span><span class="o">&gt;</span> <span class="n">on_create_rasterizer</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">task_runners</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">auto</span> <span class="n">shell</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Shell</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">Shell</span><span class="p">(</span><span class="n">task_runners</span><span class="p">,</span> <span class="n">settings</span><span class="p">));</span>
+
+<span class="c1">// Create the platform view on the platform thread (this thread).</span>
+<span class="k">auto</span> <span class="n">platform_view</span> <span class="o">=</span> <span class="n">on_create_platform_view</span><span class="p">(</span><span class="o">*</span><span class="n">shell</span><span class="p">.</span><span class="n">get</span><span class="p">());</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">platform_view</span> <span class="o">||</span> <span class="o">!</span><span class="n">platform_view</span><span class="o">-&gt;</span><span class="n">GetWeakPtr</span><span class="p">())</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Ask the platform view for the vsync waiter. This will be used by the engine</span>
+<span class="c1">// to create the animator.</span>
+<span class="k">auto</span> <span class="n">vsync_waiter</span> <span class="o">=</span> <span class="n">platform_view</span><span class="o">-&gt;</span><span class="n">CreateVSyncWaiter</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">vsync_waiter</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Create the IO manager on the IO thread. The IO manager must be initialized</span>
+<span class="c1">// first because it has state that the other subsystems depend on. It must</span>
+<span class="c1">// first be booted and the necessary references obtained to initialize the</span>
+<span class="c1">// other subsystems.</span>
+<span class="n">fml</span><span class="o">::</span><span class="n">AutoResetWaitableEvent</span> <span class="n">io_latch</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IOManager</span><span class="o">&gt;</span> <span class="n">io_manager</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">io_task_runner</span> <span class="o">=</span> <span class="n">shell</span><span class="o">-&gt;</span><span class="n">GetTaskRunners</span><span class="p">().</span><span class="n">GetIOTaskRunner</span><span class="p">();</span>
+<span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">::</span><span class="n">RunNowOrPostTask</span><span class="p">(</span>
+    <span class="n">io_task_runner</span><span class="p">,</span>
+    <span class="p">[</span><span class="o">&amp;</span><span class="n">io_latch</span><span class="p">,</span>       <span class="c1">//</span>
+     <span class="o">&amp;</span><span class="n">io_manager</span><span class="p">,</span>     <span class="c1">//</span>
+     <span class="o">&amp;</span><span class="n">platform_view</span><span class="p">,</span>  <span class="c1">//</span>
+     <span class="n">io_task_runner</span>   <span class="c1">//</span>
+<span class="p">]()</span> <span class="p">{</span>
+      <span class="n">io_manager</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">IOManager</span><span class="o">&gt;</span><span class="p">(</span>
+          <span class="n">platform_view</span><span class="o">-&gt;</span><span class="n">CreateResourceContext</span><span class="p">(),</span> <span class="n">io_task_runner</span><span class="p">);</span>
+      <span class="n">io_latch</span><span class="p">.</span><span class="n">Signal</span><span class="p">();</span>
+    <span class="p">});</span>
+<span class="n">io_latch</span><span class="p">.</span><span class="n">Wait</span><span class="p">();</span>
+
+<span class="c1">// Create the rasterizer on the GPU thread.</span>
+<span class="n">fml</span><span class="o">::</span><span class="n">AutoResetWaitableEvent</span> <span class="n">gpu_latch</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Rasterizer</span><span class="o">&gt;</span> <span class="n">rasterizer</span><span class="p">;</span>
+<span class="n">fml</span><span class="o">::</span><span class="n">WeakPtr</span><span class="o">&lt;</span><span class="n">blink</span><span class="o">::</span><span class="n">SnapshotDelegate</span><span class="o">&gt;</span> <span class="n">snapshot_delegate</span><span class="p">;</span>
+<span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">::</span><span class="n">RunNowOrPostTask</span><span class="p">(</span>
+    <span class="n">task_runners</span><span class="p">.</span><span class="n">GetGPUTaskRunner</span><span class="p">(),</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">gpu_latch</span><span class="p">,</span>            <span class="c1">//</span>
+                                      <span class="o">&amp;</span><span class="n">rasterizer</span><span class="p">,</span>           <span class="c1">//</span>
+                                      <span class="n">on_create_rasterizer</span><span class="p">,</span>  <span class="c1">//</span>
+                                      <span class="n">shell</span> <span class="o">=</span> <span class="n">shell</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span>   <span class="c1">//</span>
+                                      <span class="o">&amp;</span><span class="n">snapshot_delegate</span>     <span class="c1">//</span>
+<span class="p">]()</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">auto</span> <span class="n">new_rasterizer</span> <span class="o">=</span> <span class="n">on_create_rasterizer</span><span class="p">(</span><span class="o">*</span><span class="n">shell</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">rasterizer</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">new_rasterizer</span><span class="p">);</span>
+        <span class="n">snapshot_delegate</span> <span class="o">=</span> <span class="n">rasterizer</span><span class="o">-&gt;</span><span class="n">GetSnapshotDelegate</span><span class="p">();</span>
+      <span class="p">}</span>
+      <span class="n">gpu_latch</span><span class="p">.</span><span class="n">Signal</span><span class="p">();</span>
+    <span class="p">});</span>
+
+<span class="n">gpu_latch</span><span class="p">.</span><span class="n">Wait</span><span class="p">();</span>
+
+<span class="c1">// Create the engine on the UI thread.</span>
+<span class="n">fml</span><span class="o">::</span><span class="n">AutoResetWaitableEvent</span> <span class="n">ui_latch</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Engine</span><span class="o">&gt;</span> <span class="n">engine</span><span class="p">;</span>
+<span class="n">fml</span><span class="o">::</span><span class="n">TaskRunner</span><span class="o">::</span><span class="n">RunNowOrPostTask</span><span class="p">(</span>
+    <span class="n">shell</span><span class="o">-&gt;</span><span class="n">GetTaskRunners</span><span class="p">().</span><span class="n">GetUITaskRunner</span><span class="p">(),</span>
+    <span class="n">fml</span><span class="o">::</span><span class="n">MakeCopyable</span><span class="p">([</span><span class="o">&amp;</span><span class="n">ui_latch</span><span class="p">,</span>                                         <span class="c1">//</span>
+                       <span class="o">&amp;</span><span class="n">engine</span><span class="p">,</span>                                           <span class="c1">//</span>
+                       <span class="n">shell</span> <span class="o">=</span> <span class="n">shell</span><span class="p">.</span><span class="n">get</span><span class="p">(),</span>                               <span class="c1">//</span>
+                       <span class="n">isolate_snapshot</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">isolate_snapshot</span><span class="p">),</span>    <span class="c1">//</span>
+                       <span class="n">shared_snapshot</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">shared_snapshot</span><span class="p">),</span>      <span class="c1">//</span>
+                       <span class="n">vsync_waiter</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">vsync_waiter</span><span class="p">),</span>            <span class="c1">//</span>
+                       <span class="n">snapshot_delegate</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">snapshot_delegate</span><span class="p">),</span>  <span class="c1">//</span>
+                       <span class="n">io_manager</span> <span class="o">=</span> <span class="n">io_manager</span><span class="o">-&gt;</span><span class="n">GetWeakPtr</span><span class="p">()</span>              <span class="c1">//</span>
+<span class="p">]()</span> <span class="k">mutable</span> <span class="p">{</span>
+      <span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="n">task_runners</span> <span class="o">=</span> <span class="n">shell</span><span class="o">-&gt;</span><span class="n">GetTaskRunners</span><span class="p">();</span>
+
+      <span class="c1">// The animator is owned by the UI thread but it gets its vsync pulses</span>
+      <span class="c1">// from the platform.</span>
+      <span class="k">auto</span> <span class="n">animator</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Animator</span><span class="o">&gt;</span><span class="p">(</span><span class="o">*</span><span class="n">shell</span><span class="p">,</span> <span class="n">task_runners</span><span class="p">,</span>
+                                                 <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">vsync_waiter</span><span class="p">));</span>
+
+      <span class="n">engine</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Engine</span><span class="o">&gt;</span><span class="p">(</span><span class="o">*</span><span class="n">shell</span><span class="p">,</span>                        <span class="c1">//</span>
+                                        <span class="n">shell</span><span class="o">-&gt;</span><span class="n">GetDartVM</span><span class="p">(),</span>            <span class="c1">//</span>
+                                        <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">isolate_snapshot</span><span class="p">),</span>   <span class="c1">//</span>
+                                        <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">shared_snapshot</span><span class="p">),</span>    <span class="c1">//</span>
+                                        <span class="n">task_runners</span><span class="p">,</span>                  <span class="c1">//</span>
+                                        <span class="n">shell</span><span class="o">-&gt;</span><span class="n">GetSettings</span><span class="p">(),</span>          <span class="c1">//</span>
+                                        <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">animator</span><span class="p">),</span>           <span class="c1">//</span>
+                                        <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">snapshot_delegate</span><span class="p">),</span>  <span class="c1">//</span>
+                                        <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">io_manager</span><span class="p">)</span>          <span class="c1">//</span>
+      <span class="p">);</span>
+      <span class="n">ui_latch</span><span class="p">.</span><span class="n">Signal</span><span class="p">();</span>
+    <span class="p">}));</span>
+
+<span class="n">ui_latch</span><span class="p">.</span><span class="n">Wait</span><span class="p">();</span>
+<span class="c1">// We are already on the platform thread. So there is no platform latch to</span>
+<span class="c1">// wait on.</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">shell</span><span class="o">-&gt;</span><span class="n">Setup</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">platform_view</span><span class="p">),</span>  <span class="c1">//</span>
+                  <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">engine</span><span class="p">),</span>         <span class="c1">//</span>
+                  <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">rasterizer</span><span class="p">),</span>     <span class="c1">//</span>
+                  <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">io_manager</span><span class="p">))</span>     <span class="c1">//</span>
+<span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">return</span> <span class="n">shell</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>设置Shell管理的Platform线程管理的相关资源:<code>/engine/src/flutter/shell/common/engine.cc</code>在<code>/engine/src/flutter/shell/common/shell.cc</code>中执行<code>CreateShellOnPlatformThread</code>方法时调用</p>
+<ul>
+<li>1.PlatformView:主要管理相关的view事件</li>
+<li>2.Engine:所有的资源都准备完成，开始调用dart代码和Dart虚拟机，进行代码执行</li>
+<li>3.Rasterizer:光栅主要是处理GPU相关的事件</li>
+<li>4.IOManager:对io线程进行管理</li>
+<li>5.设置 DartVM ServiceProtocol设置处理回调</li>
+<li>6.PersistentCache::GetCacheForProcess()-&gt;AddWorkerTaskRunner(task_runners_.GetIOTaskRunner());对缓存目录的处理</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="kt">bool</span> <span class="n">Shell</span><span class="o">::</span><span class="n">Setup</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">PlatformView</span><span class="o">&gt;</span> <span class="n">platform_view</span><span class="p">,</span>
+                  <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Engine</span><span class="o">&gt;</span> <span class="n">engine</span><span class="p">,</span>
+                  <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Rasterizer</span><span class="o">&gt;</span> <span class="n">rasterizer</span><span class="p">,</span>
+                  <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IOManager</span><span class="o">&gt;</span> <span class="n">io_manager</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">is_setup_</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">platform_view</span> <span class="o">||</span> <span class="o">!</span><span class="n">engine</span> <span class="o">||</span> <span class="o">!</span><span class="n">rasterizer</span> <span class="o">||</span> <span class="o">!</span><span class="n">io_manager</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">platform_view_</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">platform_view</span><span class="p">);</span>
+  <span class="n">engine_</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">engine</span><span class="p">);</span>
+  <span class="n">rasterizer_</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">rasterizer</span><span class="p">);</span>
+  <span class="n">io_manager_</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">io_manager</span><span class="p">);</span>
+
+  <span class="n">is_setup_</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="k">auto</span> <span class="n">vm</span> <span class="o">=</span> <span class="n">blink</span><span class="o">::</span><span class="n">DartVM</span><span class="o">::</span><span class="n">ForProcessIfInitialized</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">vm</span><span class="o">-&gt;</span><span class="n">GetServiceProtocol</span><span class="p">().</span><span class="n">AddHandler</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">GetServiceProtocolDescription</span><span class="p">());</span>
+  <span class="p">}</span>
+
+  <span class="n">PersistentCache</span><span class="o">::</span><span class="n">GetCacheForProcess</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">AddWorkerTaskRunner</span><span class="p">(</span>
+      <span class="n">task_runners_</span><span class="p">.</span><span class="n">GetIOTaskRunner</span><span class="p">());</span>
+
+  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="android-nativelibflutter">Android Native层与libFlutter通信接口:<a class="headerlink" href="#android-nativelibflutter" title="Permanent link">&para;</a></h3>
+<p>在分析完成整个初始化过程这回，在跟进下图来分析整个调用过程和以上代码的初始化过程，有助于理解整个运行环境的初始化相关的类和功能及逻辑</p>
+<p><img alt="pic" src="../../../assets/images/android/flutter/flutterplugin1.png" /></p>
+<p>Android端调用JNI层的代码，使用本地接口和FlutterEngine通信，在Flutter for Android 中通过FlutterJNI中相关的本地方法，platform_view_android_jni在第一次加载so库是进行初始化:</p>
+<p><code>/io/flutter/embedding/engine/FlutterJNI.class</code>
+<code>engine/src/flutter/shell/platform/android/platform_view_android_jni.cc</code></p>
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FlutterJNI</span> <span class="o">{</span>
+    <span class="nd">@UiThread</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">native</span> <span class="kt">boolean</span> <span class="nf">nativeGetIsSoftwareRenderingEnabled</span><span class="o">();</span>
+    <span class="nd">@UiThread</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">native</span> <span class="n">String</span> <span class="nf">nativeGetObservatoryUri</span><span class="o">();</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeSurfaceCreated</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">,</span> <span class="n">Surface</span> <span class="n">var3</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeSurfaceChanged</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var3</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var4</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeSurfaceDestroyed</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeSetViewportMetrics</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">,</span> <span class="kt">float</span> <span class="n">var3</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var4</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var5</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var6</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var7</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var8</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var9</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var10</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var11</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var12</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var13</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="n">Bitmap</span> <span class="nf">nativeGetBitmap</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeDispatchPointerDataPacket</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">,</span> <span class="n">ByteBuffer</span> <span class="n">var3</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var4</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeDispatchSemanticsAction</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var3</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var4</span><span class="o">,</span> <span class="n">ByteBuffer</span> <span class="n">var5</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var6</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeSetSemanticsEnabled</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">var3</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeSetAccessibilityFeatures</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var3</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeRegisterTexture</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">,</span> <span class="kt">long</span> <span class="n">var3</span><span class="o">,</span> <span class="n">SurfaceTexture</span> <span class="n">var5</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeMarkTextureFrameAvailable</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">,</span> <span class="kt">long</span> <span class="n">var3</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeUnregisterTexture</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">,</span> <span class="kt">long</span> <span class="n">var3</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">long</span> <span class="nf">nativeAttach</span><span class="o">(</span><span class="n">FlutterJNI</span> <span class="n">var1</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">var2</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeDetach</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeDestroy</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeRunBundleAndSnapshotFromLibrary</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">String</span><span class="o">[]</span> <span class="n">var3</span><span class="o">,</span> <span class="nd">@Nullable</span> <span class="n">String</span> <span class="n">var4</span><span class="o">,</span> <span class="nd">@Nullable</span> <span class="n">String</span> <span class="n">var5</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">AssetManager</span> <span class="n">var6</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeDispatchEmptyPlatformMessage</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">,</span> <span class="n">String</span> <span class="n">var3</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var4</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeDispatchPlatformMessage</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">,</span> <span class="n">String</span> <span class="n">var3</span><span class="o">,</span> <span class="n">ByteBuffer</span> <span class="n">var4</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var5</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var6</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeInvokePlatformMessageEmptyResponseCallback</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var3</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">nativeInvokePlatformMessageResponseCallback</span><span class="o">(</span><span class="kt">long</span> <span class="n">var1</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var3</span><span class="o">,</span> <span class="n">ByteBuffer</span> <span class="n">var4</span><span class="o">,</span> <span class="kt">int</span> <span class="n">var5</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>引擎元代码中使用动态JNI的方式注册相关方法:
+<code>engine/src/flutter/shell/platform/android/platform_view_android_jni.cc</code></p>
+<p>调用Register方法注册本地方法：
+<div class="codehilite"><pre><span></span><span class="kt">bool</span> <span class="nf">RegisterApi</span><span class="p">(</span><span class="n">JNIEnv</span><span class="o">*</span> <span class="n">env</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">static</span> <span class="k">const</span> <span class="n">JNINativeMethod</span> <span class="n">flutter_jni_methods</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="c1">// Start of methods from FlutterNativeView</span>
+  <span class="p">{</span>
+      <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeAttach&quot;</span><span class="p">,</span>
+      <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(Lio/flutter/embedding/engine/FlutterJNI;Z)J&quot;</span><span class="p">,</span>
+      <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">AttachJNI</span><span class="p">),</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+      <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeDestroy&quot;</span><span class="p">,</span>
+      <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(J)V&quot;</span><span class="p">,</span>
+      <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">DestroyJNI</span><span class="p">),</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+      <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeRunBundleAndSnapshotFromLibrary&quot;</span><span class="p">,</span>
+      <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(J[Ljava/lang/String;Ljava/lang/String;&quot;</span>
+                   <span class="s">&quot;Ljava/lang/String;Landroid/content/res/AssetManager;)V&quot;</span><span class="p">,</span>
+      <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span>
+          <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">RunBundleAndSnapshotFromLibrary</span><span class="p">),</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">env</span><span class="o">-&gt;</span><span class="n">RegisterNatives</span><span class="p">(</span><span class="n">g_flutter_jni_class</span><span class="o">-&gt;</span><span class="n">obj</span><span class="p">(),</span> <span class="n">flutter_jni_methods</span><span class="p">,</span>
+                     <span class="n">arraysize</span><span class="p">(</span><span class="n">flutter_jni_methods</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">FML_LOG</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Failed to RegisterNatives with FlutterJNI&quot;</span><span class="p">;</span>
+<span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></p>
+<p><code>engine/src/flutter/shell/common/shell.cc</code>作为一个中枢控制作用，使用弱引用来保存PlatformView，Android，ios保存使用shell中Platform下的Platefrom实现来处理平台相关的View,Shell的初始化是在<code>engine/src/flutter/shell/platform/android/android_shell_holder.cc</code>，<code>FlutterMain::Get().GetSettings()</code>编译时的配置文件<code>engine/src/flutter/common/settings.cc</code>,<code>flutterJNI</code>是android层的代码，<code>is_background_view</code>是在java层FlutterNativeView，这是Java和JNI的通信，数据传输逻辑处理，FlutterNativeView的构造方法中调用JNI代码，初始化<code>android_shell_holder</code>使用这个类来全部<code>Shell</code>这个类</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../AndroidViewinit/" title="Android初始化View" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Android初始化View
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../EngineView/" title="EngineView初始化" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                EngineView初始化
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019  Aige
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="http://struct.cc" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/cangchengkun/Docs" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/Aige25868905" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.facebook.com/cangck.danmo" class="md-footer-social__link fa fa-facebook"></a>
+    
+      <a href="https://www.youtube.com/" class="md-footer-social__link fa fa-youtube"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.43ad2ac2.js"></script>
+      
+        
+        
+          
+          <script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>
