@@ -27,13 +27,13 @@ Flutter提供了一套Platform Channel的机制，来满足与Native通信的功
 
 ## Platform Channel架构逻辑
 
-![pic](../assets/images/android/flutter/PlatformChannels.png)
+![pic](../../assets/images/android/flutter/PlatformChannels.png)
 
 ## 调用时序逻辑
 
 在分析Flutter Platform channel源码之前，先来了解一下在整个过程中Android端和FlutterUI端调用的过程时序图:
 
-![pic](../assets/images/android/flutter/messagetraslate.png)
+![pic](../../assets/images/android/flutter/messagetraslate.png)
 ## 源码调用
 
 在Native项目的Activity中，注册插件：
@@ -226,7 +226,7 @@ Dart_Handle SendPlatformMessage(Dart_Handle window,//window对象在Ioslate中�
 
 调用`:MakeRefCounted<PlatformMessageResponseDart>`保存DartVM虚拟机中的数据和运行环境进行封装和保存
 
-![pic](../assets/images/android/flutter/platformmessage.png)
+![pic](../../assets/images/android/flutter/platformmessage.png)
 
 `PlatformMessageResponseDart`主要功能就是保存FlutterUI 层的回调对象，和ui线程任务管理对象，定义两个变量`tonic::DartPersistentValue callback_;`封装了Dart_api中的句柄对象，主要是对DartVM中的对象`引用`保存，关联到当前的Isolate避免内存泄漏，`fml::RefPtr<fml::TaskRunner> ui_task_runner_;`保存Engine中的TaskRunner任务运行器索引对象。
 ```c++
@@ -247,7 +247,7 @@ class PlatformMessageResponseDart : public PlatformMessageResponse {
 
 DartVM中使用持久化对象来进行保存，在JNI代码中使用`DartPersistentValue`,`/engine/src/third_party/tonic/dart_persistent_value.h`对Isolate相关联的对象进行管理操作，封装了`Dart_Handle`和`Dart_PersistentHandle`两个对象是操作DartVm中的数据的引用`engine/src/third_party/dart/runtime/include/dart_api.h`
 
-![pic](../assets/images/android/flutter/dartpersisstentHandle.png)
+![pic](../../assets/images/android/flutter/dartpersisstentHandle.png)
 
 
     * Dart_Handle:
@@ -393,7 +393,7 @@ const int kMessageCopyThreshold = 1000;
 
 下图表示在FlutteUI层调用到Android层的执行路径和相关的类集成关系:
 
-![pic](../assets/images/android/flutter/messagepic.png)
+![pic](../../assets/images/android/flutter/messagepic.png)
 
 我们可以找到对应的方法是_SendPlatformMessage，这个方法会调到`SendPlatformMessage`
 

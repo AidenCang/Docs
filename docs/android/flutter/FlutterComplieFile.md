@@ -40,11 +40,11 @@ snapshot 文件由 Flutter SDK 中的 flutter/bin/cache/artifacts/engine/android
 
 ## Apk打包之后生成相关的文件
 APK 中Flutter中打包，相关文件位置:
-![pic](../assets/images/android/flutter/flutterpackagestruction.png)
+![pic](../../assets/images/android/flutter/flutterpackagestruction.png)
 
 ## Apk安装到手机上之后生成的文件
 Apk安装到手机上之后，拷贝相关的文件到目录中:
-![pic](../assets/images/android/flutter/devicedir.png)
+![pic](../../assets/images/android/flutter/devicedir.png)
 
 ## 拷贝Flutter相关的代码，并且启动flutter：`flutter.jar`
 

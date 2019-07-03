@@ -7,4 +7,4 @@ Flutter实现了自己的图形绘制避免了Native桥接。
 Flutter在应用层使用Dart进行开发，而支撑它的是用C++开发的引擎。
 
 
-![pic](../assets/images/android/flutter/flutterPlatfrom.jpeg)
+![pic](../../assets/images/android/flutter/flutterPlatfrom.jpeg)

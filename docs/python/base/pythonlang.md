@@ -1,4 +1,4 @@
-# Python 基础知识
+# Python开发基础知识
 
 ## python基础-对象_类反射、模块反射
 
@@ -8,27 +8,12 @@
 
 [Python魔法方法](https://pyzh.readthedocs.io/en/latest/python-magic-methods-guide.html#id21)
 
-## Python 爬虫项目
-
-[23个Python爬虫开源项目代码：爬取微信、淘宝、豆瓣、知](https://ask.julyedu.com/article/323)
-
-[scrapy框架的使用方法](https://blog.csdn.net/guifei010/article/details/79415531)
-
-[使用python抓取京东全站数据（商品，店铺，分类，评论）](https://blog.csdn.net/Kandy_Ye/article/details/70183110)
-
-[小白进阶之Scrapy第一篇](https://cuiqingcai.com/3472.html)
-
 [Python多进程编程](https://www.cnblogs.com/kaituorensheng/p/4445418.html)
 
 [Python进程和线程](https://www.cnblogs.com/microfan/p/5294250.html)
 
-## Python后端认证方法
-
-[前后端分离之JWT用户认证](https://www.jianshu.com/p/180a870a308a)
-
-[Django用户组及登录、注册、注销、JWT](https://www.jianshu.com/p/17d4c2182ef7)
-
-[REST framework JWT Auth](http://getblimp.github.io/django-rest-framework-jwt/#usage)
+## python 内建类型和方法:
+/Users/cuco/Library/Caches/PyCharm2018.1/python_stubs/-1556761322/builtins.py
 
 ## Python Decorator装饰器
 
@@ -49,24 +34,29 @@
 
 [XML and HTML with Python](https://lxml.de/index.html)
 
-[基于 Python 实现微信公众号爬虫](https://juejin.im/book/5a157c155188254a701eb3c1)
 
-[0_python_email.md](https://gist.github.com/nickoala/569a9d191d088d82a5ef5c03c0690a02)
-
-[uWSGI Emperor —— 多应用部署](https://uwsgi-docs-zh.readthedocs.io/zh_CN/latest/Emperor.html)
-
-[uWSGI 管理标志](https://uwsgi-docs-zh.readthedocs.io/zh_CN/latest/ManagementFlag.html)
-
-[xadmin前后台模板](http://x.xuebingsi.com/)
-
-[xadmin前后台模板](https://xadmin.readthedocs.io/en/docs-chinese/)
-
-[VsVisualCode Python教程](https://code.visualstudio.com/docs/python/python-tutorial)
-
-[Cool URIs don't change](https://www.w3.org/Provider/Style/URI)
 
 ## Python 高级源码解析
 
 需要配合Python源码书籍一起探讨
 
 [Python源码剖析笔记](https://www.kancloud.cn/shusheng/python_source/140787)
+
+
+# Python开发概述
+
+
+
+
+## Python并行编程 中文版
+  1.[第一章 认识并行计算和Python](https://python-parallel-programmning-cookbook.readthedocs.io/zh_CN/latest/chapter1/index.html)
+
+  2.[第二章 基于线程的并行](https://python-parallel-programmning-cookbook.readthedocs.io/zh_CN/latest/chapter2/index.html)
+
+  3.[第三章 基于进程的并行](https://python-parallel-programmning-cookbook.readthedocs.io/zh_CN/latest/chapter3/index.html)
+
+  4.[第四章 异步编程](https://python-parallel-programmning-cookbook.readthedocs.io/zh_CN/latest/chapter4/index.html)
+
+  5.[第五章 分布式Python编程](https://python-parallel-programmning-cookbook.readthedocs.io/zh_CN/latest/chapter5/index.html)
+
+  6.[第六章 Python GPU编程](https://python-parallel-programmning-cookbook.readthedocs.io/zh_CN/latest/chapter6/index.html)

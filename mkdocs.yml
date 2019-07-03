@@ -115,54 +115,64 @@ nav:
   - Getting started: getting-started.md
 
   - Android:
-    - Admonition: extensions/pymdown.md
     - Flutter:
-      - FlutterKey: android/FlutterKey.md
-      - Flutter: android/flutter.md
-      - FlutterSdk: android/FlutterTools.md
-      - 编译模式: android/ComplieMode.md
-      - FlutterEngine编译: android/EngineCompile.md
-      - GNTools: android/GNTools.md
-      - Ninja编译系统 : android/NinjaSystem.md
-      - Flutter编译产物: android/FlutterComplieFile.md
-      - Android加载Dart文件: android/flutterAndroidInit.md
-      - Android初始化View: android/AndroidViewinit.md
-      - Engine初始化: android/EngineInit.md
-      - EngineView初始化: android/EngineView.md
-      - C++智能指针: android/SmartPtr.md
-      - NativeExtensions: android/NativeExtensions.md
-      - MessageLoop: android/MessageLoop.md
-      - 初始化DartVM: android/DartVM.md
-      - PlatformChannel: android/platformplugin.md
-      - example: android/flutterexample.md
-      - runApp: android/runApp.md
-      - DartVMServiceProtocol: android/DartVMServiceProtocol.md
-      - FlutterSupportView: android/FlutterSupportView.md
-      - 性能优化: android/profile.md
-      - Architecture: android/Architecture.md
-      - reviewCode: android/reviewCode.md
-      - 资料: android/DevResource.md
+      - FlutterKey: android/flutter/FlutterKey.md
+      - Flutter: android/flutter/flutter.md
+      - FlutterSdk: android/flutter/FlutterTools.md
+      - 编译模式: android/flutter/ComplieMode.md
+      - FlutterEngine编译: android/flutter/EngineCompile.md
+      - GNTools: android/flutter/GNTools.md
+      - Ninja编译系统 : android/flutter/NinjaSystem.md
+      - Flutter编译产物: android/flutter/FlutterComplieFile.md
+      - Android加载Dart文件: android/flutter/flutterAndroidInit.md
+      - Android初始化View: android/flutter/AndroidViewinit.md
+      - Engine初始化: android/flutter/EngineInit.md
+      - EngineView初始化: android/flutter/EngineView.md
+      - C++智能指针: android/flutter/SmartPtr.md
+      - NativeExtensions: android/flutter/NativeExtensions.md
+      - MessageLoop: android/flutter/MessageLoop.md
+      - 初始化DartVM: android/flutter/DartVM.md
+      - PlatformChannel: android/flutter/platformplugin.md
+      - example: android/flutter/flutterexample.md
+      - runApp: android/flutter/runApp.md
+      - DartVMServiceProtocol: android/flutter/DartVMServiceProtocol.md
+      - FlutterSupportView: android/flutter/FlutterSupportView.md
+      - 性能优化: android/flutter/profile.md
+      - Architecture: android/flutter/Architecture.md
+      - reviewCode: android/flutter/reviewCode.md
+      - 资料: android/flutter/DevResource.md
     - ReactNative:
       - ReactNative: android/rn/react_native.md
     - Awsamplify:
       - Awsamplify: android/aws-android/awsamplify.md
-    - Android开发库:
-      - AndroidTools: android/androidTools.md
+    - AndroidTools: android/androidTools.md
+    - Issue常见问题: android/issue/Androidissue.md
 
   - Python:
-    - Python环境搭建: python/pythonEnv.md
-    - spider: python/scrapylib.md
-    - scrapydemo: python/spiderdemo.md
-    - awsPython操作: python/pyaws.md
-    - PythonTools: python/pythonTools.md
-    - Python基础: python/BasePython.md
-    - Django:
-      - Django: python/django/django.md
-      - Signals: python/django/djangosignals.md
-      - Messages: python/django/djangomessage.md
-      - JSONEncoder: python/django/JSONEncoder.md
-      - Django日志配置: python/django/djangoLogger.md
-    - 资料: python/resource.md
+    - 基础:
+      - 语言基础: python/base/pythonlang.md
+      - 高级开发: python/base/advancesPython.md
+      - 开发环境:
+        - 环境: python/base/pythonEnv.md
+    - 爬虫:
+      - 爬虫基础: python/scrapy/scrapyBase.md
+      - 爬虫库: python/scrapy/scrapylib.md
+      - 爬虫实战: python/scrapy/spiderdemo.md
+    - 服务器开发:
+      - WEB:
+        - 主流服务器介绍: python/server/pythonweb.md
+        - 服务器常用软件: python/server/serverbase.md
+      - aws:
+        - AWSpython使用: python/server/aws/pyaws.md
+        - 无服务: python/server/aws/serverless.md
+      - Django开发:
+        - Dajngo信号机制: python/server/django/djangosignals.md
+        - 日志配置: python/server/django/djangoLogger.md
+        - Djangomessage: python/server/django/djangosignals.md
+        - JsonEncoder: python/server/django/JSONEncoder.md
+        - 中间件: python/server/django/middleware.md
+        - 常见问题: python/server/django/question.md
+    - 开发工具: python/pythonTools.md
 
   - IoT:
     - Alexa: iot/Alexa.md
