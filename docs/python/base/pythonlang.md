@@ -1,9 +1,5 @@
 # Python开发基础知识
 
-## python基础-对象_类反射、模块反射
-
-[python基础-对象_类反射、模块反射](python基础-对象_类反射、模块反射)
-[Python 异常处理与反射机制](https://www.mkdirs.com/2019/02/01/Python/Python-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E4%B8%8E%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6-9/)
 ## Python内建的一些魔法方法
 
 [Python魔法方法](https://pyzh.readthedocs.io/en/latest/python-magic-methods-guide.html#id21)

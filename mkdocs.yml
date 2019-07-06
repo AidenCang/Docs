@@ -152,6 +152,7 @@ nav:
     - 基础:
       - 语言基础: python/base/pythonlang.md
       - 高级开发: python/base/advancesPython.md
+      - Python反射: python/base/pythoninspect.md
       - 开发环境:
         - 环境: python/base/pythonEnv.md
     - 爬虫:
