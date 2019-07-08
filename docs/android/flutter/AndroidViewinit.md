@@ -4,7 +4,7 @@ FlutterUI提供了Flutter for Android 的包，`FlutterActivity`,`FlutterFragme
 
 执行下述的三步操作，能够创建Flutter engine执行环境，传递Android端的SurfaceView给到Flutter engine，方便Flutter engine绘制相关的UI界面，执行完成上述步骤，Android侧的SurfaceView已经注入到flutter引擎中，后续的文件见控制上面两个步骤在flutter引擎中是如何工作。
 
-![pic](../assets/images/android/flutter/fluttersurfaceView.png)
+![pic](../../assets/images/android/flutter/fluttersurfaceView.png)
 
 ## 1.调用的nativeAttach:
 

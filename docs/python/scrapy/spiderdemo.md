@@ -39,8 +39,7 @@ Pyton使用文件读取系统中的配置文件
 调用命令行工具执行
 scrapy.commands.shell.Command
 
-python 内建类型和方法:
-/Users/cuco/Library/Caches/PyCharm2018.1/python_stubs/-1556761322/builtins.py
+
 
 ###使用系统默认的类来构造类扩展
 scrapy genspider -t crawl tencentcrawl  tencent.com
@@ -50,7 +49,6 @@ scrapy genspider -t crawl tencentcrawl  tencent.com
 
 系统警告信息:
 /usr/local/Cellar/python/3.7.0/Frameworks/Python.framework/Versions/3.7/lib/python3.7/warnings.py
-
 
 
 scrapy输出格式:

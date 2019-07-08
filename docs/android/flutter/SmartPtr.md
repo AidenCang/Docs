@@ -1,6 +1,5 @@
 # C++智能指针
 
-
 ## [C++智能指针](https://www.cnblogs.com/TenosDoIt/p/3456704.html)
 
 介绍c++里面的四个智能指针: `auto_ptr`, `shared_ptr`, `weak_ptr`, `unique_ptr` 其中后三个是c++11支持，并且第一个已经被c++11弃用。

@@ -13,7 +13,7 @@ Flutter代码在Android端代码启动时，是如何加载相关的Dart代码
     * 5.JNI第一次加载so库时，会自动调用JNI_OnLoad方法,关联Flutter java平台代码到JNI中
     * 6.在FlutterMain.cc中调用`Init()`初始化在java端抽取的flutter代码，把相关的文件路径传递到JNI中，进行初始化，JNI层可以读取的文件路径
 
-![pic](../assets/images/android/flutter/flutterresourload.jpg)
+![pic](../../assets/images/android/flutter/flutterresourload.jpg)
 
 ### Application中进行初始化：
 

@@ -22,7 +22,7 @@
   * 1.初始化Flutter Engine 运行FlutterUI库的环境，初始化AndroidShellHolder：来管理Flutter相关的引环境
   * 2.[PlatformViewAndroid](../EngineView)在JNI层进行View的绘制和事件处理,注册SurfaceView给Flutter Eingine，提供给引擎进行绘制的画布，调用ANative_window类来连接FlutterUI和AndroidUI的桥梁
 
-![pic](../assets/images/android/flutter/fluttersurfaceView.png)
+![pic](../../assets/images/android/flutter/fluttersurfaceView.png)
 
 ## AttachJNI
 
@@ -61,7 +61,7 @@ AndroidShellHolder：主要是管理flutter engine 在Platform端的入口:
   * 7.TaskRunners管理添加到不同平台中的线程执行，负责管理四个任务运行器
   * 8.Shell加载第三方库，Java虚拟机的创建
 
-![pic](../assets/images/android/flutter/AndroidShellHolder.png)
+![pic](../../assets/images/android/flutter/AndroidShellHolder.png)
 
 
 ```c++
@@ -215,7 +215,7 @@ if (!is_background_view) {
 
 Flutter Engine要求Embeder提供四个Task Runner，Embeder指的是将引擎移植到平台的中间层代码。这四个主要的Task Runner包括：
 
-![pic](../assets/images/android/flutter/flutterThread.jpeg)
+![pic](../../assets/images/android/flutter/flutterThread.jpeg)
 
 根据在java层调用native层的调用是传入的参数判断创建线程的类型:
 
@@ -420,7 +420,7 @@ class TaskRunners {
 
 Shell 类的初始化，主要负责管理客户端相关的资源`/engine/src/flutter/shell/platform/android/android_shell_holder.cc`,创建的地方
 
-![pic](../assets/images/android/flutter/shell.png)
+![pic](../../assets/images/android/flutter/shell.png)
 
 !!! info "Shell主要的功能初始化以下四个对象"
 
@@ -817,7 +817,7 @@ bool Shell::Setup(std::unique_ptr<PlatformView> platform_view,
 
 在分析完成整个初始化过程这回，在跟进下图来分析整个调用过程和以上代码的初始化过程，有助于理解整个运行环境的初始化相关的类和功能及逻辑
 
-![pic](../assets/images/android/flutter/flutterplugin1.png)
+![pic](../../assets/images/android/flutter/flutterplugin1.png)
 
  Android端调用JNI层的代码，使用本地接口和FlutterEngine通信，在Flutter for Android 中通过FlutterJNI中相关的本地方法，platform_view_android_jni在第一次加载so库是进行初始化:
 

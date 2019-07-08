@@ -287,6 +287,10 @@ Commands:
 六、在线练习
 Pipenv playground是官方的在线练习网站：https://rootnroll.com/d/pipenv/，非常棒！
 
+
+## 使用Cookiecutter安装Django开发环境
+
+
 2.自定义用户模型
 3.优化使用通用视图类
 4.在系统环境变量中保存敏感信息

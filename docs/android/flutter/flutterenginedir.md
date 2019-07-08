@@ -13,7 +13,7 @@ tools
 
 Flutter 目录二级目录:
 total 96
--rw-r--r--   1 cuco  staff   525B Feb 28 11:00 AUTHORS
+-rw-r--../../   1 cuco  staff   525B Feb 28 11:00 AUTHORS
 -rw-r--r--   1 cuco  staff   3.8K Feb 28 11:00 BUILD.gn
 -rw-r--r--   1 cuco  staff   756B Feb 28 11:00 CONTRIBUTING.md
 -rw-r--r--   1 cuco  staff    20K Feb 28 13:17 DEPS
@@ -65,14 +65,14 @@ Flutter实现了自己的图形绘制避免了Native桥接。
 Flutter在应用层使用Dart进行开发，而支撑它的是用C++开发的引擎。
 
 
-![pic](../assets/images/android/flutter/flutterPlatfrom.jpeg)
+![pic](../../assets/images/android/flutter/flutterPlatfrom.jpeg)
 # 在Android端初始化Flutter 相关的环境通过两个步骤来完成：
 
 在下图中:
   * 1.初始化Flutter Engine 运行FlutterUI库的环境，初始化AndroidShellHolder：来管理Flutter相关的引环境
   * 2.注册SurfaceView给Flutter Eingine，提供给引擎进行绘制的画布，调用ANative_window类来连接FlutterUI和AndroidUI的桥梁
 
-![pic](../assets/images/android/flutter/fluttersurfaceView.png)
+![pic](../../assets/images/android/flutter/fluttersurfaceView.png)
 
 接下来进行分析在JNI层的调用过程:AttachJNI中调用`std::make_unique<AndroidShellHolder>`方法创建`AndroidShellHolder`实例`engine/src/flutter/shell/platform/android/platform_view_android_jni.cc`
 ```c++
@@ -162,7 +162,7 @@ AndroidShellHolder：主要是管理flutter engine 在Platform端的入口:
   * 7.TaskRunners管理添加到不同平台中的线程执行，负责管理四个任务运行器
   * 8.Shell加载第三方库，Java虚拟机的创建
 
-![pic](../assets/images/android/flutter/AndroidShellHolder.png)
+![pic](../../assets/images/android/flutter/AndroidShellHolder.png)
 
 
 ```c++
@@ -310,7 +310,7 @@ AndroidShellHolder：主要是管理flutter engine 在Platform端的入口:
 ```
 
 ### Flutter Engine要求Embeder提供四个Task Runner，Embeder指的是将引擎移植到平台的中间层代码。这四个主要的Task Runner包括：
-![pic](../assets/images/android/flutter/flutterThread.jpeg)
+![pic](../../assets/images/android/flutter/flutterThread.jpeg)
 
 根据在java层调用native层的调用是传入的参数判断创建线程的类型:
   * 1.创建一个ThreadHost来管理4个线程对象
@@ -575,7 +575,7 @@ fml::RefPtr<MessageLoopImpl> MessageLoopImpl::Create() {
 
 ## Shell 类的初始化，主要负责管理客户端相关的资源`/engine/src/flutter/shell/platform/android/android_shell_holder.cc`,创建的地方
 
-![pic](../assets/images/android/flutter/shell.png)
+![pic](../../assets/images/android/flutter/shell.png)
 
 Shell主要的功能初始化一下四个对象:
 
@@ -953,7 +953,7 @@ Dart VM 虚拟机在Shell创建的时候初始化：`auto vm = blink::DartVM::
 
 ### Android Native层与libFlutter通信接口:
 
-![pic](../assets/images/android/flutter/flutterplugin1.png)
+![pic](../../assets/images/android/flutter/flutterplugin1.png)
 
  Android端调用JNI层的代码，使用本地接口和FlutterEngine通信，在Flutter for Android 中通过FlutterJNI中相关的本地方法，platform_view_android_jni在第一次加载so库是进行初始化:
 
