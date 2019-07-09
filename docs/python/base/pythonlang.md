@@ -1,6 +1,11 @@
 # Python开发基础知识
 
 ## Python内建的一些魔法方法
+[Python全栈](https://www.fullstackpython.com/)
+
+[Python oauth2](https://oauthlib.readthedocs.io/en/v3.0.1/oauth2/server.html)
+
+[Webhooks](https://developer.github.com/webhooks/configuring/)
 
 [Python魔法方法](https://pyzh.readthedocs.io/en/latest/python-magic-methods-guide.html#id21)
 

@@ -6,6 +6,22 @@
 
 [widgetLib](https://api.flutter.dev/flutter/widgets/widgets-library.html)
 
+[Google字体库](https://fonts.google.com/)
+
+
+# 对平台的操作
+
+    * Information about the environment in which the current program is running.
+    *
+    * Platform provides information such as the operating system,
+    * the hostname of the computer, the value of environment variables,
+    * the path to the running program,
+    * and so on.
+
+[platform.dart](/Users/cuco/flutter/bin/cache/pkg/sky_engine/lib/io/platform.dart)
+
+[foundation](/Users/cuco/flutter/packages/flutter/lib/src/foundation/platform.dart)
+
 # 需要解决的问题:
 
     How to create constructors
