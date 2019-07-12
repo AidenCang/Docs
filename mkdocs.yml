@@ -116,6 +116,7 @@ nav:
 
   - Android:
     - Flutter:
+      - ISOlate使用: android/flutterdev/isolatedev.md
       - FlutterKey: android/flutter/FlutterKey.md
       - Flutter: android/flutter/flutter.md
       - FlutterSdk: android/flutter/FlutterTools.md
