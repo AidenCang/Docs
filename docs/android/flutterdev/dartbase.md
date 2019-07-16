@@ -8,6 +8,31 @@
 
 [Google字体库](https://fonts.google.com/)
 
+[FlutterUI列表](https://itsallwidgets.com/)
+
+[大厂Appdemo](https://flutter.dev/showcase)
+
+[Flutter开源列表](https://flutterevents.com/)
+
+[Flutter源代码下载地址](https://flutterx.com/)
+
+[Flutter2019架构](https://flutterx.com/)
+
+[Flutter发布到Githbuio](https://www.youtube.com/watch?v=TJDSQBm51cI&feature=youtu.be)
+
+## 项目中可用UI
+
+[项目中可用UI](https://marcinszalek.pl/flutter/bmi-calculator-gender/)
+
+## 屏幕适配
+
+[适配不同的屏幕](https://www.youtube.com/watch?v=TJDSQBm51cI&feature=youtu.be)
+
+## 机器学习Flutter
+
+[Flutter集成机器学习](https://medium.com/@rishab_28475/running-automl-models-with-flutter-automl-vision-edge-38038139cb14)
+
+[实时图像检测](https://blog.usejournal.com/real-time-object-detection-in-flutter-b31c7ff9ef96)
 
 # 对平台的操作
 

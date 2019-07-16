@@ -164,6 +164,7 @@ nav:
       - WEB:
         - 主流服务器介绍: python/server/pythonweb.md
         - 服务器常用软件: python/server/serverbase.md
+        - Oauth2服务器搭建: python/server/pythonOauth.md
       - aws:
         - AWSpython使用: python/server/aws/pyaws.md
         - 无服务: python/server/aws/serverless.md
