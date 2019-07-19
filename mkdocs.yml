@@ -116,6 +116,7 @@ nav:
 
   - Android:
     - Flutter:
+      - Flutter学习路线: android/flutterdev/flutteradvance.md
       - ISOlate使用: android/flutterdev/isolatedev.md
       - 代码片段: android/flutterdev/fluttersnip.md
       - FlutterKey: android/flutter/FlutterKey.md
