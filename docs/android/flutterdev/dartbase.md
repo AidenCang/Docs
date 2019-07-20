@@ -6,6 +6,66 @@
 
 [widgetLib](https://api.flutter.dev/flutter/widgets/widgets-library.html)
 
+[Google字体库](https://fonts.google.com/)
+
+[FlutterUI列表](https://itsallwidgets.com/)
+
+[大厂Appdemo](https://flutter.dev/showcase)
+
+[Flutter开源列表](https://flutterevents.com/)
+
+[Flutter源代码下载地址](https://flutterx.com/)
+
+[Flutter2019架构](https://flutterx.com/)
+
+[Flutter发布到Githbuio](https://www.youtube.com/watch?v=TJDSQBm51cI&feature=youtu.be)
+
+## 项目中可用UI
+
+[项目中可用UI](https://marcinszalek.pl/flutter/bmi-calculator-gender/)
+
+## 屏幕适配
+
+[适配不同的屏幕](https://www.youtube.com/watch?v=TJDSQBm51cI&feature=youtu.be)
+
+## 机器学习Flutter
+
+[Flutter集成机器学习](https://medium.com/@rishab_28475/running-automl-models-with-flutter-automl-vision-edge-38038139cb14)
+
+[实时图像检测](https://blog.usejournal.com/real-time-object-detection-in-flutter-b31c7ff9ef96)
+
+
+## Flutter状态处理
+
+可能作为一个前端，在学习 Flutter 的过程中，总感觉非常非常相似 React Native，甚至于，其中还是有state的概念 setState，所以在 Flutter 中，也当然会存在非常多的解决方案，比如 redux 、RxDart 还有 Scoped Model等解决方案。今天，我们主要介绍下常用的两种 State 管理解决方案：redux、scoped model。
+
+scoped_model 支持在子View中能够获取fuView的逻辑
+
+[scoped_model状态处理相关的逻辑](https://pub.flutter-io.cn/packages/scoped_model#-readme-tab-)
+
+
+
+
+# 对平台的操作
+
+    * Information about the environment in which the current program is running.
+    *
+    * Platform provides information such as the operating system,
+    * the hostname of the computer, the value of environment variables,
+    * the path to the running program,
+    * and so on.
+
+[platform.dart](/Users/cuco/flutter/bin/cache/pkg/sky_engine/lib/io/platform.dart)
+
+[foundation](/Users/cuco/flutter/packages/flutter/lib/src/foundation/platform.dart)
+
+## 异步处理
+
+    // -------------------------------------------------------------------
+    // Controller for creating and adding events to a stream.
+    // Type of a stream controller's `onListen`, `onPause` and `onResume` callbacks.
+    // -------------------------------------------------------------------
+
 # 需要解决的问题:
 
     How to create constructors
