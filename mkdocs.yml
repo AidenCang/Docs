@@ -177,6 +177,9 @@ nav:
         - JsonEncoder: python/server/django/JSONEncoder.md
         - 中间件: python/server/django/middleware.md
         - 常见问题: python/server/django/question.md
+      - 部署:
+        - zappa: python/server/zappa.md
+        
     - 开发工具: python/pythonTools.md
 
 
