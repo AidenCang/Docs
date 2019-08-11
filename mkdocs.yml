@@ -113,7 +113,9 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Getting started: getting-started.md
-
+  - Project:
+    - SkyRoad:
+      - WebSocket: project/websocket.md
   - Android:
     - Flutter:
       - Flutter学习路线: android/flutterdev/flutteradvance.md
