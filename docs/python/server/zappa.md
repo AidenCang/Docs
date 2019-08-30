@@ -30,7 +30,7 @@ Error: Warning! Status check on the deployed lambda failed. A GET request to '/'
 [Accessing the Internet and other AWS Resources in your VPC from AWS Lambda](http://marcelog.github.io/articles/aws_lambda_internet_vpc.html)
 [Https](https://developers.google.com/web/fundamentals/security/encrypt-in-transit/why-https)
 [响应式网站](https://developers.google.com/web/progressive-web-apps/)
-
+[域名查看工具](https://dns.google.com/)
 
 ## Lambda操作数据库
 
