@@ -130,6 +130,7 @@ nav:
       - Flutter: android/flutter/flutter.md
       - FlutterSdk: android/flutter/FlutterTools.md
       - Flutter项目经验: android/flutter_project/flutterApp.md
+    - FlutterEngine:
       - 编译模式: android/flutter/ComplieMode.md
       - FlutterEngine编译: android/flutter/EngineCompile.md
       - GNTools: android/flutter/GNTools.md

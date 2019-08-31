@@ -1,4 +1,6 @@
 # Flutter 生命周期的调用
+WidgetsBindingObserver
+AppLifecycleState
 
 ```Dart
 
