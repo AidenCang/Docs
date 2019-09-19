@@ -11,6 +11,7 @@
 3.FlutterUI层通过runApp包Flutter相关的部分提交给系统框架和系统框架层进行通信
 
 4.通过直接使用window类进行Frame的绘制，就能够对Flutter层进行理解，FlutterUI层其实是Window构造的一个扩展和细化，
+
 ![pic](./img/Flutter调用时序.png)
 ### 核心步骤:
 

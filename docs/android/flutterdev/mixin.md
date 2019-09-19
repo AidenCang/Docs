@@ -14,6 +14,9 @@ mixin不能有构造函数
 [bloc架构练习](https://www.didierboelens.com/2018/12/reactive-programming---streams---bloc---practical-use-cases/)
 [Demo地址](https://github.com/boeledi/Streams-Block-Reactive-Programming-in-Flutter)
 [DemoBloc](https://github.com/boeledi/blocs)
+[Bloc架构](https://medium.com/flutter-community/mixins-and-base-classes-a-recipe-for-success-in-flutter-bc3fbb5da670)
+
+[Using Map, HashMap, LinkedHashMap, & SplayTreeMap ](https://www.woolha.com/tutorials/dart-using-map-hashmap-linkedhashmap-splaytreemap-examples)
 为每一个新的页面注入新的功能模块
 Generic类型
 ## 流可以传达什么？
