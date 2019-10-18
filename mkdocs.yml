@@ -119,12 +119,21 @@ nav:
   - Android:
     - Flutter:
       - Flutter学习路线: android/flutterdev/flutteradvance.md
+      - FlutterUI和Engine关联: android/flutter/flutterUIframework.md
+      - PlatformChannel: android/flutterdev/platform_channels.md
       - ISOlate使用: android/flutterdev/isolatedev.md
+      - Future&Stream: android/flutterdev/futterStream.md
+      - Flutter生命周期管理: android/flutterdev/applifecyclestate.md
+      - FlutterNavigator: android/flutterdev/flutterNavigator.md
       - 代码片段: android/flutterdev/fluttersnip.md
       - FlutterKey: android/flutter/FlutterKey.md
       - Flutter: android/flutter/flutter.md
       - FlutterSdk: android/flutter/FlutterTools.md
       - Flutter项目经验: android/flutter_project/flutterApp.md
+      - FlutterUI框架绘制过程: android/flutterdev/FlutterWidgetinit.md
+      - 自定义Widget: android/flutterdev/customWidget.md
+      - Flutter图片加载: android/flutterdev/flutterImageProvider.md
+    - FlutterEngine:
       - 编译模式: android/flutter/ComplieMode.md
       - FlutterEngine编译: android/flutter/EngineCompile.md
       - GNTools: android/flutter/GNTools.md
@@ -140,7 +149,6 @@ nav:
       - 初始化DartVM: android/flutter/DartVM.md
       - PlatformChannel: android/flutter/platformplugin.md
       - example: android/flutter/flutterexample.md
-      - runApp: android/flutter/runApp.md
       - DartVMServiceProtocol: android/flutter/DartVMServiceProtocol.md
       - FlutterSupportView: android/flutter/FlutterSupportView.md
       - 性能优化: android/flutter/profile.md
@@ -182,7 +190,7 @@ nav:
         - 常见问题: python/server/django/question.md
       - 部署:
         - zappa: python/server/zappa.md
-        
+
     - 开发工具: python/pythonTools.md
 
 

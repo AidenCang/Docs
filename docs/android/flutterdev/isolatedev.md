@@ -1,17 +1,6 @@
-///  * [DefaultAssetBundle]
-///  * [NetworkAssetBundle]
-///  * [rootBundle]
-///  *[SystemChannels]
-///  *[WidgetsBindingObserver]
+# Flutter ISOlate 使用
 
-///  * [ListView], which handles multiple children in a scrolling list.
-///  * [GridView], which handles multiple children in a scrolling grid.
-///  * [PageView], for a scrollable that works page by page.
-///  * [Scrollable], which handles arbitrary scrolling effects.
-
-mixin WidgetsBinding on BindingBase, SchedulerBinding, GestureBinding, RendererBinding, SemanticsBinding
-
-
+```Dart
 // Copyright 2016 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
@@ -319,3 +308,53 @@ class IsolateExampleState extends State<StatefulWidget> with SingleTickerProvide
 void main() {
   runApp(MaterialApp(home: IsolateExampleWidget()));
 }
+```
+
+```JSON
+{
+  "_id": "57112806d874e9e6df7099d4",
+  "index": 0,
+  "guid": "77dc6167-2351-4a64-a603-aceaff115432",
+  "isActive": false,
+  "balance": "$1,316.41",
+  "picture": "http://placehold.it/32x32",
+  "age": 21,
+  "eyeColor": "brown",
+  "name": "Marta Hartman",
+  "gender": "female",
+  "company": "EXAMPLE",
+  "email": "martahartman@example.com",
+  "phone": "+1 (555) 555-2328",
+  "address": "463 Temple Court, Brandywine, Kansas, 1113",
+  "about": "Incididunt commodo sunt commodo nulla adipisicing duis aute enim aute minim reprehenderit aute consectetur. Eu laborum esse aute laborum aute. Tempor in cillum exercitation aliqua velit quis incididunt esse ea nisi. Cillum pariatur reprehenderit est nisi nisi exercitation.\r\n",
+  "registered": "2014-01-18T12:32:22 +08:00",
+  "latitude": 4.101477,
+  "longitude": 39.153115,
+  "tags": [
+    "pariatur",
+    "sit",
+    "sint",
+    "ex",
+    "minim",
+    "veniam",
+    "ullamco"
+  ],
+  "friends": [
+    {
+      "id": 0,
+      "name": "Tricia Guerra"
+    },
+    {
+      "id": 1,
+      "name": "Paula Dillard"
+    },
+    {
+      "id": 2,
+      "name": "Ursula Stout"
+    }
+  ],
+  "greeting": "Hello, Marta Hartman! You have 4 unread messages.",
+  "favoriteFruit": "strawberry"
+}
+
+```
