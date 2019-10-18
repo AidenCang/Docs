@@ -1,16 +1,61 @@
 # Flutter ISOlate 使用
 
+[Flutter 学习资源](https://github.com/crazycodeboy/awesome-flutter-cn)
+## 什么是ISOlate
+
+1.一个独立的DART执行上下文。所有的DART代码都运行在`ISOlate`中，代码可以访问类和值。都是在一个ISOlate中运行。
+2.不同的isolates可以通过ReceivePort/SendPort进行通信。
+3.`isolate`对象是对ISOlate对象的引用，通常和当前的不是同一个。它代表并可以用来控制另一个ISOlate。
+4.生成新ISOlate时，将运行代码隔离在其自己的事件循环中，并且每个事件可以运行较小的任务在嵌套的微任务队列中。
+5.`isolate`对象允许其他隔离对象控制事件循环它所代表的隔离物，为了检查 `ISOlate`，例如，通过暂停ISOlate或获ISOlate时的事件有一个未察觉的错误。
+6.[ControlPort]识别并允许控制ISOlate，以及[PauseCapability]和[TermineCapability]保护访问一些控制操作。例如，在没有[pause]，无效。
+7.isolate操作提供的“isolate”对象将具有控制端口和控制ISOlate所需的功能。可以在没有这些能力的情况下创建新的隔离对象如有必要，使用[isolate.isolate]构造函数。
+8.isolate对象不能通过“sendport”发送，但`ControlPort`和`PauseCapability`可以被发送，并且可以用来创建一个新的功能。
+
+### 如何创建 ISOlate
+
+### 如何访问和传递参数
+
+### 如何监控
+
+### 如何优化
+
+### 当前的ISOlate和创建出来的Isolate有什么区别
+
+### 如何控制和使用其他ISOlate
+
+### 什么是微任务
+
+### Flutter错误处理
+
+
+## Android多进程，内存管理
+1.UI进程和后台进程分离，后端进程，持续的提供服务
+2.能够减轻UI进程在的内存压力，避免内存溢出和泄漏(一般系统提供的内存为32M,64M,128M)
+
+[巧用Android多进程，微信，微博等主流App都在用](https://cjw-blog.net/2017/02/26/AIDL/)
+
+[Android内存优化杂谈](https://mp.weixin.qq.com/s?__biz=MzAwNDY1ODY2OQ==&mid=400656149&idx=1&sn=122b4f4965fafebf78ec0b4fce2ef62a&mpshare=1&scene=1&srcid=0501f6p8yRsM5qj6OBKEVY1T&key=16e063fbfd27c52cdf5c92791e0542126da55aeb373dcd13df6aa6c417ec61127af2618384b2201ffa7c918e4bbe6780b4d20d3e2ec989af4e2ec3adfda18308cac9706ac4f970ae73fb86211c44b7c2&ascene=0&uin=ODExMTkxNjU%3D&devicetype=iMac+MacBookPro11%2C2+OSX+OSX+10.12.3+build&version=12020510&nettype=WIFI&fontScale=100&pass_ticket=AxhG0QxjCX8weF512sU8ttFb%2B7z%2B8JxvShlgh7diOtM%3D)
+[Android内存管理](http://developer.android.com/intl/zh-cn/training/articles/memory.html)
+[akcanary](https://github.com/square/leakcanary)
+[AndroidExcludedRefs](https://github.com/square/leakcanary/blob/master/leakcanary-android/src/main/java/com/squareup/leakcanary/AndroidExcludedRefs.java)
+[fresco](https://github.com/facebook/fresco)
+[优化安卓应用内存的神秘方法以及背后的原理](http://bugly.qq.com/blog/?p=621)
+[Android性能优化之内存篇](http://hukai.me/android-performance-memory/)
+
+
+## 多进程进程管理工具
+[进程查看工具](https://blog.csdn.net/dfskhgalshgkajghljgh/article/details/51373694)
+[开发者选项中查看](https://jingyan.baidu.com/article/f54ae2fc7c3a1c1e92b849de.html)
+[demoAIDL](https://github.com/V1sk/AIDL)
+
+## 进程保活
+
+## 长连接
+
+
+
 ```Dart
-// Copyright 2016 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-import 'dart:convert';
-import 'dart:isolate';
-
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 typedef OnProgressListener = void Function(double completed, double total);
 typedef OnResultListener = void Function(String result);
