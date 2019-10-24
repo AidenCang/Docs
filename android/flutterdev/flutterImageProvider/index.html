@@ -1,0 +1,2636 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="苍成坤的 blog">
+      
+      
+        <link rel="canonical" href="https://squidfunk.github.io/mkdocs-material/android/flutterdev/flutterImageProvider/">
+      
+      
+        <meta name="author" content="Aige">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
+    
+    
+      
+        <title>Flutter图片加载 - Aige  Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "None", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#flutter" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Aige  Docs
+            </span>
+            <span class="md-header-nav__topic">
+              Flutter图片加载
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." title="Home" class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../project/websocket/" title="Project" class="md-tabs__link">
+          Project
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../flutteradvance/" title="Android" class="md-tabs__link md-tabs__link--active">
+          Android
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../python/base/pythonlang/" title="Python" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../iot/Alexa/" title="IoT" class="md-tabs__link">
+          IoT
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../secret/reousrce/" title="Secret" class="md-tabs__link">
+          Secret
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../linux/resource/" title="Linux" class="md-tabs__link">
+          Linux
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../shell/shellresource/" title="Shell" class="md-tabs__link">
+          Shell
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../extensions/admonition/" title="Tools" class="md-tabs__link">
+          Tools
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../download/download/" title="Download" class="md-tabs__link">
+          Download
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Aige  Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../getting-started/" title="Getting started" class="md-nav__link">
+      Getting started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Project
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Project
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      SkyRoad
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        SkyRoad
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../project/websocket/" title="WebSocket" class="md-nav__link">
+      WebSocket
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Android
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Android
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1" checked>
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Flutter
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        Flutter
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutteradvance/" title="Flutter学习路线" class="md-nav__link">
+      Flutter学习路线
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterUIframework/" title="FlutterUI和Engine关联" class="md-nav__link">
+      FlutterUI和Engine关联
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../platform_channels/" title="PlatformChannel" class="md-nav__link">
+      PlatformChannel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../isolatedev/" title="ISOlate使用" class="md-nav__link">
+      ISOlate使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../futterStream/" title="Future&Stream" class="md-nav__link">
+      Future&Stream
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../applifecyclestate/" title="Flutter生命周期管理" class="md-nav__link">
+      Flutter生命周期管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterNavigator/" title="FlutterNavigator" class="md-nav__link">
+      FlutterNavigator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fluttersnip/" title="代码片段" class="md-nav__link">
+      代码片段
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterKey/" title="FlutterKey" class="md-nav__link">
+      FlutterKey
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutter/" title="Flutter" class="md-nav__link">
+      Flutter
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterTools/" title="FlutterSdk" class="md-nav__link">
+      FlutterSdk
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter_project/flutterApp/" title="Flutter项目经验" class="md-nav__link">
+      Flutter项目经验
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterWidgetinit/" title="FlutterUI框架绘制过程" class="md-nav__link">
+      FlutterUI框架绘制过程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../customWidget/" title="自定义Widget" class="md-nav__link">
+      自定义Widget
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Flutter图片加载
+      </label>
+    
+    <a href="./" title="Flutter图片加载" class="md-nav__link md-nav__link--active">
+      Flutter图片加载
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imagecache" title="ImageCache" class="md-nav__link">
+    ImageCache
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" title="默认大小" class="md-nav__link">
+    默认大小
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flutter_1" title="Flutter 继承关系" class="md-nav__link">
+    Flutter 继承关系
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="源码分析" class="md-nav__link">
+    源码分析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imagestream" title="ImageStream" class="md-nav__link">
+    ImageStream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_resolveimage" title="_resolveImage方法解析" class="md-nav__link">
+    _resolveImage方法解析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_loadasync" title="_loadAsync()是请求网络加载图片的方法" class="md-nav__link">
+    _loadAsync()是请求网络加载图片的方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_listentostream" title="_listenToStream方法解析" class="md-nav__link">
+    _listenToStream方法解析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="总结" class="md-nav__link">
+    总结
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="最后" class="md-nav__link">
+    最后
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      FlutterEngine
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        FlutterEngine
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/ComplieMode/" title="编译模式" class="md-nav__link">
+      编译模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/EngineCompile/" title="FlutterEngine编译" class="md-nav__link">
+      FlutterEngine编译
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/GNTools/" title="GNTools" class="md-nav__link">
+      GNTools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/NinjaSystem/" title="Ninja编译系统" class="md-nav__link">
+      Ninja编译系统
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterComplieFile/" title="Flutter编译产物" class="md-nav__link">
+      Flutter编译产物
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterAndroidInit/" title="Android加载Dart文件" class="md-nav__link">
+      Android加载Dart文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/AndroidViewinit/" title="Android初始化View" class="md-nav__link">
+      Android初始化View
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/EngineInit/" title="Engine初始化" class="md-nav__link">
+      Engine初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/EngineView/" title="EngineView初始化" class="md-nav__link">
+      EngineView初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/SmartPtr/" title="C++智能指针" class="md-nav__link">
+      C++智能指针
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/NativeExtensions/" title="NativeExtensions" class="md-nav__link">
+      NativeExtensions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/MessageLoop/" title="MessageLoop" class="md-nav__link">
+      MessageLoop
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/DartVM/" title="初始化DartVM" class="md-nav__link">
+      初始化DartVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/platformplugin/" title="PlatformChannel" class="md-nav__link">
+      PlatformChannel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterexample/" title="example" class="md-nav__link">
+      example
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/DartVMServiceProtocol/" title="DartVMServiceProtocol" class="md-nav__link">
+      DartVMServiceProtocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterSupportView/" title="FlutterSupportView" class="md-nav__link">
+      FlutterSupportView
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/profile/" title="性能优化" class="md-nav__link">
+      性能优化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/Architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/reviewCode/" title="reviewCode" class="md-nav__link">
+      reviewCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/DevResource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      ReactNative
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        ReactNative
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rn/react_native/" title="ReactNative" class="md-nav__link">
+      ReactNative
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
+    
+    <label class="md-nav__link" for="nav-4-4">
+      Awsamplify
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-4">
+        Awsamplify
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../aws-android/awsamplify/" title="Awsamplify" class="md-nav__link">
+      Awsamplify
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../androidTools/" title="AndroidTools" class="md-nav__link">
+      AndroidTools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../issue/Androidissue/" title="Issue常见问题" class="md-nav__link">
+      Issue常见问题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Python
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      基础
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        基础
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/pythonlang/" title="语言基础" class="md-nav__link">
+      语言基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/advancesPython/" title="高级开发" class="md-nav__link">
+      高级开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/pythoninspect/" title="Python反射" class="md-nav__link">
+      Python反射
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1-4" type="checkbox" id="nav-5-1-4">
+    
+    <label class="md-nav__link" for="nav-5-1-4">
+      开发环境
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-1-4">
+        开发环境
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/pythonEnv/" title="环境" class="md-nav__link">
+      环境
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      爬虫
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        爬虫
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/scrapyBase/" title="爬虫基础" class="md-nav__link">
+      爬虫基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/scrapylib/" title="爬虫库" class="md-nav__link">
+      爬虫库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/spiderdemo/" title="爬虫实战" class="md-nav__link">
+      爬虫实战
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      服务器开发
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-3">
+        服务器开发
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-1" type="checkbox" id="nav-5-3-1">
+    
+    <label class="md-nav__link" for="nav-5-3-1">
+      WEB
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-1">
+        WEB
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/pythonweb/" title="主流服务器介绍" class="md-nav__link">
+      主流服务器介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/serverbase/" title="服务器常用软件" class="md-nav__link">
+      服务器常用软件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/pythonOauth/" title="Oauth2服务器搭建" class="md-nav__link">
+      Oauth2服务器搭建
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-2" type="checkbox" id="nav-5-3-2">
+    
+    <label class="md-nav__link" for="nav-5-3-2">
+      aws
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-2">
+        aws
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/aws/pyaws/" title="AWSpython使用" class="md-nav__link">
+      AWSpython使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/aws/serverless/" title="无服务" class="md-nav__link">
+      无服务
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-3" type="checkbox" id="nav-5-3-3">
+    
+    <label class="md-nav__link" for="nav-5-3-3">
+      Django开发
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-3">
+        Django开发
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangosignals/" title="Dajngo信号机制" class="md-nav__link">
+      Dajngo信号机制
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangoLogger/" title="日志配置" class="md-nav__link">
+      日志配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangosignals/" title="Djangomessage" class="md-nav__link">
+      Djangomessage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/JSONEncoder/" title="JsonEncoder" class="md-nav__link">
+      JsonEncoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/middleware/" title="中间件" class="md-nav__link">
+      中间件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/question/" title="常见问题" class="md-nav__link">
+      常见问题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-4" type="checkbox" id="nav-5-3-4">
+    
+    <label class="md-nav__link" for="nav-5-3-4">
+      部署
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-4">
+        部署
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/zappa/" title="zappa" class="md-nav__link">
+      zappa
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pythonTools/" title="开发工具" class="md-nav__link">
+      开发工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      IoT
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        IoT
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/Alexa/" title="Alexa" class="md-nav__link">
+      Alexa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/awsiot/" title="AWSIOT" class="md-nav__link">
+      AWSIOT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/iotCore/" title="IotCore" class="md-nav__link">
+      IotCore
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/program/" title="program" class="md-nav__link">
+      program
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/protocol/" title="protocol" class="md-nav__link">
+      protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/usermanager/" title="UserManager" class="md-nav__link">
+      UserManager
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/developerTools/" title="aws开发工具" class="md-nav__link">
+      aws开发工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Secret
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Secret
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../secret/reousrce/" title="安全" class="md-nav__link">
+      安全
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/networktools/" title="端口扫描工具" class="md-nav__link">
+      端口扫描工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Linux
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Linux
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../linux/resource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Shell
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Shell
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../shell/shellresource/" title="Shell" class="md-nav__link">
+      Shell
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      Tools
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../extensions/admonition/" title="AndroidStudio" class="md-nav__link">
+      AndroidStudio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/atom/" title="Atom" class="md-nav__link">
+      Atom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/vim/" title="Vim" class="md-nav__link">
+      Vim
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../extensions/metadata/" title="Chrome" class="md-nav__link">
+      Chrome
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/markdown/" title="Markdown" class="md-nav__link">
+      Markdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/material/" title="Material for MkDocs" class="md-nav__link">
+      Material for MkDocs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/git/" title="Git" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/VSCode/" title="VSCode" class="md-nav__link">
+      VSCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/datareporting/" title="数据分析" class="md-nav__link">
+      数据分析
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+    
+    <label class="md-nav__link" for="nav-11">
+      Download
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-11">
+        Download
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../download/download/" title="download" class="md-nav__link">
+      download
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#imagecache" title="ImageCache" class="md-nav__link">
+    ImageCache
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" title="默认大小" class="md-nav__link">
+    默认大小
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flutter_1" title="Flutter 继承关系" class="md-nav__link">
+    Flutter 继承关系
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="源码分析" class="md-nav__link">
+    源码分析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#imagestream" title="ImageStream" class="md-nav__link">
+    ImageStream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_resolveimage" title="_resolveImage方法解析" class="md-nav__link">
+    _resolveImage方法解析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_loadasync" title="_loadAsync()是请求网络加载图片的方法" class="md-nav__link">
+    _loadAsync()是请求网络加载图片的方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_listentostream" title="_listenToStream方法解析" class="md-nav__link">
+    _listenToStream方法解析
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="总结" class="md-nav__link">
+    总结
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="最后" class="md-nav__link">
+    最后
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="flutter">Flutter 加载图片<a class="headerlink" href="#flutter" title="Permanent link">&para;</a></h1>
+<h2 id="imagecache">ImageCache<a class="headerlink" href="#imagecache" title="Permanent link">&para;</a></h2>
+<p>用于缓存图像的类。实现最近最少使用的缓存，最多1000个图像，最多100个图像MB。最大尺寸可以使用[_kDefaultSize]调整[_kDefaultSizeBytes]。正在使用的图像（即application通过[imagestream]对象保存引用，[imagestreamcompleter]对象，[imageinfo]对象，或原始[dart:ui.image]objects）可能从缓存中收回（因此需要从如果在[putifabsent]方法中引用了网络，但是只要应用程序在使用位，位就一直保存在内存中。[putifabsent]方法是缓存API的主要入口点。它返回给定键以前缓存的[ImageStreamCompleter]，如果available；如果不可用，则首先调用给定的回调来获取它。在任一case，键移到“最近使用的”位置。
+通常这个类不是直接使用的。[ImageProvider]类及其子类自动处理图像的缓存。此缓存的共享实例由[PrimutBut绑定]保留，并且可以通过[painting]库中的[imagecache]顶级属性获取。</p>
+<h3 id="_1">默认大小<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>const int _kDefaultSize = 1000;</p>
+<p>const int _kDefaultSizeBytes = 100 &lt;&lt; 20; // 100 MiB</p>
+<h3 id="flutter_1">Flutter 继承关系<a class="headerlink" href="#flutter_1" title="Permanent link">&para;</a></h3>
+<p><img alt="pic" src="../img/imageloading.jpeg" /></p>
+<p>可以看到Image的框架结构还是有点儿复杂的，在你只调用一行代码的情况下，其实Flutter为你做了很多工作。</p>
+<p>初步梳理下每个类概念：</p>
+<p>StatefulWidget就是有状态的Widget，是展示在页面上的元素。
+Image继承于StatefulWidget，是来显示和加载图片。
+State控制着StatefulWidget状态改变的生命周期，当Widget被创建、Widget配置信息改变或者Widget被销毁等等，State的一系列方法会被调用。
+_ImageState继承于State，处理State生命周期变化以及生成Widget。
+ImageProvider提供加载图片的入口，不同的图片资源加载方式不一样，只要重写其load方法即可。同样，缓存图片的key值也有其生成。
+NetWorkImage负责下载网络图片的，将下载完成的图片转化成ui.Codec对象交给ImageStreamCompleter去处理解析。
+ImageStreamCompleter就是逐帧解析图片的。
+ImageStream是处理Image Resource的，ImageState通过ImageStream与ImageStreamCompleter建立联系。ImageStream里也存储着图片加载完毕的监听回调。
+MultiFrameImageStreamCompleter就是多帧图片解析器。</p>
+<h3 id="_2">源码分析<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>源码分析</p>
+<p>我们看下Image.network都做了什么：</p>
+<div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">Image</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="p">{</span>
+    <span class="n">Image</span><span class="p">.</span><span class="n">network</span><span class="p">(</span><span class="kt">String</span> <span class="n">src</span><span class="p">,</span> <span class="p">{</span>
+    <span class="n">Key</span> <span class="n">key</span><span class="p">,</span>
+    <span class="kt">double</span> <span class="n">scale</span> <span class="o">=</span> <span class="m">1.0</span><span class="p">,</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">width</span><span class="p">,</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">height</span><span class="p">,</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">color</span><span class="p">,</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">colorBlendMode</span><span class="p">,</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">fit</span><span class="p">,</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">alignment</span> <span class="o">=</span> <span class="n">Alignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">repeat</span> <span class="o">=</span> <span class="n">ImageRepeat</span><span class="p">.</span><span class="n">noRepeat</span><span class="p">,</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">centerSlice</span><span class="p">,</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">matchTextDirection</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">gaplessPlayback</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span> <span class="kt">String</span><span class="o">&gt;</span> <span class="n">headers</span><span class="p">,</span>
+      <span class="p">})</span> <span class="o">:</span> <span class="n">image</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NetworkImage</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="nl">scale:</span> <span class="n">scale</span><span class="p">,</span> <span class="nl">headers:</span> <span class="n">headers</span><span class="p">),</span>
+       <span class="k">assert</span><span class="p">(</span><span class="n">alignment</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">),</span>
+       <span class="k">assert</span><span class="p">(</span><span class="n">repeat</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">),</span>
+       <span class="k">assert</span><span class="p">(</span><span class="n">matchTextDirection</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">),</span>
+       <span class="k">super</span><span class="p">(</span><span class="nl">key:</span> <span class="n">key</span><span class="p">);</span>
+   <span class="p">......</span>
+</pre></div>
+
+<p>Image是一个StatefulWidget对象，所以我们看它的State对象：</p>
+<div class="codehilite"><pre><span></span><span class="kd">class</span> <span class="nc">_ImageState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">Image</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="n">ImageStream</span> <span class="n">_imageStream</span><span class="p">;</span>
+  <span class="n">ImageInfo</span> <span class="n">_imageInfo</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">_isListeningToStream</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">ImageStream</span> <span class="kd">extends</span> <span class="n">Diagnosticable</span> <span class="p">{</span>
+  <span class="n">ImageStreamCompleter</span> <span class="kd">get</span> <span class="n">completer</span> <span class="o">=&gt;</span> <span class="n">_completer</span><span class="p">;</span>
+  <span class="n">ImageStreamCompleter</span> <span class="n">_completer</span><span class="p">;</span>
+
+  <span class="n">List</span><span class="o">&lt;</span><span class="n">ImageListener</span><span class="o">&gt;</span> <span class="n">_listeners</span><span class="p">;</span>
+
+  <span class="c1">/// Assigns a particular [ImageStreamCompleter] to this [ImageStream].</span>
+   <span class="kt">void</span> <span class="n">setCompleter</span><span class="p">(</span><span class="n">ImageStreamCompleter</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">_completer</span> <span class="o">==</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="n">_completer</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+    <span class="n">print</span><span class="p">(</span><span class="s2">&quot;setCompleter:::&quot;</span><span class="o">+</span><span class="p">(</span><span class="n">_listeners</span><span class="o">==</span><span class="kc">null</span><span class="p">).</span><span class="n">toString</span><span class="p">());</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_listeners</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ImageListener</span><span class="o">&gt;</span> <span class="n">initialListeners</span> <span class="o">=</span> <span class="n">_listeners</span><span class="p">;</span>
+      <span class="n">_listeners</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="n">initialListeners</span><span class="p">.</span><span class="n">forEach</span><span class="p">(</span><span class="n">_completer</span><span class="p">.</span><span class="n">addListener</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">/// Adds a listener callback that is called whenever a new concrete [ImageInfo]</span>
+  <span class="kt">void</span> <span class="n">addListener</span><span class="p">(</span><span class="n">ImageListener</span> <span class="n">listener</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_completer</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">_completer</span><span class="p">.</span><span class="n">addListener</span><span class="p">(</span><span class="n">listener</span><span class="p">);</span>
+    <span class="n">_listeners</span> <span class="o">??=</span> <span class="o">&lt;</span><span class="n">ImageListener</span><span class="o">&gt;</span><span class="p">[];</span>
+    <span class="n">_listeners</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">listener</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">/// Stop listening for new concrete [ImageInfo] objects.</span>
+  <span class="kt">void</span> <span class="n">removeListener</span><span class="p">(</span><span class="n">ImageListener</span> <span class="n">listener</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_completer</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">_completer</span><span class="p">.</span><span class="n">removeListener</span><span class="p">(</span><span class="n">listener</span><span class="p">);</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">_listeners</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="n">_listeners</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">listener</span><span class="p">);</span>
+  <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+
+<p>我们对_ImageState的两个属性对象解释一下：</p>
+<h3 id="imagestream">ImageStream<a class="headerlink" href="#imagestream" title="Permanent link">&para;</a></h3>
+<p>ImageStream是处理Image Resource的，ImageStream里存储着图片加载完毕的监听回调，ImageStreamCompleter也是其成员，这样ImageStream将图片的解析流程交给了ImageStreamCompleter去处理。
+ImageInfo包含了Image的数据源信息：width和height以及ui.Image。 将ImageInfo里的ui.Image设置给RawImage就可以展示了。RawImage就是我们真正渲染的对象，是显示ui.Image的一个控件，接下来我们会看到。
+我们知道State的生命周期，首先State的initState执行，然后didChangeDependencies会执行，我们看到ImageState里没有重写父类的initState，那我们看其didChangeDependencies()：</p>
+<div class="codehilite"><pre><span></span><span class="err">@</span><span class="n">override</span>
+<span class="kt">void</span> <span class="n">didChangeDependencies</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">_resolveImage</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">TickerMode</span><span class="p">.</span><span class="n">of</span><span class="p">(</span><span class="n">context</span><span class="p">))</span>
+      <span class="n">_listenToStream</span><span class="p">();</span>
+    <span class="k">else</span>
+      <span class="n">_stopListeningToStream</span><span class="p">();</span>
+
+    <span class="k">super</span><span class="p">.</span><span class="n">didChangeDependencies</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="_resolveimage">_resolveImage方法解析<a class="headerlink" href="#_resolveimage" title="Permanent link">&para;</a></h3>
+<p>我们看到首先调用了resolveImage()，我们看下resolveImage方法：</p>
+<p><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">_resolveImage</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">final</span> <span class="n">ImageStream</span> <span class="n">newStream</span> <span class="o">=</span>
+      <span class="n">widget</span><span class="p">.</span><span class="n">image</span><span class="p">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">createLocalImageConfiguration</span><span class="p">(</span>
+          <span class="n">context</span><span class="p">,</span>
+          <span class="nl">size:</span> <span class="n">widget</span><span class="p">.</span><span class="n">width</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">widget</span><span class="p">.</span><span class="n">height</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="k">new</span> <span class="n">Size</span><span class="p">(</span><span class="n">widget</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">widget</span><span class="p">.</span><span class="n">height</span><span class="p">)</span> <span class="o">:</span> <span class="kc">null</span>
+      <span class="p">));</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">newStream</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="n">_updateSourceStream</span><span class="p">(</span><span class="n">newStream</span><span class="p">);</span>
+  <span class="p">}</span>
+</pre></div>
+这个方法是处理图片的入口。widget.image这个就是上面的创建的NetworkImage对象，是个ImageProvider对象，调用它的resolve并且传进去默认的ImageConfiguration。 我们看下resolve方法，发现NetworkImage没有，果不其然，我们在其父类ImageProvider找到了：</p>
+<p><div class="codehilite"><pre><span></span><span class="n">ImageStream</span> <span class="n">resolve</span><span class="p">(</span><span class="n">ImageConfiguration</span> <span class="n">configuration</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">configuration</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="kd">final</span> <span class="n">ImageStream</span> <span class="n">stream</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ImageStream</span><span class="p">();</span>
+    <span class="n">T</span> <span class="n">obtainedKey</span><span class="p">;</span>
+    <span class="n">obtainKey</span><span class="p">(</span><span class="n">configuration</span><span class="p">).</span><span class="n">then</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="p">((</span><span class="n">T</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">obtainedKey</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+      <span class="n">stream</span><span class="p">.</span><span class="n">setCompleter</span><span class="p">(</span><span class="n">PaintingBinding</span><span class="p">.</span><span class="n">instance</span><span class="p">.</span><span class="n">imageCache</span><span class="p">.</span><span class="n">putIfAbsent</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">load</span><span class="p">(</span><span class="n">key</span><span class="p">)));</span>
+    <span class="p">}).</span><span class="n">catchError</span><span class="p">(</span>
+      <span class="p">(</span><span class="kt">dynamic</span> <span class="n">exception</span><span class="p">,</span> <span class="n">StackTrace</span> <span class="n">stack</span><span class="p">)</span> <span class="kd">async</span> <span class="p">{</span>
+        <span class="n">FlutterError</span><span class="p">.</span><span class="n">reportError</span><span class="p">(</span><span class="k">new</span> <span class="n">FlutterErrorDetails</span><span class="p">(</span>
+          <span class="nl">exception:</span> <span class="n">exception</span><span class="p">,</span>
+          <span class="nl">stack:</span> <span class="n">stack</span><span class="p">,</span>
+          <span class="k">library</span><span class="o">:</span> <span class="s1">&#39;services library&#39;</span><span class="p">,</span>
+          <span class="nl">context:</span> <span class="s1">&#39;while resolving an image&#39;</span><span class="p">,</span>
+          <span class="nl">silent:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// could be a network error or whatnot</span>
+          <span class="nl">informationCollector:</span> <span class="p">(</span><span class="n">StringBuffer</span> <span class="n">information</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">information</span><span class="p">.</span><span class="n">writeln</span><span class="p">(</span><span class="s1">&#39;Image provider: </span><span class="si">$</span><span class="n">this</span><span class="s1">&#39;</span><span class="p">);</span>
+            <span class="n">information</span><span class="p">.</span><span class="n">writeln</span><span class="p">(</span><span class="s1">&#39;Image configuration: </span><span class="si">$</span><span class="n">configuration</span><span class="s1">&#39;</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">obtainedKey</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+              <span class="n">information</span><span class="p">.</span><span class="n">writeln</span><span class="p">(</span><span class="s1">&#39;Image key: </span><span class="si">$</span><span class="n">obtainedKey</span><span class="s1">&#39;</span><span class="p">);</span>
+          <span class="p">}</span>
+        <span class="p">));</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="n">stream</span><span class="p">;</span>
+  <span class="p">}</span>
+</pre></div>
+我们看到这个方法创建了ImageStream并返回，调用obtainKey返回一个携带NetworkImage的future，以后会作为缓存的key使用，并且调用ImageStream的setCompleter的方法：</p>
+<p><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">setCompleter</span><span class="p">(</span><span class="n">ImageStreamCompleter</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">_completer</span> <span class="o">==</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="n">_completer</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_listeners</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ImageListener</span><span class="o">&gt;</span> <span class="n">initialListeners</span> <span class="o">=</span> <span class="n">_listeners</span><span class="p">;</span>
+      <span class="n">_listeners</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="n">initialListeners</span><span class="p">.</span><span class="n">forEach</span><span class="p">(</span><span class="n">_completer</span><span class="p">.</span><span class="n">addListener</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</pre></div>
+这个方法就是给ImageStream设置一个ImageStreamCompleter对象，每一个ImageStream对象只能设置一次，ImageStreamCompleter是为了辅助ImageStream解析和管理Image图片帧的，并且判断是否有初始化监听器，可以做一些初始化回调工作。 我们继续看下PaintingBinding.instance.imageCache.putIfAbsent方法：</p>
+<p><div class="codehilite"><pre><span></span><span class="n">ImageStreamCompleter</span> <span class="n">putIfAbsent</span><span class="p">(</span><span class="kt">Object</span> <span class="n">key</span><span class="p">,</span> <span class="n">ImageStreamCompleter</span> <span class="n">loader</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">key</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">loader</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="n">ImageStreamCompleter</span> <span class="n">result</span> <span class="o">=</span> <span class="n">_pendingImages</span><span class="p">[</span><span class="n">key</span><span class="p">];</span>
+    <span class="c1">// Nothing needs to be done because the image hasn&#39;t loaded yet.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+    <span class="c1">// Remove the provider from the list so that we can move it to the</span>
+    <span class="c1">// recently used position below.</span>
+    <span class="kd">final</span> <span class="n">_CachedImage</span> <span class="n">image</span> <span class="o">=</span> <span class="n">_cache</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">image</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">image</span><span class="p">;</span>
+      <span class="k">return</span> <span class="n">image</span><span class="p">.</span><span class="n">completer</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">loader</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="n">listener</span><span class="p">(</span><span class="n">ImageInfo</span> <span class="n">info</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">syncCall</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Images that fail to load don&#39;t contribute to cache size.</span>
+      <span class="kd">final</span> <span class="kt">int</span> <span class="n">imageSize</span> <span class="o">=</span> <span class="n">info</span><span class="p">.</span><span class="n">image</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="m">0</span> <span class="o">:</span> <span class="n">info</span><span class="p">.</span><span class="n">image</span><span class="p">.</span><span class="n">height</span> <span class="o">*</span> <span class="n">info</span><span class="p">.</span><span class="n">image</span><span class="p">.</span><span class="n">width</span> <span class="o">*</span> <span class="m">4</span><span class="p">;</span>
+      <span class="kd">final</span> <span class="n">_CachedImage</span> <span class="n">image</span> <span class="o">=</span> <span class="k">new</span> <span class="n">_CachedImage</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">imageSize</span><span class="p">);</span>
+      <span class="n">_currentSizeBytes</span> <span class="o">+=</span> <span class="n">imageSize</span><span class="p">;</span>
+      <span class="n">_pendingImages</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+      <span class="n">_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">image</span><span class="p">;</span>
+      <span class="n">result</span><span class="p">.</span><span class="n">removeListener</span><span class="p">(</span><span class="n">listener</span><span class="p">);</span>
+      <span class="n">_checkCacheSize</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">maximumSize</span> <span class="o">&gt;</span> <span class="m">0</span> <span class="o">&amp;&amp;</span> <span class="n">maximumSizeBytes</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">_pendingImages</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+      <span class="n">result</span><span class="p">.</span><span class="n">addListener</span><span class="p">(</span><span class="n">listener</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+  <span class="p">}</span>
+</pre></div>
+这个是Flutter默认提供的内存缓存api的入口方法，这个方法会先通过key获取之前的ImageStreamCompleter对象，这个key就是NetworkImage对象，当然我们也可以重写obtainKey方法自定义key，如果存在则直接返回，如果不存在则执行load方法加载ImageStreamCompleter对象，并将其放到首位（最少最近使用算法）。</p>
+<p>也就是说ImageProvider已经实现了内存缓存：默认缓存图片的最大个数是1000，默认缓存图片的最大空间是10MiB。 第一次加载图片肯定是没有缓存的，所以我们看下loader方法，我们看到ImageProvider是空方法，我们去看NetWorkImage，按照我们的预期确实在这里：</p>
+<p><div class="codehilite"><pre><span></span><span class="err">@</span><span class="n">override</span>
+  <span class="n">ImageStreamCompleter</span> <span class="n">load</span><span class="p">(</span><span class="n">NetworkImage</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">MultiFrameImageStreamCompleter</span><span class="p">(</span>
+      <span class="nl">codec:</span> <span class="n">_loadAsync</span><span class="p">(</span><span class="n">key</span><span class="p">),</span>
+      <span class="nl">scale:</span> <span class="n">key</span><span class="p">.</span><span class="n">scale</span><span class="p">,</span>
+      <span class="nl">informationCollector:</span> <span class="p">(</span><span class="n">StringBuffer</span> <span class="n">information</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">information</span><span class="p">.</span><span class="n">writeln</span><span class="p">(</span><span class="s1">&#39;Image provider: </span><span class="si">$</span><span class="n">this</span><span class="s1">&#39;</span><span class="p">);</span>
+        <span class="n">information</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;Image key: </span><span class="si">$</span><span class="n">key</span><span class="s1">&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+  <span class="c1">//网络请求加载图片的方法</span>
+  <span class="n">Future</span><span class="o">&lt;</span><span class="n">ui</span><span class="p">.</span><span class="n">Codec</span><span class="o">&gt;</span> <span class="n">_loadAsync</span><span class="p">(</span><span class="n">NetworkImage</span> <span class="n">key</span><span class="p">)</span> <span class="kd">async</span> <span class="p">{</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">key</span> <span class="o">==</span> <span class="k">this</span><span class="p">);</span>
+
+    <span class="kd">final</span> <span class="n">Uri</span> <span class="n">resolved</span> <span class="o">=</span> <span class="n">Uri</span><span class="p">.</span><span class="n">base</span><span class="p">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="n">url</span><span class="p">);</span>
+    <span class="kd">final</span> <span class="n">HttpClientRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">_httpClient</span><span class="p">.</span><span class="n">getUrl</span><span class="p">(</span><span class="n">resolved</span><span class="p">);</span>
+    <span class="n">headers</span><span class="o">?</span><span class="p">.</span><span class="n">forEach</span><span class="p">((</span><span class="kt">String</span> <span class="n">name</span><span class="p">,</span> <span class="kt">String</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="kd">final</span> <span class="n">HttpClientResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">request</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">statusCode</span> <span class="o">!=</span> <span class="n">HttpStatus</span><span class="p">.</span><span class="n">ok</span><span class="p">)</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="n">Exception</span><span class="p">(</span><span class="s1">&#39;HTTP request failed, statusCode: </span><span class="si">${</span><span class="n">response</span><span class="o">?</span><span class="p">.</span><span class="n">statusCode</span><span class="si">}</span><span class="s1">, </span><span class="si">$</span><span class="n">resolved</span><span class="s1">&#39;</span><span class="p">);</span>
+
+    <span class="kd">final</span> <span class="n">Uint8List</span> <span class="n">bytes</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">consolidateHttpClientResponseBytes</span><span class="p">(</span><span class="n">response</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">bytes</span><span class="p">.</span><span class="n">lengthInBytes</span> <span class="o">==</span> <span class="m">0</span><span class="p">)</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="n">Exception</span><span class="p">(</span><span class="s1">&#39;NetworkImage is an empty file: </span><span class="si">$</span><span class="n">resolved</span><span class="s1">&#39;</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="kd">await</span> <span class="n">ui</span><span class="p">.</span><span class="n">instantiateImageCodec</span><span class="p">(</span><span class="n">bytes</span><span class="p">);</span>
+  <span class="p">}</span>
+</pre></div>
+这个方法为我们创建了一个MultiFrameImageStreamCompleter对象，根据名字我们也能知道它继承于ImageStreamCompleter。还记得ImageStreamCompleter是做什么的吗，就是辅助ImageStream管理解析Image的。</p>
+<p>参数解析：</p>
+<h3 id="_loadasync">_loadAsync()是请求网络加载图片的方法<a class="headerlink" href="#_loadasync" title="Permanent link">&para;</a></h3>
+<p>scale是缩放系数
+informationCollector是信息收集对象的，提供错误或者其他日志用
+MultiFrameImageStreamCompleter是多帧的图片处理加载器，我们知道Flutter的Image支持加载gif，通过MultiFrameImageStreamCompleter可以对gif文件进行解析：</p>
+<div class="codehilite"><pre><span></span><span class="n">MultiFrameImageStreamCompleter</span><span class="p">({</span>
+    <span class="err">@</span><span class="n">required</span> <span class="n">Future</span><span class="o">&lt;</span><span class="n">ui</span><span class="p">.</span><span class="n">Codec</span><span class="o">&gt;</span> <span class="n">codec</span><span class="p">,</span>
+    <span class="err">@</span><span class="n">required</span> <span class="kt">double</span> <span class="n">scale</span><span class="p">,</span>
+    <span class="n">InformationCollector</span> <span class="n">informationCollector</span>
+  <span class="p">})</span> <span class="o">:</span> <span class="k">assert</span><span class="p">(</span><span class="n">codec</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">),</span>
+       <span class="n">_informationCollector</span> <span class="o">=</span> <span class="n">informationCollector</span><span class="p">,</span>
+       <span class="n">_scale</span> <span class="o">=</span> <span class="n">scale</span><span class="p">,</span>
+       <span class="n">_framesEmitted</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span>
+       <span class="n">_timer</span> <span class="o">=</span> <span class="kc">null</span> <span class="p">{</span>
+    <span class="n">codec</span><span class="p">.</span><span class="n">then</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_handleCodecReady</span><span class="p">,</span> <span class="nl">onError:</span> <span class="p">(</span><span class="kt">dynamic</span> <span class="n">error</span><span class="p">,</span> <span class="n">StackTrace</span> <span class="n">stack</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">FlutterError</span><span class="p">.</span><span class="n">reportError</span><span class="p">(</span><span class="k">new</span> <span class="n">FlutterErrorDetails</span><span class="p">(</span>
+        <span class="nl">exception:</span> <span class="n">error</span><span class="p">,</span>
+        <span class="nl">stack:</span> <span class="n">stack</span><span class="p">,</span>
+        <span class="k">library</span><span class="o">:</span> <span class="s1">&#39;services&#39;</span><span class="p">,</span>
+        <span class="nl">context:</span> <span class="s1">&#39;resolving an image codec&#39;</span><span class="p">,</span>
+        <span class="nl">informationCollector:</span> <span class="n">informationCollector</span><span class="p">,</span>
+        <span class="nl">silent:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="p">));</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+</pre></div>
+
+<p>ui.Codec _codec;
+  final double _scale;
+  final InformationCollector _informationCollector;
+  ui.FrameInfo _nextFrame;
+我们看到MultiFrameImageStreamCompleter拿到loadAsync返回的codec数据对象,通过handleCodecReady来处理数据，然后会调用_decodeNextFrameAndSchedule方法：</p>
+<p><div class="codehilite"><pre><span></span><span class="n">Future</span><span class="o">&lt;</span><span class="n">Null</span><span class="o">&gt;</span> <span class="n">_decodeNextFrameAndSchedule</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="n">_nextFrame</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">_codec</span><span class="p">.</span><span class="n">getNextFrame</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">exception</span><span class="p">,</span> <span class="n">stack</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">FlutterError</span><span class="p">.</span><span class="n">reportError</span><span class="p">(</span><span class="k">new</span> <span class="n">FlutterErrorDetails</span><span class="p">(</span>
+          <span class="nl">exception:</span> <span class="n">exception</span><span class="p">,</span>
+          <span class="nl">stack:</span> <span class="n">stack</span><span class="p">,</span>
+          <span class="k">library</span><span class="o">:</span> <span class="s1">&#39;services&#39;</span><span class="p">,</span>
+          <span class="nl">context:</span> <span class="s1">&#39;resolving an image frame&#39;</span><span class="p">,</span>
+          <span class="nl">informationCollector:</span> <span class="n">_informationCollector</span><span class="p">,</span>
+          <span class="nl">silent:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="p">));</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_codec</span><span class="p">.</span><span class="n">frameCount</span> <span class="o">==</span> <span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// This is not an animated image, just return it and don&#39;t schedule more</span>
+      <span class="c1">// frames.</span>
+      <span class="n">_emitFrame</span><span class="p">(</span><span class="k">new</span> <span class="n">ImageInfo</span><span class="p">(</span><span class="nl">image:</span> <span class="n">_nextFrame</span><span class="p">.</span><span class="n">image</span><span class="p">,</span> <span class="nl">scale:</span> <span class="n">_scale</span><span class="p">));</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">SchedulerBinding</span><span class="p">.</span><span class="n">instance</span><span class="p">.</span><span class="n">scheduleFrameCallback</span><span class="p">(</span><span class="n">_handleAppFrame</span><span class="p">);</span>
+  <span class="p">}</span>
+</pre></div>
+通过codec.getNextFrame()去拿下一帧，对于静态的图片frameCount是1，直接用ImageInfo组装image，交给emitFrame方法，这个方法里会调用setImage，如下：</p>
+<p><div class="codehilite"><pre><span></span><span class="err">@</span><span class="n">protected</span>
+  <span class="kt">void</span> <span class="n">setImage</span><span class="p">(</span><span class="n">ImageInfo</span> <span class="n">image</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">_current</span> <span class="o">=</span> <span class="n">image</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_listeners</span><span class="p">.</span><span class="n">isEmpty</span><span class="p">)</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ImageListener</span><span class="o">&gt;</span> <span class="n">localListeners</span> <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ImageListener</span><span class="o">&gt;</span><span class="p">.</span><span class="n">from</span><span class="p">(</span><span class="n">_listeners</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">ImageListener</span> <span class="n">listener</span> <span class="k">in</span> <span class="n">localListeners</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">try</span> <span class="p">{</span>
+        <span class="n">listener</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">exception</span><span class="p">,</span> <span class="n">stack</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_handleImageError</span><span class="p">(</span><span class="s1">&#39;by an image listener&#39;</span><span class="p">,</span> <span class="n">exception</span><span class="p">,</span> <span class="n">stack</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</pre></div>
+setImage方法就是设置当前的ImageInfo并检查监听器列表，通知监听器图片已经加载完毕可以刷新UI了。</p>
+<p>对于动图来说就是就是交给SchedulerBinding逐帧的去调用setImage，通知UI刷新，代码就不贴了，有兴趣的可以自行查看下。 至此resolveImage调用流程我们算是讲完了，接下来我们看listenToStream。</p>
+<h3 id="_listentostream">_listenToStream方法解析<a class="headerlink" href="#_listentostream" title="Permanent link">&para;</a></h3>
+<p>我们继续分析didChangeDependencies方法，这个方法里会判断TickerMode.of(context)的值，这个值默认是true，和AnimationConrol有关，后续可以深入研究。然后调用_listenToStream()。 我们看下这个方法：</p>
+<p><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">_listenToStream</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">_isListeningToStream</span><span class="p">)</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="n">_imageStream</span><span class="p">.</span><span class="n">addListener</span><span class="p">(</span><span class="n">_handleImageChanged</span><span class="p">);</span>
+    <span class="n">_isListeningToStream</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+</pre></div>
+这个就是添加图片加载完毕的回调器。还记得吗，当图片加载并解析完毕的时候，MultiFrameImageStreamCompleter的setImage方法会调用这里传过去的回调方法。我们看下这里回调方法里做了什么：</p>
+<p><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">_handleImageChanged</span><span class="p">(</span><span class="n">ImageInfo</span> <span class="n">imageInfo</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">synchronousCall</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">setState</span><span class="p">(()</span> <span class="p">{</span>
+      <span class="n">_imageInfo</span> <span class="o">=</span> <span class="n">imageInfo</span><span class="p">;</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+</pre></div>
+很显然就是拿到上层传过来ImageInfo，调用setState更新UI 我们看下build方法：</p>
+<p><div class="codehilite"><pre><span></span><span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">RawImage</span><span class="p">(</span>
+      <span class="nl">image:</span> <span class="n">_imageInfo</span><span class="o">?</span><span class="p">.</span><span class="n">image</span><span class="p">,</span>
+      <span class="nl">width:</span> <span class="n">widget</span><span class="p">.</span><span class="n">width</span><span class="p">,</span>
+      <span class="nl">height:</span> <span class="n">widget</span><span class="p">.</span><span class="n">height</span><span class="p">,</span>
+      <span class="nl">scale:</span> <span class="n">_imageInfo</span><span class="o">?</span><span class="p">.</span><span class="n">scale</span> <span class="o">??</span> <span class="m">1.0</span><span class="p">,</span>
+      <span class="nl">color:</span> <span class="n">widget</span><span class="p">.</span><span class="n">color</span><span class="p">,</span>
+      <span class="nl">colorBlendMode:</span> <span class="n">widget</span><span class="p">.</span><span class="n">colorBlendMode</span><span class="p">,</span>
+      <span class="nl">fit:</span> <span class="n">widget</span><span class="p">.</span><span class="n">fit</span><span class="p">,</span>
+      <span class="nl">alignment:</span> <span class="n">widget</span><span class="p">.</span><span class="n">alignment</span><span class="p">,</span>
+      <span class="nl">repeat:</span> <span class="n">widget</span><span class="p">.</span><span class="n">repeat</span><span class="p">,</span>
+      <span class="nl">centerSlice:</span> <span class="n">widget</span><span class="p">.</span><span class="n">centerSlice</span><span class="p">,</span>
+      <span class="nl">matchTextDirection:</span> <span class="n">widget</span><span class="p">.</span><span class="n">matchTextDirection</span><span class="p">,</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+</pre></div>
+就是用imageInfo和widget的信息来封装RawImage，RawImage是RenderObjectWidget对象，是应用程序真正渲染的对象，将咱们的图片显示到界面上。</p>
+<h3 id="_3">总结<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>梳理下流程：</p>
+<p>从入口开始，Image是继承于StatefulWidget，它为咱们实现好了State：_ImageState,并且提供了一个已经实例化的NetWorkImage对象，它是继承于ImageProvider对象的。
+ImageState创建完之后，ImageState通过调用resolveImage()，resolveImage()又会调用ImageProvider的resolve()方法返回一个ImageStream对象。_ImageState也注册了监听器给ImageStream，当图片下载完毕后会执行回调方法。
+然后在ImageProvider的resolve()方法里不仅创建了ImageStream还设置了ImageStream的setComplete方法去设置ImageStreamCompleter，在这里去判断是否有缓存，没有缓存就调用load方法去创建ImageStreamCompleter并且添加监听器为了执行加载完图片之后的缓存工作。ImageStreamCompleter是为了解析已经加载完成的Image的。
+NetWorkImage实现了ImageProvider的load方法，是真正下载图片的地方，创建了MultiFrameImageStreamCompleter对象，并且调用_loadAsync去下载图片。当图片下载完成后就调用UI的回调方法，通知UI刷新。</p>
+<h3 id="_4">最后<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>至此，对Image.network的源码分析到这里也结束了，你也可以返回去看下Image的结构图了。怎么样，分析完之后是不是对Flutter加载网络图片的流程已经很了解了，也找到了Flutter缓存的突破口，Flutter自身已经提供了内存缓存（虽然不太完美），接下来你就可以添加你的硬盘缓存或者定制你的图片框架了。</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../customWidget/" title="自定义Widget" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                自定义Widget
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../flutter/ComplieMode/" title="编译模式" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                编译模式
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019  Aige
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="http://struct.cc" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/cangchengkun/Docs" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/Aige25868905" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.facebook.com/cangck.danmo" class="md-footer-social__link fa fa-facebook"></a>
+    
+      <a href="https://www.youtube.com/" class="md-footer-social__link fa fa-youtube"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.43ad2ac2.js"></script>
+      
+        
+        
+          
+          <script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>

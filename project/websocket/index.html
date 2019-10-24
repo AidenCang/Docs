@@ -1,0 +1,3113 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="苍成坤的 blog">
+      
+      
+        <link rel="canonical" href="https://squidfunk.github.io/mkdocs-material/project/websocket/">
+      
+      
+        <meta name="author" content="Aige">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
+    
+    
+      
+        <title>WebSocket - Aige  Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "None", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#flutter-websocketdjango-channels-websocket" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Aige  Docs
+            </span>
+            <span class="md-header-nav__topic">
+              WebSocket
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." title="Home" class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="./" title="Project" class="md-tabs__link md-tabs__link--active">
+          Project
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../android/flutterdev/flutteradvance/" title="Android" class="md-tabs__link">
+          Android
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../python/base/pythonlang/" title="Python" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../iot/Alexa/" title="IoT" class="md-tabs__link">
+          IoT
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../secret/reousrce/" title="Secret" class="md-tabs__link">
+          Secret
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../linux/resource/" title="Linux" class="md-tabs__link">
+          Linux
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../shell/shellresource/" title="Shell" class="md-tabs__link">
+          Shell
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../extensions/admonition/" title="Tools" class="md-tabs__link">
+          Tools
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../download/download/" title="Download" class="md-tabs__link">
+          Download
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Aige  Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/" title="Getting started" class="md-nav__link">
+      Getting started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Project
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Project
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1" checked>
+    
+    <label class="md-nav__link" for="nav-3-1">
+      SkyRoad
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        SkyRoad
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        WebSocket
+      </label>
+    
+    <a href="./" title="WebSocket" class="md-nav__link md-nav__link--active">
+      WebSocket
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="前言" class="md-nav__link">
+    前言
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#websocket-http" title="WebSocket 与 HTTP" class="md-nav__link">
+    WebSocket 与 HTTP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket" title="WebSocket 的其他特点：" class="md-nav__link">
+    WebSocket 的其他特点：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket_1" title="WebSocket 是什么样的协议，具体有什么优点" class="md-nav__link">
+    WebSocket 是什么样的协议，具体有什么优点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket_2" title="WebSocket 有什么关系呢？" class="md-nav__link">
+    WebSocket 有什么关系呢？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket_3" title="WebSocket 的作用" class="md-nav__link">
+    WebSocket 的作用
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ajax" title="ajax轮询" class="md-nav__link">
+    ajax轮询
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-poll" title="long poll" class="md-nav__link">
+    long poll
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket_4" title="WebSocket" class="md-nav__link">
+    WebSocket
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="监听端口处理" class="md-nav__link">
+    监听端口处理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="项目截图" class="md-nav__link">
+    项目截图
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="需要的类库" class="md-nav__link">
+    需要的类库
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="服务器端代码集成" class="md-nav__link">
+    服务器端代码集成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="异常类的使用" class="md-nav__link">
+    异常类的使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flutter" title="Flutter 代码" class="md-nav__link">
+    Flutter 代码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="需要的类库" class="md-nav__link">
+    需要的类库
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#channels-1channels-2" title="Channels 1和Channels 2 有什么" class="md-nav__link">
+    Channels 1和Channels 2 有什么
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#awsgi" title="AWsgi" class="md-nav__link">
+    AWsgi
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wsgi" title="WSGI兼容性" class="md-nav__link">
+    WSGI兼容性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#django-websocket-redis" title="django-websocket-redis" class="md-nav__link">
+    django-websocket-redis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="参考案例" class="md-nav__link">
+    参考案例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#websocket_5" title="websocket 开发调试工具" class="md-nav__link">
+    websocket 开发调试工具
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#websocket_6" title="websocket官网" class="md-nav__link">
+    websocket官网
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" title="Usage" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="项目地址" class="md-nav__link">
+    项目地址
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install" title="Install" class="md-nav__link">
+    Install
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="工作原理" class="md-nav__link">
+    工作原理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" title="建议的练习" class="md-nav__link">
+    建议的练习
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" title="进一步阅读" class="md-nav__link">
+    进一步阅读
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Android
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Android
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Flutter
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        Flutter
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutterdev/flutteradvance/" title="Flutter学习路线" class="md-nav__link">
+      Flutter学习路线
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/flutterUIframework/" title="FlutterUI和Engine关联" class="md-nav__link">
+      FlutterUI和Engine关联
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutterdev/platform_channels/" title="PlatformChannel" class="md-nav__link">
+      PlatformChannel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutterdev/isolatedev/" title="ISOlate使用" class="md-nav__link">
+      ISOlate使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutterdev/futterStream/" title="Future&Stream" class="md-nav__link">
+      Future&Stream
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutterdev/applifecyclestate/" title="Flutter生命周期管理" class="md-nav__link">
+      Flutter生命周期管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutterdev/flutterNavigator/" title="FlutterNavigator" class="md-nav__link">
+      FlutterNavigator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutterdev/fluttersnip/" title="代码片段" class="md-nav__link">
+      代码片段
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/FlutterKey/" title="FlutterKey" class="md-nav__link">
+      FlutterKey
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/flutter/" title="Flutter" class="md-nav__link">
+      Flutter
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/FlutterTools/" title="FlutterSdk" class="md-nav__link">
+      FlutterSdk
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter_project/flutterApp/" title="Flutter项目经验" class="md-nav__link">
+      Flutter项目经验
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutterdev/FlutterWidgetinit/" title="FlutterUI框架绘制过程" class="md-nav__link">
+      FlutterUI框架绘制过程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutterdev/customWidget/" title="自定义Widget" class="md-nav__link">
+      自定义Widget
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutterdev/flutterImageProvider/" title="Flutter图片加载" class="md-nav__link">
+      Flutter图片加载
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      FlutterEngine
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        FlutterEngine
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/ComplieMode/" title="编译模式" class="md-nav__link">
+      编译模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/EngineCompile/" title="FlutterEngine编译" class="md-nav__link">
+      FlutterEngine编译
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/GNTools/" title="GNTools" class="md-nav__link">
+      GNTools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/NinjaSystem/" title="Ninja编译系统" class="md-nav__link">
+      Ninja编译系统
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/FlutterComplieFile/" title="Flutter编译产物" class="md-nav__link">
+      Flutter编译产物
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/flutterAndroidInit/" title="Android加载Dart文件" class="md-nav__link">
+      Android加载Dart文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/AndroidViewinit/" title="Android初始化View" class="md-nav__link">
+      Android初始化View
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/EngineInit/" title="Engine初始化" class="md-nav__link">
+      Engine初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/EngineView/" title="EngineView初始化" class="md-nav__link">
+      EngineView初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/SmartPtr/" title="C++智能指针" class="md-nav__link">
+      C++智能指针
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/NativeExtensions/" title="NativeExtensions" class="md-nav__link">
+      NativeExtensions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/MessageLoop/" title="MessageLoop" class="md-nav__link">
+      MessageLoop
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/DartVM/" title="初始化DartVM" class="md-nav__link">
+      初始化DartVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/platformplugin/" title="PlatformChannel" class="md-nav__link">
+      PlatformChannel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/flutterexample/" title="example" class="md-nav__link">
+      example
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/DartVMServiceProtocol/" title="DartVMServiceProtocol" class="md-nav__link">
+      DartVMServiceProtocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/FlutterSupportView/" title="FlutterSupportView" class="md-nav__link">
+      FlutterSupportView
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/profile/" title="性能优化" class="md-nav__link">
+      性能优化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/Architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/reviewCode/" title="reviewCode" class="md-nav__link">
+      reviewCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/flutter/DevResource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      ReactNative
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        ReactNative
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/rn/react_native/" title="ReactNative" class="md-nav__link">
+      ReactNative
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
+    
+    <label class="md-nav__link" for="nav-4-4">
+      Awsamplify
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-4">
+        Awsamplify
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/aws-android/awsamplify/" title="Awsamplify" class="md-nav__link">
+      Awsamplify
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/androidTools/" title="AndroidTools" class="md-nav__link">
+      AndroidTools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../android/issue/Androidissue/" title="Issue常见问题" class="md-nav__link">
+      Issue常见问题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Python
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      基础
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        基础
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/base/pythonlang/" title="语言基础" class="md-nav__link">
+      语言基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/base/advancesPython/" title="高级开发" class="md-nav__link">
+      高级开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/base/pythoninspect/" title="Python反射" class="md-nav__link">
+      Python反射
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1-4" type="checkbox" id="nav-5-1-4">
+    
+    <label class="md-nav__link" for="nav-5-1-4">
+      开发环境
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-1-4">
+        开发环境
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/base/pythonEnv/" title="环境" class="md-nav__link">
+      环境
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      爬虫
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        爬虫
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/scrapy/scrapyBase/" title="爬虫基础" class="md-nav__link">
+      爬虫基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/scrapy/scrapylib/" title="爬虫库" class="md-nav__link">
+      爬虫库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/scrapy/spiderdemo/" title="爬虫实战" class="md-nav__link">
+      爬虫实战
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      服务器开发
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-3">
+        服务器开发
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-1" type="checkbox" id="nav-5-3-1">
+    
+    <label class="md-nav__link" for="nav-5-3-1">
+      WEB
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-1">
+        WEB
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/server/pythonweb/" title="主流服务器介绍" class="md-nav__link">
+      主流服务器介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/server/serverbase/" title="服务器常用软件" class="md-nav__link">
+      服务器常用软件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/server/pythonOauth/" title="Oauth2服务器搭建" class="md-nav__link">
+      Oauth2服务器搭建
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-2" type="checkbox" id="nav-5-3-2">
+    
+    <label class="md-nav__link" for="nav-5-3-2">
+      aws
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-2">
+        aws
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/server/aws/pyaws/" title="AWSpython使用" class="md-nav__link">
+      AWSpython使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/server/aws/serverless/" title="无服务" class="md-nav__link">
+      无服务
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-3" type="checkbox" id="nav-5-3-3">
+    
+    <label class="md-nav__link" for="nav-5-3-3">
+      Django开发
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-3">
+        Django开发
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/server/django/djangosignals/" title="Dajngo信号机制" class="md-nav__link">
+      Dajngo信号机制
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/server/django/djangoLogger/" title="日志配置" class="md-nav__link">
+      日志配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/server/django/djangosignals/" title="Djangomessage" class="md-nav__link">
+      Djangomessage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/server/django/JSONEncoder/" title="JsonEncoder" class="md-nav__link">
+      JsonEncoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/server/django/middleware/" title="中间件" class="md-nav__link">
+      中间件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/server/django/question/" title="常见问题" class="md-nav__link">
+      常见问题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-4" type="checkbox" id="nav-5-3-4">
+    
+    <label class="md-nav__link" for="nav-5-3-4">
+      部署
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-4">
+        部署
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/server/zappa/" title="zappa" class="md-nav__link">
+      zappa
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/pythonTools/" title="开发工具" class="md-nav__link">
+      开发工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      IoT
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        IoT
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../iot/Alexa/" title="Alexa" class="md-nav__link">
+      Alexa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../iot/awsiot/" title="AWSIOT" class="md-nav__link">
+      AWSIOT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../iot/iotCore/" title="IotCore" class="md-nav__link">
+      IotCore
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../iot/program/" title="program" class="md-nav__link">
+      program
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../iot/protocol/" title="protocol" class="md-nav__link">
+      protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../iot/usermanager/" title="UserManager" class="md-nav__link">
+      UserManager
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../iot/developerTools/" title="aws开发工具" class="md-nav__link">
+      aws开发工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Secret
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Secret
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../secret/reousrce/" title="安全" class="md-nav__link">
+      安全
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/networktools/" title="端口扫描工具" class="md-nav__link">
+      端口扫描工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Linux
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Linux
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux/resource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Shell
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Shell
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../shell/shellresource/" title="Shell" class="md-nav__link">
+      Shell
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      Tools
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../extensions/admonition/" title="AndroidStudio" class="md-nav__link">
+      AndroidStudio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/atom/" title="Atom" class="md-nav__link">
+      Atom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/vim/" title="Vim" class="md-nav__link">
+      Vim
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../extensions/metadata/" title="Chrome" class="md-nav__link">
+      Chrome
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/markdown/" title="Markdown" class="md-nav__link">
+      Markdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/material/" title="Material for MkDocs" class="md-nav__link">
+      Material for MkDocs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/git/" title="Git" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/VSCode/" title="VSCode" class="md-nav__link">
+      VSCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/datareporting/" title="数据分析" class="md-nav__link">
+      数据分析
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+    
+    <label class="md-nav__link" for="nav-11">
+      Download
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-11">
+        Download
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../download/download/" title="download" class="md-nav__link">
+      download
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="前言" class="md-nav__link">
+    前言
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#websocket-http" title="WebSocket 与 HTTP" class="md-nav__link">
+    WebSocket 与 HTTP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket" title="WebSocket 的其他特点：" class="md-nav__link">
+    WebSocket 的其他特点：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket_1" title="WebSocket 是什么样的协议，具体有什么优点" class="md-nav__link">
+    WebSocket 是什么样的协议，具体有什么优点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket_2" title="WebSocket 有什么关系呢？" class="md-nav__link">
+    WebSocket 有什么关系呢？
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket_3" title="WebSocket 的作用" class="md-nav__link">
+    WebSocket 的作用
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ajax" title="ajax轮询" class="md-nav__link">
+    ajax轮询
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#long-poll" title="long poll" class="md-nav__link">
+    long poll
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#websocket_4" title="WebSocket" class="md-nav__link">
+    WebSocket
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="监听端口处理" class="md-nav__link">
+    监听端口处理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="项目截图" class="md-nav__link">
+    项目截图
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="需要的类库" class="md-nav__link">
+    需要的类库
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="服务器端代码集成" class="md-nav__link">
+    服务器端代码集成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" title="异常类的使用" class="md-nav__link">
+    异常类的使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flutter" title="Flutter 代码" class="md-nav__link">
+    Flutter 代码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" title="需要的类库" class="md-nav__link">
+    需要的类库
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#channels-1channels-2" title="Channels 1和Channels 2 有什么" class="md-nav__link">
+    Channels 1和Channels 2 有什么
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#awsgi" title="AWsgi" class="md-nav__link">
+    AWsgi
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wsgi" title="WSGI兼容性" class="md-nav__link">
+    WSGI兼容性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#django-websocket-redis" title="django-websocket-redis" class="md-nav__link">
+    django-websocket-redis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="参考案例" class="md-nav__link">
+    参考案例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#websocket_5" title="websocket 开发调试工具" class="md-nav__link">
+    websocket 开发调试工具
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#websocket_6" title="websocket官网" class="md-nav__link">
+    websocket官网
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" title="Usage" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" title="项目地址" class="md-nav__link">
+    项目地址
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install" title="Install" class="md-nav__link">
+    Install
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" title="工作原理" class="md-nav__link">
+    工作原理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" title="建议的练习" class="md-nav__link">
+    建议的练习
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" title="进一步阅读" class="md-nav__link">
+    进一步阅读
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="flutter-websocketdjango-channels-websocket">Flutter Websocket+Django  Channels 完成Websocket前后端聊天室<a class="headerlink" href="#flutter-websocketdjango-channels-websocket" title="Permanent link">&para;</a></h1>
+<h2 id="_1">前言<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="websocket-http">WebSocket 与 HTTP<a class="headerlink" href="#websocket-http" title="Permanent link">&para;</a></h3>
+<p>WebSocket 协议在2008年诞生，2011年成为国际标准。现在所有浏览器都已经支持了。WebSocket 的最大特点就是，服务器可以主动向客户端推送信息，客户端也可以主动向服务器发送信息，是真正的双向平等对话。</p>
+<p>HTTP 有 1.1 和 1.0 之说，也就是所谓的 keep-alive ，把多个 HTTP 请求合并为一个，但是 Websocket 其实是一个新协议，跟 HTTP 协议基本没有关系，只是为了兼容现有浏览器，所以在握手阶段使用了 HTTP 。</p>
+<h3 id="websocket">WebSocket 的其他特点：<a class="headerlink" href="#websocket" title="Permanent link">&para;</a></h3>
+<p>建立在 TCP 协议之上，服务器端的实现比较容易。
+与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。
+数据格式比较轻量，性能开销小，通信高效。
+可以发送文本，也可以发送二进制数据。
+没有同源限制，客户端可以与任意服务器通信。
+协议标识符是ws（如果加密，则为wss），服务器网址就是 URL。</p>
+<h3 id="websocket_1">WebSocket 是什么样的协议，具体有什么优点<a class="headerlink" href="#websocket_1" title="Permanent link">&para;</a></h3>
+<p>首先，WebSocket 是一个持久化的协议，相对于 HTTP 这种非持久的协议来说。简单的举个例子吧，用目前应用比较广泛的 PHP 生命周期来解释。</p>
+<p>HTTP 的生命周期通过 Request 来界定，也就是一个 Request 一个 Response ，那么在 HTTP1.0 中，这次 HTTP 请求就结束了。</p>
+<p>在 HTTP1.1 中进行了改进，使得有一个 keep-alive，也就是说，在一个 HTTP 连接中，可以发送多个 Request，接收多个 Response。但是请记住 Request = Response， 在 HTTP 中永远是这样，也就是说一个 Request 只能有一个 Response。而且这个 Response 也是被动的，不能主动发起。</p>
+<h3 id="websocket_2">WebSocket 有什么关系呢？<a class="headerlink" href="#websocket_2" title="Permanent link">&para;</a></h3>
+<p>首先 WebSocket 是基于 HTTP 协议的，或者说借用了 HTTP 协议来完成一部分握手。</p>
+<p>首先我们来看个典型的 WebSocket 握手</p>
+<div class="codehilite"><pre><span></span>GET /chat HTTP/1.1
+Host: server.example.com
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==
+Sec-WebSocket-Protocol: chat, superchat
+Sec-WebSocket-Version: 13
+Origin: http://example.com
+</pre></div>
+
+
+<p>熟悉 HTTP 的童鞋可能发现了，这段类似 HTTP 协议的握手请求中，多了这么几个东西。</p>
+<div class="codehilite"><pre><span></span>Upgrade: websocket
+Connection: Upgrade
+</pre></div>
+
+
+<p>这个就是 WebSocket 的核心了，告诉 Apache 、 Nginx 等服务器：注意啦，我发起的请求要用 WebSocket 协议，快点帮我找到对应的助理处理~而不是那个老土的 HTTP。</p>
+<div class="codehilite"><pre><span></span>Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==
+Sec-WebSocket-Protocol: chat, superchat
+Sec-WebSocket-Version: 13
+</pre></div>
+
+
+<p>首先， Sec-WebSocket-Key 是一个 Base64 encode 的值，这个是浏览器随机生成的，告诉服务器：泥煤，不要忽悠我，我要验证你是不是真的是 WebSocket 助理。</p>
+<p>然后， Sec_WebSocket-Protocol 是一个用户定义的字符串，用来区分同 URL 下，不同的服务所需要的协议。简单理解：今晚我要服务A，别搞错啦~</p>
+<p>最后， Sec-WebSocket-Version 是告诉服务器所使用的 WebSocket Draft （协议版本），在最初的时候，WebSocket 协议还在 Draft 阶段，各种奇奇怪怪的协议都有，而且还有很多期奇奇怪怪不同的东西，什么 Firefox 和 Chrome 用的不是一个版本之类的，当初 WebSocket 协议太多可是一个大难题。。不过现在还好，已经定下来啦~大家都使用同一个版本： 服务员，我要的是13岁的噢→_→</p>
+<p>然后服务器会返回下列东西，表示已经接受到请求， 成功建立 WebSocket 啦！</p>
+<div class="codehilite"><pre><span></span>HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=
+Sec-WebSocket-Protocol: chat
+</pre></div>
+
+
+<p>这里开始就是 HTTP 最后负责的区域了，告诉客户，我已经成功切换协议啦~</p>
+<div class="codehilite"><pre><span></span>Upgrade: websocket
+Connection: Upgrade
+</pre></div>
+
+
+<p>依然是固定的，告诉客户端即将升级的是 WebSocket 协议，而不是 mozillasocket，lurnarsocket 或者 shitsocket。</p>
+<p>然后， Sec-WebSocket-Accept 这个则是经过服务器确认，并且加密过后的 Sec-WebSocket-Key 。 服务器：好啦好啦，知道啦，给你看我的 ID CARD 来证明行了吧。</p>
+<p>后面的， Sec-WebSocket-Protocol 则是表示最终使用的协议。</p>
+<p>至此，HTTP 已经完成它所有工作了，接下来就是完全按照 WebSocket 协议进行了。</p>
+<h3 id="websocket_3">WebSocket 的作用<a class="headerlink" href="#websocket_3" title="Permanent link">&para;</a></h3>
+<p>在讲 WebSocket之前，我就顺带着讲下 ajax轮询 和 long poll 的原理。</p>
+<h4 id="ajax">ajax轮询<a class="headerlink" href="#ajax" title="Permanent link">&para;</a></h4>
+<p>ajax轮询的原理非常简单，让浏览器隔个几秒就发送一次请求，询问服务器是否有新信息。</p>
+<h4 id="long-poll">long poll<a class="headerlink" href="#long-poll" title="Permanent link">&para;</a></h4>
+<p>long poll 其实原理跟 ajax轮询 差不多，都是采用轮询的方式，不过采取的是阻塞模型（一直打电话，没收到就不挂电话），也就是说，客户端发起请求后，如果没消息，就一直不返回 Response 给客户端。直到有消息才返回，返回完之后，客户端再次建立连接，周而复始。</p>
+<h4 id="websocket_4">WebSocket<a class="headerlink" href="#websocket_4" title="Permanent link">&para;</a></h4>
+<p>通过上面这两个例子，我们可以看出，这两种方式都不是最好的方式，需要很多资源。</p>
+<p>一种需要更快的速度，一种需要更多的’电话’。这两种都会导致’电话’的需求越来越高。</p>
+<p>哦对了，忘记说了 HTTP 还是一个无状态协议。通俗的说就是，服务器因为每天要接待太多客户了，是个健忘鬼，你一挂电话，他就把你的东西全忘光了，把你的东西全丢掉了。你第二次还得再告诉服务器一遍。</p>
+<p>所以在这种情况下出现了 WebSocket 。他解决了 HTTP 的这几个难题。首先，被动性，当服务器完成协议升级后（HTTP-&gt;Websocket），服务端就可以主动推送信息给客户端啦。所以上面的情景可以做如下修改。</p>
+<h2 id="_2">监听端口处理<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>lsof -i:端口号
+kill -9 进程号
+</pre></div>
+
+
+<h2 id="_3">项目截图<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p><img alt="pic" src="../pic/websocketflutter.png" /></p>
+<h2 id="_4">需要的类库<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>Django Channels</p>
+<p>Channels是一个扩展Django并将其能力扩展到HTTP以外的项目 - 用于处理WebSockets，聊天协议，IoT协议等。它建立在一个名为ASGI的Python规范之上。
+它通过获取Django的核心并在下面分层完全异步层来实现这一点，在同步模式下运行Django本身，但异步处理连接和套接字，并允许您选择以任一样式编写。
+要开始了解Channels，请阅读我们的简介，其中将介绍工作原理。如果您从频道1升级，请查看频道2中的新功能？了解变化; 事情大不相同。</p>
+<div class="codehilite"><pre><span></span>channels
+channels-redis
+</pre></div>
+
+
+<h2 id="_5">服务器端代码集成<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>1.安装Channels</p>
+<div class="codehilite"><pre><span></span>pip install -U channels
+</pre></div>
+
+
+<p>2.配置</p>
+<div class="codehilite"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;django.contrib.auth&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.contenttypes&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.sessions&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;django.contrib.sites&#39;</span><span class="p">,</span>
+    <span class="o">...</span>
+    <span class="s1">&#39;channels&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+<p>3.定义路由</p>
+<div class="codehilite"><pre><span></span>Django认证系统
+Django会话系统
+</pre></div>
+
+
+<p><div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">channels.routing</span> <span class="kn">import</span> <span class="n">ProtocolTypeRouter</span>
+
+<span class="n">application</span> <span class="o">=</span> <span class="n">ProtocolTypeRouter</span><span class="p">({</span>
+    <span class="c1"># (http-&gt;django views is added by default)</span>
+    <span class="s1">&#39;websocket&#39;</span><span class="p">:</span> <span class="n">AuthMiddlewareStack</span><span class="p">(</span>
+        <span class="n">URLRouter</span><span class="p">([</span>
+            <span class="n">path</span><span class="p">(</span><span class="s1">&#39;channels/&lt;str:room_name&gt;/&#39;</span><span class="p">,</span> <span class="n">ChatConsumer</span><span class="p">),</span>
+            <span class="n">path</span><span class="p">(</span><span class="s2">&quot;chat/stream/&quot;</span><span class="p">,</span> <span class="n">ChatRoomConsumer</span><span class="p">),</span>
+        <span class="p">]</span>
+
+        <span class="p">)</span>
+    <span class="p">),</span>
+<span class="p">})</span>
+
+<span class="err">服务器调动入口</span>
+<span class="k">class</span> <span class="nc">ProtocolTypeRouter</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes a mapping of protocol type names to other Application instances,</span>
+<span class="sd">    and dispatches to the right one based on protocol name (or raises an error)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">application_mapping</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">application_mapping</span> <span class="o">=</span> <span class="n">application_mapping</span>
+        <span class="k">if</span> <span class="s2">&quot;http&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">application_mapping</span><span class="p">:</span>
+        <span class="err">如果是</span><span class="n">http</span><span class="err">服务调用</span><span class="n">AsgiHandler</span><span class="err">处理</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">application_mapping</span><span class="p">[</span><span class="s2">&quot;http&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">AsgiHandler</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scope</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">scope</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">application_mapping</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">application_mapping</span><span class="p">[</span><span class="n">scope</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]](</span><span class="n">scope</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;No application configured for scope type </span><span class="si">%r</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">scope</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span>
+            <span class="p">)</span>
+
+<span class="c1">#在入口处理WebSocket认证服务</span>
+<span class="c1"># Handy shortcut for applying all three layers at once</span>
+<span class="n">AuthMiddlewareStack</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">inner</span><span class="p">:</span> <span class="n">CookieMiddleware</span><span class="p">(</span>
+    <span class="n">SessionMiddleware</span><span class="p">(</span><span class="n">AuthMiddleware</span><span class="p">(</span><span class="n">inner</span><span class="p">))</span>
+<span class="p">)</span>
+</pre></div>
+4.setting 中配置Aswgi转发的入口</p>
+<p><div class="codehilite"><pre><span></span><span class="n">ASGI_APPLICATION</span> <span class="o">=</span> <span class="s2">&quot;myproject.routing.application&quot;</span>
+</pre></div>
+<img alt="pic" src="../pic/channels.png" /></p>
+<p>5.调用路由功能把请求发送到不同的消费者</p>
+<p>Channels通道:<a href="https://github.com/andrewgodwin/channels-examples">Channels</a>
+核心类(两大类同步和异步):</p>
+<p>1.同步类型:</p>
+<div class="codehilite"><pre><span></span>class WebsocketConsumer(SyncConsumer):
+class JsonWebsocketConsumer(WebsocketConsumer):
+</pre></div>
+
+
+<p>2.异步类型</p>
+<div class="codehilite"><pre><span></span>class AsyncWebsocketConsumer(AsyncConsumer):
+class AsyncJsonWebsocketConsumer(AsyncWebsocketConsumer):
+</pre></div>
+
+
+<p><a href="https://github.com/andrewgodwin/channels-examples">Channels</a>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+
+<span class="kn">from</span> <span class="nn">channels.generic.websocket</span> <span class="kn">import</span> <span class="n">AsyncJsonWebsocketConsumer</span>
+
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="n">ClientError</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="n">get_room_or_error</span>
+
+
+<span class="k">class</span> <span class="nc">ChatRoomConsumer</span><span class="p">(</span><span class="n">AsyncJsonWebsocketConsumer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This chat consumer handles websocket connections for chat clients.</span>
+
+<span class="sd">    It uses AsyncJsonWebsocketConsumer, which means all the handling functions</span>
+<span class="sd">    must be async functions, and any sync work (like ORM access) has to be</span>
+<span class="sd">    behind database_sync_to_async or sync_to_async. For more, read</span>
+<span class="sd">    http://channels.readthedocs.io/en/latest/topics/consumers.html</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">##### WebSocket event handlers</span>
+
+    <span class="n">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when the websocket is handshaking as part of initial connection.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Are they logged in?</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">scope</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">is_anonymous</span><span class="p">:</span>
+            <span class="c1"># Reject the connection</span>
+            <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Accept the connection</span>
+            <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+        <span class="c1"># Store which rooms the user has joined on this connection</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+    <span class="n">async</span> <span class="k">def</span> <span class="nf">receive_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when we get a text frame. Channels will JSON-decode the payload</span>
+<span class="sd">        for us and pass it as the first argument.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Messages will have a &quot;command&quot; key we can switch on</span>
+        <span class="n">command</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;command&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">command</span> <span class="o">==</span> <span class="s2">&quot;join&quot;</span><span class="p">:</span>
+                <span class="c1"># Make them join the room</span>
+                <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">join_room</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="s2">&quot;room&quot;</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">command</span> <span class="o">==</span> <span class="s2">&quot;leave&quot;</span><span class="p">:</span>
+                <span class="c1"># Leave the room</span>
+                <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">leave_room</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="s2">&quot;room&quot;</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">command</span> <span class="o">==</span> <span class="s2">&quot;send&quot;</span><span class="p">:</span>
+                <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send_room</span><span class="p">(</span><span class="n">content</span><span class="p">[</span><span class="s2">&quot;room&quot;</span><span class="p">],</span> <span class="n">content</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">])</span>
+        <span class="k">except</span> <span class="n">ClientError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># Catch any errors and send it back</span>
+            <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send_json</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">})</span>
+
+    <span class="n">async</span> <span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when the WebSocket closes for any reason.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Leave all the rooms we are still in</span>
+        <span class="k">for</span> <span class="n">room_id</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">leave_room</span><span class="p">(</span><span class="n">room_id</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">ClientError</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+    <span class="c1">##### Command helper methods called by receive_json</span>
+
+    <span class="n">async</span> <span class="k">def</span> <span class="nf">join_room</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">room_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called by receive_json when someone sent a join command.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># The logged-in user is in our scope thanks to the authentication ASGI middleware</span>
+        <span class="n">room</span> <span class="o">=</span> <span class="n">await</span> <span class="n">get_room_or_error</span><span class="p">(</span><span class="n">room_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scope</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">])</span>
+        <span class="c1"># Send a join message if it&#39;s turned on</span>
+        <span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">NOTIFY_USERS_ON_ENTER_OR_LEAVE_ROOMS</span><span class="p">:</span>
+            <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel_layer</span><span class="o">.</span><span class="n">group_send</span><span class="p">(</span>
+                <span class="n">room</span><span class="o">.</span><span class="n">group_name</span><span class="p">,</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;chat.join&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;room_id&quot;</span><span class="p">:</span> <span class="n">room_id</span><span class="p">,</span>
+                    <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">scope</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+        <span class="c1"># Store that we&#39;re in the room</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">room_id</span><span class="p">)</span>
+        <span class="c1"># Add them to the group so they get room messages</span>
+        <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel_layer</span><span class="o">.</span><span class="n">group_add</span><span class="p">(</span>
+            <span class="n">room</span><span class="o">.</span><span class="n">group_name</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">channel_name</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># Instruct their client to finish opening the room</span>
+        <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send_json</span><span class="p">({</span>
+            <span class="s2">&quot;join&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">room</span><span class="o">.</span><span class="n">id</span><span class="p">),</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">room</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
+        <span class="p">})</span>
+
+    <span class="n">async</span> <span class="k">def</span> <span class="nf">leave_room</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">room_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called by receive_json when someone sent a leave command.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># The logged-in user is in our scope thanks to the authentication ASGI middleware</span>
+        <span class="n">room</span> <span class="o">=</span> <span class="n">await</span> <span class="n">get_room_or_error</span><span class="p">(</span><span class="n">room_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scope</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">])</span>
+        <span class="c1"># Send a leave message if it&#39;s turned on</span>
+        <span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">NOTIFY_USERS_ON_ENTER_OR_LEAVE_ROOMS</span><span class="p">:</span>
+            <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel_layer</span><span class="o">.</span><span class="n">group_send</span><span class="p">(</span>
+                <span class="n">room</span><span class="o">.</span><span class="n">group_name</span><span class="p">,</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;chat.leave&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;room_id&quot;</span><span class="p">:</span> <span class="n">room_id</span><span class="p">,</span>
+                    <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">scope</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+        <span class="c1"># Remove that we&#39;re in the room</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">room_id</span><span class="p">)</span>
+        <span class="c1"># Remove them from the group so they no longer get room messages</span>
+        <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel_layer</span><span class="o">.</span><span class="n">group_discard</span><span class="p">(</span>
+            <span class="n">room</span><span class="o">.</span><span class="n">group_name</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">channel_name</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="c1"># Instruct their client to finish closing the room</span>
+        <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send_json</span><span class="p">({</span>
+            <span class="s2">&quot;leave&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">room</span><span class="o">.</span><span class="n">id</span><span class="p">),</span>
+        <span class="p">})</span>
+
+    <span class="n">async</span> <span class="k">def</span> <span class="nf">send_room</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">room_id</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called by receive_json when someone sends a message to a room.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Check they are in this room</span>
+        <span class="k">if</span> <span class="n">room_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rooms</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ClientError</span><span class="p">(</span><span class="s2">&quot;ROOM_ACCESS_DENIED&quot;</span><span class="p">)</span>
+        <span class="c1"># Get the room and send to the group about it</span>
+        <span class="n">room</span> <span class="o">=</span> <span class="n">await</span> <span class="n">get_room_or_error</span><span class="p">(</span><span class="n">room_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scope</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">])</span>
+        <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">channel_layer</span><span class="o">.</span><span class="n">group_send</span><span class="p">(</span>
+            <span class="n">room</span><span class="o">.</span><span class="n">group_name</span><span class="p">,</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;chat.message&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;room_id&quot;</span><span class="p">:</span> <span class="n">room_id</span><span class="p">,</span>
+                <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">scope</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+                <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+    <span class="c1">##### Handlers for messages sent over the channel layer</span>
+
+    <span class="c1"># These helper methods are named by the types we send - so chat.join becomes chat_join</span>
+    <span class="n">async</span> <span class="k">def</span> <span class="nf">chat_join</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when someone has joined our chat.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Send a message down to the client</span>
+        <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send_json</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;msg_type&quot;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">MSG_TYPE_ENTER</span><span class="p">,</span>
+                <span class="s2">&quot;room&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;room_id&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">],</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+
+    <span class="n">async</span> <span class="k">def</span> <span class="nf">chat_leave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when someone has left our chat.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Send a message down to the client</span>
+        <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send_json</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;msg_type&quot;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">MSG_TYPE_LEAVE</span><span class="p">,</span>
+                <span class="s2">&quot;room&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;room_id&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">],</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+
+    <span class="n">async</span> <span class="k">def</span> <span class="nf">chat_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when someone has messaged our chat.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Send a message down to the client</span>
+        <span class="n">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send_json</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;msg_type&quot;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">MSG_TYPE_MESSAGE</span><span class="p">,</span>
+                <span class="s2">&quot;room&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;room_id&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">],</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+</pre></div></p>
+<h2 id="_6">异常类的使用<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>类路径:
+venv/lib/python3.7/site-packages/channels/exceptions.py</p>
+<p>class RequestAborted(Exception):
+class RequestTimeout(RequestAborted):
+class InvalidChannelLayerError(ValueError):
+class AcceptConnection(Exception):
+class DenyConnection(Exception):
+class ChannelFull(Exception):
+class MessageTooLarge(Exception):
+class StopConsumer(Exception):</p>
+<h2 id="flutter">Flutter 代码<a class="headerlink" href="#flutter" title="Permanent link">&para;</a></h2>
+<p><a href="https://pub.dev/packages/web_socket_channel#-example-tab-">web_socket_channel</a>
+<div class="codehilite"><pre><span></span><span class="n">initWebsocket</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">channel</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">///初始化WebSocket</span>
+    <span class="n">channel</span> <span class="o">=</span>
+        <span class="n">IOWebSocketChannel</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;ws://127.0.0.1:8000/channels/rooms/&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="c1">///设置WebSocket监听</span>
+  <span class="n">channel</span><span class="p">.</span><span class="n">stream</span><span class="p">.</span><span class="n">listen</span><span class="p">((</span><span class="n">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">print</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">data</span><span class="p">)[</span><span class="s2">&quot;message&quot;</span><span class="p">]);</span>
+    <span class="n">accetpMsg</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">data</span><span class="p">)[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;message&quot;</span><span class="p">],</span>
+        <span class="n">json</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">data</span><span class="p">)[</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;type&quot;</span><span class="p">]);</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+<span class="c1">///处理发送</span>
+<span class="kt">void</span> <span class="n">_submitMsg</span><span class="p">(</span><span class="kt">String</span> <span class="n">txt</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">_textController</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+  <span class="n">setState</span><span class="p">(()</span> <span class="p">{</span>
+    <span class="n">_isWriting</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">});</span>
+  <span class="n">Msg</span> <span class="n">msg</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Msg</span><span class="p">(</span>
+    <span class="nl">txt:</span> <span class="n">txt</span><span class="p">,</span>
+    <span class="nl">animationController:</span> <span class="k">new</span> <span class="n">AnimationController</span><span class="p">(</span>
+        <span class="nl">vsync:</span> <span class="k">this</span><span class="p">,</span> <span class="nl">duration:</span> <span class="k">new</span> <span class="n">Duration</span><span class="p">(</span><span class="nl">milliseconds:</span> <span class="m">800</span><span class="p">)),</span>
+  <span class="p">);</span>
+  <span class="n">setState</span><span class="p">(()</span> <span class="p">{</span>
+    <span class="n">_messages</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">msg</span><span class="p">);</span>
+  <span class="p">});</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">txt</span><span class="p">.</span><span class="n">isNotEmpty</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">channel</span><span class="p">.</span><span class="n">sink</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">encode</span><span class="p">({</span>
+      <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="n">txt</span><span class="p">,</span> <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;send&quot;</span><span class="p">}</span>
+    <span class="p">}));</span>
+  <span class="p">}</span>
+  <span class="n">msg</span><span class="p">.</span><span class="n">animationController</span><span class="p">.</span><span class="n">forward</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="c1">///处理接收消息</span>
+<span class="kt">void</span> <span class="n">accetpMsg</span><span class="p">(</span><span class="kt">String</span> <span class="n">txt</span><span class="p">,</span> <span class="kt">String</span> <span class="n">type</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;send&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">Msg</span> <span class="n">msg</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Msg</span><span class="p">(</span>
+    <span class="nl">txt:</span> <span class="n">txt</span><span class="p">,</span>
+    <span class="nl">animationController:</span> <span class="k">new</span> <span class="n">AnimationController</span><span class="p">(</span>
+        <span class="nl">vsync:</span> <span class="k">this</span><span class="p">,</span> <span class="nl">duration:</span> <span class="k">new</span> <span class="n">Duration</span><span class="p">(</span><span class="nl">milliseconds:</span> <span class="m">800</span><span class="p">)),</span>
+    <span class="nl">messageType:</span> <span class="n">MessageType</span><span class="p">.</span><span class="n">accept</span><span class="p">,</span>
+  <span class="p">);</span>
+  <span class="n">setState</span><span class="p">(()</span> <span class="p">{</span>
+    <span class="n">_messages</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">msg</span><span class="p">);</span>
+  <span class="p">});</span>
+  <span class="n">msg</span><span class="p">.</span><span class="n">animationController</span><span class="p">.</span><span class="n">forward</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="err">@</span><span class="n">override</span>
+<span class="kt">void</span> <span class="n">dispose</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">channel</span><span class="p">.</span><span class="n">sink</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+  <span class="k">super</span><span class="p">.</span><span class="n">dispose</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div></p>
+<h2 id="_7">需要的类库<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>Django Channels</p>
+<p>Channels是一个扩展Django并将其能力扩展到HTTP以外的项目 - 用于处理WebSockets，聊天协议，IoT协议等。它建立在一个名为ASGI的Python规范之上。
+它通过获取Django的核心并在下面分层完全异步层来实现这一点，在同步模式下运行Django本身，但异步处理连接和套接字，并允许您选择以任一样式编写。
+要开始了解Channels，请阅读我们的简介，其中将介绍工作原理。如果您从频道1升级，请查看频道2中的新功能？了解变化; 事情大不相同。</p>
+<div class="codehilite"><pre><span></span>channels
+channels-redis
+</pre></div>
+
+
+<h3 id="channels-1channels-2">Channels 1和Channels 2 有什么<a class="headerlink" href="#channels-1channels-2" title="Permanent link">&para;</a></h3>
+<h2 id="awsgi">AWsgi<a class="headerlink" href="#awsgi" title="Permanent link">&para;</a></h2>
+<p>Python实现WSGI，主要用于解决Python异步框架和服务之间的通信标准接口</p>
+<p>在WSGI为同步Python应用程序提供标准的地方，ASGI为异步和同步应用程序提供了一个标准，具有WSGI向后兼容性实现以及多个服务器和应用程序框架。</p>
+<h3 id="wsgi"><code>WSGI兼容性</code><a class="headerlink" href="#wsgi" title="Permanent link">&para;</a></h3>
+<p>ASGI也被设计为WSGI的超集，并且在两者之间有一种定义的转换方式，允许WSGI应用程序通过转换包装器（在asgiref 库中提供）在ASGI服务器内运行。线程池可用于远离异步事件循环运行同步WSGI应用程序。</p>
+<p><a href="https://asgi.readthedocs.io/en/latest/">AWSGI</a></p>
+<h2 id="django-websocket-redis">django-websocket-redis<a class="headerlink" href="#django-websocket-redis" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/jrief/django-websocket-redis">django-websocket-redis</a></p>
+<h2 id="_8">参考案例<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/andrewgodwin/channels-examples/tree/master/multichat">multichat</a></p>
+<h2 id="websocket_5">websocket 开发调试工具<a class="headerlink" href="#websocket_5" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.npmjs.com/package/wscat">https://www.npmjs.com/package/wscat</a>
+<a href="http://coolaf.com:1010/tool/chattest">http://coolaf.com:1010/tool/chattest</a></p>
+<h2 id="websocket_6">websocket官网<a class="headerlink" href="#websocket_6" title="Permanent link">&para;</a></h2>
+<p><a href="http://www.websocket.org/echo.html">websocket</a></p>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<h3 id="_9">项目地址<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/cangchengkun/SkyRoad">SkyRoad</a></p>
+<p><a href="https://github.com/cangchengkun/PythonProjectSample.git">PythonProjectSample</a></p>
+<h3 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>pip install -r requirements.txt
+</pre></div>
+
+
+<p>Then, you'll need Redis running locally; the settings are configured to
+point to <code>localhost</code>, port <code>6379</code>, but you can change this in the
+<code>CHANNEL_LAYERS</code> setting in <code>settings.py</code>.</p>
+<p>Finally, run::</p>
+<div class="codehilite"><pre><span></span>python manage.py migrate
+python manage.py runserver
+</pre></div>
+
+
+<hr />
+<p>Make yourself a superuser account::</p>
+<div class="codehilite"><pre><span></span>python manage.py createsuperuser
+</pre></div>
+
+
+<p>然后，登录http：// localhost：8000 / admin /并制作几个Room对象。一定要制作一个设置为“仅限员工”的，</p>
+<p>最后，在管理员中创建一个没有员工权限的第二个用户帐户。您将使用它在第二个窗口中登录聊天，并在仅限员工的房间上测试身份验证。</p>
+<p>现在，在另一个浏览器或“隐身”模式下打开第二个窗口 - 您将使用两个用户帐户登录同一站点。在两个浏览器中导航到 http：// localhost：8000并打开相同的聊天室。</p>
+<p>现在，您可以输入消息并立即在两个屏幕上显示消息。您可以加入其他房间并在那里尝试，看看您如何从您目前加入的所有房间收到消息。</p>
+<p>如果您尝试让非工作人员用户加入您的员工聊天室，则应该看到服务器端身份验证代码启动时出现错误。</p>
+<h3 id="_10">工作原理<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>有一个普通的Django视图，只提供普通@login_required装饰器后面的HTML页面 ，这基本上是一个单页应用程序，所有JS都加载到index.html文件中（因为这是一个例子）。</p>
+<p>有一个消费者，您可以看到路由到multichat/routing.py，它包含在渠道认证ASGI中间件中，因此它可以检查您的用户是否已登录并检索它以检查您要求加入会议室时的访问权限。</p>
+<p>您在哪个房间跟踪self.rooms消费者，以便在断开连接时可以保持干净。</p>
+<p>每当客户端要求加入房间，离开房间或发送消息时，它都会发送带有JSON编码命令的WebSocket文本框架。我们使用通用使用者为我们处理JSON的解码，然后根据命令调度到三个处理函数之一。</p>
+<p>所有房间都有一个关联的组，对于连接，离开和消息，事件通过通道层发送到该组。组中的消费者将接收这些消息，并且消费者还具有用于那些（例如chat_join）的处理程序功能，其用于在将事件发送到客户端之前将事件编码为WebSocket有线格式。</p>
+<h3 id="_11">建议的练习<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>如果您想尝试进行一些更改并了解频道，请参阅以下有关如何进行操作的一些想法和提示：</p>
+<p>使自己的消息具有不同的消息类型。您需要编辑该chat_message函数，以根据chat.message其获取的事件是否来自您向客户端发送不同的数据包。</p>
+<p>添加消息持久性。已发送消息以使用户加入房间，因此您可以使用该消息发送一些以前的消息; 但是，你需要制作一个模型来保存消息。</p>
+<p>在添加和删除房间时，使房间列表动态更改。您可以添加每个套接字加入的公共组，并在创建/删除房间时向其发送事件。</p>
+<p>添加邮件编辑和删除。你需要先让它们持久化; 确保您随每条消息发送消息ID，以便客户端可以跟踪它们。然后，编写一些代码来处理编辑，并在发生这种情况时触发发送新消息的消息ID。</p>
+<h2 id="_12">进一步阅读<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<hr />
+<p>You can find the Channels documentation at <a href="http://channels.readthedocs.org">http://channels.readthedocs.org</a></p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../getting-started/" title="Getting started" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Getting started
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../android/flutterdev/flutteradvance/" title="Flutter学习路线" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Flutter学习路线
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019  Aige
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="http://struct.cc" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/cangchengkun/Docs" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/Aige25868905" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.facebook.com/cangck.danmo" class="md-footer-social__link fa fa-facebook"></a>
+    
+      <a href="https://www.youtube.com/" class="md-footer-social__link fa fa-youtube"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.43ad2ac2.js"></script>
+      
+        
+        
+          
+          <script src="../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
