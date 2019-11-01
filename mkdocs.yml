@@ -133,6 +133,7 @@ nav:
       - FlutterUI框架绘制过程: android/flutterdev/FlutterWidgetinit.md
       - 自定义Widget: android/flutterdev/customWidget.md
       - Flutter图片加载: android/flutterdev/flutterImageProvider.md
+      - FlutterAndroid&IOS打包: android/flutterdev/Flutterdeployment.md
     - FlutterEngine:
       - 编译模式: android/flutter/ComplieMode.md
       - FlutterEngine编译: android/flutter/EngineCompile.md

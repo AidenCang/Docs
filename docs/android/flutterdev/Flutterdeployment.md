@@ -1,6 +1,5 @@
 # Android&IOS打包发布
 
-
 ## 概要
 应用程序正在改变世界，丰富人们的生活，并使像您这样的开发人员能够前所未有地进行创新。结果，App Store已成长为一个激动人心且充满活力的生态系统，为数百万开发人员和超过10亿用户所用。无论您是第一次开发人员还是经验丰富的程序员组成的庞大团队，我们都为您正在为App Store创建应用程序而感到兴奋，并希望帮助您了解我们的指南，因此您可以确信自己的应用程序将快速通过审核过程。
 
@@ -23,8 +22,7 @@
 启用后端服务，以便它们在审核期间处于活动状态并可以访问
 在App Review注释中包括对非显而易见功能和应用内购买的详细说明，并在适当时包括支持文档。
 
-## Android打包
-JKS 密钥库使用专用格式。建议使用 "keytool -importkeystore -srckeystore ./key.jks -destkeystore ./key.jks -deststoretype pkcs12" 迁移到行业标准格式 PKCS12。
+
 
 ## [IOS打包](https://developer.apple.com/app-store/review/guidelines/)
 
@@ -124,4 +122,115 @@ App Store Connect 使用入门
 提供 App 内购买项目
 参考
 
-##
+## Android Android Jetpack 使用入门
+## Android打包
+JKS 密钥库使用专用格式。建议使用 "keytool -importkeystore -srckeystore ./key.jks -destkeystore ./key.jks -deststoretype pkcs12" 迁移到行业标准格式 PKCS12。
+
+
+Jetpack 包含一系列 Android 库，它们都采用最佳做法并在 Android 应用中提供向后兼容性。
+Jetpack 应用架构指南概述了构建 Android 应用时要考虑的最佳做法和推荐架构。
+下文介绍了如何开始使用 Jetpack 组件。
+[Android Jetpack 使用入门](https://developer.android.com/jetpack/docs/getting-started)
+[Android Jetpack组件列表](https://developer.android.com/jetpack/#foundation-components)
+
+Android Jetpack is a set of components, tools and guidance to make great Android apps. They bring together the existing Support Library and Architecture Components and arrange them into four categories:
+![pic](./flutterdev/img/androidjetpack.png)
+[Android Sunflower开发源码项目](https://medium.com/androiddevelopers/introducing-android-sunflower-e421b43fe0c2)
+[GithHub源码项目代码](https://github.com/android/sunflower)
+
+## AndroidStudioMaven仓库的使用
+
+[Google Maven](https://maven.google.com/web/index.html)
+[Android Studio 使用Maven仓库](http://android-er.blogspot.com/2019/03/add-google-maven-repository-to-android.html)
+[Guide to Public Maven Repositories](https://www.deps.co/guides/public-maven-repositories/#maven-central)
+
+[Android KTX](https://developer.android.com/kotlin/ktx) 是一组 Kotlin 扩展程序，属于 Android Jetpack 系列。它优化了供 Kotlin 使用的 Jetpack 和 Android 平台 API。Android KTX 旨在让您利用 Kotlin 语言功能（例如扩展函数/属性、lambda、命名参数和参数默认值），以更简洁、更愉悦、更惯用的方式使用 Kotlin 进行 Android 开发。Android KTX 不会向现有的 Android API 添加任何新功能。
+要详细了解 Android KTX，请观看我们的 [DevBytes 视频](https://www.youtube.com/watch?v=r_19VZ0xRO8&feature=youtu.be)。
+
+## AndroidX 概述
+AndroidX 是 Android 团队用于在 Jetpack 中开发、测试、打包和发布库以及对其进行版本控制的开源项目。
+AndroidX 对原始 Android 支持库进行了重大改进。与支持库一样，AndroidX 与 Android 操作系统分开提供，并与各个 Android 版本向后兼容。AndroidX 完全取代了支持库，不仅提供同等的功能，而且提供了新的库。此外，AndroidX 还包括以下功能：
+
+AndroidX 中的所有软件包都使用一致的命名空间，以字符串 androidx 开头。支持库软件包已映射到对应的 androidx.* 软件包。有关所有旧类到新类以及旧编译工件到新编译工件的完整映射，请参阅软件包重构页面。
+与支持库不同，AndroidX 软件包会单独维护和更新。androidx 软件包使用严格的语义版本控制，从版本 1.0.0 开始。您可以单独更新项目中的 AndroidX 库。
+所有新支持库的开发工作都将在 AndroidX 库中进行。这包括维护原始支持库工件和引入新的 Jetpack 组件。
+
+[AndroidX 概览](https://developer.android.com/jetpack/androidx)
+[迁移到AndroidX](https://developer.android.com/jetpack/androidx/migrate)
+[AndroidX包列表](https://developer.android.com/reference/androidx/packages)
+[AndroidX开发blog](https://android-developers.googleblog.com/2018/05/hello-world-androidx.html)
+
+
+
+## Android 架构设计
+1.通过模型驱动界面
+
+    持久性是理想之选，原因如下：
+    如果 Android 操作系统销毁应用以释放资源，用户不会丢失数据。
+    当网络连接不稳定或不可用时，应用会继续工作。
+
+2.分离关注点
+
+[分离关注点](https://en.wikipedia.org/wiki/Separation_of_concerns)
+[应用架构指南](https://developer.android.com/jetpack/docs/guide)
+[Android架构组件](https://developer.android.com/topic/libraries/architecture/)
+
+## 配置编译版本
+
+[优化编译的代码](https://source.android.com/devices/tech/dalvik/)
+
+1.配置Gradle依赖库的信息
+2.配置Gradle依赖的那些工程
+3.配置Gradle使用的环境变量和默认配置
+4.配置Gradle编译是使用的控制Gradle的配置变量
+5.配置Gradle使用SDK环境变量的位置
+
+
+
+测试、部署、签署和分发的 APK
+
+自定义编译配置
+
+  编译版本类型
+  正式版类型
+  编译变体
+  清单条目
+  依赖项
+  签名
+  ProGuard
+  多 APK 支持
+
+编译配置文件
+  Gradle 设置文件:settings.gradle 文件位于项目根目录，用于指示 Gradle 在编译应用时应将哪些模块包含在内
+  顶级编译文件:顶级 build.gradle 文件位于项目根目录，用于定义适用于项目中所有模块的编译配置。默认情况下，顶级编译文件使用 buildscript 代码块来定义项目中所有模块共用的代码库和依赖项。以下代码示例描述的默认设置和 DSL 元素可在新建项目后的顶级 build.gradle 文件中找到。
+
+shrinking, using minifyEnabled, and specifies the Proguard settings file
+
+
+Gradle 属性文件
+
+Gradle 还包含两个属性文件，位于项目根目录，可用于指定 Gradle 编译工具包本身的设置：
+gradle.properties:您可以在其中配置项目范围的 Gradle 设置，如 Gradle 守护进程的最大堆大小。如需了解详情，请参阅编译环境。
+local.properties:配置编译系统的本地环境属性，如 SDK 安装路径。由于此文件的内容由 Android Studio 自动生成并且专用于本地开发者环境，因此您不应手动修改此文件或将其检入版本控制系统。
+
+
+[AndroidStudio不同模块配置](http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.AppExtension.html#N148E3)
+
+启用离线模式
+如果网络连接速度比较慢，那么在 Gradle 尝试使用网络资源解析依赖项时，编译时间可能会延长。您可以指示 Gradle 仅使用已缓存到本地的工件，从而避免使用网络资源。
+
+要在使用 Android Studio 编译项目时离线使用 Gradle，请执行以下操作：
+
+依次点击 File > Settings（在 Mac 上，则依次点击 Android Studio > Preferences），打开 Preferences 窗口。
+在左侧窗格中，依次点击 Build, Execution, Deployment > Gradle。
+勾选 Offline work 复选框。
+点击 Apply 或 OK。
+如果您正在通过命令行编译，请传递 --offline 选项。
+
+Instant Run：
+
+打开 Settings 或 Preferences 对话框。
+依次转到 Build, Execution, Deployment > Instant Run。
+确保勾选 Enable Instant Run。
+
+[Android Runtime (ART) 和 Dalvik](https://source.android.com/devices/tech/dalvik/)
