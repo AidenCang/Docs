@@ -23,6 +23,9 @@
 在App Review注释中包括对非显而易见功能和应用内购买的详细说明，并在适当时包括支持文档。
 
 
+UI框架:UIKit框架提供了构建用于iOS和tvOS的应用程序所需的核心对象。您可以使用这些对象在屏幕上显示您的内容，与该内容进行交互以及管理与系统的交互。应用程序依赖于UIKit的基本行为，而UIKit提供了多种方式来自定义行为以符合您的特定需求。
+Xcode项目文件结构:在构建应用程序时，Xcode会编译您的源文件并为您的项目创建一个应用程序包。应用程序捆绑包是一个结构化目录，其中包含与该应用程序关联的代码和资源。资源包括支持您的代码的图像资产，情节提要文件，字符串文件和应用程序元数据。应用程序捆绑包的结构很重要，但是Xcode知道您的资源需要存放在哪里，所以暂时不必担心。
+
 
 ## [IOS打包](https://developer.apple.com/app-store/review/guidelines/)
 
@@ -121,6 +124,45 @@ App Store Connect 使用入门
 配置 App Store 功能
 提供 App 内购买项目
 参考
+
+## Android 打包
+### 测试、部署、签名、分发
+
+Android 编译系统`会编译应用资源和源代码`，然后将它们打包成可供您测试、部署、签署和分发的 APK。Android Studio 使用高级编译工具包` Gradle` 来`自动执行和管理编译流程`，同时也允许您定义灵活的`自定义编译配置`。每个编译配置均可定义自己的一组代码和资源，同时重用所有应用版本共用的部分。Android Plugin for Gradle 与该编译工具包一起使用，共同提供专用于编译和测试 Android 应用的流程和可配置设置。
+
+#### 编译系统:
+[Gradle](http://www.gradle.org/)
+[jetpack](https://developer.android.com/jetpack/docs/getting-started))
+
+如何自动执行、如何管理打包流程、如何配置自定义编译配置
+[使用命令行打包](https://developer.android.com/studio/build/building-cmdline.html)
+
+生成编译报告
+
+    ./gradlew --profile --offline --rerun-tasks assemblefreeDebug
+查看CPU架构信息:
+查看Android设备的CPU架构信息，可以使用命令来完成：
+1、adb shell
+2、cat  /proc/cpuinfo
+[AndroidCPU其中架构](https://www.jianshu.com/p/d6750a920019)
+
+
+
+## 打包流程
+
+典型 Android 应用模块的编译流程（如图 1 所示）按照以下常规步骤执行：
+
+编译器将您的源代码转换成 DEX 文件（Dalvik 可执行文件，其中包括在 Android 设备上运行的字节码），并将其他所有内容转换成编译的资源。
+APK 打包器将 DEX 文件和编译的资源组合成单个 APK。不过，必须先为 APK 签名，然后才能将应用安装并部署到 Android 设备上。
+APK 打包器使用调试或发布密钥库为 APK 签名：
+如果您编译的是应用调试版本（即专用于测试和分析的应用），打包器会使用调试密钥库为应用签名。Android Studio 自动使用调试密钥库配置新项目。
+如果您编译的是打算向外发布的应用发布版本，打包器会使用发布密钥库为应用签名。要创建发布密钥库，请参阅在 Android Studio 中为应用签名。
+在生成最终 APK 之前，打包器会使用 zipalign 工具对应用进行优化，减少其在设备上运行时占用的内存。
+编译流程结束时，您将获得可用于部署和测试的调试 APK，或者可用于发布给外部用户的发布 APK。
+
+
+
+
 
 ## Android Android Jetpack 使用入门
 ## Android打包
@@ -234,3 +276,13 @@ Instant Run：
 确保勾选 Enable Instant Run。
 
 [Android Runtime (ART) 和 Dalvik](https://source.android.com/devices/tech/dalvik/)
+
+
+## 性能分析
+
+如果应用响应速度慢、动画播放不流畅、卡顿、崩溃或极其耗电，则表示其性能差
+
+
+
+
+[分析应用性能](https://developer.android.com/studio/profile)
