@@ -120,6 +120,7 @@ nav:
     - Flutter:
       - Flutter学习路线: android/flutterdev/flutteradvance.md
       - FlutterUI和Engine关联: android/flutter/flutterUIframework.md
+      - FlutterUI框架绘制过程: android/flutterdev/FlutterWidgetinit.md
       - PlatformChannel: android/flutterdev/platform_channels.md
       - ISOlate使用: android/flutterdev/isolatedev.md
       - Future&Stream: android/flutterdev/futterStream.md
@@ -131,7 +132,6 @@ nav:
       - Flutter: android/flutter/flutter.md
       - FlutterSdk: android/flutter/FlutterTools.md
       - Flutter项目经验: android/flutter_project/flutterApp.md
-      - FlutterUI框架绘制过程: android/flutterdev/FlutterWidgetinit.md
       - 自定义Widget: android/flutterdev/customWidget.md
       - Flutter图片加载: android/flutterdev/flutterImageProvider.md
       - FlutterAndroid&IOS打包: android/flutterdev/Flutterdeployment.md
