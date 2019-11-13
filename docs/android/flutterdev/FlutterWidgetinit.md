@@ -164,6 +164,14 @@ void runApp(Widget app) {
 `RenderObjectToWidgetAdapter` 类作为Flutter系统顶层的UI，作为用户UI和Flutter框架层的联合点
 在`WidgetsBinding`中调用`attachRootWidget`进行渲染对象和Element对象进行关联,`RenderView`成为`RootRenderObjectElement`的成员变量,渲染对象和Element对象进行关联，可以同步更新UI
 
+attachRootWidget 完成三件事:
+
+  RenderObjectToWidgetAdapter: 关联renderView和rootWidget
+
+  关联PipelineOwner
+
+  关联BuildOwner
+
 ```Dart
 void attachRootWidget(Widget rootWidget) {
   _renderViewElement = RenderObjectToWidgetAdapter<RenderBox>(
@@ -174,7 +182,7 @@ void attachRootWidget(Widget rootWidget) {
 }
 ```
 
-### renderView对象
+#### renderView对象
 
 renderView对象是在`RendererBinding`中调用`initRenderView`对象进行初始化的，`RenderView`集成`RenderObject`实现`RenderObjectWithChildMixin`
 
@@ -201,7 +209,7 @@ void initRenderView() {
 
 通过上面的初始化过程已经把渲染对象初始化完成，并且关联自己到PipelineOwner对象中，详细的信息在后续介绍(owner._nodesNeedingLayout.add(this);)
 
-### BuildOwner：
+#### BuildOwner：
 widgets框架的manager类。此类跟踪需要重建的小部件，并处理其他任务作为一个整体应用于小部件树，例如管理非活动元素列出树并在必要时触发“重新组合”命令调试时热重新加载。main build owner通常由[widgetsbinding]拥有，并且是与build/layout/paint管道。可以生成其他生成所有者来管理屏幕外小部件树。若要将生成所有者分配给树，请使用的根元素上的[rootrenderobjectelement.assignowner]方法。
 
 BuildOwner: 主要是查找PipelineOwner中记录的那些需要改变的渲染对象进行渲染，`查找有哪些`Element`是污染了，需要进行从新布局和绘制的`
@@ -234,9 +242,14 @@ void drawFrame() {
 
 
 ## 初始化`Widget`
+
+上面介绍了初始化系统框架成的渲染对象`renderView`,和记录Widget变化信息的`PipelineOwner`,真正执行测量、布局、绘制、的整个过程，并且已经初始化不同的BaseBind对象的子类，分解了Window对象的事件
+
+
 `RenderObjectToWidgetAdapter.attachToRenderTree`对Element进行创建
 将这个Widget进行填充，并实际将结果[renderobject]设置为[容器]的子级。如果element为空，则此函数将创建一个新元素。否则，给定元素将有一个计划好的更新以切换到此小部件。由[runapp]用于引导应用程序。
-
+ Only one [buildScope] can be active at a time.
+ 
 ```Dart
 RenderObjectToWidgetElement<T> attachToRenderTree(BuildOwner owner, [ RenderObjectToWidgetElement<T> element ]) {
   if (element == null) {
