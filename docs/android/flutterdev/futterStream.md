@@ -11,6 +11,19 @@ StreamController
 SynchronousStreamController
 
 
+/**
+ * A simple stopwatch interface to measure elapsed time.
+ */
+class Stopwatch {
+
+
+
+
+
+
+Flutter stream 有两种类型:
+  single-subscription
+  broadcast
 
 
 
@@ -193,6 +206,14 @@ if (!identical(Zone.current, _rootZone)) {
 ```
 ## 参考连接
 
+[生成器使用](https://www.kikt.top/posts/flutter/dart/generators/)
 [async-await](https://dart.dev/codelabs/async-await)
 [futures-error-handling](https://dart.dev/guides/libraries/futures-error-handling)
 [stream](https://dart.dev/tutorials/language/streams)
+
+
+[RxDart github repo](https://github.com/ReactiveX/rxdart)
+[Asynchronous Programming: Streams](https://www.dartlang.org/tutorials/language/streams)
+[Single-Subscription vs. Broadcast Streams](https://www.dartlang.org/articles/libraries/broadcast-streams)
+[Creating Streams in Dart](https://www.dartlang.org/articles/libraries/creating-streams)
+[Testing Streams: Stream Matchers](https://pub.dartlang.org/packages/test#stream-matchers)

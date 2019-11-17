@@ -80,9 +80,24 @@ void main() {
 ```
 
 ## Flutter架构
+
+### 核心问题点
+
+通过上面的分析，我们知道Flutter引擎对UI层的绘制，最关心的是:
+
+1.输出的渲染对象
+
+2.渲染对象如何改变
+
+3.如何管理渲染对象的生成
+
+4.如何管理树中对象的变化
+
+
+
 ![pic](./img/tree.png)
 
-### Flutter 入口
+### 输出的渲染对象
 
 Flutter 层UI初始化过程，是在入口文件中调用`runApp`把应用Widget和系统的渲染引擎进行关联
 
@@ -93,13 +108,15 @@ void runApp(Widget app) {
     ..scheduleWarmUpFrame();
 }
 ```
+上一篇文章中，我们已经介绍了Window事件是如何分解到不同的"BaseBind"对象的子类上，并进行初始化的，继续分析用户层的widget如何和系统成的Window框架进行关联的。
+
 `attachRootWidget`完成了RenderObject和Element进行绑定，同时调用`BuilderOwer`来对屏幕上显示的区域和那些需要进行重新绘制的`Widget`计算。
 
 `scheduleWarmUpFrame`所有的数据准备好了之后，需要把一帧的数据传递到系统FlutterEngine中继续渲染出来发展屏幕上。`pipeline`是对已经计算好的数据进行处理提交到FluuterEngine上进行渲染
 
 以上逻辑主要做了两个操作:
 
-    1.生成静态数据的关联对象:(只是保存一下逻辑数据)
+    生成静态数据的关联对象:(只是保存一下逻辑数据)
 
     1:RenderView:对应系统层渲染框架的Surface对象的数据抽象
 
@@ -120,9 +137,10 @@ void runApp(Widget app) {
 
     1.buildOwner:从`RenderView`开始计算整个UI树中显示的是那一部分已经是哪一部分是需要更新，保存相关的`List<Element>`对象
 
-    2.PipelineOwner:每一个`Element`中都会有一个`RenderObject`，主要使用来处理渲染引擎在FlutterUI层的逻辑数据,上一步已经把需要更新的数据添加到`List<RenderObject>`
+    2.[PipelineOwner](../flutterdev/FlutterWidgetinit/#pipeline):每一个`Element`中都会有一个`RenderObject`，主要使用来处理渲染引擎在FlutterUI层的逻辑数据,上一步已经把需要更新的数据添加到`List<RenderObject>`
 
     3.调用`RenderView`的`compositeFrame`方法把场景数据传递到系统渲染引擎
+
 
 
 ### RenderObject和Element关系
@@ -146,6 +164,14 @@ void runApp(Widget app) {
 `RenderObjectToWidgetAdapter` 类作为Flutter系统顶层的UI，作为用户UI和Flutter框架层的联合点
 在`WidgetsBinding`中调用`attachRootWidget`进行渲染对象和Element对象进行关联,`RenderView`成为`RootRenderObjectElement`的成员变量,渲染对象和Element对象进行关联，可以同步更新UI
 
+attachRootWidget 完成三件事:
+
+  RenderObjectToWidgetAdapter: 关联renderView和rootWidget
+
+  关联PipelineOwner
+
+  关联BuildOwner
+
 ```Dart
 void attachRootWidget(Widget rootWidget) {
   _renderViewElement = RenderObjectToWidgetAdapter<RenderBox>(
@@ -156,15 +182,45 @@ void attachRootWidget(Widget rootWidget) {
 }
 ```
 
-## 一帧一帧是怎么动起来的？
-### BuildOwner：
+#### renderView对象
+
+renderView对象是在`RendererBinding`中调用`initRenderView`对象进行初始化的，`RenderView`集成`RenderObject`实现`RenderObjectWithChildMixin`
+
+RenderBox:是真正的渲染对象
+RenderObject:
+  1.主要是保存RenderBox的数据实际数据和child的Constraints关系，同时保存对RenderBox操作的接口
+
+  2.保存和Child相关关联的数据ParentData
+
+
+```Dart
+/// Creates a [RenderView] object to be the root of the
+/// [RenderObject] rendering tree, and initializes it so that it
+/// will be rendered when the engine is next ready to display a
+/// frame.
+///
+/// Called automatically when the binding is created.
+void initRenderView() {
+  assert(renderView == null);
+  renderView = RenderView(configuration: createViewConfiguration(), window: window);
+  renderView.scheduleInitialFrame();
+}
+```
+
+通过上面的初始化过程已经把渲染对象初始化完成，并且关联自己到PipelineOwner对象中，详细的信息在后续介绍(owner._nodesNeedingLayout.add(this);)
+
+#### BuildOwner：
 widgets框架的manager类。此类跟踪需要重建的小部件，并处理其他任务作为一个整体应用于小部件树，例如管理非活动元素列出树并在必要时触发“重新组合”命令调试时热重新加载。main build owner通常由[widgetsbinding]拥有，并且是与build/layout/paint管道。可以生成其他生成所有者来管理屏幕外小部件树。若要将生成所有者分配给树，请使用的根元素上的[rootrenderobjectelement.assignowner]方法。
 
-`查找有哪些`Element`是污染了，需要进行从新布局和绘制的`
+BuildOwner: 主要是查找PipelineOwner中记录的那些需要改变的渲染对象进行渲染，`查找有哪些`Element`是污染了，需要进行从新布局和绘制的`
 
+
+进行提取=======================
 #### reassemble：
 使根在给定[element]的整个子树完全重建。当应用程序代码已更改并正在热重新加载，以使小部件树获取任何更改了实现。这很昂贵，除非在开发期间，否则不应该调用它。
 RendererBinding的initInstances方法中调用`drawFrame`
+
+
 #### buildScope：
 查找在屏幕上显示的区域的Element,确定哪些元素是要进行处理，画布是一个没有边界的区域，所以在在绘制之前是需要进行确认哪些区域是需要进行处理的
 ```Dart
@@ -185,11 +241,15 @@ void drawFrame() {
 ```
 
 
-
 ## 初始化`Widget`
+
+上面介绍了初始化系统框架成的渲染对象`renderView`,和记录Widget变化信息的`PipelineOwner`,真正执行测量、布局、绘制、的整个过程，并且已经初始化不同的BaseBind对象的子类，分解了Window对象的事件
+
+
 `RenderObjectToWidgetAdapter.attachToRenderTree`对Element进行创建
 将这个Widget进行填充，并实际将结果[renderobject]设置为[容器]的子级。如果element为空，则此函数将创建一个新元素。否则，给定元素将有一个计划好的更新以切换到此小部件。由[runapp]用于引导应用程序。
-
+ Only one [buildScope] can be active at a time.
+ 
 ```Dart
 RenderObjectToWidgetElement<T> attachToRenderTree(BuildOwner owner, [ RenderObjectToWidgetElement<T> element ]) {
   if (element == null) {
@@ -219,6 +279,7 @@ String toStringShort() => debugShortDescription ?? super.toStringShort();
 核心步骤:主要是在树中使用，遍历整棵树对每一个节点进行处理
 
 #### 初始化Element
+
 在绑定渲染对象和跟Element之后进行，开始初始化Element对象
 ```Dart
 RenderObjectToWidgetElement<T> attachToRenderTree(BuildOwner owner, [ RenderObjectToWidgetElement<T> element ]) {

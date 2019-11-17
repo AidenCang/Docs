@@ -79,3 +79,12 @@ void main() {
 }
 
 ```
+## State 生命周期(具体使用场景)
+initState  初始化是注册
+  ChangeNotifier
+  Stream
+build
+didUpdateWidget  Widget更新之后调用
+
+didChangeDependencies  BuildContext.inheritFromWidgetOfExactType  访问管理的数据
+dispose   Widge已经销毁之后，进行清理工作
