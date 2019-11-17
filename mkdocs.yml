@@ -134,6 +134,7 @@ nav:
       - 自定义Widget: android/flutterdev/customWidget.md
       - Flutter图片加载: android/flutterdev/flutterImageProvider.md
     - FlutterEngine:
+      - Engine源代码下载: android/flutter/downEngine.md
       - 编译模式: android/flutter/ComplieMode.md
       - FlutterEngine编译: android/flutter/EngineCompile.md
       - GNTools: android/flutter/GNTools.md
