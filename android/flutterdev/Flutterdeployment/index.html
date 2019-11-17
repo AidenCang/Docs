@@ -1,0 +1,2822 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="苍成坤的 blog">
+      
+      
+        <link rel="canonical" href="https://squidfunk.github.io/mkdocs-material/android/flutterdev/Flutterdeployment/">
+      
+      
+        <meta name="author" content="Aige">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
+    
+    
+      
+        <title>FlutterAndroid&IOS打包 - Aige  Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "None", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#androidios" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Aige  Docs
+            </span>
+            <span class="md-header-nav__topic">
+              FlutterAndroid&IOS打包
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." title="Home" class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../project/websocket/" title="Project" class="md-tabs__link">
+          Project
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../flutteradvance/" title="Android" class="md-tabs__link md-tabs__link--active">
+          Android
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../python/base/pythonlang/" title="Python" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../iot/Alexa/" title="IoT" class="md-tabs__link">
+          IoT
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../secret/reousrce/" title="Secret" class="md-tabs__link">
+          Secret
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../linux/resource/" title="Linux" class="md-tabs__link">
+          Linux
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../shell/shellresource/" title="Shell" class="md-tabs__link">
+          Shell
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../extensions/admonition/" title="Tools" class="md-tabs__link">
+          Tools
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../download/download/" title="Download" class="md-tabs__link">
+          Download
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Aige  Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../getting-started/" title="Getting started" class="md-nav__link">
+      Getting started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Project
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Project
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      SkyRoad
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        SkyRoad
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../project/websocket/" title="WebSocket" class="md-nav__link">
+      WebSocket
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Android
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Android
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1" checked>
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Flutter
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        Flutter
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutteradvance/" title="Flutter学习路线" class="md-nav__link">
+      Flutter学习路线
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterUIframework/" title="FlutterUI和Engine关联" class="md-nav__link">
+      FlutterUI和Engine关联
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterWidgetinit/" title="FlutterUI框架绘制过程" class="md-nav__link">
+      FlutterUI框架绘制过程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../platform_channels/" title="PlatformChannel" class="md-nav__link">
+      PlatformChannel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../isolatedev/" title="ISOlate使用" class="md-nav__link">
+      ISOlate使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../futterStream/" title="Future&Stream" class="md-nav__link">
+      Future&Stream
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../applifecyclestate/" title="Flutter生命周期管理" class="md-nav__link">
+      Flutter生命周期管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterNavigator/" title="FlutterNavigator" class="md-nav__link">
+      FlutterNavigator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterLib/" title="Flutter库" class="md-nav__link">
+      Flutter库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fluttersnip/" title="代码片段" class="md-nav__link">
+      代码片段
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterKey/" title="FlutterKey" class="md-nav__link">
+      FlutterKey
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutter/" title="Flutter" class="md-nav__link">
+      Flutter
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterTools/" title="FlutterSdk" class="md-nav__link">
+      FlutterSdk
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter_project/flutterApp/" title="Flutter项目经验" class="md-nav__link">
+      Flutter项目经验
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../customWidget/" title="自定义Widget" class="md-nav__link">
+      自定义Widget
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterImageProvider/" title="Flutter图片加载" class="md-nav__link">
+      Flutter图片加载
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        FlutterAndroid&IOS打包
+      </label>
+    
+    <a href="./" title="FlutterAndroid&IOS打包" class="md-nav__link md-nav__link--active">
+      FlutterAndroid&IOS打包
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="概要" class="md-nav__link">
+    概要
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="介绍" class="md-nav__link">
+    介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="确保" class="md-nav__link">
+    确保
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ios" title="IOS打包" class="md-nav__link">
+    IOS打包
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="检查您的应用是否遵循其他文档中的指导" class="md-nav__link">
+    检查您的应用是否遵循其他文档中的指导
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="开发、测试、数据统计" class="md-nav__link">
+    开发、测试、数据统计
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="数据统计" class="md-nav__link">
+    数据统计
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-store-connect" title="App Store Connect 使用入门" class="md-nav__link">
+    App Store Connect 使用入门
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android" title="Android 打包" class="md-nav__link">
+    Android 打包
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="测试、部署、签名、分发" class="md-nav__link">
+    测试、部署、签名、分发
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="编译系统:" class="md-nav__link">
+    编译系统:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" title="打包流程" class="md-nav__link">
+    打包流程
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android-android-jetpack" title="Android Android Jetpack 使用入门" class="md-nav__link">
+    Android Android Jetpack 使用入门
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android_1" title="Android打包" class="md-nav__link">
+    Android打包
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#androidstudiomaven" title="AndroidStudioMaven仓库的使用" class="md-nav__link">
+    AndroidStudioMaven仓库的使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#androidx" title="AndroidX 概述" class="md-nav__link">
+    AndroidX 概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android_2" title="Android 架构设计" class="md-nav__link">
+    Android 架构设计
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" title="配置编译版本" class="md-nav__link">
+    配置编译版本
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" title="性能分析" class="md-nav__link">
+    性能分析
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterTest/" title="Flutter测试" class="md-nav__link">
+      Flutter测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/Architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterDev/" title="Flutter开发" class="md-nav__link">
+      Flutter开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterexample/" title="example" class="md-nav__link">
+      example
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterQuestion/" title="Flutter常见问题" class="md-nav__link">
+      Flutter常见问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterUI/" title="FlutterUI" class="md-nav__link">
+      FlutterUI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/interview/" title="面试资料" class="md-nav__link">
+      面试资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      FlutterEngine
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        FlutterEngine
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/downEngine/" title="Engine源代码下载" class="md-nav__link">
+      Engine源代码下载
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/ComplieMode/" title="编译模式" class="md-nav__link">
+      编译模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/EngineCompile/" title="FlutterEngine编译" class="md-nav__link">
+      FlutterEngine编译
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/GNTools/" title="GNTools" class="md-nav__link">
+      GNTools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/NinjaSystem/" title="Ninja编译系统" class="md-nav__link">
+      Ninja编译系统
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/EngineCompile/" title="Engine编译构建" class="md-nav__link">
+      Engine编译构建
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterComplieFile/" title="Engine编译产物" class="md-nav__link">
+      Engine编译产物
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/ComplieMode/" title="编译模式" class="md-nav__link">
+      编译模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/apkfile/" title="Apk&ipd包分析" class="md-nav__link">
+      Apk&ipd包分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterAndroidInit/" title="Android加载Dart文件" class="md-nav__link">
+      Android加载Dart文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/AndroidViewinit/" title="Android初始化View" class="md-nav__link">
+      Android初始化View
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/EngineInit/" title="Engine初始化" class="md-nav__link">
+      Engine初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/EngineView/" title="EngineView初始化" class="md-nav__link">
+      EngineView初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/SmartPtr/" title="C++智能指针" class="md-nav__link">
+      C++智能指针
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/NativeExtensions/" title="NativeExtensions" class="md-nav__link">
+      NativeExtensions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/MessageLoop/" title="MessageLoop" class="md-nav__link">
+      MessageLoop
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/DartVM/" title="初始化DartVM" class="md-nav__link">
+      初始化DartVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/platformplugin/" title="PlatformChannel" class="md-nav__link">
+      PlatformChannel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/DartVMServiceProtocol/" title="DartVMServiceProtocol" class="md-nav__link">
+      DartVMServiceProtocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterSupportView/" title="FlutterSupportView" class="md-nav__link">
+      FlutterSupportView
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/profile/" title="性能优化" class="md-nav__link">
+      性能优化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/reviewCode/" title="reviewCode" class="md-nav__link">
+      reviewCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/DevResource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/fluttercommunicationAndroidorIOS/" title="FlutterUI通信Android&IOS" class="md-nav__link">
+      FlutterUI通信Android&IOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterEngine/" title="FlutterEngine源码编译" class="md-nav__link">
+      FlutterEngine源码编译
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterenginedir/" title="Flutter引擎目录" class="md-nav__link">
+      Flutter引擎目录
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      ReactNative
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        ReactNative
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rn/react_native/" title="ReactNative" class="md-nav__link">
+      ReactNative
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
+    
+    <label class="md-nav__link" for="nav-4-4">
+      Awsamplify
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-4">
+        Awsamplify
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../aws-android/awsamplify/" title="Awsamplify" class="md-nav__link">
+      Awsamplify
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../androidTools/" title="AndroidTools" class="md-nav__link">
+      AndroidTools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../issue/Androidissue/" title="Issue常见问题" class="md-nav__link">
+      Issue常见问题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Python
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      基础
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        基础
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/pythonlang/" title="语言基础" class="md-nav__link">
+      语言基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/advancesPython/" title="高级开发" class="md-nav__link">
+      高级开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/pythoninspect/" title="Python反射" class="md-nav__link">
+      Python反射
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1-4" type="checkbox" id="nav-5-1-4">
+    
+    <label class="md-nav__link" for="nav-5-1-4">
+      开发环境
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-1-4">
+        开发环境
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/pythonEnv/" title="环境" class="md-nav__link">
+      环境
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      爬虫
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        爬虫
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/scrapyBase/" title="爬虫基础" class="md-nav__link">
+      爬虫基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/scrapylib/" title="爬虫库" class="md-nav__link">
+      爬虫库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/spiderdemo/" title="爬虫实战" class="md-nav__link">
+      爬虫实战
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      服务器开发
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-3">
+        服务器开发
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-1" type="checkbox" id="nav-5-3-1">
+    
+    <label class="md-nav__link" for="nav-5-3-1">
+      WEB
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-1">
+        WEB
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/pythonweb/" title="主流服务器介绍" class="md-nav__link">
+      主流服务器介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/serverbase/" title="服务器常用软件" class="md-nav__link">
+      服务器常用软件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/pythonOauth/" title="Oauth2服务器搭建" class="md-nav__link">
+      Oauth2服务器搭建
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-2" type="checkbox" id="nav-5-3-2">
+    
+    <label class="md-nav__link" for="nav-5-3-2">
+      aws
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-2">
+        aws
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/aws/pyaws/" title="AWSpython使用" class="md-nav__link">
+      AWSpython使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/aws/serverless/" title="无服务" class="md-nav__link">
+      无服务
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-3" type="checkbox" id="nav-5-3-3">
+    
+    <label class="md-nav__link" for="nav-5-3-3">
+      Django开发
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-3">
+        Django开发
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangosignals/" title="Dajngo信号机制" class="md-nav__link">
+      Dajngo信号机制
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangoLogger/" title="日志配置" class="md-nav__link">
+      日志配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangosignals/" title="Djangomessage" class="md-nav__link">
+      Djangomessage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/JSONEncoder/" title="JsonEncoder" class="md-nav__link">
+      JsonEncoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/middleware/" title="中间件" class="md-nav__link">
+      中间件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/question/" title="常见问题" class="md-nav__link">
+      常见问题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-4" type="checkbox" id="nav-5-3-4">
+    
+    <label class="md-nav__link" for="nav-5-3-4">
+      部署
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-4">
+        部署
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/zappa/" title="zappa" class="md-nav__link">
+      zappa
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pythonTools/" title="开发工具" class="md-nav__link">
+      开发工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      IoT
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        IoT
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/Alexa/" title="Alexa" class="md-nav__link">
+      Alexa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/awsiot/" title="AWSIOT" class="md-nav__link">
+      AWSIOT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/iotCore/" title="IotCore" class="md-nav__link">
+      IotCore
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/program/" title="program" class="md-nav__link">
+      program
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/protocol/" title="protocol" class="md-nav__link">
+      protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/usermanager/" title="UserManager" class="md-nav__link">
+      UserManager
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/developerTools/" title="aws开发工具" class="md-nav__link">
+      aws开发工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Secret
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Secret
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../secret/reousrce/" title="安全" class="md-nav__link">
+      安全
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/networktools/" title="端口扫描工具" class="md-nav__link">
+      端口扫描工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Linux
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Linux
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../linux/resource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Shell
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Shell
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../shell/shellresource/" title="Shell" class="md-nav__link">
+      Shell
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      Tools
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../extensions/admonition/" title="AndroidStudio" class="md-nav__link">
+      AndroidStudio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/atom/" title="Atom" class="md-nav__link">
+      Atom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/vim/" title="Vim" class="md-nav__link">
+      Vim
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../extensions/metadata/" title="Chrome" class="md-nav__link">
+      Chrome
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/markdown/" title="Markdown" class="md-nav__link">
+      Markdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/material/" title="Material for MkDocs" class="md-nav__link">
+      Material for MkDocs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/git/" title="Git" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/VSCode/" title="VSCode" class="md-nav__link">
+      VSCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/datareporting/" title="数据分析" class="md-nav__link">
+      数据分析
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+    
+    <label class="md-nav__link" for="nav-11">
+      Download
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-11">
+        Download
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../download/download/" title="download" class="md-nav__link">
+      download
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="概要" class="md-nav__link">
+    概要
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="介绍" class="md-nav__link">
+    介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="确保" class="md-nav__link">
+    确保
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ios" title="IOS打包" class="md-nav__link">
+    IOS打包
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="检查您的应用是否遵循其他文档中的指导" class="md-nav__link">
+    检查您的应用是否遵循其他文档中的指导
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="开发、测试、数据统计" class="md-nav__link">
+    开发、测试、数据统计
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="数据统计" class="md-nav__link">
+    数据统计
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-store-connect" title="App Store Connect 使用入门" class="md-nav__link">
+    App Store Connect 使用入门
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android" title="Android 打包" class="md-nav__link">
+    Android 打包
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="测试、部署、签名、分发" class="md-nav__link">
+    测试、部署、签名、分发
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" title="编译系统:" class="md-nav__link">
+    编译系统:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" title="打包流程" class="md-nav__link">
+    打包流程
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android-android-jetpack" title="Android Android Jetpack 使用入门" class="md-nav__link">
+    Android Android Jetpack 使用入门
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android_1" title="Android打包" class="md-nav__link">
+    Android打包
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#androidstudiomaven" title="AndroidStudioMaven仓库的使用" class="md-nav__link">
+    AndroidStudioMaven仓库的使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#androidx" title="AndroidX 概述" class="md-nav__link">
+    AndroidX 概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android_2" title="Android 架构设计" class="md-nav__link">
+    Android 架构设计
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" title="配置编译版本" class="md-nav__link">
+    配置编译版本
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" title="性能分析" class="md-nav__link">
+    性能分析
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="androidios">Android&amp;IOS打包发布<a class="headerlink" href="#androidios" title="Permanent link">&para;</a></h1>
+<h2 id="_1">概要<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>应用程序正在改变世界，丰富人们的生活，并使像您这样的开发人员能够前所未有地进行创新。结果，App Store已成长为一个激动人心且充满活力的生态系统，为数百万开发人员和超过10亿用户所用。无论您是第一次开发人员还是经验丰富的程序员组成的庞大团队，我们都为您正在为App Store创建应用程序而感到兴奋，并希望帮助您了解我们的指南，因此您可以确信自己的应用程序将快速通过审核过程。</p>
+<h2 id="_2">介绍<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>应用市场的指导原则很简单-我们希望为用户提供获取应用程序的安全体验，并为所有开发人员取得成功提供巨大的机会。我们通过提供高度策划的应用来做到这一点，其中的每个应用程序都经过专家审查，编辑团队可以帮助用户每天发现新应用程序。对于其他所有方面，始终都有开放的Internet。如果应用市场模型和指南不适合您的应用或业务构想，那么我们也提供Safari来提供出色的Web体验。
+在以下页面上，您会发现我们的最新指南分为五个清晰的部分：安全，性能，业务，设计和法律。应用市场总是在不断变化和改进，以适应我们客户和我们产品的需求。您的应用程序也应该进行更改和改进，以便保留在应用市场中。</p>
+<p>1.安全
+2.性能
+3.业务
+4.设计
+5.法律法规(不同国家和地区)</p>
+<h2 id="_3">确保<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>测试您的应用程序是否崩溃和错误
+确保所有应用信息和元数据完整且准确
+更新您的联系信息，以防App Review需要与您联系
+提供有效的演示帐户和登录信息，以及查看您的应用程序可能需要的任何其他硬件或资源（例如，登录凭据或示例QR码）
+启用后端服务，以便它们在审核期间处于活动状态并可以访问
+在App Review注释中包括对非显而易见功能和应用内购买的详细说明，并在适当时包括支持文档。</p>
+<p>UI框架:UIKit框架提供了构建用于iOS和tvOS的应用程序所需的核心对象。您可以使用这些对象在屏幕上显示您的内容，与该内容进行交互以及管理与系统的交互。应用程序依赖于UIKit的基本行为，而UIKit提供了多种方式来自定义行为以符合您的特定需求。
+Xcode项目文件结构:在构建应用程序时，Xcode会编译您的源文件并为您的项目创建一个应用程序包。应用程序捆绑包是一个结构化目录，其中包含与该应用程序关联的代码和资源。资源包括支持您的代码的图像资产，情节提要文件，字符串文件和应用程序元数据。应用程序捆绑包的结构很重要，但是Xcode知道您的资源需要存放在哪里，所以暂时不必担心。</p>
+<h2 id="ios"><a href="https://developer.apple.com/app-store/review/guidelines/">IOS打包</a><a class="headerlink" href="#ios" title="Permanent link">&para;</a></h2>
+<p>我们会审查提交给AppStore的所有应用程序和应用程序更新，以确定它们是否可靠，是否达到预期效果以及是否没有令人反感的材料。在计划和开发应用程序时，请确保使用这些准则和资源。</p>
+<p>1.规划和开发应用程序
+2.是否到达预期
+3.是否可靠
+4.是否有让人发的内容
+5.提交应用市场</p>
+<h3 id="_4">检查您的应用是否遵循其他文档中的指导<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>发展方针</p>
+<p><a href="https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007072">应用程式设计指南</a>
+<a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/">App Extension编程指南</a>
+<a href="https://developer.apple.com/icloud/documentation/data-storage/index.html">iOS数据存储准则</a>
+<a href="https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010672">macOS文件系统文档</a>
+<a href="https://developer.apple.com/documentation/safariservices/safari_app_extensions">Safari应用程序扩展</a>
+<a href="https://help.apple.com/app-store-connect/">App Store Connect帮助</a></p>
+<p>设计准则</p>
+<p><a href="https://developer.apple.com/design/human-interface-guidelines/">人机界面准则</a></p>
+<p>品牌与行销准则</p>
+<p><a href="https://developer.apple.com/app-store/marketing/guidelines/">营销资源和身份准则</a>
+<a href="https://developer.apple.com/apple-pay/marketing/">Apple Pay身份准则</a>
+<a href="https://developer.apple.com/wallet/Add-to-Apple-Wallet-Guidelines.pdf">添加到Apple电子钱包指南</a>
+<a href="http://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html">使用苹果商标和版权的准则</a></p>
+<h3 id="_5">开发、测试、数据统计<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p><a href="https://help.apple.com/xcode/mac/current/#/devc8c2a6be1">Xcode Help</a>
+<a href="https://developer.apple.com/programs/">Apple Developer Program</a>
+<a href="https://developer.apple.com/testflight/">测试</a></p>
+<h4 id="_6">数据统计<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>衡量iOS，macOS和tvOS上的应用的用户参与度，营销活动，获利等。
+<a href="https://developer.apple.com/app-store-connect/analytics/">Access App Analytic</a></p>
+<p>App Store来源
+借助App Analytics，您可以查看有多少用户在搜索或浏览App Store时发现了您的应用（包括在iOS上点击适用于您的应用的Search Ads）以了解您的营销和元数据如何影响下载。</p>
+<p>应用引荐来源
+App Analytics会统计从另一个应用程序中的链接访问iOS或tvOS上您应用程序产品页面的用户。通过关注可带来最多App Store印象，下载和账单的应用来优化您的营销活动。</p>
+<p>网络推荐人
+链接到应用程序产品页面的博客，网站和其他在线资源对于通过口碑营销和PR来吸引用户至关重要。借助App Analytics，您可以查看哪些有机营销渠道为您的应用带来了最高的流量，下载量，使用量和收入。</p>
+<p>App Store展示次数
+查看您的应用程序图标在App Store上浏览了多少次，包括在搜索结果，精选，热门图表和App Store产品页面中。借助App Store展示次数，您可以计算出用户点击浏览您的应用的频率，而无需查看在App Store上的任何位置。</p>
+<p>用户参与度
+App Analytics提供了用户参与度指标，包括会话数，活动设备以及iOS和tvOS上您的应用程序的保留时间。借助这些指标，您可以评估产品更改的影响（例如修改初始的入职体验），以查看哪些更改可以改善与应用程序的互动。</p>
+<p>删除新
+查看有多少用户从运行iOS 12.3或更高版本的设备上删除了您的应用。测量“应用程序删除”，以更好地了解用户对应用程序更改（例如内容更新，价格调整或崩溃）的反应。按来源或用户组比较“应用删除”，以查看哪些类型的用户更有可能卸载您的应用。</p>
+<p>营销活动
+App Analytics可让您评估您的营销工作，以便您可以专注于最有效的广告系列。为每个营销活动创建唯一的链接，以了解哪些活动带来了最多的下载量和每个用户的平均支出。您还可以使用StoreKit API跟踪广告系列。</p>
+<p>App Store产品页面
+出色的产品页面可以吸引受众的注意力，传达您的应用价值，并说服用户下载。现在，您可以通过将下载次数与产品页面浏览量相关联来计算产品页面的效果。</p>
+<p>付费用户
+App Analytics根据Apple ID（而不是设备类型）对用户进行计数，从而使您可以更准确地了解付费用户数据。查看您一天有多少付费用户，以评估您所做的任何更改是否会影响应用程序内的支出。您还可以按来源过滤，以查看用户是否来自特定的广告系列或网站。</p>
+<p>崩溃
+找出您的应用每天在iOS或tvOS上崩溃的次数。您可以按平台，应用程序版本和操作系统版本筛选崩溃数据，以查明原因，帮助您为用户创造更好的体验。</p>
+<p>按下载日期分类
+只有Apple可以提供Apple ID首次从App Store下载应用程序的日期。您可以根据用户的购买日期过滤用户组，以在比较和分析用户行为时形成更完整的图片。</p>
+<p>苹果电视数据
+评估您的tvOS应用程序的用户参与度和获利。除了查看产品页面浏览量，下载量和参与度方面的数据外，您还可以查看通过营销活动获得的iOS用户在Apple TV上打开了同一个应用程序。*您还可以在另一个tvOS应用程序中推广tvOS应用程序，使用广告系列链接跟踪结果。</p>
+<h2 id="app-store-connect"><a href="https://help.apple.com/app-store-connect/?lang=zh-cn#/">App Store Connect 使用入门</a><a class="headerlink" href="#app-store-connect" title="Permanent link">&para;</a></h2>
+<p>App Store Connect 使用入门
+添加、编辑和删除用户
+管理 App 和版本
+添加 App 图标、App 预览和截屏
+管理构建版本
+测试 Beta 版本
+在 App Store 上发行
+维护您的 App
+衡量 App 表现
+管理协议、税务和银行业务
+获得付款
+配置 App Store 功能
+提供 App 内购买项目
+参考</p>
+<h2 id="android">Android 打包<a class="headerlink" href="#android" title="Permanent link">&para;</a></h2>
+<h3 id="_7">测试、部署、签名、分发<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>Android 编译系统<code>会编译应用资源和源代码</code>，然后将它们打包成可供您测试、部署、签署和分发的 APK。Android Studio 使用高级编译工具包<code>Gradle</code> 来<code>自动执行和管理编译流程</code>，同时也允许您定义灵活的<code>自定义编译配置</code>。每个编译配置均可定义自己的一组代码和资源，同时重用所有应用版本共用的部分。Android Plugin for Gradle 与该编译工具包一起使用，共同提供专用于编译和测试 Android 应用的流程和可配置设置。</p>
+<h4 id="_8">编译系统:<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p><a href="http://www.gradle.org/">Gradle</a>
+<a href="https://developer.android.com/jetpack/docs/getting-started">jetpack</a>)</p>
+<p>如何自动执行、如何管理打包流程、如何配置自定义编译配置
+<a href="https://developer.android.com/studio/build/building-cmdline.html">使用命令行打包</a></p>
+<p>生成编译报告</p>
+<div class="codehilite"><pre><span></span>./gradlew --profile --offline --rerun-tasks assemblefreeDebug
+</pre></div>
+
+
+<p>查看CPU架构信息:
+查看Android设备的CPU架构信息，可以使用命令来完成：
+1、adb shell
+2、cat  /proc/cpuinfo
+<a href="https://www.jianshu.com/p/d6750a920019">AndroidCPU其中架构</a></p>
+<h2 id="_9">打包流程<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>典型 Android 应用模块的编译流程（如图 1 所示）按照以下常规步骤执行：</p>
+<p>编译器将您的源代码转换成 DEX 文件（Dalvik 可执行文件，其中包括在 Android 设备上运行的字节码），并将其他所有内容转换成编译的资源。
+APK 打包器将 DEX 文件和编译的资源组合成单个 APK。不过，必须先为 APK 签名，然后才能将应用安装并部署到 Android 设备上。
+APK 打包器使用调试或发布密钥库为 APK 签名：
+如果您编译的是应用调试版本（即专用于测试和分析的应用），打包器会使用调试密钥库为应用签名。Android Studio 自动使用调试密钥库配置新项目。
+如果您编译的是打算向外发布的应用发布版本，打包器会使用发布密钥库为应用签名。要创建发布密钥库，请参阅在 Android Studio 中为应用签名。
+在生成最终 APK 之前，打包器会使用 zipalign 工具对应用进行优化，减少其在设备上运行时占用的内存。
+编译流程结束时，您将获得可用于部署和测试的调试 APK，或者可用于发布给外部用户的发布 APK。</p>
+<h2 id="android-android-jetpack">Android Android Jetpack 使用入门<a class="headerlink" href="#android-android-jetpack" title="Permanent link">&para;</a></h2>
+<h2 id="android_1">Android打包<a class="headerlink" href="#android_1" title="Permanent link">&para;</a></h2>
+<p>JKS 密钥库使用专用格式。建议使用 "keytool -importkeystore -srckeystore ./key.jks -destkeystore ./key.jks -deststoretype pkcs12" 迁移到行业标准格式 PKCS12。</p>
+<p>Jetpack 包含一系列 Android 库，它们都采用最佳做法并在 Android 应用中提供向后兼容性。
+Jetpack 应用架构指南概述了构建 Android 应用时要考虑的最佳做法和推荐架构。
+下文介绍了如何开始使用 Jetpack 组件。
+<a href="https://developer.android.com/jetpack/docs/getting-started">Android Jetpack 使用入门</a>
+<a href="https://developer.android.com/jetpack/#foundation-components">Android Jetpack组件列表</a></p>
+<p>Android Jetpack is a set of components, tools and guidance to make great Android apps. They bring together the existing Support Library and Architecture Components and arrange them into four categories:
+<img alt="pic" src="./flutterdev/img/androidjetpack.png" />
+<a href="https://medium.com/androiddevelopers/introducing-android-sunflower-e421b43fe0c2">Android Sunflower开发源码项目</a>
+<a href="https://github.com/android/sunflower">GithHub源码项目代码</a></p>
+<h2 id="androidstudiomaven">AndroidStudioMaven仓库的使用<a class="headerlink" href="#androidstudiomaven" title="Permanent link">&para;</a></h2>
+<p><a href="https://maven.google.com/web/index.html">Google Maven</a>
+<a href="http://android-er.blogspot.com/2019/03/add-google-maven-repository-to-android.html">Android Studio 使用Maven仓库</a>
+<a href="https://www.deps.co/guides/public-maven-repositories/#maven-central">Guide to Public Maven Repositories</a></p>
+<p><a href="https://developer.android.com/kotlin/ktx">Android KTX</a> 是一组 Kotlin 扩展程序，属于 Android Jetpack 系列。它优化了供 Kotlin 使用的 Jetpack 和 Android 平台 API。Android KTX 旨在让您利用 Kotlin 语言功能（例如扩展函数/属性、lambda、命名参数和参数默认值），以更简洁、更愉悦、更惯用的方式使用 Kotlin 进行 Android 开发。Android KTX 不会向现有的 Android API 添加任何新功能。
+要详细了解 Android KTX，请观看我们的 <a href="https://www.youtube.com/watch?v=r_19VZ0xRO8&amp;feature=youtu.be">DevBytes 视频</a>。</p>
+<h2 id="androidx">AndroidX 概述<a class="headerlink" href="#androidx" title="Permanent link">&para;</a></h2>
+<p>AndroidX 是 Android 团队用于在 Jetpack 中开发、测试、打包和发布库以及对其进行版本控制的开源项目。
+AndroidX 对原始 Android 支持库进行了重大改进。与支持库一样，AndroidX 与 Android 操作系统分开提供，并与各个 Android 版本向后兼容。AndroidX 完全取代了支持库，不仅提供同等的功能，而且提供了新的库。此外，AndroidX 还包括以下功能：</p>
+<p>AndroidX 中的所有软件包都使用一致的命名空间，以字符串 androidx 开头。支持库软件包已映射到对应的 androidx.* 软件包。有关所有旧类到新类以及旧编译工件到新编译工件的完整映射，请参阅软件包重构页面。
+与支持库不同，AndroidX 软件包会单独维护和更新。androidx 软件包使用严格的语义版本控制，从版本 1.0.0 开始。您可以单独更新项目中的 AndroidX 库。
+所有新支持库的开发工作都将在 AndroidX 库中进行。这包括维护原始支持库工件和引入新的 Jetpack 组件。</p>
+<p><a href="https://developer.android.com/jetpack/androidx">AndroidX 概览</a>
+<a href="https://developer.android.com/jetpack/androidx/migrate">迁移到AndroidX</a>
+<a href="https://developer.android.com/reference/androidx/packages">AndroidX包列表</a>
+<a href="https://android-developers.googleblog.com/2018/05/hello-world-androidx.html">AndroidX开发blog</a></p>
+<h2 id="android_2">Android 架构设计<a class="headerlink" href="#android_2" title="Permanent link">&para;</a></h2>
+<p>1.通过模型驱动界面</p>
+<div class="codehilite"><pre><span></span>持久性是理想之选，原因如下：
+如果 Android 操作系统销毁应用以释放资源，用户不会丢失数据。
+当网络连接不稳定或不可用时，应用会继续工作。
+</pre></div>
+
+
+<p>2.分离关注点</p>
+<p><a href="https://en.wikipedia.org/wiki/Separation_of_concerns">分离关注点</a>
+<a href="https://developer.android.com/jetpack/docs/guide">应用架构指南</a>
+<a href="https://developer.android.com/topic/libraries/architecture/">Android架构组件</a></p>
+<h2 id="_10">配置编译版本<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p><a href="https://source.android.com/devices/tech/dalvik/">优化编译的代码</a></p>
+<p>1.配置Gradle依赖库的信息
+2.配置Gradle依赖的那些工程
+3.配置Gradle使用的环境变量和默认配置
+4.配置Gradle编译是使用的控制Gradle的配置变量
+5.配置Gradle使用SDK环境变量的位置</p>
+<p>测试、部署、签署和分发的 APK</p>
+<p>自定义编译配置</p>
+<p>编译版本类型
+  正式版类型
+  编译变体
+  清单条目
+  依赖项
+  签名
+  ProGuard
+  多 APK 支持</p>
+<p>编译配置文件
+  Gradle 设置文件:settings.gradle 文件位于项目根目录，用于指示 Gradle 在编译应用时应将哪些模块包含在内
+  顶级编译文件:顶级 build.gradle 文件位于项目根目录，用于定义适用于项目中所有模块的编译配置。默认情况下，顶级编译文件使用 buildscript 代码块来定义项目中所有模块共用的代码库和依赖项。以下代码示例描述的默认设置和 DSL 元素可在新建项目后的顶级 build.gradle 文件中找到。</p>
+<p>shrinking, using minifyEnabled, and specifies the Proguard settings file</p>
+<p>Gradle 属性文件</p>
+<p>Gradle 还包含两个属性文件，位于项目根目录，可用于指定 Gradle 编译工具包本身的设置：
+gradle.properties:您可以在其中配置项目范围的 Gradle 设置，如 Gradle 守护进程的最大堆大小。如需了解详情，请参阅编译环境。
+local.properties:配置编译系统的本地环境属性，如 SDK 安装路径。由于此文件的内容由 Android Studio 自动生成并且专用于本地开发者环境，因此您不应手动修改此文件或将其检入版本控制系统。</p>
+<p><a href="http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.AppExtension.html#N148E3">AndroidStudio不同模块配置</a></p>
+<p>启用离线模式
+如果网络连接速度比较慢，那么在 Gradle 尝试使用网络资源解析依赖项时，编译时间可能会延长。您可以指示 Gradle 仅使用已缓存到本地的工件，从而避免使用网络资源。</p>
+<p>要在使用 Android Studio 编译项目时离线使用 Gradle，请执行以下操作：</p>
+<p>依次点击 File &gt; Settings（在 Mac 上，则依次点击 Android Studio &gt; Preferences），打开 Preferences 窗口。
+在左侧窗格中，依次点击 Build, Execution, Deployment &gt; Gradle。
+勾选 Offline work 复选框。
+点击 Apply 或 OK。
+如果您正在通过命令行编译，请传递 --offline 选项。</p>
+<p>Instant Run：</p>
+<p>打开 Settings 或 Preferences 对话框。
+依次转到 Build, Execution, Deployment &gt; Instant Run。
+确保勾选 Enable Instant Run。</p>
+<p><a href="https://source.android.com/devices/tech/dalvik/">Android Runtime (ART) 和 Dalvik</a></p>
+<h2 id="_11">性能分析<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>如果应用响应速度慢、动画播放不流畅、卡顿、崩溃或极其耗电，则表示其性能差</p>
+<p><a href="https://developer.android.com/studio/profile">分析应用性能</a></p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../flutterImageProvider/" title="Flutter图片加载" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Flutter图片加载
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../flutterTest/" title="Flutter测试" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Flutter测试
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019  Aige
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="http://struct.cc" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/cangchengkun/Docs" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/Aige25868905" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.facebook.com/cangck.danmo" class="md-footer-social__link fa fa-facebook"></a>
+    
+      <a href="https://www.youtube.com/" class="md-footer-social__link fa fa-youtube"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.43ad2ac2.js"></script>
+      
+        
+        
+          
+          <script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>

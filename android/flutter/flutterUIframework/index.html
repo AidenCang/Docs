@@ -13,10 +13,10 @@
         <meta name="description" content="苍成坤的 blog">
       
       
-        <link rel="canonical" href="https://aidencang.github.io/Docs/android/flutter/flutterUIframework/">
+        <link rel="canonical" href="https://squidfunk.github.io/mkdocs-material/android/flutter/flutterUIframework/">
       
       
-        <meta name="author" content="AidenCang">
+        <meta name="author" content="Aige">
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -42,7 +42,7 @@
     
     
       
-        <title>FlutterUI和Engine关联 - AidenCang</title>
+        <title>FlutterUI和Engine关联 - Aige  Docs</title>
       
     
     
@@ -142,7 +142,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://aidencang.github.io/Docs/" title="AidenCang" class="md-header-nav__button md-logo">
+        <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -155,7 +155,7 @@
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
             <span class="md-header-nav__topic">
-              AidenCang
+              Aige  Docs
             </span>
             <span class="md-header-nav__topic">
               FlutterUI和Engine关联
@@ -199,7 +199,7 @@
 
   
 
-<a href="https://github.com/AidenCang/Docs" title="Go to repository" class="md-source" data-md-source="github">
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
   
     <div class="md-source__icon">
       <svg viewBox="0 0 24 24" width="24" height="24">
@@ -391,12 +391,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="https://aidencang.github.io/Docs/" title="AidenCang" class="md-nav__button md-logo">
+    <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
     </a>
-    AidenCang
+    Aige  Docs
   </label>
   
     <div class="md-nav__source">
@@ -405,7 +405,7 @@
 
   
 
-<a href="https://github.com/AidenCang/Docs" title="Go to repository" class="md-source" data-md-source="github">
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
   
     <div class="md-source__icon">
       <svg viewBox="0 0 24 24" width="24" height="24">
@@ -592,15 +592,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#runapp" title="runApp" class="md-nav__link">
-    runApp
+  <a href="#_1" title="概述" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#window-binding" title="window 事件是怎么分解给不同的Binding进行处理的？？" class="md-nav__link">
+    window 事件是怎么分解给不同的Binding进行处理的？？
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" title="核心步骤:" class="md-nav__link">
+  <a href="#_2" title="核心步骤:" class="md-nav__link">
     核心步骤:
   </a>
   
@@ -662,7 +669,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" title="源码实现" class="md-nav__link">
+  <a href="#_3" title="源码实现" class="md-nav__link">
     源码实现
   </a>
   
@@ -707,6 +714,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" title="总结" class="md-nav__link">
+    总结
+  </a>
+  
+</li>
+      
       
       
       
@@ -715,6 +729,18 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/FlutterWidgetinit/" title="FlutterUI框架绘制过程" class="md-nav__link">
+      FlutterUI框架绘制过程
+    </a>
   </li>
 
         
@@ -774,6 +800,18 @@
   <li class="md-nav__item">
     <a href="../../flutterdev/flutterNavigator/" title="FlutterNavigator" class="md-nav__link">
       FlutterNavigator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterLib/" title="Flutter库" class="md-nav__link">
+      Flutter库
     </a>
   </li>
 
@@ -844,18 +882,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../flutterdev/FlutterWidgetinit/" title="FlutterUI框架绘制过程" class="md-nav__link">
-      FlutterUI框架绘制过程
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../flutterdev/customWidget/" title="自定义Widget" class="md-nav__link">
       自定义Widget
     </a>
@@ -870,6 +896,102 @@
   <li class="md-nav__item">
     <a href="../../flutterdev/flutterImageProvider/" title="Flutter图片加载" class="md-nav__link">
       Flutter图片加载
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/Flutterdeployment/" title="FlutterAndroid&IOS打包" class="md-nav__link">
+      FlutterAndroid&IOS打包
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/flutterTest/" title="Flutter测试" class="md-nav__link">
+      Flutter测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterDev/" title="Flutter开发" class="md-nav__link">
+      Flutter开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterexample/" title="example" class="md-nav__link">
+      example
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterQuestion/" title="Flutter常见问题" class="md-nav__link">
+      Flutter常见问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterUI/" title="FlutterUI" class="md-nav__link">
+      FlutterUI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../interview/" title="面试资料" class="md-nav__link">
+      面试资料
     </a>
   </li>
 
@@ -897,6 +1019,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../downEngine/" title="Engine源代码下载" class="md-nav__link">
+      Engine源代码下载
+    </a>
+  </li>
+
         
           
           
@@ -952,8 +1086,44 @@
 
 
   <li class="md-nav__item">
-    <a href="../FlutterComplieFile/" title="Flutter编译产物" class="md-nav__link">
-      Flutter编译产物
+    <a href="../EngineCompile/" title="Engine编译构建" class="md-nav__link">
+      Engine编译构建
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterComplieFile/" title="Engine编译产物" class="md-nav__link">
+      Engine编译产物
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ComplieMode/" title="编译模式" class="md-nav__link">
+      编译模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../apkfile/" title="Apk&ipd包分析" class="md-nav__link">
+      Apk&ipd包分析
     </a>
   </li>
 
@@ -1072,18 +1242,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../flutterexample/" title="example" class="md-nav__link">
-      example
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../DartVMServiceProtocol/" title="DartVMServiceProtocol" class="md-nav__link">
       DartVMServiceProtocol
     </a>
@@ -1120,18 +1278,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../Architecture/" title="Architecture" class="md-nav__link">
-      Architecture
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../reviewCode/" title="reviewCode" class="md-nav__link">
       reviewCode
     </a>
@@ -1146,6 +1292,42 @@
   <li class="md-nav__item">
     <a href="../DevResource/" title="资料" class="md-nav__link">
       资料
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fluttercommunicationAndroidorIOS/" title="FlutterUI通信Android&IOS" class="md-nav__link">
+      FlutterUI通信Android&IOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterEngine/" title="FlutterEngine源码编译" class="md-nav__link">
+      FlutterEngine源码编译
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterenginedir/" title="Flutter引擎目录" class="md-nav__link">
+      Flutter引擎目录
     </a>
   </li>
 
@@ -2129,15 +2311,22 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#runapp" title="runApp" class="md-nav__link">
-    runApp
+  <a href="#_1" title="概述" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#window-binding" title="window 事件是怎么分解给不同的Binding进行处理的？？" class="md-nav__link">
+    window 事件是怎么分解给不同的Binding进行处理的？？
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" title="核心步骤:" class="md-nav__link">
+  <a href="#_2" title="核心步骤:" class="md-nav__link">
     核心步骤:
   </a>
   
@@ -2199,7 +2388,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" title="源码实现" class="md-nav__link">
+  <a href="#_3" title="源码实现" class="md-nav__link">
     源码实现
   </a>
   
@@ -2244,6 +2433,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_4" title="总结" class="md-nav__link">
+    总结
+  </a>
+  
+</li>
+      
       
       
       
@@ -2262,14 +2458,65 @@
                 
                 
                 <h1 id="flutter-ui">Flutter UI 架构<a class="headerlink" href="#flutter-ui" title="Permanent link">&para;</a></h1>
-<h2 id="runapp">runApp<a class="headerlink" href="#runapp" title="Permanent link">&para;</a></h2>
-<p><code>主要完成的是FlutterUI层和FlutterEngine层的绑定操作</code></p>
+<h2 id="_1">概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>在Engine源代码分析中，我们知道，Flutter是通过widow层和Flutter 框架层通信，Widow是上下层通信的枢纽，启动承上启下的作用，那么Widow最小的可执行单元是什么？？</p>
+<p>flutter 引擎初始化完成之后，会调用Window中的<code>onBeginFrame</code> 方法来构建一帧，构建完成一帧之后调用<code>ui.window.render(sceneBuilder.build());</code>传递给Flutter的Engine中，第二帧是通过<code>scheduleFrame</code>不断的调动来改变整个Widget的构建过程，不断的改变Widget生成的渲染对象，传递给Flutter引擎，就可以实现相关的代码界面的变动，页面跳转等。</p>
+<p>记着下面三个方法，Widget的所用调用过程都是在为构建一帧在做准备</p>
+<div class="codehilite"><pre><span></span>ui.window.onBeginFrame = beginFrame;
+ui.window.render(sceneBuilder.build());
+ui.window.scheduleFrame();
+</pre></div>
+
+
+<p>ui.Window类是Flutter引擎和FlutterUI框架的接口，FlutterUI是怎么启动起来的？？？</p>
+<p><code>1.主要完成的是FlutterUI层和FlutterEngine层的绑定操作ui.Window</code></p>
+<p><code>2.分解系统成的事件</code></p>
+<div class="codehilite"><pre><span></span>GestureBinding
+ServicesBinding
+SchedulerBinding
+PaintingBinding,
+SemanticsBinding
+RendererBinding
+WidgetsBinding
+</pre></div>
+
+
+<p><code>3.提供一个渲染对象个给ui.window.render(sceneBuilder.build()); 调用Engine中的渲染引擎</code></p>
+<p><code>4.初始化平台Plugin接口</code></p>
+<p><code>4.初始化多语言，多区域</code></p>
+<h2 id="window-binding">window 事件是怎么分解给不同的Binding进行处理的？？<a class="headerlink" href="#window-binding" title="Permanent link">&para;</a></h2>
 <p>1.FlutterEngine通过Widow类和FlutterUI进行通信，包括Widget的绘制和生命周期管理</p>
 <p>2.Window类把相关的事件回调和调用方法返回给不同的Bindings类进行解耦，每个部分完成相关的操作</p>
 <p>3.FlutterUI层通过runApp包Flutter相关的部分提交给系统框架和系统框架层进行通信</p>
 <p>4.通过直接使用window类进行Frame的绘制，就能够对Flutter层进行理解，FlutterUI层其实是Window构造的一个扩展和细化，</p>
 <p><img alt="pic" src="../img/Flutter调用时序.png" /></p>
-<h3 id="_1">核心步骤:<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h3 id="_2">核心步骤:<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>Widgets层和window层解耦是通过继承<code>BindingBase</code>的<code>mixin</code>类来继续的，不同的Bindings类继承<code>BindingBase</code>,</p>
+<div class="codehilite"><pre><span></span><span class="c1">/// A concrete binding for applications based on the Widgets framework.</span>
+<span class="c1">///</span>
+<span class="c1">/// This is the glue that binds the framework to the Flutter engine.</span>
+<span class="kd">class</span> <span class="nc">WidgetsFlutterBinding</span> <span class="kd">extends</span> <span class="n">BindingBase</span> <span class="kd">with</span> <span class="n">GestureBinding</span><span class="p">,</span> <span class="n">ServicesBinding</span><span class="p">,</span> <span class="n">SchedulerBinding</span><span class="p">,</span> <span class="n">PaintingBinding</span><span class="p">,</span> <span class="n">SemanticsBinding</span><span class="p">,</span> <span class="n">RendererBinding</span><span class="p">,</span> <span class="n">WidgetsBinding</span> <span class="p">{</span>
+
+  <span class="c1">/// Returns an instance of the [WidgetsBinding], creating and</span>
+  <span class="c1">/// initializing it if necessary. If one is created, it will be a</span>
+  <span class="c1">/// [WidgetsFlutterBinding]. If one was previously initialized, then</span>
+  <span class="c1">/// it will at least implement [WidgetsBinding].</span>
+  <span class="c1">///</span>
+  <span class="c1">/// You only need to call this method if you need the binding to be</span>
+  <span class="c1">/// initialized before calling [runApp].</span>
+  <span class="c1">///</span>
+  <span class="c1">/// In the `flutter_test` framework, [testWidgets] initializes the</span>
+  <span class="c1">/// binding instance to a [TestWidgetsFlutterBinding], not a</span>
+  <span class="c1">/// [WidgetsFlutterBinding].</span>
+  <span class="kd">static</span> <span class="n">WidgetsBinding</span> <span class="n">ensureInitialized</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">WidgetsBinding</span><span class="p">.</span><span class="n">instance</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="n">WidgetsFlutterBinding</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">WidgetsBinding</span><span class="p">.</span><span class="n">instance</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>WidgetsFlutterBinding 实现了<code>BindingBase</code>,在<code>BindingBase</code>的构造方法中调用 <code>initInstances</code>方法， runApp调用<code>ensureInitialized</code>方法来全部每一个Binding对象都进行初始化，初始化顺序是从后往前调用<code>initInstances</code>进行初始化，同时也对Window分解的内容进行<code>BindingBase</code>完成过程</p>
 <div class="codehilite"><pre><span></span>1.构造方法中默认调用initInstances
 2.构造方法中默认调用initServiceExtensions
 3.同时BindingBase, SchedulerBinding, GestureBinding, RendererBinding, SemanticsBinding 也和调用自己的上述两个构造方法
@@ -2339,16 +2586,18 @@ TestWidgetsFlutterBinding (binding.dart)
 <p>从[Window.onDrawFrame]回调返回之前。
  *非渲染任务，在帧之间运行。给出了这些
 优先级，根据a按优先级顺序执行</p>
-<p>mixin SchedulerBinding on BindingBase, ServicesBinding {
-  <a class="magiclink magiclink-github magiclink-mention" href="https://github.com/override" title="GitHub User: override">@override</a>
-  void initInstances() {
-    super.initInstances();
-    _instance = this;
-    window.onBeginFrame = _handleBeginFrame;
-    window.onDrawFrame = _handleDrawFrame;
-    SystemChannels.lifecycle.setMessageHandler(_handleLifecycleMessage);
-    readInitialLifecycleStateFromNativeWindow();
-  }</p>
+<div class="codehilite"><pre><span></span><span class="n">mixin</span> <span class="n">SchedulerBinding</span> <span class="n">on</span> <span class="n">BindingBase</span><span class="p">,</span> <span class="n">ServicesBinding</span> <span class="p">{</span>
+  <span class="err">@</span><span class="n">override</span>
+  <span class="kt">void</span> <span class="n">initInstances</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">.</span><span class="n">initInstances</span><span class="p">();</span>
+    <span class="n">_instance</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="n">window</span><span class="p">.</span><span class="n">onBeginFrame</span> <span class="o">=</span> <span class="n">_handleBeginFrame</span><span class="p">;</span>
+    <span class="n">window</span><span class="p">.</span><span class="n">onDrawFrame</span> <span class="o">=</span> <span class="n">_handleDrawFrame</span><span class="p">;</span>
+    <span class="n">SystemChannels</span><span class="p">.</span><span class="n">lifecycle</span><span class="p">.</span><span class="n">setMessageHandler</span><span class="p">(</span><span class="n">_handleLifecycleMessage</span><span class="p">);</span>
+    <span class="n">readInitialLifecycleStateFromNativeWindow</span><span class="p">();</span>
+  <span class="p">}</span>
+</pre></div>
+
 <p>监听平台消息并将它们定向到[BinaryMessages]。[ServicesBinding]还注册了一个公开的[LicenseEntryCollector]在存储在资产根目录的<code>LICENSE</code>文件中找到的许可证捆绑，并实现<code>ext.flutter.evict</code>服务扩展。</p>
 <div class="codehilite"><pre><span></span><span class="n">mixin</span> <span class="n">ServicesBinding</span> <span class="n">on</span> <span class="n">BindingBase</span> <span class="p">{</span>
   <span class="err">@</span><span class="n">override</span>
@@ -2413,7 +2662,7 @@ TestWidgetsFlutterBinding (binding.dart)
   <span class="p">}</span>
 </pre></div>
 
-<h3 id="_2">源码实现<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h3 id="_3">源码实现<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>使给定的小部件填充并将其附加到屏幕上。小部件在布局期间被赋予约束，迫使它填充整个屏幕。如果您希望将窗口小部件对齐到屏幕的一侧（例如，顶部），考虑使用[Align]小部件。如果你想中心您的小部件，您也可以使用[中心]小部件再次调用[runApp]将从屏幕上分离上一个根小部件并将给定的小部件附加到其位置。比较新的小部件树针对上一个窗口小部件树，任何差异都应用于底层渲染树，类似于[StatefulWidget]时发生的情况调用[State.setState]后重建。如有必要，使用[WidgetsFlutterBinding]初始化绑定。 也可以看看：[WidgetsBinding.attachRootWidget]，它为。创建根小部件小部件层次结构。 [RenderObjectToWidgetAdapter.attachToRenderTree]，它创建了根元素层次结构的元素。 [WidgetsBinding.handleBeginFrame]，它将窗口小部件管道泵送到确保构建小部件，元素和渲染树。</p>
 <div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">runApp</span><span class="p">(</span><span class="n">Widget</span> <span class="n">app</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">WidgetsFlutterBinding</span><span class="p">.</span><span class="n">ensureInitialized</span><span class="p">()</span>
@@ -2423,10 +2672,10 @@ TestWidgetsFlutterBinding (binding.dart)
 </pre></div>
 
 <p>WidgetsBinding集成Bindingbase:</p>
-<p>1.构造方法中默认调用initInstances
-2.构造方法中默认调用initServiceExtensions
-3.同时BindingBase, SchedulerBinding, GestureBinding, RendererBinding, SemanticsBinding 也和调用自己的上述两个构造方法
-4.完成FlutterUI层和FlutterEngine之间的交互过程</p>
+<p>1.构造方法中默认调用initInstances</p>
+<p>2.构造方法中默认调用initServiceExtensions</p>
+<p>3.同时BindingBase, SchedulerBinding, GestureBinding, RendererBinding, SemanticsBinding 也和调用自己的上述两个构造方法</p>
+<p>4.完成FlutterUI层和FlutterEngine之间的交互过程</p>
 <div class="codehilite"><pre><span></span><span class="c1">/// The glue between the widgets layer and the Flutter engine.</span>
 <span class="n">mixin</span> <span class="n">WidgetsBinding</span> <span class="n">on</span> <span class="n">BindingBase</span><span class="p">,</span> <span class="n">SchedulerBinding</span><span class="p">,</span> <span class="n">GestureBinding</span><span class="p">,</span> <span class="n">RendererBinding</span><span class="p">,</span> <span class="n">SemanticsBinding</span> <span class="p">{</span>
   <span class="err">@</span><span class="n">override</span>
@@ -2469,7 +2718,10 @@ TestWidgetsFlutterBinding (binding.dart)
 <p>用于提供单例服务的mixins的基类（也称为“Binding”）。在mixin的<code>on</code>子句中使用这个类，继承它并实现[initInstances（）]。 mixin保证只能构建一次应用程序的生命周期（更确切地说，如果构造两次，它将断言
 在检查模式下）。用于编写应用程序的最顶层将具有一个具体的类继承自[BindingBase]并使用所有各种[BindingBase]mixins（例如[ServicesBinding]）。例如，Widgets库中Flutter引入了一个名为[WidgetsFlutterBinding]的绑定。相关的library定义了如何创建绑定。可以暗示（例如，[WidgetsFlutterBinding]自动从[runApp]开始，或者应用程序可能需要显式调用构造函数。小部件层和Flutter引擎之间的粘合剂。
 初始化绑定时调用，注册服务扩展。想要公开服务扩展的绑定应该重载这个方法使用调用来注册它们 [registerSignalServiceExtension]，[registerBoolServiceExtension]， [registerNumericServiceExtension]，和
-[registerServiceExtension]（按复杂程度递增）。此方法的实现必须调用它们的超类实施{<a class="magiclink magiclink-github magiclink-mention" href="https://github.com/macro" title="GitHub User: macro">@macro</a> flutter.foundation.bindingBase.registerServiceExtension} 也可以看看： * <a href="https://github.com/dart-lang/sdk/blob/master/runtime/vm/service/service.md#rpcs-requests-and-responses">https://github.com/dart-lang/sdk/blob/master/runtime/vm/service/service.md#rpcs-requests-and-responses</a></p>
+[registerServiceExtension]（按复杂程度递增）。此方法的实现必须调用它们的超类实施{<a class="magiclink magiclink-github magiclink-mention" href="https://github.com/macro" title="GitHub User: macro">@macro</a> flutter.foundation.bindingBase.registerServiceExtension} 也可以看看：</p>
+<ul>
+<li><a href="https://github.com/dart-lang/sdk/blob/master/runtime/vm/service/service.md#rpcs-requests-and-responses">https://github.com/dart-lang/sdk/blob/master/runtime/vm/service/service.md#rpcs-requests-and-responses</a></li>
+</ul>
 <p>2.和Window类的关联</p>
 <p>绑定此绑定的窗口。许多其他绑定被定义为[BindingBase]的扩展，，例如，[ServicesBinding]，[RendererBinding]和[WidgetsBinding]。每个这些绑定定义了与[ui.Window]交互的行为，例如，[ServicesBinding]注册一个[ui.Window.onPlatformMessage]处理程序，和[RendererBinding]注册[ui.Window.onMetricsChanged]，[ui.Window.onTextScaleFactorChanged]，[ui.Window.onSemanticsEnabledChanged]，和[ui.Window.onSemanticsAction]处理程序。这些其他绑定中的每一个都可以静态地单独访问[Window]，但这会妨碍用假冒测试这些行为的能力窗口用于验证目的。因此，[BindingBase]暴露了这一点[Window]供其他绑定使用。 [BindingBase]的子类，如 [TestWidgetsFlutterBinding]，可以覆盖此访问器以返回a不同的[Window]实现，例如[TestWindow]。</p>
 <div class="codehilite"><pre><span></span><span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">BindingBase</span> <span class="p">{</span>
@@ -2538,8 +2790,8 @@ TestWidgetsFlutterBinding (binding.dart)
 FlutterUI用户是怎么访问Window接口的？先使用一个极简的案例来展示一个FlutterUI项目调用FlutterEngine中的接口</p>
 <h3 id="window_1">Window是如何最简单的一帧绘制在屏幕上的<a class="headerlink" href="#window_1" title="Permanent link">&para;</a></h3>
 <p>使用新提供的更新应用程序在GPU上的渲染[Scene]必须在范围内调用此函数[onBeginFrame]或[onDrawFrame]回调被调用。如果这个功能在单个[onBeginFrame] / [onDrawFrame]中第二次被调用回调序列或调用那些回调范围之外的调用将被忽略。要记录图形操作，首先要创建一个[PictureRecorder]构造一个[Canvas]，将[PictureRecorder]传递给它的构造函数。发出所有图形操作后，调用[PictureRecorder.endRecording]函数在[PictureRecorder]上获取表示已发布图形操作的最终[Picture]。接下来，创建一个[SceneBuilder]，然后使用添加[Picture][SceneBuilder.addPicture]。使用[SceneBuilder.build]方法即可然后获取[Scene]对象，您可以通过此对象显示该对象[渲染]功能。也可以看看：[SchedulerBinding]，用于管理的Flutter框架类帧的调度。[RendererBinding]，Flutter框架类，用于管理布局和画。</p>
-<p><img alt="pic" src="../img/flutterwindow.png" />
-核心实现:</p>
+<p><img alt="pic" src="../img/flutterwindow.png" /></p>
+<p>核心实现:</p>
 <div class="codehilite"><pre><span></span>color = const ui.Color(0xFF00FF00);
 提供一个Frame数据给Window
 ui.window.onBeginFrame = beginFrame;
@@ -2597,6 +2849,13 @@ ui.window.scheduleFrame();
   <span class="n">ui</span><span class="p">.</span><span class="n">window</span><span class="p">.</span><span class="n">scheduleFrame</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
+
+<h2 id="_4">总结<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>通过上面的分析，已经对Window相关的接口继续解耦到不同的binding对象，所有的初始化操作都是在<code>initInstances()</code>方法中进行初始化的</p>
+<p>1.调用runApp开始启动一个AppWidget层的入口</p>
+<p>2.调用<code>WidgetsFlutterBinding</code>的<code>ensureInitialized</code>方法来对<code>BindingBase</code>的所有子类进行初始化</p>
+<p>3.mixin类的初始化是从继承顺序从后往前进行初始化</p>
+<p>通过上面的分析和demo的演示，我们可以很方便的了解Widow事件的拆分，不同<code>BindingBase</code>的初始化、以及Window的渲染对象回调到Flutterengin层提供渲染对象，后续的文章将介绍，FlutterWidget层是如何返回Flutter渲染对象的</p>
                 
                   
                 
@@ -2632,13 +2891,13 @@ ui.window.scheduleFrame();
           </a>
         
         
-          <a href="../../flutterdev/platform_channels/" title="PlatformChannel" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../flutterdev/FlutterWidgetinit/" title="FlutterUI框架绘制过程" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                PlatformChannel
+                FlutterUI框架绘制过程
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -2669,7 +2928,7 @@ ui.window.scheduleFrame();
     
       <a href="http://struct.cc" class="md-footer-social__link fa fa-globe"></a>
     
-      <a href="https://aidencang.github.io/Docs/" class="md-footer-social__link fa fa-github-alt"></a>
+      <a href="https://github.com/cangchengkun/Docs" class="md-footer-social__link fa fa-github-alt"></a>
     
       <a href="https://twitter.com/Aige25868905" class="md-footer-social__link fa fa-twitter"></a>
     
