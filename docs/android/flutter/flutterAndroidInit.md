@@ -1,6 +1,10 @@
-# Fluttr在Android代码启动是初始化Flutter，libflutter.so流程
+# Android启动加载Flutter流程
+
 
 ## Android初始化
+
+Flutter Engine编译完成之后会生成一个`FlutterJar`包,提供给Android和Flutter代码交互的过程
+![pic](./img/flutterjar.png)
 
 Flutter代码在Android端代码启动时，是如何加载相关的Dart代码，进行执行，最终在手机端是如何显示出来的
 
@@ -15,7 +19,7 @@ Flutter代码在Android端代码启动时，是如何加载相关的Dart代码
 
 ![pic](../../assets/images/android/flutter/flutterresourload.jpg)
 
-### Application中进行初始化：
+## Application中进行初始化：
 
 !!! info "STEP"
 
@@ -27,6 +31,11 @@ Flutter代码在Android端代码启动时，是如何加载相关的Dart代码
     * 6.FlutterActivity:对View、事件一系列动作的初始化
 
 android应用启动Application初始化Dart相关的代码
+
+
+## 初始化Flutter文件
+
+### Application启动Flutter.jar进行初始化
 
 ```java
 public class FlutterApplication extends Application {
@@ -51,6 +60,219 @@ public class FlutterApplication extends Application {
 }
 ```
 
+### 抽取Flutter相关代码，加载Flutter.so库
+flutter在apk中的文件需要加载才能够运行dart代码
+
+1.初始化配置文件
+2.抽象相关的代码Apk包Asset目录中的数据抽取到apk包下的目录中
+3.System.loadLibrary("flutter");初始化so库
+
+```java
+public void startInitialization(@NonNull Context applicationContext, @NonNull FlutterLoader.Settings settings) {
+    if (this.settings == null) {
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            throw new IllegalStateException("startInitialization must be called on the main thread");
+        } else {
+            this.settings = settings;
+            long initStartTimestampMillis = SystemClock.uptimeMillis();
+            this.initConfig(applicationContext);
+            this.initResources(applicationContext);
+            System.loadLibrary("flutter");
+            VsyncWaiter.getInstance((WindowManager)applicationContext.getSystemService("window")).init();
+            long initTimeMillis = SystemClock.uptimeMillis() - initStartTimestampMillis;
+            FlutterJNI.nativeRecordStartTimestamp(initTimeMillis);
+        }
+    }
+}
+```
+
+初始化配置文件，在apk包安装到手机之后，在apk的目录下可以找,初始化查找的路径
+
+```java
+private void initConfig(@NonNull Context applicationContext) {
+    Bundle metadata = this.getApplicationInfo(applicationContext).metaData;
+    if (metadata != null) {
+        this.aotSharedLibraryName = metadata.getString(PUBLIC_AOT_SHARED_LIBRARY_NAME, "libapp.so");
+        this.flutterAssetsDir = metadata.getString(PUBLIC_FLUTTER_ASSETS_DIR_KEY, "flutter_assets");
+        this.vmSnapshotData = metadata.getString(PUBLIC_VM_SNAPSHOT_DATA_KEY, "vm_snapshot_data");
+        this.isolateSnapshotData = metadata.getString(PUBLIC_ISOLATE_SNAPSHOT_DATA_KEY, "isolate_snapshot_data");
+    }
+}
+```
+
+apk是一个文件压缩包，flutter代码发在apk包中的Assert中，需要出去出来发在apk的安装目录中，通过`ExtractTask`类解析抽取，`AssetManager`管理器可以抽取出相关的Flutter代码，会根据目录下的时间戳文件来判断文件是否已经被抽取过`res_timestamp`
+```java
+    private void initResources(@NonNull Context applicationContext) {
+        (new ResourceCleaner(applicationContext)).start();
+        String dataDirPath = PathUtils.getDataDirectory(applicationContext);
+        String packageName = applicationContext.getPackageName();
+        PackageManager packageManager = applicationContext.getPackageManager();
+        AssetManager assetManager = applicationContext.getResources().getAssets();
+        this.resourceExtractor = new ResourceExtractor(dataDirPath, packageName, packageManager, assetManager);
+        this.resourceExtractor.addResource(this.fullAssetPathFrom(this.vmSnapshotData)).addResource(this.fullAssetPathFrom(this.isolateSnapshotData)).addResource(this.fullAssetPathFrom("kernel_blob.bin"));
+        this.resourceExtractor.start();
+    }
+```
+到目前为止只是android在启动时进行静态的加载数据，
+
+### 初始化UI界面、Plug，事件监听回调方法
+
+1.在主线程中初始化Flutter文件的安装路径
+2.`FlutterLoader`主要负责抽取Flutter的相关文件到从apk包中的asset文件夹下抽取到安装目录文件下
+
+FlutterEngine是一个so库，只有加载到Java的执行路径中才能初始化Dart虚拟机，提供Dart运行的环境，在接下来的文章中将一些分析FlutterEngine初始化过程，在Android中Application启动完成，已经初始化进程之后，就可以开启Activity，在清单文件中配置的启动Activity类继承了`FlutterActivity`
+
+1.初始化Androidwindow属性，提供一个全屏状态个Flutter来使用
+2.等待Flutter引擎初始化完成
+3.createFlutterView 提供给开发者自己定义Flutter SurfaceView的机制
+4.如果`createFlutterView`用户没有定制，那么使用系统默认的SurfaceView
+5.`FlutterView`提供了面向用户操作的类，`FlutterNativeView`提供了Android代码和Flutter的互操作机制
+6.调用`setContentView`添加SurfaceView
+7.添加第一帧到系统，可以避免Flutter初始化的时候出现白屏现象
+
+经过上面的初始化过程，已经初始化完成UI界面，但是还有Flutter.so文件的加载工作还没有完成
+
+
+```java
+public void onCreate(Bundle savedInstanceState) {
+    if (VERSION.SDK_INT >= 21) {
+        Window window = this.activity.getWindow();
+        window.addFlags(-2147483648);
+        window.setStatusBarColor(1073741824);
+        window.getDecorView().setSystemUiVisibility(1280);
+    }
+
+    String[] args = getArgsFromIntent(this.activity.getIntent());
+    加载flutter.so库，通过FlutterJNI.nativeInit方法
+    FlutterMain.ensureInitializationComplete(this.activity.getApplicationContext(), args);
+    this.flutterView = this.viewFactory.createFlutterView(this.activity);
+    if (this.flutterView == null) {
+        FlutterNativeView nativeView = this.viewFactory.createFlutterNativeView();
+        this.flutterView = new FlutterView(this.activity, (AttributeSet)null, nativeView);
+        this.flutterView.setLayoutParams(matchParent);
+        this.activity.setContentView(this.flutterView);
+        this.launchView = this.createLaunchView();
+        if (this.launchView != null) {
+            this.addLaunchView();
+        }
+    }
+
+    if (!this.loadIntent(this.activity.getIntent())) {
+        String appBundlePath = FlutterMain.findAppBundlePath();
+        if (appBundlePath != null) {
+            this.runBundle(appBundlePath);
+        }
+
+    }
+}
+```
+FlutterView初始化时需要加载Flutter相关的资源
+
+1.初始化`FlutterNativeView`监听`Flutter.so`库的事件监听，加载，卸载so库的事件
+    `FlutterPluginRegistry`:注册系统层级的插件管理对象
+    `DartExecutor`:真正的管理FlutterAndroid侧的插件绑定及解绑定,事件级别的的处理
+    `FlutterJNI`:监听Flutter侧回调Android端的代码逻辑，so库层级的事件处理
+    `FlutterUiDisplayListener`:Flutter初始化完成之后会回到到Android端的UI改变监听
+2.
+```java
+public FlutterView(Context context, AttributeSet attrs, FlutterNativeView nativeView) {
+    super(context, attrs);
+    this.nextTextureId = new AtomicLong(0L);
+    this.mIsSoftwareRenderingEnabled = false;
+    this.didRenderFirstFrame = false;
+    this.onAccessibilityChangeListener = new OnAccessibilityChangeListener() {
+        public void onAccessibilityChanged(boolean isAccessibilityEnabled, boolean isTouchExplorationEnabled) {
+            FlutterView.this.resetWillNotDraw(isAccessibilityEnabled, isTouchExplorationEnabled);
+        }
+    };
+    Activity activity = getActivity(this.getContext());
+    if (activity == null) {
+        throw new IllegalArgumentException("Bad context");
+    } else {
+        if (nativeView == null) {
+            this.mNativeView = new FlutterNativeView(activity.getApplicationContext());
+        } else {
+            this.mNativeView = nativeView;
+        }
+
+        this.dartExecutor = this.mNativeView.getDartExecutor();
+        this.flutterRenderer = new FlutterRenderer(this.mNativeView.getFlutterJNI());
+        this.mIsSoftwareRenderingEnabled = this.mNativeView.getFlutterJNI().nativeGetIsSoftwareRenderingEnabled();
+        this.mMetrics = new FlutterView.ViewportMetrics();
+        this.mMetrics.devicePixelRatio = context.getResources().getDisplayMetrics().density;
+        this.setFocusable(true);
+        this.setFocusableInTouchMode(true);
+        this.mNativeView.attachViewAndActivity(this, activity);
+        this.mSurfaceCallback = new Callback() {
+            public void surfaceCreated(SurfaceHolder holder) {
+                FlutterView.this.assertAttached();
+                FlutterView.this.mNativeView.getFlutterJNI().onSurfaceCreated(holder.getSurface());
+            }
+
+            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+                FlutterView.this.assertAttached();
+                FlutterView.this.mNativeView.getFlutterJNI().onSurfaceChanged(width, height);
+            }
+
+            public void surfaceDestroyed(SurfaceHolder holder) {
+                FlutterView.this.assertAttached();
+                FlutterView.this.mNativeView.getFlutterJNI().onSurfaceDestroyed();
+            }
+        };
+        this.getHolder().addCallback(this.mSurfaceCallback);
+        this.mActivityLifecycleListeners = new ArrayList();
+        this.mFirstFrameListeners = new ArrayList();
+        注册系统级别的插件监听
+        this.navigationChannel = new NavigationChannel(this.dartExecutor);
+        this.keyEventChannel = new KeyEventChannel(this.dartExecutor);
+        this.lifecycleChannel = new LifecycleChannel(this.dartExecutor);
+        this.localizationChannel = new LocalizationChannel(this.dartExecutor);
+        this.platformChannel = new PlatformChannel(this.dartExecutor);
+        this.systemChannel = new SystemChannel(this.dartExecutor);
+        this.settingsChannel = new SettingsChannel(this.dartExecutor);
+        final PlatformPlugin platformPlugin = new PlatformPlugin(activity, this.platformChannel);
+        this.addActivityLifecycleListener(new ActivityLifecycleListener() {
+            public void onPostResume() {
+                platformPlugin.updateSystemUiOverlays();
+            }
+        });
+        this.mImm = (InputMethodManager)this.getContext().getSystemService("input_method");
+        PlatformViewsController platformViewsController = this.mNativeView.getPluginRegistry().getPlatformViewsController();
+        this.mTextInputPlugin = new TextInputPlugin(this, this.dartExecutor, platformViewsController);
+        this.androidKeyProcessor = new AndroidKeyProcessor(this.keyEventChannel, this.mTextInputPlugin);
+        this.androidTouchProcessor = new AndroidTouchProcessor(this.flutterRenderer);
+        this.mNativeView.getPluginRegistry().getPlatformViewsController().attachTextInputPlugin(this.mTextInputPlugin);
+        this.sendLocalesToDart(this.getResources().getConfiguration());
+        this.sendUserPlatformSettingsToDart();
+    }
+}
+```
+
+
+## SurfaceView事件和FlutterEngine事件
+
+在Android端进行SurfaceView进行初始化时，SurfaceView的回到函数中，通过`FlutterJNI`类中的本地方法和JNI层中的方法进行绑定，FlutterEngine在进行Flutter的渲染时，就可以传递相关的Surface给Android平台进行渲染显示
+
+```java
+this.mSurfaceCallback = new Callback() {
+    public void surfaceCreated(SurfaceHolder holder) {
+        FlutterView.this.assertAttached();
+        FlutterView.this.mNativeView.getFlutterJNI().onSurfaceCreated(holder.getSurface());
+    }
+
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+        FlutterView.this.assertAttached();
+        FlutterView.this.mNativeView.getFlutterJNI().onSurfaceChanged(width, height);
+    }
+
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        FlutterView.this.assertAttached();
+        FlutterView.this.mNativeView.getFlutterJNI().onSurfaceDestroyed();
+    }
+};
+
+```
+
 ## FlutterMain
 
 调用Flutter for android 库初始化Flutter相关的文件
@@ -69,6 +291,9 @@ public class FlutterApplication extends Application {
 
     * 3.初始化UI绘制Sync信号的传递
 
+## System.loadLibrary 调用过程
+在Flutter.jar初始化时，调用System.loadLibrary 查找解压出来的Flutter.so文件，调用dlopen打开打开so库，加载C++相关的资源，加载完成后调用JNI_OnLoad,具体调用过程参考下图，当调用`JNI_OnLoad`完成后so库以及提供了可以运行的函数，接下来就是初始化Flutter相关的代码和业务逻辑
+![pic](./img/soloading.png)
 
 ## JNI_OnLoad
 
@@ -184,162 +409,8 @@ bool VsyncWaiterAndroid::Register(JNIEnv* env) {
 ```
 
 
-## Java层对应的代码
-
-```Java
-public static void startInitialization(Context applicationContext, FlutterMain.Settings settings) {
-<!-- 确保在主线程调用初始化 -->
-if (Looper.myLooper() != Looper.getMainLooper()) {
-    throw new IllegalStateException("startInitialization must be called on the main thread");
-} else if (sSettings == null) {
-    sSettings = settings;
-    long initStartTimestampMillis = SystemClock.uptimeMillis();
-    <!-- 1.初始化配置文件 -->
-    initConfig(applicationContext);
-    <!-- 2.获取Dart优化的代码文件 -->
-    initAot(applicationContext);
-    <!-- 3.初始化资源文件 -->
-    initResources(applicationContext);
-    <!-- 4.加载so库文件 -->
-    System.loadLibrary("flutter");
-    long initTimeMillis = SystemClock.uptimeMillis() - initStartTimestampMillis;
-    nativeRecordStartTimestamp(initTimeMillis);
-}
-}
-```
-
-### 1.初始化配置文件
-
-```Java
-private static void initConfig(Context applicationContext) {
-    try {
-        Bundle metadata = applicationContext.getPackageManager().getApplicationInfo(applicationContext.getPackageName(), 128).metaData;
-        if (metadata != null) {
-            sAotSharedLibraryPath = metadata.getString(PUBLIC_AOT_AOT_SHARED_LIBRARY_PATH, "app.so");
-            sAotVmSnapshotData = metadata.getString(PUBLIC_AOT_VM_SNAPSHOT_DATA_KEY, "vm_snapshot_data");
-            sAotVmSnapshotInstr = metadata.getString(PUBLIC_AOT_VM_SNAPSHOT_INSTR_KEY, "vm_snapshot_instr");
-            sAotIsolateSnapshotData = metadata.getString(PUBLIC_AOT_ISOLATE_SNAPSHOT_DATA_KEY, "isolate_snapshot_data");
-            sAotIsolateSnapshotInstr = metadata.getString(PUBLIC_AOT_ISOLATE_SNAPSHOT_INSTR_KEY, "isolate_snapshot_instr");
-            sFlx = metadata.getString(PUBLIC_FLX_KEY, "app.flx");
-            sFlutterAssetsDir = metadata.getString(PUBLIC_FLUTTER_ASSETS_DIR_KEY, "flutter_assets");
-        }
-
-    } catch (NameNotFoundException var2) {
-        throw new RuntimeException(var2);
-    }
-}
-```
-
-### 2.获取包中的Dart优化后的代码资源文件
-
-```Java
-private static void initAot(Context applicationContext) {
-  Set<String> assets = listAssets(applicationContext, "");
-  sIsPrecompiledAsBlobs = assets.containsAll(Arrays.asList(sAotVmSnapshotData, sAotVmSnapshotInstr, sAotIsolateSnapshotData, sAotIsolateSnapshotInstr));
-  sIsPrecompiledAsSharedLibrary = assets.contains(sAotSharedLibraryPath);
-  if (sIsPrecompiledAsBlobs && sIsPrecompiledAsSharedLibrary) {
-      throw new RuntimeException("Found precompiled app as shared library and as Dart VM snapshots.");
-  }
-}
-```
-
-### 3.获取资源文件
-
-```Java
-private static void initResources(Context applicationContext) {
-    Context context = applicationContext;
-    (new ResourceCleaner(applicationContext)).start();
-    Bundle metaData = null;
-
-    try {
-        metaData = context.getPackageManager().getApplicationInfo(context.getPackageName(), 128).metaData;
-    } catch (NameNotFoundException var4) {
-        Log.e("FlutterMain", "Unable to read application info", var4);
-    }
-
-    if (metaData != null && metaData.getBoolean("DynamicPatching")) {
-        sResourceUpdater = new ResourceUpdater(applicationContext);
-        if (sResourceUpdater.getDownloadMode() == DownloadMode.ON_RESTART || sResourceUpdater.getDownloadMode() == DownloadMode.ON_RESUME) {
-            sResourceUpdater.startUpdateDownloadOnce();
-            if (sResourceUpdater.getInstallMode() == InstallMode.IMMEDIATE) {
-                sResourceUpdater.waitForDownloadCompletion();
-            }
-        }
-    }
-
-    sResourceExtractor = new ResourceExtractor(applicationContext);
-    sResourceExtractor.addResource(fromFlutterAssets(sFlx)).addResource(fromFlutterAssets(sAotVmSnapshotData)).addResource(fromFlutterAssets(sAotVmSnapshotInstr)).addResource(fromFlutterAssets(sAotIsolateSnapshotData)).addResource(fromFlutterAssets(sAotIsolateSnapshotInstr)).addResource(fromFlutterAssets("kernel_blob.bin"));
-    if (sIsPrecompiledAsSharedLibrary) {
-        sResourceExtractor.addResource(sAotSharedLibraryPath);
-    } else {
-        sResourceExtractor.addResource(sAotVmSnapshotData).addResource(sAotVmSnapshotInstr).addResource(sAotIsolateSnapshotData).addResource(sAotIsolateSnapshotInstr);
-    }
-
-    sResourceExtractor.start();
-}
 
 
-```
-
-
-### 4.nativeInit
-
-抽取Apk包中相关的文件到指定的目录，抽取完成后调用本地方法`nativeInit` 调用engine/src/flutter/shell/platform/android/flutter_main.cc
-相关的文件拷贝之后的文件路径
-调用Flutter_main中init方法初始化JNI中读取数据的路径
-
-!!! warning "源代码分析到这个地方，就开始加重Dart代码，是否在这个地方替换掉Isolate镜像，DartVM镜像进行动态加载不同的文件????"
-
-
-```Java
-public static void ensureInitializationComplete(Context applicationContext, String[] args) {
-    if (Looper.myLooper() != Looper.getMainLooper()) {
-        throw new IllegalStateException("ensureInitializationComplete must be called on the main thread");
-    } else if (sSettings == null) {
-        throw new IllegalStateException("ensureInitializationComplete must be called after startInitialization");
-    } else if (!sInitialized) {
-        try {
-            sResourceExtractor.waitForCompletion();
-            List<String> shellArgs = new ArrayList();
-            shellArgs.add("--icu-symbol-prefix=_binary_icudtl_dat");
-            if (args != null) {
-                Collections.addAll(shellArgs, args);
-            }
-
-            if (sIsPrecompiledAsSharedLibrary) {
-                shellArgs.add("--aot-shared-library-path=" + new File(PathUtils.getDataDirectory(applicationContext), sAotSharedLibraryPath));
-            } else {
-                if (sIsPrecompiledAsBlobs) {
-                    shellArgs.add("--aot-snapshot-path=" + PathUtils.getDataDirectory(applicationContext));
-                } else {
-                    shellArgs.add("--cache-dir-path=" + PathUtils.getCacheDirectory(applicationContext));
-                    shellArgs.add("--aot-snapshot-path=" + PathUtils.getDataDirectory(applicationContext) + "/" + sFlutterAssetsDir);
-                }
-
-                shellArgs.add("--vm-snapshot-data=" + sAotVmSnapshotData);
-                shellArgs.add("--vm-snapshot-instr=" + sAotVmSnapshotInstr);
-                shellArgs.add("--isolate-snapshot-data=" + sAotIsolateSnapshotData);
-                shellArgs.add("--isolate-snapshot-instr=" + sAotIsolateSnapshotInstr);
-            }
-
-            if (sSettings.getLogTag() != null) {
-                shellArgs.add("--log-tag=" + sSettings.getLogTag());
-            }
-
-            String appBundlePath = findAppBundlePath(applicationContext);
-            String appStoragePath = PathUtils.getFilesDir(applicationContext);
-            String engineCachesPath = PathUtils.getCacheDirectory(applicationContext);
-            <!-- 调用JNI中的方法进行初始化，dart虚拟机加载的文件信息 -->
-            nativeInit(applicationContext, (String[])shellArgs.toArray(new String[0]), appBundlePath, appStoragePath, engineCachesPath);
-            sInitialized = true;
-        } catch (Exception var6) {
-            Log.e("FlutterMain", "Flutter initialization failed.", var6);
-            throw new RuntimeException(var6);
-        }
-    }
-}
-
-```
 
 ## flutter_main::nativeInit
 
@@ -422,3 +493,26 @@ void FlutterMain::Init(JNIEnv* env,
 ```
 
 执行到这个地方，Apk中的文件已经抽取完成，回调方法，回调事件已经完成,路径的初始化信息已经初始化
+
+
+## 总结
+
+通过上面的分析，已经初始化完成Flutter和Android的调用逻辑，通过上面的分析，总结一下Flutter初始化的大概逻辑
+
+1.App启动，在Application中调用`FlutterMain`中的`startInitialization`方法，完成路径的配置，flutter代码的抽取，加载Flutter.so库
+
+2.开始初始化Activity中的UI界面和绑定Android和Flutter通信，回调等一系列的操作`FlutterActivityDelegate`中完成
+
+3.在``中调用`nativeInit`方法初始化`Flutter.so`库进行DartVM的初始化操作
+
+4.`Flutter.so`库加载时调用`JNI_OnLoad`方法中初始化`FlutterMain`作为Android端的调用入口
+
+5.初始化`PlatformViewAndroid`,Android端和FlutterView通信交互的入口
+
+6.Flutter.so初始化完成Engine相关的资源之后，在`FlutterLoader.class`中调用`nativeInit`方法初始化
+
+7.通过`FlutterJNI`中的`nativeAttach`方法初始化`Flutter.so`开始绑定Android端和Flutter相关的事件回调
+
+8.在Android端进行SurfaceView进行初始化时，SurfaceView的回到函数`Callback`中，通过`FlutterJNI`类中的本地方法和JNI层中的方法进行绑定，FlutterEngine在进行Flutter的渲染时，就可以传递相关的Surface给Android平台进行渲染显示
+
+至此，Android端启动、加载Flutter资源、初始化FlutterEngine，绑定SurfaceView和FlutterEngine引擎的对象，注册系统级别的插件功能，已经初始化完成，下一篇中我们将，分析FlutterEngine引擎是怎么初始化的，毕竟要在手机上看到Flutter引擎代码的显示
