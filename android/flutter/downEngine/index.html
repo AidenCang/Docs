@@ -896,15 +896,22 @@
     概述
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" title="查看官方文档进行环境配置" class="md-nav__link">
-    查看官方文档进行环境配置
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="核心内容" class="md-nav__link">
+    核心内容
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="查看官方文档进行环境配置" class="md-nav__link">
+    查看官方文档进行环境配置
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#gclient-sync" title="gclient sync 的执行过程" class="md-nav__link">
@@ -926,8 +933,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gclient-sync_2" title="gclient sync首先查找" class="md-nav__link">
-    gclient sync首先查找
+  <a href="#gclient-sync_2" title="gclient sync 依赖文件" class="md-nav__link">
+    gclient sync 依赖文件
   </a>
   
 </li>
@@ -940,7 +947,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" title="下载源代码错误处理" class="md-nav__link">
+  <a href="#gclient_entries" title="源代码的进度保存.gclient_entries" class="md-nav__link">
+    源代码的进度保存.gclient_entries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="下载源代码错误处理" class="md-nav__link">
     下载源代码错误处理
   </a>
   
@@ -956,6 +970,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="总结" class="md-nav__link">
+    总结
+  </a>
   
 </li>
       
@@ -2253,15 +2274,22 @@
     概述
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" title="查看官方文档进行环境配置" class="md-nav__link">
-    查看官方文档进行环境配置
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="核心内容" class="md-nav__link">
+    核心内容
   </a>
   
 </li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" title="查看官方文档进行环境配置" class="md-nav__link">
+    查看官方文档进行环境配置
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#gclient-sync" title="gclient sync 的执行过程" class="md-nav__link">
@@ -2283,8 +2311,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#gclient-sync_2" title="gclient sync首先查找" class="md-nav__link">
-    gclient sync首先查找
+  <a href="#gclient-sync_2" title="gclient sync 依赖文件" class="md-nav__link">
+    gclient sync 依赖文件
   </a>
   
 </li>
@@ -2297,7 +2325,14 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" title="下载源代码错误处理" class="md-nav__link">
+  <a href="#gclient_entries" title="源代码的进度保存.gclient_entries" class="md-nav__link">
+    源代码的进度保存.gclient_entries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" title="下载源代码错误处理" class="md-nav__link">
     下载源代码错误处理
   </a>
   
@@ -2313,6 +2348,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="总结" class="md-nav__link">
+    总结
+  </a>
   
 </li>
       
@@ -2334,14 +2376,36 @@
                 
                 
                 <h1 id="flutter-engine">下载Flutter engine<a class="headerlink" href="#flutter-engine" title="Permanent link">&para;</a></h1>
-<p>flutter 引擎使用depot_tools进行管理,具体的环境配置方法，请参考官方文档中的配置文件，本文中部进行重复的说明，主要梳理下载的流程，避免在下载源代码时出现错误有解决思路。</p>
 <h2 id="_1">概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>FlutterEngine是托管在Github上的开源库，可以自由下载，下载步骤:</p>
-<h3 id="_2">查看官方文档进行环境配置<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>FlutterEngine是托管在Github上的开源库，可以自由下载:</p>
+<p>Flutter Engine是Google开发的源代码工程，托管在<a href="https://github.com/flutter/flutter">Github</a>上源代码工程，flutter 引擎使用depot_tools进行管理,具体的环境配置方法，请参考官方文档中的配置文件，本文中不进行重复的说明，主要梳理下载的流程，避免在下载源代码时出现错误有解决思路。</p>
+<p><code>depot_tools</code>是Google专门为开发大项目开发的<code>.git</code>代码仓库管理的<code>python</code>脚本，统一管理整个源码仓库的所有依赖</p>
+<p>开始下载编译源码我们需要掌握的一些内容框架,先搞清楚整个编译需要的原材料，针对性的一个一个突破</p>
+<p>1.配置Git仓库，clone FlutterEngine的源代码到自己的github账号下</p>
+<p>2.下载<a href="http://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html#_setting_up">depot_tools</a>源代码依赖工具，通过配置文件找到自己<code>Github</code>代码仓库的地址，查找依赖文件<code>DEPS</code></p>
+<p>3.gclient生成整个源代码的依赖文件 <a href="http://code.google.com/p/chromium/wiki/UsingGit">gclient</a></p>
+<div class="codehilite"><pre><span></span>  1.flutterEngine 根目录下的`DEPS`文件
+  2.`engine/src/flutter/DEPS`目录下的依赖文件
+  3.`engine/src/third_party/dart/DEPS`目录下的依赖文件,[添加Dart依赖到源码仓库](https://github.com/dart-lang/sdk/wiki/Adding-and-Updating-Dependencies)
+</pre></div>
+
+
+<h2 id="_2">核心内容<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>1.如何配置gclient</p>
+<p>2.gclient的执行过程</p>
+<p>3.<code>DEPS</code>相关的依赖文件调用过程</p>
+<p>4.如果提交本地修改</p>
+<h2 id="_3">查看官方文档进行环境配置<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>1.C++编译工具</p>
+<p>2.git代码管理工具</p>
+<p>3.代码下载工具</p>
+<p>详细的过程参考官方的配置文档</p>
 <p>1.相关的环境配置工具可以在官方链接文档中找到<a href="https://github.com/flutter/flutter/wiki/Setting-up-the-Engine-development-environment">环境设置</a></p>
 <p>2.项目仓库管理工具 <a href="http://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html#_setting_up">depot_tools下载配置环境</a></p>
 <h3 id="gclient-sync">gclient sync 的执行过程<a class="headerlink" href="#gclient-sync" title="Permanent link">&para;</a></h3>
-<p>1.下载<code>git@github.com:&lt;your_name_here&gt;/engine.git</code>代码仓库</p>
+<p>1.终端命令配置<code>gclient.py</code>文件的环境变量<code>gclient sync</code></p>
+<p>2.读取engine目录下创建的<code>.gclient</code>文件</p>
+<p>2.下载<code>git@github.com:&lt;your_name_here&gt;/engine.git</code>代码仓库</p>
 <p>2.查找<code>src/flutter</code>下的<code>deps</code>文件进行依赖文件下载，并行执行相关的Python文件</p>
 <p>3.执行<code>src/tools</code>下的所有<code>py</code>文件，开始查找<code>src/third_party/dart/DEPS</code>文件，并执行相关的源码操作</p>
 <p>上面三步执行完成之后，所有的源代码已经下载完成，可进行编译操作</p>
@@ -2362,7 +2426,7 @@
 </pre></div>
 
 
-<p>gclient sync 首先下载<code>git@github.com:&lt;your_name_here&gt;/engine.git</code>代码仓库，然后查找，使用<code>src/flutter中的DEPS</code>文件进行依赖下载，包括第三方库，下载关联的<code>git</code>代码仓库之后，安装<code>DESP中的</code>hook文件的配置执行相应的<code>python</code>脚本文件,在<code>src/Flutter/DEPS</code>文件执行到倒数第二个脚本是执行<code>src/tools</code>目录下的所有<code>Python</code>文件，接着查找<code>src/third_party/dart/DEPS</code>目录下的文件执行相关的依赖下载</p>
+<p>gclient sync 首先下载<code>git@github.com:&lt;your_name_here&gt;/engine.git</code>代码仓库，然后查找，使用<code>src/flutter中的DEPS</code>文件进行依赖下载，包括第三方库，下载关联的<code>git</code>代码仓库之后，安装<code>DESP中的</code>hook文件的配置执行相应的<code>python</code>脚本文件,在<code>src/Flutter/DEPS</code>文件执行到倒数第二个脚本是执行<code>src/tools</code>目录下的所有<code>Python</code>文件，接着查找<code>src/third_party/dart/DEPS</code>目录下的文件执行相关的依赖下载,我们分析一下上文中提到的三个<code>DEPS</code>文件，就能够跟中到整个项目下载的路程，在下载的过程中会出现一下版本不正常的文件，可以在<code>DEPS</code>文件中修改相应的版本号在进行下载</p>
 <p>下列代码是更新Dart相关的文件调用的，同时会执行<code>src/third_party/dart/DEPS</code></p>
 <div class="codehilite"><pre><span></span>{
   # Ensure that we don&#39;t accidentally reference any .pyc files whose
@@ -2378,13 +2442,14 @@
 </pre></div>
 
 
-<h2 id="gclient-sync_2">gclient sync首先查找<a class="headerlink" href="#gclient-sync_2" title="Permanent link">&para;</a></h2>
+<h2 id="gclient-sync_2">gclient sync 依赖文件<a class="headerlink" href="#gclient-sync_2" title="Permanent link">&para;</a></h2>
 <ol>
 <li>全局公共的依赖: <a href="https://github.com/AidenCang/engine/blob/master/DEPS">Flutter 根目录下的DEPS</a></li>
 <li>不同平台下的Dart 相关的依赖: <a href="https://github.com/dart-lang/sdk/blob/master/DEPS">Dart依赖</a></li>
 <li><a href="https://github.com/dart-lang/sdk/wiki/Adding-and-Updating-Dependencies">更新Dart依赖</a></li>
 </ol>
 <h2 id="deps">DEPS 包含<a class="headerlink" href="#deps" title="Permanent link">&para;</a></h2>
+<p>在下载的过程中直接下载Git代码仓库，有一些需要逻辑处理的文件通过执行Python脚本来完成，下面几个核心的操作，我们提取出出来，可以直接跟踪一下，依赖的执行过程，更能够理解，整个源码目录下载了那些文件，有一个框架性的认识</p>
 <p>vars：指定需要下载的git仓库</p>
 <p>deps:依赖的代码库</p>
 <p>hooks:下载完成后执行相关脚本(<code>重点跟踪的过程</code>)</p>
@@ -2398,7 +2463,28 @@
 <p>8.flutter/tools/generate_package_files.py</p>
 <p>9.src/tools/.*\.py</p>
 <p>10.download_from_google_storage</p>
-<h2 id="_3">下载源代码错误处理<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="gclient_entries">源代码的进度保存<code>.gclient_entries</code><a class="headerlink" href="#gclient_entries" title="Permanent link">&para;</a></h2>
+<p>gclient sync在下载源代码的过程中会包下载的文件保存在执行.gclient文件夹下</p>
+<div class="codehilite"><pre><span></span>➜  engine la
+total 32
+-rw-r--r--   1 cangck  staff   196B 11 15 22:29 .gclient
+-rw-r--r--   1 cangck  staff   9.5K 11 17 22:05 .gclient_entries
+drwxr-xr-x   5 cangck  staff   160B 11 20 00:10 .vscode
+drwxr-xr-x  21 cangck  staff   672B 11 20 00:59 src
+</pre></div>
+
+
+<p>看一下下面的每一项是一个源码仓库地址@版本号或者是git commitid</p>
+<div class="codehilite"><pre><span></span><span class="s1">&#39;src&#39;</span>: <span class="s1">&#39;https://github.com/flutter/buildroot.git@7f64ff4928e7106cd8d81c6397fba4b7c1cdbb96&#39;</span>,
+<span class="s1">&#39;src/buildtools&#39;</span>: <span class="s1">&#39;https://fuchsia.googlesource.com/buildtools@bac220c15490dcf7b7d8136f75100bbc77e8d217&#39;</span>,
+<span class="s1">&#39;src/ios_tools&#39;</span>: <span class="s1">&#39;https://chromium.googlesource.com/chromium/src/ios.git@69b7c1b160e7107a6a98d948363772dc9caea46f&#39;</span>,
+<span class="s1">&#39;src/third_party/benchmark&#39;</span>: <span class="s1">&#39;https://fuchsia.googlesource.com/third_party/benchmark@21f1eb3fe269ea43eba862bf6b699cde46587ade&#39;</span>,
+<span class="s1">&#39;src/third_party/boringssl&#39;</span>: <span class="s1">&#39;https://github.com/dart-lang/boringssl_gen.git@bbf52f18f425e29b1185f2f6753bec02ed8c5880&#39;</span>,
+<span class="s1">&#39;src/third_party/boringssl/src&#39;</span>: <span class="s1">&#39;https://boringssl.googlesource.com/boringssl.git@702e2b6d3831486535e958f262a05c75a5cb312e&#39;</span>,
+<span class="s1">&#39;src/third_party/colorama/src&#39;</span>: <span class="s1">&#39;https://chromium.googlesource.com/external/colorama.git@799604a1041e9b3bc5d2789ecbd7e8db2e18e6b8&#39;</span>,
+</pre></div>
+
+<h2 id="_4">下载源代码错误处理<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span>Running hooks:  <span class="m">50</span>% <span class="o">(</span> <span class="m">5</span>/10<span class="o">)</span> download_android_tools
 ________ running <span class="s1">&#39;src/third_party/dart/tools/sdks/dart-sdk/bin/dart --enable-asserts src/tools/android/android_sdk_downloader/lib/main.dart -y --out=src/third_party/android_tools --platform=28 --platform-revision=6 --build-tools-version=28.0.3 --platform-tools-version=28.0.1 --tools-version=26.1.1 --ndk-version=19.1.5304403&#39;</span> in <span class="s1">&#39;/Users/cangck/engine&#39;</span>
 src/tools/android/android_sdk_downloader/lib/main.dart:1: Warning: Interpreting this as package URI, <span class="s1">&#39;package:android_sdk_downloader/main.dart&#39;</span>.
@@ -2447,6 +2533,9 @@ Hook <span class="s1">&#39;src/third_party/dart/tools/sdks/dart-sdk/bin/dart --e
   <span class="o">]</span>,
 <span class="o">}</span>,
 </pre></div></p>
+<h2 id="_5">总结<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>在开始编译引擎之前，当然是要先把相关的环境安装好，了解整个源代码下载的过程和大概的逻辑，学习是一个循序渐进的过程，我们先了解整个源代码下载相关的逻辑和这些过程，把握住核心概念和步骤，在整个源码下载的过程中出现错误，可以正对性的去解决出现的问题
+做技术的核心思想不是你掌握了多少知识，而是有多少产出，在研发的过程中由于环境的变化或者是需求的变化，导致bug的解决时间远远大于开发核心代码的时间，在出现问题是往往不是对定位的问题不能解决，而是找不到定位问题的方法，无从下手，本系列分享主要是以框架和思路为主，会定位整个源码核心功能和关键步骤，不会对细节分析的更多，linux之父的名言，开发代码最好的方法就是<code>Review Fuck Source Code</code></p>
                 
                   
                 
