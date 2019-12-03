@@ -143,7 +143,9 @@ nav:
       - FlutterUI: android/flutter/flutterUI.md
       - 面试资料: android/flutter/interview.md
     - FlutterEngine:
-      - 编译环境安装: android/flutter/flutterenv.md
+      - Engine源代码下载: android/flutter/downEngine.md
+      - 编译模式: android/flutter/ComplieMode.md
+      - FlutterEngine编译: android/flutter/EngineCompile.md
       - GNTools: android/flutter/GNTools.md
       - Ninja编译系统 : android/flutter/NinjaSystem.md
       - Engine编译构建: android/flutter/EngineCompile.md

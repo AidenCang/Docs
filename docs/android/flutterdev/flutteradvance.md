@@ -1,4 +1,16 @@
 # Dart 开发 Android&IOS&Web
+
+## 常见开发库
+
+[flutter-go](https://github.com/alibaba/flutter-go)
+[Flutter开源库](https://github.com/Solido/awesome-flutter)
+[Flutterrun原理](http://gityuan.com/2019/09/07/flutter_run/)
+[源码解读Flutter tools机制](http://gityuan.com/2019/09/01/flutter_tool/)
+[深入理解Flutter应用启动](http://gityuan.com/2019/06/29/flutter_run_app/)
+[彻底理解安卓应用无响应机制](http://gityuan.com/2019/04/06/android-anr/)
+[Flutter前端编译frontend_server](http://gityuan.com/2019/09/14/flutter_frontend_server/)
+
+
 ## 环境搭建问题？
 1.系统要求
 2.设置Flutter镜像

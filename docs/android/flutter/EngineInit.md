@@ -13,9 +13,160 @@
     * 7.`TaskRunners`管理添加到不同平台中的线程执行，负责管理四个任务运行器
     * 8.`Shell`加载第三方库，Java虚拟机的创建
 
-## 初始化2个步骤
+## 加载Flutter资源
+
+### JNI_OnLoad
+
+Flutter.so中Android端的入口函数`engine/src/flutter/shell/platform/android/library_loader.cc`
+
+Java加载Flutter.so库完成时，开始初始化Flutter引擎
+
+1.注册Flutter层的代码
+
+2.初始化AndroidView
+
+3.初始化FlutterMain
 
 在Android端初始化Flutter 相关的环境通过两个步骤来完成：
+```C
+// This is called by the VM when the shared library is first loaded.
+JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
+  // Initialize the Java VM.
+  fml::jni::InitJavaVM(vm);
+
+  JNIEnv* env = fml::jni::AttachCurrentThread();
+  bool result = false;
+
+  // Register FlutterMain.
+  result = shell::FlutterMain::Register(env);
+  FML_CHECK(result);
+
+  // Register PlatformView
+  result = shell::PlatformViewAndroid::Register(env);
+  FML_CHECK(result);
+
+  // Register VSyncWaiter.
+  result = shell::VsyncWaiterAndroid::Register(env);
+  FML_CHECK(result);
+
+  return JNI_VERSION_1_4;
+}
+
+```
+###  FlutterMain::Register(env);
+
+1.转换FlutterJNI中的`nativeInit`函数到JNI`init`函数并且初始化相关的引擎
+
+2.加载`FlutterMain`中的所有native函数
+
+
+开始初始化Register查找Flutter.jar中的Java方法
+```C
+bool FlutterMain::Register(JNIEnv* env) {
+  static const JNINativeMethod methods[] = {
+      {
+          .name = "nativeInit",
+          .signature = "(Landroid/content/Context;[Ljava/lang/String;Ljava/"
+                       "lang/String;Ljava/lang/String;Ljava/lang/String;)V",
+          .fnPtr = reinterpret_cast<void*>(&Init),
+      },
+      {
+          .name = "nativeRecordStartTimestamp",
+          .signature = "(J)V",
+          .fnPtr = reinterpret_cast<void*>(&RecordStartTimestamp),
+      },
+  };
+
+  jclass clazz = env->FindClass("io/flutter/view/FlutterMain");
+
+  if (clazz == nullptr) {
+    return false;
+  }
+
+  return env->RegisterNatives(clazz, methods, arraysize(methods)) == 0;
+}
+```
+
+FlutterMain.cc文件时FlutterEngine和Android平台相关的入口类，主要处理Android相关的资源文件和初始化FlutterMain.cc
+
+1.在调用Register函数时，已经把FlutterJNI中的`nativeInit`映射到FlutterMain中的`nativeInit`,传入Flutter在Android端的相关文件
+
+2.找到Android引擎启动时从Apk包中解压出来的资源文件
+
+3.加载Flutter编译出来的相关文件`kernel_blob`
+
+4.初始化FlutterMain`g_flutter_main.reset(new FlutterMain(std::move(settings)));`
+
+
+```C
+void FlutterMain::Init(JNIEnv* env,
+                       jclass clazz,
+                       jobject context,
+                       jobjectArray jargs,
+                       jstring bundlePath,
+                       jstring appStoragePath,
+                       jstring engineCachesPath) {
+  std::vector<std::string> args;
+  args.push_back("flutter");
+  for (auto& arg : fml::jni::StringArrayToVector(env, jargs)) {
+    args.push_back(std::move(arg));
+  }
+  auto command_line = fml::CommandLineFromIterators(args.begin(), args.end());
+
+  auto settings = SettingsFromCommandLine(command_line);
+
+  settings.assets_path = fml::jni::JavaStringToString(env, bundlePath);
+
+  // Restore the callback cache.
+  // TODO(chinmaygarde): Route all cache file access through FML and remove this
+  // setter.
+  blink::DartCallbackCache::SetCachePath(
+      fml::jni::JavaStringToString(env, appStoragePath));
+
+  fml::paths::InitializeAndroidCachesPath(
+      fml::jni::JavaStringToString(env, engineCachesPath));
+
+  blink::DartCallbackCache::LoadCacheFromDisk();
+
+  if (!blink::DartVM::IsRunningPrecompiledCode()) {
+    // Check to see if the appropriate kernel files are present and configure
+    // settings accordingly.
+    auto application_kernel_path =
+        fml::paths::JoinPaths({settings.assets_path, "kernel_blob.bin"});
+
+    if (fml::IsFile(application_kernel_path)) {
+      settings.application_kernel_asset = application_kernel_path;
+    }
+  }
+
+  settings.task_observer_add = [](intptr_t key, fml::closure callback) {
+    fml::MessageLoop::GetCurrent().AddTaskObserver(key, std::move(callback));
+  };
+
+  settings.task_observer_remove = [](intptr_t key) {
+    fml::MessageLoop::GetCurrent().RemoveTaskObserver(key);
+  };
+
+#if FLUTTER_RUNTIME_MODE == FLUTTER_RUNTIME_MODE_DEBUG
+  // There are no ownership concerns here as all mappings are owned by the
+  // embedder and not the engine.
+  auto make_mapping_callback = [](const uint8_t* mapping, size_t size) {
+    return [mapping, size]() {
+      return std::make_unique<fml::NonOwnedMapping>(mapping, size);
+    };
+  };
+
+  settings.dart_library_sources_kernel =
+      make_mapping_callback(kPlatformStrongDill, kPlatformStrongDillSize);
+#endif  // FLUTTER_RUNTIME_MODE == FLUTTER_RUNTIME_MODE_DEBUG
+
+  // Not thread safe. Will be removed when FlutterMain is refactored to no
+  // longer be a singleton.
+  g_flutter_main.reset(new FlutterMain(std::move(settings)));
+}
+```
+
+倒目前为止已经加载完成Flutter相关的资源文件，接下来就需要开始初始化View相关的逻辑和Android端通信
 
 在下图中:
 
@@ -24,7 +175,356 @@
 
 ![pic](../../assets/images/android/flutter/fluttersurfaceView.png)
 
-## AttachJNI
+## PlatformViewAndroid
+
+### JNI调用的绑定关系
+
+初始化Android平台相关的View逻辑，绑定Flutter.jar类和Android 绘图引擎的初始化绑定工作，初始化工作主要的内容是在注册相关的Java层的本地方法到JNI层，建立好C++和Java层相互调用函数关系
+
+1.io/flutter/view/FlutterCallbackInformation
+
+2.io/flutter/embedding/engine/FlutterJNI
+
+3.android/graphics/SurfaceTexture
+
+4.attachToGLContext
+
+5.updateTexImage
+
+6.getTransformMatrix
+
+7.detachFromGLContext
+
+
+```C
+bool PlatformViewAndroid::Register(JNIEnv* env) {
+  if (env == nullptr) {
+    FML_LOG(ERROR) << "No JNIEnv provided";
+    return false;
+  }
+
+  g_flutter_callback_info_class = new fml::jni::ScopedJavaGlobalRef<jclass>(
+      env, env->FindClass("io/flutter/view/FlutterCallbackInformation"));
+  if (g_flutter_callback_info_class->is_null()) {
+    FML_LOG(ERROR) << "Could not locate FlutterCallbackInformation class";
+    return false;
+  }
+
+  g_flutter_callback_info_constructor = env->GetMethodID(
+      g_flutter_callback_info_class->obj(), "<init>",
+      "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
+  if (g_flutter_callback_info_constructor == nullptr) {
+    FML_LOG(ERROR) << "Could not locate FlutterCallbackInformation constructor";
+    return false;
+  }
+
+  g_flutter_jni_class = new fml::jni::ScopedJavaGlobalRef<jclass>(
+      env, env->FindClass("io/flutter/embedding/engine/FlutterJNI"));
+  if (g_flutter_jni_class->is_null()) {
+    FML_LOG(ERROR) << "Failed to find FlutterJNI Class.";
+    return false;
+  }
+
+  g_surface_texture_class = new fml::jni::ScopedJavaGlobalRef<jclass>(
+      env, env->FindClass("android/graphics/SurfaceTexture"));
+  if (g_surface_texture_class->is_null()) {
+    FML_LOG(ERROR) << "Could not locate SurfaceTexture class";
+    return false;
+  }
+
+  static const JNINativeMethod callback_info_methods[] = {
+      {
+          .name = "nativeLookupCallbackInformation",
+          .signature = "(J)Lio/flutter/view/FlutterCallbackInformation;",
+          .fnPtr = reinterpret_cast<void*>(&shell::LookupCallbackInformation),
+      },
+  };
+
+  if (env->RegisterNatives(g_flutter_callback_info_class->obj(),
+                           callback_info_methods,
+                           arraysize(callback_info_methods)) != 0) {
+    FML_LOG(ERROR) << "Failed to RegisterNatives with FlutterCallbackInfo";
+    return false;
+  }
+
+  g_attach_to_gl_context_method = env->GetMethodID(
+      g_surface_texture_class->obj(), "attachToGLContext", "(I)V");
+
+  if (g_attach_to_gl_context_method == nullptr) {
+    FML_LOG(ERROR) << "Could not locate attachToGlContext method";
+    return false;
+  }
+
+  g_update_tex_image_method =
+      env->GetMethodID(g_surface_texture_class->obj(), "updateTexImage", "()V");
+
+  if (g_update_tex_image_method == nullptr) {
+    FML_LOG(ERROR) << "Could not locate updateTexImage method";
+    return false;
+  }
+
+  g_get_transform_matrix_method = env->GetMethodID(
+      g_surface_texture_class->obj(), "getTransformMatrix", "([F)V");
+
+  if (g_get_transform_matrix_method == nullptr) {
+    FML_LOG(ERROR) << "Could not locate getTransformMatrix method";
+    return false;
+  }
+
+  g_detach_from_gl_context_method = env->GetMethodID(
+      g_surface_texture_class->obj(), "detachFromGLContext", "()V");
+
+  if (g_detach_from_gl_context_method == nullptr) {
+    FML_LOG(ERROR) << "Could not locate detachFromGlContext method";
+    return false;
+  }
+
+  return RegisterApi(env);
+}
+
+}  // namespace shell
+
+```
+注册Android端和View操作相关的逻辑，初始化FlutterView自己的环境
+
+FlutterJNI
+
+      1.AttachJNI
+      2.DestroyJNI
+      3.AssetManager
+
+```C
+bool RegisterApi(JNIEnv* env) {
+  static const JNINativeMethod flutter_jni_methods[] = {
+      // Start of methods from FlutterNativeView
+      {
+          .name = "nativeAttach",
+          .signature = "(Lio/flutter/embedding/engine/FlutterJNI;Z)J",
+          .fnPtr = reinterpret_cast<void*>(&shell::AttachJNI),
+      },
+      {
+          .name = "nativeDestroy",
+          .signature = "(J)V",
+          .fnPtr = reinterpret_cast<void*>(&shell::DestroyJNI),
+      },
+      {
+          .name = "nativeRunBundleAndSnapshotFromLibrary",
+          .signature = "(J[Ljava/lang/String;Ljava/lang/String;"
+                       "Ljava/lang/String;Landroid/content/res/AssetManager;)V",
+          .fnPtr =
+              reinterpret_cast<void*>(&shell::RunBundleAndSnapshotFromLibrary),
+      },
+      {
+          .name = "nativeGetObservatoryUri",
+          .signature = "()Ljava/lang/String;",
+          .fnPtr = reinterpret_cast<void*>(&shell::GetObservatoryUri),
+      },
+      {
+          .name = "nativeDispatchEmptyPlatformMessage",
+          .signature = "(JLjava/lang/String;I)V",
+          .fnPtr =
+              reinterpret_cast<void*>(&shell::DispatchEmptyPlatformMessage),
+      },
+      {
+          .name = "nativeDispatchPlatformMessage",
+          .signature = "(JLjava/lang/String;Ljava/nio/ByteBuffer;II)V",
+          .fnPtr = reinterpret_cast<void*>(&shell::DispatchPlatformMessage),
+      },
+      {
+          .name = "nativeInvokePlatformMessageResponseCallback",
+          .signature = "(JILjava/nio/ByteBuffer;I)V",
+          .fnPtr = reinterpret_cast<void*>(
+              &shell::InvokePlatformMessageResponseCallback),
+      },
+      {
+          .name = "nativeInvokePlatformMessageEmptyResponseCallback",
+          .signature = "(JI)V",
+          .fnPtr = reinterpret_cast<void*>(
+              &shell::InvokePlatformMessageEmptyResponseCallback),
+      },
+
+      // Start of methods from FlutterView
+      {
+          .name = "nativeGetBitmap",
+          .signature = "(J)Landroid/graphics/Bitmap;",
+          .fnPtr = reinterpret_cast<void*>(&shell::GetBitmap),
+      },
+      {
+          .name = "nativeSurfaceCreated",
+          .signature = "(JLandroid/view/Surface;)V",
+          .fnPtr = reinterpret_cast<void*>(&shell::SurfaceCreated),
+      },
+      {
+          .name = "nativeSurfaceChanged",
+          .signature = "(JII)V",
+          .fnPtr = reinterpret_cast<void*>(&shell::SurfaceChanged),
+      },
+      {
+          .name = "nativeSurfaceDestroyed",
+          .signature = "(J)V",
+          .fnPtr = reinterpret_cast<void*>(&shell::SurfaceDestroyed),
+      },
+      {
+          .name = "nativeSetViewportMetrics",
+          .signature = "(JFIIIIIIIIII)V",
+          .fnPtr = reinterpret_cast<void*>(&shell::SetViewportMetrics),
+      },
+      {
+          .name = "nativeDispatchPointerDataPacket",
+          .signature = "(JLjava/nio/ByteBuffer;I)V",
+          .fnPtr = reinterpret_cast<void*>(&shell::DispatchPointerDataPacket),
+      },
+      {
+          .name = "nativeDispatchSemanticsAction",
+          .signature = "(JIILjava/nio/ByteBuffer;I)V",
+          .fnPtr = reinterpret_cast<void*>(&shell::DispatchSemanticsAction),
+      },
+      {
+          .name = "nativeSetSemanticsEnabled",
+          .signature = "(JZ)V",
+          .fnPtr = reinterpret_cast<void*>(&shell::SetSemanticsEnabled),
+      },
+      {
+          .name = "nativeSetAccessibilityFeatures",
+          .signature = "(JI)V",
+          .fnPtr = reinterpret_cast<void*>(&shell::SetAccessibilityFeatures),
+      },
+      {
+          .name = "nativeGetIsSoftwareRenderingEnabled",
+          .signature = "()Z",
+          .fnPtr = reinterpret_cast<void*>(&shell::GetIsSoftwareRendering),
+      },
+      {
+          .name = "nativeRegisterTexture",
+          .signature = "(JJLandroid/graphics/SurfaceTexture;)V",
+          .fnPtr = reinterpret_cast<void*>(&shell::RegisterTexture),
+      },
+      {
+          .name = "nativeMarkTextureFrameAvailable",
+          .signature = "(JJ)V",
+          .fnPtr = reinterpret_cast<void*>(&shell::MarkTextureFrameAvailable),
+      },
+      {
+          .name = "nativeUnregisterTexture",
+          .signature = "(JJ)V",
+          .fnPtr = reinterpret_cast<void*>(&shell::UnregisterTexture),
+      },
+  };
+
+  if (env->RegisterNatives(g_flutter_jni_class->obj(), flutter_jni_methods,
+                           arraysize(flutter_jni_methods)) != 0) {
+    FML_LOG(ERROR) << "Failed to RegisterNatives with FlutterJNI";
+    return false;
+  }
+
+  g_handle_platform_message_method =
+      env->GetMethodID(g_flutter_jni_class->obj(), "handlePlatformMessage",
+                       "(Ljava/lang/String;[BI)V");
+
+  if (g_handle_platform_message_method == nullptr) {
+    FML_LOG(ERROR) << "Could not locate handlePlatformMessage method";
+    return false;
+  }
+
+  g_handle_platform_message_response_method = env->GetMethodID(
+      g_flutter_jni_class->obj(), "handlePlatformMessageResponse", "(I[B)V");
+
+  if (g_handle_platform_message_response_method == nullptr) {
+    FML_LOG(ERROR) << "Could not locate handlePlatformMessageResponse method";
+    return false;
+  }
+
+  g_update_semantics_method =
+      env->GetMethodID(g_flutter_jni_class->obj(), "updateSemantics",
+                       "(Ljava/nio/ByteBuffer;[Ljava/lang/String;)V");
+
+  if (g_update_semantics_method == nullptr) {
+    FML_LOG(ERROR) << "Could not locate updateSemantics method";
+    return false;
+  }
+
+  g_update_custom_accessibility_actions_method = env->GetMethodID(
+      g_flutter_jni_class->obj(), "updateCustomAccessibilityActions",
+      "(Ljava/nio/ByteBuffer;[Ljava/lang/String;)V");
+
+  if (g_update_custom_accessibility_actions_method == nullptr) {
+    FML_LOG(ERROR)
+        << "Could not locate updateCustomAccessibilityActions method";
+    return false;
+  }
+
+  g_on_first_frame_method =
+      env->GetMethodID(g_flutter_jni_class->obj(), "onFirstFrame", "()V");
+
+  if (g_on_first_frame_method == nullptr) {
+    FML_LOG(ERROR) << "Could not locate onFirstFrame method";
+    return false;
+  }
+
+  g_on_engine_restart_method =
+      env->GetMethodID(g_flutter_jni_class->obj(), "onPreEngineRestart", "()V");
+
+  if (g_on_engine_restart_method == nullptr) {
+    FML_LOG(ERROR) << "Could not locate onEngineRestart method";
+    return false;
+  }
+
+  return true;
+}
+```
+
+### FlutterView 初始化
+
+FlutterNativeView初始化时注册Android PluginMessage到JNI中
+
+```Java
+public FlutterNativeView(@NonNull Context context, boolean isBackgroundView) {
+        this.flutterUiDisplayListener = new FlutterUiDisplayListener() {
+            public void onFlutterUiDisplayed() {
+                if (FlutterNativeView.this.mFlutterView != null) {
+                    FlutterNativeView.this.mFlutterView.onFirstFrame();
+                }
+            }
+
+            public void onFlutterUiNoLongerDisplayed() {
+            }
+        };
+        this.mContext = context;
+        this.mPluginRegistry = new FlutterPluginRegistry(this, context);
+        this.mFlutterJNI = new FlutterJNI();
+        this.mFlutterJNI.addIsDisplayingFlutterUiListener(this.flutterUiDisplayListener);
+        this.dartExecutor = new DartExecutor(this.mFlutterJNI, context.getAssets());
+        this.mFlutterJNI.addEngineLifecycleListener(new FlutterNativeView.EngineLifecycleListenerImpl());
+        this.attach(this, isBackgroundView);
+        this.assertAttached();
+    }
+```
+
+### FlutterNativeView
+```Java
+public FlutterNativeView(@NonNull Context context, boolean isBackgroundView) {
+    this.flutterUiDisplayListener = new FlutterUiDisplayListener() {
+        public void onFlutterUiDisplayed() {
+            if (FlutterNativeView.this.mFlutterView != null) {
+                FlutterNativeView.this.mFlutterView.onFirstFrame();
+            }
+        }
+
+        public void onFlutterUiNoLongerDisplayed() {
+        }
+    };
+    this.mContext = context;
+    this.mPluginRegistry = new FlutterPluginRegistry(this, context);
+    this.mFlutterJNI = new FlutterJNI();
+    this.mFlutterJNI.addIsDisplayingFlutterUiListener(this.flutterUiDisplayListener);
+    this.dartExecutor = new DartExecutor(this.mFlutterJNI, context.getAssets());
+    this.mFlutterJNI.addEngineLifecycleListener(new FlutterNativeView.EngineLifecycleListenerImpl());
+    初始化JIN
+    this.attach(this, isBackgroundView);
+    this.assertAttached();
+}
+```
+### AttachJNI
 
 接下来进行分析在JNI层的调用过程:AttachJNI中调用`std::make_unique<AndroidShellHolder>`方法创建`AndroidShellHolder`实例`engine/src/flutter/shell/platform/android/platform_view_android_jni.cc`
 ```c++
@@ -50,6 +550,7 @@
 
 ## AndroidShellHolder
 
+### FlutterEngine的初始化入口
 AndroidShellHolder：主要是管理flutter engine 在Platform端的入口:
 
   * 1.Platfrom,UI,IO,GUP线程的管理，配置参数的的加载
@@ -191,7 +692,7 @@ AndroidShellHolder::AndroidShellHolder(
 }
 ```
 
-## 创建一个线程处理JNI退出任务
+### 创建一个线程处理JNI退出任务
 
  创建一个线程来对DartVM虚拟机退出后做一起扫尾工作,并且添加到`ui_thread`,如果`is_background_view`(该参数是在FlutterJNI调用是传入)是在后台工作，也添加到GPU_Thread里面
 
@@ -211,7 +712,7 @@ if (!is_background_view) {
 }
 ```
 
-## Flutter Engine线程池模式
+### Flutter Engine线程池模式
 
 Flutter Engine要求Embeder提供四个Task Runner，Embeder指的是将引擎移植到平台的中间层代码。这四个主要的Task Runner包括：
 
@@ -223,6 +724,8 @@ Flutter Engine要求Embeder提供四个Task Runner，Embeder指的是将引擎�
   * 2.定义一个线程类的代理类`/engine/src/flutter/fml/thread.cc`
   * 3.在线程代理类中创建MessageLoop、绑定TaskRunner,同时启动MessageLoop
   * 4.创建一个TaskRunners类来管理四个任务运行器
+
+### ThreadHost
 
 ```c++
 if (is_background_view) {
@@ -264,7 +767,7 @@ ThreadHost::ThreadHost(std::string name_prefix, uint64_t mask) {
 }
 ```
 
-## 自定义一个线程来代理系统线程
+### MessageLoop
 
 在`engine/src/flutter/fml/thread.cc`构造方法中创建线程类，同时初始化[MessageLoop](../MessageLoop),关联任务运行器到消息队列，同时启动消息队列`loop.Run()`,是个线程创建的时候分别创建了四个不同的MessageLoop
 
@@ -342,7 +845,7 @@ ThreadHost创建完成四个线程之后，在创建四个`TaskRunner`来管理P
   * RunNowOrPostTask
   * RefPtr<MessageLoopImpl> loop_
 
-```C++
+```C
 namespace fml {
 
 class MessageLoopImpl;
@@ -383,7 +886,7 @@ class TaskRunner : public fml::RefCountedThreadSafe<TaskRunner> {
 
 创建一个TaskRunners统一管理四个线程中的任务
 
-```C++
+```C
 TaskRunners task_runners(thread_label,     // label
                                 platform_runner,  // platform
                                 gpu_runner,       // gpu
@@ -391,7 +894,7 @@ TaskRunners task_runners(thread_label,     // label
                                 io_runner         // io
 ```
 
-```C++
+```C
 namespace blink {
 
 记录平台相关的四个相关的线程的任务统一的管理。
@@ -443,9 +946,17 @@ Shell 类的初始化，主要负责管理客户端相关的资源`/engine/src
   * 5.初始化本地化库:InitializeICU
   * 6.创建虚拟机:blink::DartVM::ForProcess(settings);
   * 7.开启平台任务任务
-    - 7.1:new Shell
-    - 7.2:在new Shell时候有从新创建了一个DartVM：
-```c++
+  * new Shell
+  * 7.2:在new Shell时候有从新创建了一个DartVM：
+  * 7.3 Install service protocol handlers.
+  * 8.真正创建平台操作的对象/engine/src/flutter/shell/platform/android/platform_view_android.cc
+  * 9.创建一个CreateVSyncWaiter对象
+  * 10.创建IOManager管理器，在IO线程执行
+  * 11.创建Rasterizer执行在GPU线程
+  * 12.创建engine在UI线程执行
+
+```c
+
 Shell::Shell(blink::TaskRunners task_runners, blink::Settings settings)
 : task_runners_(std::move(task_runners)),//任务运行器
 settings_(std::move(settings)),
@@ -453,15 +964,8 @@ vm_(blink::DartVM::ForProcess(settings_)) {//创建一个新的DartVM
 FML_DCHECK(task_runners_.IsValid());
 FML_DCHECK(task_runners_.GetPlatformTaskRunner()->RunsTasksOnCurrentThread());
 ```
-    - 7.3 Install service protocol handlers.
-  * 8.真正创建平台操作的对象`/engine/src/flutter/shell/platform/android/platform_view_android.cc`
-  * 9.创建一个CreateVSyncWaiter对象
-  * 10.创建`IOManager`管理器，在IO线程执行
-  * 11.创建Rasterizer执行在GPU线程
-  * 12.创建engine在UI线程执行
 
-
-```c++
+```C
 
 shell_ =
     Shell::Create(task_runners,             // task runners
@@ -493,8 +997,7 @@ shell_ =
   }
 
 ```
-##  初始化`DartVM`
-
+### 初始化DartVM
 [DartVM::ForProcess](DartVM)
 
 Dart VM 虚拟机在Shell创建的时候初始化：`auto vm = blink::DartVM::ForProcess(settings);`,`/engine/src/flutter/shell/common/shell.cc`,Shell::Create，Dart虚拟机的分析，在后续在进行扩展
@@ -503,8 +1006,7 @@ Dart VM 虚拟机在Shell创建的时候初始化：`auto vm = blink::DartVM::
   * 2.加载Isolate快照
   * 3.调用DartVM构造方法初始化虚拟机
 
-
-```c++
+```c
   fml::RefPtr<DartVM> DartVM::ForProcess(
     Settings settings,
     fml::RefPtr<DartSnapshot> vm_snapshot,
@@ -544,7 +1046,9 @@ Dart VM 虚拟机在Shell创建的时候初始化：`auto vm = blink::DartVM::
 
 ```
 
-Shell创建时第三方库初始化位置`PerformInitializationTasks`,`/engine/src/flutter/shell/common/shell.cc`
+### Shell创建时第三方库初始化位置
+
+`PerformInitializationTasks`,`/engine/src/flutter/shell/common/shell.cc`
 
   *  RecordStartupTimestamp()记录时间戳
   * fml::SetLogSettings(log_settings) 设置日志信息
@@ -599,7 +1103,7 @@ static void PerformInitializationTasks(const blink::Settings& settings) {
 ```
 
 
-## CreateShellOnPlatformThread
+### CreateShellOnPlatformThread
 
 Shell创建所需要的在这个类里面进行初始化`CreateShellOnPlatformThread`对Shell对应的platefrom,IO,GPU,UI,`/engine/src/flutter/shell/common/shell.cc`，以下的类主要观察构造方法中传入的参数，能够帮助理解相关的逻辑调用
 !!! WARNING "以下代码片段是真正初始化对象的地方"
@@ -646,15 +1150,16 @@ std::unique_ptr<Shell> Shell::Create(
 }
 ```
 
-`CreateShellOnPlatformThread`完成Shell分的一下初始化信息
+CreateShellOnPlatformThread`完成Shell分的一下初始化信息
 
-  * 1.创建一个Shell实例对象`auto shell = std::unique_ptr<Shell>(new Shell(task_runners, settings));`
-  * 2.创建平台View在平台线程`auto platform_view = on_create_platform_view(*shell.get());`
-  * 3.创建一个Syncwaiter`auto vsync_waiter = platform_view->CreateVSyncWaiter();`
-  * 4.创建一个IO管理io线程`std::unique_ptr<IOManager> io_manager;`
-  * 5.在UI线程创建engine：`fml::AutoResetWaitableEvent ui_latch;`
+  * 1.创建一个Shell实例对象`auto shell = std::unique_ptr<Shell>(new Shell(task_runners, settings));
+  * 2.创建平台View在平台线程`auto platform_view = on_create_platform_view(*shell.get());
+  * 3.创建一个Syncwaiter`auto vsync_waiter = platform_view->CreateVSyncWaiter();
+  * 4.创建一个IO管理io线程`std::unique_ptr<IOManager> io_manager;
+  * 5.在UI线程创建engine：`fml::AutoResetWaitableEvent ui_latch;
 
-```C++
+```C
+
 std::unique_ptr<Shell> Shell::CreateShellOnPlatformThread(
   blink::TaskRunners task_runners,
   blink::Settings settings,
@@ -781,7 +1286,7 @@ return shell;
 * 5.设置 DartVM ServiceProtocol设置处理回调
 * 6.PersistentCache::GetCacheForProcess()->AddWorkerTaskRunner(task_runners_.GetIOTaskRunner());对缓存目录的处理
 
-```C++
+```C
 bool Shell::Setup(std::unique_ptr<PlatformView> platform_view,
                   std::unique_ptr<Engine> engine,
                   std::unique_ptr<Rasterizer> rasterizer,
@@ -812,8 +1317,337 @@ bool Shell::Setup(std::unique_ptr<PlatformView> platform_view,
 }
 ```
 
+#### Create the platform
 
+```C
+// Create the platform view on the platform thread (this thread).
+auto platform_view = on_create_platform_view(*shell.get());
+if (!platform_view || !platform_view->GetWeakPtr()) {
+  return nullptr;
+}
+```
+#### CreateVSyncWaiter
+```C
+// Ask the platform view for the vsync waiter. This will be used by the engine
+// to create the animator.
+auto vsync_waiter = platform_view->CreateVSyncWaiter();
+if (!vsync_waiter) {
+  return nullptr;
+}
+```
+
+#### Create the IO manager on the IO thread
+
+```C
+// Create the IO manager on the IO thread. The IO manager must be initialized
+// first because it has state that the other subsystems depend on. It must
+// first be booted and the necessary references obtained to initialize the
+// other subsystems.
+fml::AutoResetWaitableEvent io_latch;
+std::unique_ptr<IOManager> io_manager;
+auto io_task_runner = shell->GetTaskRunners().GetIOTaskRunner();
+fml::TaskRunner::RunNowOrPostTask(
+    io_task_runner,
+    [&io_latch,       //
+     &io_manager,     //
+     &platform_view,  //
+     io_task_runner   //
+]() {
+      io_manager = std::make_unique<IOManager>(
+          platform_view->CreateResourceContext(), io_task_runner);
+      io_latch.Signal();
+    });
+io_latch.Wait();
+
+```
+#### Create the rasterizer on the GPU thread
+
+```C
+// Create the rasterizer on the GPU thread.
+fml::AutoResetWaitableEvent gpu_latch;
+std::unique_ptr<Rasterizer> rasterizer;
+fml::WeakPtr<blink::SnapshotDelegate> snapshot_delegate;
+fml::TaskRunner::RunNowOrPostTask(
+    task_runners.GetGPUTaskRunner(), [&gpu_latch,            //
+                                      &rasterizer,           //
+                                      on_create_rasterizer,  //
+                                      shell = shell.get(),   //
+                                      &snapshot_delegate     //
+]() {
+      if (auto new_rasterizer = on_create_rasterizer(*shell)) {
+        rasterizer = std::move(new_rasterizer);
+        snapshot_delegate = rasterizer->GetSnapshotDelegate();
+      }
+      gpu_latch.Signal();
+    });
+
+gpu_latch.Wait();
+```
+#### Create the engine on the UI thread
+```C
+// Create the engine on the UI thread.
+fml::AutoResetWaitableEvent ui_latch;
+std::unique_ptr<Engine> engine;
+fml::TaskRunner::RunNowOrPostTask(
+    shell->GetTaskRunners().GetUITaskRunner(),
+    fml::MakeCopyable([&ui_latch,                                         //
+                       &engine,                                           //
+                       shell = shell.get(),                               //
+                       isolate_snapshot = std::move(isolate_snapshot),    //
+                       shared_snapshot = std::move(shared_snapshot),      //
+                       vsync_waiter = std::move(vsync_waiter),            //
+                       snapshot_delegate = std::move(snapshot_delegate),  //
+                       io_manager = io_manager->GetWeakPtr()              //
+]() mutable {
+      const auto& task_runners = shell->GetTaskRunners();
+
+      // The animator is owned by the UI thread but it gets its vsync pulses
+      // from the platform.
+      auto animator = std::make_unique<Animator>(*shell, task_runners,
+                                                 std::move(vsync_waiter));
+
+      engine = std::make_unique<Engine>(*shell,                        //
+                                        shell->GetDartVM(),            //
+                                        std::move(isolate_snapshot),   //
+                                        std::move(shared_snapshot),    //
+                                        task_runners,                  //
+                                        shell->GetSettings(),          //
+                                        std::move(animator),           //
+                                        std::move(snapshot_delegate),  //
+                                        std::move(io_manager)          //
+      );
+      ui_latch.Signal();
+    }));
+
+ui_latch.Wait();
+```
+
+### Engine初始化
+
+```C
+Engine::Engine(Delegate& delegate,
+               blink::DartVM& vm,
+               fml::RefPtr<blink::DartSnapshot> isolate_snapshot,
+               fml::RefPtr<blink::DartSnapshot> shared_snapshot,
+               blink::TaskRunners task_runners,
+               blink::Settings settings,
+               std::unique_ptr<Animator> animator,
+               fml::WeakPtr<blink::SnapshotDelegate> snapshot_delegate,
+               fml::WeakPtr<blink::IOManager> io_manager)
+    : delegate_(delegate),
+      settings_(std::move(settings)),
+      animator_(std::move(animator)),
+      activity_running_(false),
+      have_surface_(false),
+      weak_factory_(this) {
+  // Runtime controller is initialized here because it takes a reference to this
+  // object as its delegate. The delegate may be called in the constructor and
+  // we want to be fully initilazed by that point.
+  runtime_controller_ = std::make_unique<blink::RuntimeController>(
+      *this,                                 // runtime delegate
+      &vm,                                   // VM
+      std::move(isolate_snapshot),           // isolate snapshot
+      std::move(shared_snapshot),            // shared snapshot
+      std::move(task_runners),               // task runners
+      std::move(snapshot_delegate),          // snapshot delegate
+      std::move(io_manager),                 // io manager
+      settings_.advisory_script_uri,         // advisory script uri
+      settings_.advisory_script_entrypoint,  // advisory script entrypoint
+      settings_.idle_notification_callback   // idle notification callback
+  );
+}
+```
+### RuntimeController&WindowClient&Window
+
+```C
+RuntimeController::RuntimeController(
+    RuntimeDelegate& p_client,
+    DartVM* p_vm,
+    fml::RefPtr<DartSnapshot> p_isolate_snapshot,
+    fml::RefPtr<DartSnapshot> p_shared_snapshot,
+    TaskRunners p_task_runners,
+    fml::WeakPtr<SnapshotDelegate> p_snapshot_delegate,
+    fml::WeakPtr<IOManager> p_io_manager,
+    std::string p_advisory_script_uri,
+    std::string p_advisory_script_entrypoint,
+    std::function<void(int64_t)> p_idle_notification_callback)
+    : RuntimeController(p_client,
+                        p_vm,
+                        std::move(p_isolate_snapshot),
+                        std::move(p_shared_snapshot),
+                        std::move(p_task_runners),
+                        std::move(p_snapshot_delegate),
+                        std::move(p_io_manager),
+                        std::move(p_advisory_script_uri),
+                        std::move(p_advisory_script_entrypoint),
+                        p_idle_notification_callback,
+                        WindowData{/* default window data */}) {}
+
+RuntimeController::RuntimeController(
+    RuntimeDelegate& p_client,
+    DartVM* p_vm,
+    fml::RefPtr<DartSnapshot> p_isolate_snapshot,
+    fml::RefPtr<DartSnapshot> p_shared_snapshot,
+    TaskRunners p_task_runners,
+    fml::WeakPtr<SnapshotDelegate> p_snapshot_delegate,
+    fml::WeakPtr<IOManager> p_io_manager,
+    std::string p_advisory_script_uri,
+    std::string p_advisory_script_entrypoint,
+    std::function<void(int64_t)> idle_notification_callback,
+    WindowData p_window_data)
+    : client_(p_client),
+      vm_(p_vm),
+      isolate_snapshot_(std::move(p_isolate_snapshot)),
+      shared_snapshot_(std::move(p_shared_snapshot)),
+      task_runners_(p_task_runners),
+      snapshot_delegate_(p_snapshot_delegate),
+      io_manager_(p_io_manager),
+      advisory_script_uri_(p_advisory_script_uri),
+      advisory_script_entrypoint_(p_advisory_script_entrypoint),
+      idle_notification_callback_(idle_notification_callback),
+      window_data_(std::move(p_window_data)),
+      root_isolate_(
+          DartIsolate::CreateRootIsolate(vm_,
+                                         isolate_snapshot_,
+                                         shared_snapshot_,
+                                         task_runners_,
+                                         std::make_unique<Window>(this),
+                                         snapshot_delegate_,
+                                         io_manager_,
+                                         p_advisory_script_uri,
+                                         p_advisory_script_entrypoint)) {
+  std::shared_ptr<DartIsolate> root_isolate = root_isolate_.lock();
+  root_isolate->SetReturnCodeCallback([this](uint32_t code) {
+    root_isolate_return_code_ = {true, code};
+  });
+  当前对象是ClientWidow对象，动过调用DidCreateIsolate，加载dart:UI库
+  if (auto* window = GetWindowIfAvailable()) {
+    tonic::DartState::Scope scope(root_isolate);
+    window->DidCreateIsolate();
+    if (!FlushRuntimeStateToIsolate()) {
+      FML_DLOG(ERROR) << "Could not setup intial isolate state.";
+    }
+  } else {
+    FML_DCHECK(false) << "RuntimeController created without window binding.";
+  }
+  FML_DCHECK(Dart_CurrentIsolate() == nul
+};
+
+}  // namespace blink
+
+#endif  // FLUTTER_RUNTIME_RUNTIME_CONTROLLER_H_
+
+```
+
+### DartIsolate
+调用`shared_embedder_isolate->SetWindow(std::move(window));`对象传递`RuntimeController`到`Window`类中进行绑定
+```C
+
+std::weak_ptr<DartIsolate> DartIsolate::CreateRootIsolate(
+    DartVM* vm,
+    fml::RefPtr<DartSnapshot> isolate_snapshot,
+    fml::RefPtr<DartSnapshot> shared_snapshot,
+    TaskRunners task_runners,
+    std::unique_ptr<Window> window,
+    fml::WeakPtr<SnapshotDelegate> snapshot_delegate,
+    fml::WeakPtr<IOManager> io_manager,
+    std::string advisory_script_uri,
+    std::string advisory_script_entrypoint,
+    Dart_IsolateFlags* flags) {
+  TRACE_EVENT0("flutter", "DartIsolate::CreateRootIsolate");
+  Dart_Isolate vm_isolate = nullptr;
+  std::weak_ptr<DartIsolate> embedder_isolate;
+
+  char* error = nullptr;
+
+  // Since this is the root isolate, we fake a parent embedder data object. We
+  // cannot use unique_ptr here because the destructor is private (since the
+  // isolate lifecycle is entirely managed by the VM).
+  auto root_embedder_data = std::make_unique<std::shared_ptr<DartIsolate>>(
+      std::make_shared<DartIsolate>(
+          vm,                            // VM
+          std::move(isolate_snapshot),   // isolate snapshot
+          std::move(shared_snapshot),    // shared snapshot
+          task_runners,                  // task runners
+          std::move(snapshot_delegate),  // snapshot delegate
+          std::move(io_manager),         // IO manager
+          advisory_script_uri,           // advisory URI
+          advisory_script_entrypoint,    // advisory entrypoint
+          nullptr  // child isolate preparer will be set when this isolate is
+                   // prepared to run
+          ));
+
+  std::tie(vm_isolate, embedder_isolate) = CreateDartVMAndEmbedderObjectPair(
+      advisory_script_uri.c_str(),         // advisory script URI
+      advisory_script_entrypoint.c_str(),  // advisory script entrypoint
+      nullptr,                             // package root
+      nullptr,                             // package config
+      flags,                               // flags
+      root_embedder_data.get(),            // parent embedder data
+      true,                                // is root isolate
+      &error                               // error (out)
+  );
+
+  if (error != nullptr) {
+    free(error);
+  }
+
+  if (vm_isolate == nullptr) {
+    return {};
+  }
+
+  std::shared_ptr<DartIsolate> shared_embedder_isolate =
+      embedder_isolate.lock();
+  if (shared_embedder_isolate) {
+    // Only root isolates can interact with windows.
+    shared_embedder_isolate->SetWindow(std::move(window));
+  }
+
+  root_embedder_data.release();
+
+  return embedder_isolate;
+}
+}
+
+```
+### Window类初始化过程
+CreateRootIsolate 创建 RootIsolate对象
+
+```C
+RuntimeController::RuntimeController(.....)
+    : client_(p_client),
+      .......),
+      window_data_(std::move(p_window_data)),
+      root_isolate_(
+          DartIsolate::CreateRootIsolate(vm_,
+                                         isolate_snapshot_,
+                                         shared_snapshot_,
+                                         task_runners_,
+                                         std::make_unique<Window>(this),
+                                         snapshot_delegate_,
+                                         io_manager_,
+                                         p_advisory_script_uri,
+                                         p_advisory_script_entrypoint)) {
+  std::shared_ptr<DartIsolate> root_isolate = root_isolate_.lock();
+  root_isolate->SetReturnCodeCallback([this](uint32_t code) {
+    root_isolate_return_code_ = {true, code};
+  });
+  ## Window类初始化过程
+
+  if (auto* window = GetWindowIfAvailable()) {
+    tonic::DartState::Scope scope(root_isolate);
+    window->DidCreateIsolate();
+    if (!FlushRuntimeStateToIsolate()) {
+      FML_DLOG(ERROR) << "Could not setup intial isolate state.";
+    }
+  } else {
+    FML_DCHECK(false) << "RuntimeController created without window binding.";
+  }
+  FML_DCHECK(Dart_CurrentIsolate() == nullptr);
+}
+```
 ### Android Native层与libFlutter通信接口:
+
 
 在分析完成整个初始化过程这回，在跟进下图来分析整个调用过程和以上代码的初始化过程，有助于理解整个运行环境的初始化相关的类和功能及逻辑
 
@@ -888,5 +1722,75 @@ return false;
 }
 ```
 
+```
+
 
 `engine/src/flutter/shell/common/shell.cc`作为一个中枢控制作用，使用弱引用来保存PlatformView，Android，ios保存使用shell中Platform下的Platefrom实现来处理平台相关的View,Shell的初始化是在`engine/src/flutter/shell/platform/android/android_shell_holder.cc`，`FlutterMain::Get().GetSettings()`编译时的配置文件`engine/src/flutter/common/settings.cc`,`flutterJNI`是android层的代码，`is_background_view`是在java层FlutterNativeView，这是Java和JNI的通信，数据传输逻辑处理，FlutterNativeView的构造方法中调用JNI代码，初始化`android_shell_holder`使用这个类来全部`Shell`这个类
+
+
+
+### SurfaceView初始化
+
+### Java SurfaceView 初始化
+
+getFlutterJNI 初始化SurfaceView
+```Java
+this.mSurfaceCallback = new Callback() {
+    public void surfaceCreated(SurfaceHolder holder) {
+        FlutterView.this.assertAttached();
+        FlutterView.this.mNativeView.getFlutterJNI().onSurfaceCreated(holder.getSurface());
+    }
+
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+        FlutterView.this.assertAttached();
+        FlutterView.this.mNativeView.getFlutterJNI().onSurfaceChanged(width, height);
+    }
+
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        FlutterView.this.assertAttached();
+        FlutterView.this.mNativeView.getFlutterJNI().onSurfaceDestroyed();
+    }
+};
+
+
+```
+
+### JNI 初始化SurfaceView
+
+`/Users/cangck/engine/src/flutter/shell/platform/android/platform_view_android_jni.cc`
+#### SurfaceCreated
+```C
+static void SurfaceCreated(JNIEnv* env,
+                           jobject jcaller,
+                           jlong shell_holder,
+                           jobject jsurface) {
+  // Note: This frame ensures that any local references used by
+  // ANativeWindow_fromSurface are released immediately. This is needed as a
+  // workaround for https://code.google.com/p/android/issues/detail?id=68174
+  fml::jni::ScopedJavaLocalFrame scoped_local_reference_frame(env);
+  auto window = fml::MakeRefCounted<AndroidNativeWindow>(
+      ANativeWindow_fromSurface(env, jsurface));
+  ANDROID_SHELL_HOLDER->GetPlatformView()->NotifyCreated(std::move(window));
+}
+```
+#### SurfaceChanged
+```C
+static void SurfaceChanged(JNIEnv* env,
+                           jobject jcaller,
+                           jlong shell_holder,
+                           jint width,
+                           jint height) {
+  ANDROID_SHELL_HOLDER->GetPlatformView()->NotifyChanged(
+      SkISize::Make(width, height));
+}
+
+```
+#### SurfaceDestroyed
+```C
+static void SurfaceDestroyed(JNIEnv* env, jobject jcaller, jlong shell_holder) {
+  ANDROID_SHELL_HOLDER->GetPlatformView()->NotifyDestroyed();
+}
+```
+
+## 总结
+通过上面的分析，我们已经大概了解了Android启动，初始化Flutter引擎的过程
