@@ -1,4 +1,4 @@
-# FlutterWidow
+# FlutterUI 调用系统渲染引擎
 
 ## RuntimeController&WindowClient&Window关系
 
@@ -185,10 +185,15 @@ void Window::RegisterNatives(tonic::DartLibraryNatives* natives) {
 }
 ```
 
+## 小结
+
+上面的介绍主要是理清楚FlutterEngine初始化在创建FlutterEngine和FlutterUI层的一个调用关系，在FlutterUI层回调FlutterEngine时，会调用window.dart的本地方法，从而，调用FlutterEngine的Window.cc类，RuntimeController作为Engine的代理对象，实现了WindowClient类，Window对象中次有WindowClient对象的引用，也就是持有RuntimeController引用对象，从而和Engine能够进行相互调用，言归正传，接下分析一下FlutterUI层在构建好一帧之后，是怎么添加到FlutterEngine中进行显示的。
+
 
 ### Android端是怎么把SurfaceView注册到FlutterEngine中的
 
-Android端在初始化是自定义SurfaceView作为汇总Flutter的View，在加载libflutter.so库是添加到FlutterEngine中，具体调用步骤参考下面的代码
+Android端在初始化是自定义SurfaceView作为汇总Flutter的View，在加载libflutter.so库是添加到FlutterEngine中，具体调用步骤参考下面的代码，前面的文件已经分析过来FlutterEngine启动过程中SurfaceView注册到FlutterEngine引擎的过程
+
 engine/src/flutter/shell/platform/android/library_loader.cc
 
 1.JNI_OnLoad注册本地方法
@@ -252,6 +257,8 @@ void PlatformViewAndroid::NotifyCreated(
   PlatformView::NotifyCreated();
 }
 ```
+
+
 ### AndroidSurfaceSoftware
 ```c++
 bool AndroidSurfaceSoftware::SetNativeWindow(
@@ -267,6 +274,8 @@ bool AndroidSurfaceSoftware::SetNativeWindow(
   return true;
 }
 ```
+
+## 调用FlutterEngine进行初始化
 
 
 ## Window:render 方法
@@ -296,6 +305,7 @@ void compositeFrame() {
 ```
 
 ### Window:render
+通过Window对象对调用Engine的方法
 
 engine/src/flutter/lib/ui/window/window.cc中把数据传递个sky引擎进行渲染
 
@@ -314,6 +324,9 @@ void Render(Dart_NativeArguments args) {
 ```
 
 ### RuntimeController::Render
+
+整个调用逻辑都很接单
+
 在Engine代理对象RuntimeController::Render方法中，获取Scene的Layer数据，并且调用Engine:render方法，进入FlutterEngine核心处理逻辑中
 
 ```C++
@@ -363,6 +376,7 @@ void Animator::Render(std::unique_ptr<flow::LayerTree> layer_tree) {
 ```
 
 ### Shell::OnAnimatorDraw
+调用平台端的持久化对象进行栅格化`rasterizer`
 
 ```C++
 // |shell::Animator::Delegate|
@@ -408,6 +422,8 @@ void Rasterizer::Draw(
   }
 }
 ```
+
+上面的过程中已经把FltuterUI层生成的数据添加到了Skia中，接下来时要把Skia已经渲染好的数据，添加到SurfaceView上进行渲染
 
 ### ui.Window.dart
 
@@ -497,3 +513,11 @@ bool Rasterizer::DrawToSurface(flow::LayerTree& layer_tree) {
   return false;
 }
 ```
+## 小结
+
+从上面的调用过程来看这个调用过程并不复杂
+1.FlutterUI层把渲染好的数据通过Window.cc的Render方法调用到`Shell`上继续持久化
+
+2.将这边好的数据通过Vsync通过系统绘制到屏幕上
+
+整个FlutterEngine对FlutterUI汇总到屏幕上的操作控制还是比较少，整个流程调用也非常单一
