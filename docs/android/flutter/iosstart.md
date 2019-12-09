@@ -1,5 +1,8 @@
 # IOS 启动流程
 
+
+插件注册过程
+
 ## 配置xcode开发环境
 
 Code开启编译选项Write Link Map File
@@ -178,7 +181,10 @@ LinkMap结构
 
 ## Flutter 库加载过程(mach-o文件分析)
 
-在上面的配置中，已经配置了app在启动是，自动加载链接Flutter库，如何进入IOSApp正常启动流程，启动流程的分析网上太多了，不做具体的分析，在App启动是会加载:
+FlutterEngine和IOS平台相关的源码放在`flutter/shell/platform/darwin/ios`目录下
+
+在上面的配置中，已经配置了app在启动时，自动加载链接Flutter库，如何进入IOSApp正常启动流程，启动流程的分析网上太多了，不做具体的分析，在App启动是会加载，在App启动完成之后，会调用AppDelegate中的`didFinishLaunchingWithOptions`参数的方法，开始初始化Flutter相关的逻辑，其他IOSApp初始化的逻辑没有改变。
+
 
 ```c
 import UIKit
@@ -195,11 +201,52 @@ import Flutter
   }
 }
 ```
+
+`FlutterAppDelegate`的实现了在Engine源码目录下`/engine/src/flutter/shell/platform/darwin/ios/framework/Source/FlutterAppDelegate.mm`，FlutterAppDelegate继承:
+
+```c
+FLUTTER_EXPORT
+@interface FlutterAppDelegate
+    : UIResponder <UIApplicationDelegate, FlutterPluginRegistry, FlutterAppLifeCycleProvider>
+```
+
+## FlutterPluginRegistry
+
+FlutterPluginRegistry 的实现代码是在FlutterAppDelegate.mm中实现的,具体的参考实现过程请参考一下代码
+
+```c
+- (NSObject<FlutterPluginRegistrar>*)registrarForPlugin:(NSString*)pluginKey {
+  UIViewController* rootViewController = _window.rootViewController;
+  if ([rootViewController isKindOfClass:[FlutterViewController class]]) {
+    return
+        [[(FlutterViewController*)rootViewController pluginRegistry] registrarForPlugin:pluginKey];
+  }
+  return nil;
+}
+
+- (BOOL)hasPlugin:(NSString*)pluginKey {
+  UIViewController* rootViewController = _window.rootViewController;
+  if ([rootViewController isKindOfClass:[FlutterViewController class]]) {
+    return [[(FlutterViewController*)rootViewController pluginRegistry] hasPlugin:pluginKey];
+  }
+  return false;
+}
+
+- (NSObject*)valuePublishedByPlugin:(NSString*)pluginKey {
+  UIViewController* rootViewController = _window.rootViewController;
+  if ([rootViewController isKindOfClass:[FlutterViewController class]]) {
+    return [[(FlutterViewController*)rootViewController pluginRegistry]
+        valuePublishedByPlugin:pluginKey];
+  }
+  return nil;
+}
+```
 在上面的加载之后，就开始进入FlutterEngine的核心代码进行初始化执行
 
 ## FlutterAppDelegate
 
-FlutterAppDelegate的实现类`/engine/src/flutter/shell/platform/darwin/ios/framework/Source/FlutterAppDelegate.mm`，在FlutterAppDelegate实例化时会调用`init`方法,先调用父类方法，如果初始化成功，则初始化`FlutterPluginAppLifeCycleDelegate`在FlutterEngine和IOSapp直接做一个生命周期、和注册的插件管理工作。
+FlutterAppDelegate的实现类`/engine/src/flutter/shell/platform/darwin/ios/framework/Source/FlutterAppDelegate.mm`，在FlutterAppDelegate实例化时会调用`init`方法,先调用父类方法，如果初始化成功，则初始化`FlutterPluginAppLifeCycleDelegate`在FlutterEngine和IOSapp直接做一个生命周期、和注册的插件管理工作。在`FlutterPluginAppLifeCycleDelegate`的初始化方法中`init`中初始化Flutter文件相关的查找目录
+
 ```c++
 - (instancetype)init {
   if (self = [super init]) {
@@ -210,7 +257,8 @@ FlutterAppDelegate的实现类`/engine/src/flutter/shell/platform/darwin/ios/fra
 ```
 ## FlutterPluginAppLifeCycleDelegate
 
-在`/Users/cuco/engine/src/flutter/shell/platform/darwin/ios/framework/Source/FlutterPluginAppLifeCycleDelegate.mm`初始化是调用init实例方法进行初始化,初始化的过程中主要是获取缓存目录，在后续加载flutter的镜像文件和数据文件已经配置文件夹设置好路径。
+在`/Users/cuco/engine/src/flutter/shell/platform/darwin/ios/framework/Source/FlutterPluginAppLifeCycleDelegate.mm`初始化是调用`init`实例方法进行初始化,初始化的过程中主要是获取缓存目录，在后续加载flutter的镜像文件和数据文件已经配置文件夹设置好路径。
+
 ```c
 ///缓存目录
 static const char* kCallbackCacheSubDir = "Library/Caches/";
@@ -224,6 +272,8 @@ static const char* kCallbackCacheSubDir = "Library/Caches/";
 }
 ```
 ### FlutterCallbackCache
+
+DartCallbackCache 文件路径相关的类：`flutter/lib/ui/plugins/callback_cache.h`
 下面的代码就是一个文件加载目录初始化的操作，基础知识
 
 ```c++
@@ -246,12 +296,26 @@ static const char* kCallbackCacheSubDir = "Library/Caches/";
     }
   }
 }
-
 @end
 
 ```
 
 ## FlutterViewController
+
+FlutterEngine初始化过程主要是在`FlutterViewController`中进行UI事件的绑定工作，在相关的生命周期中初始化逻辑
+
+
+    1.- init：                 初始化FlutterEngine、FlutterView、setupNotificationCenterObservers注册
+    2. awakeFromNib：
+    3. loadView：              FlutterView赋值给ViewController的view对象，初始化启动屏
+    4. viewDidLoad：
+    5. viewWillAppear：        launchEngine、注册生命周期
+    6. updateViewConstraints：
+    7. viewWillLayoutSubviews：
+    8. viewDidLayoutSubviews： 设置UI屏幕的大小、UIScreen mainScreen
+    9. viewDidAppear：         更新Local信息、更新用户设置、更新访问状态
+    10. viewWillDisappear：
+    11. viewDidDisappear：     更新相关的FlutterUI
 
 在iosAPP启动的时候，并没有做太多的操作，主要是初始化加载数据的路径，监听IOSApp生命周期，并且注册一些事件回调逻辑，接下来时App已经初始化完成，接着初始化`FlutterViewController`,在`FlutterViewController`初始化时，复写了init方法
 `/Users/cuco/engine/src/flutter/shell/platform/darwin/ios/framework/Source/FlutterViewController.mm`
@@ -271,7 +335,11 @@ static const char* kCallbackCacheSubDir = "Library/Caches/";
 
 3.启动SplashScreenView
 
-4.performCommonViewControllerInitialization
+5. createShell
+
+6.performCommonViewControllerInitialization
+
+7.setupNotificationCenterObservers
 
 ```c++
 - (instancetype)initWithProject:(FlutterDartProject*)projectOrNil
@@ -299,7 +367,9 @@ static const char* kCallbackCacheSubDir = "Library/Caches/";
 
 1.FlutterDartProject:主要初始化整个FlutterEngine初始化过程中Flutter_asset相关的文件路径解析，同时解析命令行参数，构建默认的进程参数
 
-2.FlutterPlatformViewsController:主要的功能是处理FlutterEngine侧的View相关的逻辑
+2.FlutterPlatformViewsController:主要的功能是处理FlutterEngine侧的View相关的逻辑`flutter/shell/platform/darwin/ios/framework/Source/FlutterPlatformViews.mm`
+
+3.FlutterView
 
 3.setupChannels
 
@@ -481,7 +551,98 @@ static blink::Settings DefaultSettingsForProcess(NSBundle* bundle = nil) {
 }
 
 ```
+### setupNotificationCenterObservers
 
+```c
+- (void)setupNotificationCenterObservers {
+  NSNotificationCenter* center = [NSNotificationCenter defaultCenter];
+  [center addObserver:self
+             selector:@selector(onOrientationPreferencesUpdated:)
+                 name:@(shell::kOrientationUpdateNotificationName)
+               object:nil];
+
+  [center addObserver:self
+             selector:@selector(onPreferredStatusBarStyleUpdated:)
+                 name:@(shell::kOverlayStyleUpdateNotificationName)
+               object:nil];
+
+  [center addObserver:self
+             selector:@selector(applicationBecameActive:)
+                 name:UIApplicationDidBecomeActiveNotification
+               object:nil];
+
+  [center addObserver:self
+             selector:@selector(applicationWillResignActive:)
+                 name:UIApplicationWillResignActiveNotification
+               object:nil];
+
+  [center addObserver:self
+             selector:@selector(applicationDidEnterBackground:)
+                 name:UIApplicationDidEnterBackgroundNotification
+               object:nil];
+
+  [center addObserver:self
+             selector:@selector(applicationWillEnterForeground:)
+                 name:UIApplicationWillEnterForegroundNotification
+               object:nil];
+
+  [center addObserver:self
+             selector:@selector(keyboardWillChangeFrame:)
+                 name:UIKeyboardWillChangeFrameNotification
+               object:nil];
+
+  [center addObserver:self
+             selector:@selector(keyboardWillBeHidden:)
+                 name:UIKeyboardWillHideNotification
+               object:nil];
+
+  [center addObserver:self
+             selector:@selector(onLocaleUpdated:)
+                 name:NSCurrentLocaleDidChangeNotification
+               object:nil];
+
+  [center addObserver:self
+             selector:@selector(onAccessibilityStatusChanged:)
+                 name:UIAccessibilityVoiceOverStatusChanged
+               object:nil];
+
+  [center addObserver:self
+             selector:@selector(onAccessibilityStatusChanged:)
+                 name:UIAccessibilitySwitchControlStatusDidChangeNotification
+               object:nil];
+
+  [center addObserver:self
+             selector:@selector(onAccessibilityStatusChanged:)
+                 name:UIAccessibilitySpeakScreenStatusDidChangeNotification
+               object:nil];
+
+  [center addObserver:self
+             selector:@selector(onAccessibilityStatusChanged:)
+                 name:UIAccessibilityInvertColorsStatusDidChangeNotification
+               object:nil];
+
+  [center addObserver:self
+             selector:@selector(onAccessibilityStatusChanged:)
+                 name:UIAccessibilityReduceMotionStatusDidChangeNotification
+               object:nil];
+
+  [center addObserver:self
+             selector:@selector(onAccessibilityStatusChanged:)
+                 name:UIAccessibilityBoldTextStatusDidChangeNotification
+               object:nil];
+
+  [center addObserver:self
+             selector:@selector(onMemoryWarning:)
+                 name:UIApplicationDidReceiveMemoryWarningNotification
+               object:nil];
+
+  [center addObserver:self
+             selector:@selector(onUserSettingsChanged:)
+                 name:UIContentSizeCategoryDidChangeNotification
+               object:nil];
+}
+
+```
 #### setupChannels
 engine/src/flutter/shell/platform/darwin/ios/framework/Source/FlutterEngine.mm中注册FlutterUI层和IOS层之间的Plugin，这些Plugin是系统级别的
 
@@ -666,3 +827,100 @@ _shell = shell::Shell::Create(std::move(task_runners),  // task runners
                               on_create_rasterizer      // rasterzier creation
 );
 ```
+
+## FlutterView
+
+FlutterView 继承`UIView`提供给FlutterEngine进行绘制，前面的分析过程中已经初始化完成`FlutterView`,`FlutterView`持有`FlutterPlatformViewsController`的引用，就可以和FlutterEngine进行交互
+
+### 初始化
+
+在`FlutterViewController`初始化是调用`initWithProject`方法进行初始化，FlutterView也是在这个时候进行初始化，在`FlutterViewController`创建之后，并且在View显示之前在`FlutterViewController`的生命周期方法中，把`FlutterView`和`FlutterEngine`进行初始化操作
+
+
+```c
+- (instancetype)initWithProject:(FlutterDartProject*)projectOrNil
+                        nibName:(NSString*)nibNameOrNil
+                         bundle:(NSBundle*)nibBundleOrNil {
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    _viewOpaque = YES;
+    _weakFactory = std::make_unique<fml::WeakPtrFactory<FlutterViewController>>(self);
+    _engine.reset([[FlutterEngine alloc] initWithName:@"io.flutter"
+                                              project:projectOrNil
+                               allowHeadlessExecution:NO]);
+    _flutterView.reset([[FlutterView alloc] initWithDelegate:_engine opaque:self.isViewOpaque]);
+    [_engine.get() createShell:nil libraryURI:nil];
+    _engineNeedsLaunch = YES;
+    [self loadDefaultSplashScreenView];
+    [self performCommonViewControllerInitialization];
+  }
+
+  return self;
+}
+
+```
+
+### loadView
+
+在`FlutterViewController`的生命周期函数中绑定了FlutterView赋值给当前的`FlutterViewController`进行初始化操作View进行显示，同时初始化App启动的SplashView进行初始化，提供了几个方法，用于加载不同类型定义的SplashView
+
+```c
+- (void)loadView {
+  self.view = _flutterView.get();
+  self.view.multipleTouchEnabled = YES;
+  self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
+  [self installSplashScreenViewIfNecessary];
+}
+```
+
+### FlutterEngine:launchEngine
+
+在`viewWillAppear`生命周期函数中调用FlutterEngine进行初始化操作
+
+```c
+- (void)viewWillAppear:(BOOL)animated {
+  TRACE_EVENT0("flutter", "viewWillAppear");
+
+  if (_engineNeedsLaunch) {
+    [_engine.get() launchEngine:nil libraryURI:nil];
+    [_engine.get() setViewController:self];
+    _engineNeedsLaunch = NO;
+  }
+
+  // Only recreate surface on subsequent appearances when viewport metrics are known.
+  // First time surface creation is done on viewDidLayoutSubviews.
+  if (_viewportMetrics.physical_width)
+    [self surfaceUpdated:YES];
+  [[_engine.get() lifecycleChannel] sendMessage:@"AppLifecycleState.inactive"];
+
+  [super viewWillAppear:animated];
+}
+```
+
+### FlutterEngine:Run
+
+1.加载配置，查找到指定的FlutterEngine的入口点，也就是指点的FlutterUI层的启动函数的入口
+
+2.调用FltuterEngine->Run方法启动FlutterEngine进行加载FltuterUI相关的代码`flutter/shell/common/engine.cc`
+
+```c
+- (void)launchEngine:(NSString*)entrypoint libraryURI:(NSString*)libraryOrNil {
+  // Launch the Dart application with the inferred run configuration.
+  self.shell.GetTaskRunners().GetUITaskRunner()->PostTask(fml::MakeCopyable(
+      [engine = _shell->GetEngine(),
+       config = [_dartProject.get() runConfigurationForEntrypoint:entrypoint
+                                                     libraryOrNil:libraryOrNil]  //
+  ]() mutable {
+        if (engine) {
+          auto result = engine->Run(std::move(config));
+          if (result == shell::Engine::RunStatus::Failure) {
+            FML_LOG(ERROR) << "Could not launch engine with configuration.";
+          }
+        }
+      }));
+}
+
+```
+
+在目前为止，IOS和Android端有差异的代码就是上面的部分，在调用`engine->Run`函数之后，就进入FlutteREngine的核心部分，所有的Android和IOS运行的代码逻辑都是一样的了，请参考Android的启动流程
