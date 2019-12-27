@@ -1,9 +1,78 @@
-# IOS 启动流程
+# Flutter 在IOS上的启动流程
 
 
-插件注册过程
+Flutter在IOS上使用的逻辑和Android很相似，App主要是提供初始化和View给FlutterEngine做为渲染，其他的还是FlutterEngine在处理后续的工作,App启动的时候是做了哪些工作，才能办FlutterUI界面加载出来？？
 
-## 配置xcode开发环境
+1.IOSApp包结构
+
+2.FlutterEngine库是怎么加载的
+
+3.FlutterEngine初始化过程
+
+4.FlutterEngine启动过程
+
+
+## Ipa包结构
+
+ios包中Flutter相关的资源文件是保存在`Frameworks/App.framework/flutter_assets` Bundle中，引擎相关的文件是保存在`Frameworks/Flutter.framework`在两个地方保存了Flutter相关的代码，在App结构中，我们看到了其实Flutter相关的代码在App中是相互分离的，没有多少相关连，FlutterEngine编译的时候回和App的代码整合在一起，方便启动的时候加载FlutterEngine(我们是否可以使用手动的方式来加载Flutter引擎库，这样就和ios的App更加独立)后续再来处理这个问题
+
+    flutter build ios --release
+
+运行上面的命令，等待打包工具生成ios这些文件，结构如下，中间删除了一下图片，关注分析的重点。
+
+    ➜  Runner.app tree -L 3
+    .
+    ├── AppFrameworkInfo.plist
+    ........
+    ├── Assets.car
+    ├── Base.lproj
+    │   ├── LaunchScreen.storyboardc
+    │   │   ├── 01J-lp-oVM-view-Ze5-6b-2t3.nib
+    │   │   ├── Info.plist
+    │   │   └── UIViewController-01J-lp-oVM.nib
+    │   └── Main.storyboardc
+    │       ├── BYZ-38-t0r-view-8bC-Xf-vdC.nib
+    │       ├── Info.plist
+    │       └── UIViewController-BYZ-38-t0r.nib
+    ├── Debug.xcconfig
+    ├── App.framework
+    │   ├── App
+    │   ├── Info.plist
+    │   ├── _CodeSignature
+    │   │   └── CodeResources
+    │   └── flutter_assets
+    │       ├── AssetManifest.json
+    │       ├── FontManifest.json
+    │       ├── LICENSE
+    │       ├── fonts
+    │       ├── isolate_snapshot_data
+    │       ├── kernel_blob.bin
+    │       ├── packages
+    │       └── vm_snapshot_data
+    ├── Flutter.framework
+    │   ├── Flutter
+    │   ├── Info.plist
+    │   ├── _CodeSignature
+    │   │   └── CodeResources
+    │   └── icudtl.dat
+    ├── libswiftCore.dylib
+    ├── libswiftCoreFoundation.dylib
+    ├── libswiftCoreGraphics.dylib
+    ├── libswiftDarwin.dylib
+    ├── libswiftDispatch.dylib
+    ├── libswiftFoundation.dylib
+    └── libswiftObjectiveC.dylib
+    ├── Info.plist
+    ├── PkgInfo
+    ├── Runner
+    ├── _CodeSignature
+    │   └── CodeResources
+    └── embedded.mobileprovision
+
+
+## FlutterEngine库是怎么加载的
+
+### 配置xcode开发环境
 
 Code开启编译选项Write Link Map File
 XCode -> Project -> Build Settings -> 搜map -> 把Write Link Map File选项设为YES，并指定好linkMap的存储位置
@@ -127,64 +196,16 @@ LinkMap结构
       <<dead>> 	0x00000000	[ 14] _swift_getOrigOfReplacea
 
 
-通过上面两步的配置，我们可以看到在生成的Runner.app中可以生产的可执行文件的中间文件，这里具体分析挣mach-O的结构，只是找到整个Flutter的加载入口，和前面的思想是一样的，先把各个入口和关键点搞定，避免停了在概念阶段，先搞请求整个Flutter框架在Ios上是怎么运行起来的，我们在聚焦在某个点上走专题分析
+通过上面两步的配置，我们可以看到在生成的Runner.app中可以生产的可执行文件的中间文件，这里具体分析挣mach-O的结构，只是找到整个Flutter的加载入口，和前面的思想是一样的，先把各个入口和关键点搞定，避免停了在概念阶段，先搞请求整个Flutter框架在Ios上是怎么运行起来的，我们在聚焦在某个点上专题分析
 
 
+###  Flutter 库加载过程(mach-o文件分析)
 
-## Runner.app flutterIOS产物
+在上面的配置中，已经配置了app在启动时，自动加载链接Flutter库，如何进入IOSApp正常启动流程，启动流程的分析网上太多了，不做具体的分析，在App启动是会加载，在App启动完成之后，会调用AppDelegate中的`didFinishLaunchingWithOptions`参数的方法，开始初始化Flutter相关的逻辑，其他App初始化的逻辑没有改变。
 
-    flutter build ios --release
+## 初始化FlutterAppDelegate
 
-运行上面的命令，等待打包工具生成ios这些文件，结构如下，中间删除了一下图片，关注分析的重点。
-
-    ➜  Runner.app tree -L 3
-    .
-    ├── AppFrameworkInfo.plist
-    ........
-    ├── Assets.car
-    ├── Base.lproj
-    │   ├── LaunchScreen.storyboardc
-    │   │   ├── 01J-lp-oVM-view-Ze5-6b-2t3.nib
-    │   │   ├── Info.plist
-    │   │   └── UIViewController-01J-lp-oVM.nib
-    │   └── Main.storyboardc
-    │       ├── BYZ-38-t0r-view-8bC-Xf-vdC.nib
-    │       ├── Info.plist
-    │       └── UIViewController-BYZ-38-t0r.nib
-    ├── Debug.xcconfig
-    ├── Frameworks
-    │   ├── App.framework
-    │   │   ├── App
-    │   │   ├── Info.plist
-    │   │   ├── _CodeSignature
-    │   │   └── flutter_assets
-    │   ├── Flutter.framework
-    │   │   ├── Flutter ## Flutter库
-    │   │   ├── Info.plist
-    │   │   ├── _CodeSignature
-    │   │   └── icudtl.dat
-    │   ├── libswiftCore.dylib
-    │   ├── libswiftCoreFoundation.dylib
-    │   ├── libswiftCoreGraphics.dylib
-    │   ├── libswiftDarwin.dylib
-    │   ├── libswiftDispatch.dylib
-    │   ├── libswiftFoundation.dylib
-    │   └── libswiftObjectiveC.dylib
-    ├── Info.plist
-    ├── PkgInfo
-    ├── Runner
-    ├── _CodeSignature
-    │   └── CodeResources
-    └── embedded.mobileprovision
-
-    14 directories, 40 files
-
-## Flutter 库加载过程(mach-o文件分析)
-
-FlutterEngine和IOS平台相关的源码放在`flutter/shell/platform/darwin/ios`目录下
-
-在上面的配置中，已经配置了app在启动时，自动加载链接Flutter库，如何进入IOSApp正常启动流程，启动流程的分析网上太多了，不做具体的分析，在App启动是会加载，在App启动完成之后，会调用AppDelegate中的`didFinishLaunchingWithOptions`参数的方法，开始初始化Flutter相关的逻辑，其他IOSApp初始化的逻辑没有改变。
-
+在App启动完成只用，就开始初始化开发者的代码，入口是在`AppDelegate`类，`AppDelegate`继承了`FlutterAppDelegate`紧接着我们开始初始化,FlutterEngine和IOS平台相关的源码放在`flutter/shell/platform/darwin/ios`目录下
 
 ```c
 import UIKit
@@ -204,48 +225,15 @@ import Flutter
 
 `FlutterAppDelegate`的实现了在Engine源码目录下`/engine/src/flutter/shell/platform/darwin/ios/framework/Source/FlutterAppDelegate.mm`，FlutterAppDelegate继承:
 
+FlutterUI是直接显示在一个UIView上面(目前所有的FlutterUI相关的逻辑全部显示的是在这个UIView上面),IOS在FlutterUI显示的时候很显然，需要把相关的事件分发到FlutterUI成进行处理，FlutterUI和App直接的通信自然是通过FlutterPlugin插件来进行通信,FlutterPlugin插件包括系统插件和用户自定义的Channel，同时FlutterEngine的所有操作还是需要和App保存同步，如果App退到后台，FlutterEngine要需要处理自己的生命周期。
+
 ```c
 FLUTTER_EXPORT
 @interface FlutterAppDelegate
     : UIResponder <UIApplicationDelegate, FlutterPluginRegistry, FlutterAppLifeCycleProvider>
 ```
 
-## FlutterPluginRegistry
-
-FlutterPluginRegistry 的实现代码是在FlutterAppDelegate.mm中实现的,具体的参考实现过程请参考一下代码
-
-```c
-- (NSObject<FlutterPluginRegistrar>*)registrarForPlugin:(NSString*)pluginKey {
-  UIViewController* rootViewController = _window.rootViewController;
-  if ([rootViewController isKindOfClass:[FlutterViewController class]]) {
-    return
-        [[(FlutterViewController*)rootViewController pluginRegistry] registrarForPlugin:pluginKey];
-  }
-  return nil;
-}
-
-- (BOOL)hasPlugin:(NSString*)pluginKey {
-  UIViewController* rootViewController = _window.rootViewController;
-  if ([rootViewController isKindOfClass:[FlutterViewController class]]) {
-    return [[(FlutterViewController*)rootViewController pluginRegistry] hasPlugin:pluginKey];
-  }
-  return false;
-}
-
-- (NSObject*)valuePublishedByPlugin:(NSString*)pluginKey {
-  UIViewController* rootViewController = _window.rootViewController;
-  if ([rootViewController isKindOfClass:[FlutterViewController class]]) {
-    return [[(FlutterViewController*)rootViewController pluginRegistry]
-        valuePublishedByPlugin:pluginKey];
-  }
-  return nil;
-}
-```
-在上面的加载之后，就开始进入FlutterEngine的核心代码进行初始化执行
-
-## FlutterAppDelegate
-
-FlutterAppDelegate的实现类`/engine/src/flutter/shell/platform/darwin/ios/framework/Source/FlutterAppDelegate.mm`，在FlutterAppDelegate实例化时会调用`init`方法,先调用父类方法，如果初始化成功，则初始化`FlutterPluginAppLifeCycleDelegate`在FlutterEngine和IOSapp直接做一个生命周期、和注册的插件管理工作。在`FlutterPluginAppLifeCycleDelegate`的初始化方法中`init`中初始化Flutter文件相关的查找目录
+FlutterAppDelegate的实现类`/engine/src/flutter/shell/platform/darwin/ios/framework/Source/FlutterAppDelegate.mm`，在FlutterAppDelegate实例化时会调用`init`方法,先调用父类方法，如果初始化成功，则初始化`FlutterPluginAppLifeCycleDelegate`在FlutterEngine和app一个生命周期、和注册的插件管理工作。在`FlutterPluginAppLifeCycleDelegate`的初始化方法中`init`中初始化Flutter文件相关的查找目录
 
 ```c++
 - (instancetype)init {
@@ -255,7 +243,7 @@ FlutterAppDelegate的实现类`/engine/src/flutter/shell/platform/darwin/ios/fra
   return self;
 }
 ```
-## FlutterPluginAppLifeCycleDelegate
+### FlutterPluginAppLifeCycleDelegate
 
 在`/Users/cuco/engine/src/flutter/shell/platform/darwin/ios/framework/Source/FlutterPluginAppLifeCycleDelegate.mm`初始化是调用`init`实例方法进行初始化,初始化的过程中主要是获取缓存目录，在后续加载flutter的镜像文件和数据文件已经配置文件夹设置好路径。
 
@@ -300,9 +288,61 @@ DartCallbackCache 文件路径相关的类：`flutter/lib/ui/plugins/callback_ca
 
 ```
 
-## FlutterViewController
 
-FlutterEngine初始化过程主要是在`FlutterViewController`中进行UI事件的绑定工作，在相关的生命周期中初始化逻辑
+### FlutterPluginRegistry插件初始化过程
+
+FlutterPluginRegistry 的实现代码是在FlutterAppDelegate.mm中实现的,具体的参考实现过程请参考一下代码
+
+```c
+- (NSObject<FlutterPluginRegistrar>*)registrarForPlugin:(NSString*)pluginKey {
+  UIViewController* rootViewController = _window.rootViewController;
+  if ([rootViewController isKindOfClass:[FlutterViewController class]]) {
+    return
+        [[(FlutterViewController*)rootViewController pluginRegistry] registrarForPlugin:pluginKey];
+  }
+  return nil;
+}
+
+- (BOOL)hasPlugin:(NSString*)pluginKey {
+  UIViewController* rootViewController = _window.rootViewController;
+  if ([rootViewController isKindOfClass:[FlutterViewController class]]) {
+    return [[(FlutterViewController*)rootViewController pluginRegistry] hasPlugin:pluginKey];
+  }
+  return false;
+}
+
+- (NSObject*)valuePublishedByPlugin:(NSString*)pluginKey {
+  UIViewController* rootViewController = _window.rootViewController;
+  if ([rootViewController isKindOfClass:[FlutterViewController class]]) {
+    return [[(FlutterViewController*)rootViewController pluginRegistry]
+        valuePublishedByPlugin:pluginKey];
+  }
+  return nil;
+}
+```
+在上面的加载之后，就开始进入FlutterEngine的核心代码进行初始化执行，`FlutterAppDelegate`初始化过程主要做了:
+
+1.加载相关的插件信息
+
+2.初始化缓存目录
+
+3.绑定FlutterEngine引擎和App的生命周期
+
+4.在App的不同生命周期中调用FlutterEngine进行通信
+
+主要是在做全局信息的初始化操作
+
+
+
+## FlutterViewController 初始化过程
+
+FlutterEngine初始化过程主要是在`FlutterViewController`中进行UI事件的绑定工作，在相关的生命周期中初始化逻辑，我们先分析关键点，后续的文章在对每一个点进行细致的分享，所有的操作都是在FlutterViewController的上面周期方法进行调用的
+
+`flutter/shell/platform/darwin/ios/framework/Source/FlutterEngine.mm`主要实现了App层和FlutterEngine的一个入口控制逻辑
+
+`flutter/shell/platform/darwin/ios/framework/Source/FlutterView.mm`继承UIView提供个FlutterEngine引擎进行绘制操作
+
+`NotificationCenter`FlutterEngine和App进行交互的通知通道
 
 
     1.- init：                 初始化FlutterEngine、FlutterView、setupNotificationCenterObservers注册
@@ -317,8 +357,8 @@ FlutterEngine初始化过程主要是在`FlutterViewController`中进行UI事件
     10. viewWillDisappear：
     11. viewDidDisappear：     更新相关的FlutterUI
 
-在iosAPP启动的时候，并没有做太多的操作，主要是初始化加载数据的路径，监听IOSApp生命周期，并且注册一些事件回调逻辑，接下来时App已经初始化完成，接着初始化`FlutterViewController`,在`FlutterViewController`初始化时，复写了init方法
-`/Users/cuco/engine/src/flutter/shell/platform/darwin/ios/framework/Source/FlutterViewController.mm`
+在iosAPP启动的时候，并没有做太多的操作，主要是初始化加载数据的路径，监听IOSApp生命周期，并且注册一些事件回调逻辑，接下来时App已经初始化完成，接着初始化`FlutterViewController`,在`FlutterViewController`初始化时，了init方法
+`flutter/shell/platform/darwin/ios/framework/Source/FlutterViewController.mm`,在FlutterViewController初始化是调用初始化函数`init`
 
 ```c++
 - (instancetype)init {
@@ -326,16 +366,17 @@ FlutterEngine初始化过程主要是在`FlutterViewController`中进行UI事件
 }
 
 ```
+
 ### FlutterViewController 初始化入口
 
 
 1.开始初始化整个FlutterEngine框架`initWithProject`，保存`FlutterViewController`到一个弱引用中，开始初始化`FlutterEngine`,调用`initWithName`方法进行初始化
 
-2.初始化`FlutterView`主要是IosUI交互的接口，主要作用是FlutterEngine和IOSUI的一个管理逻辑类
+2.初始化`FlutterView`主要是IOSUI交互的接口，主要作用是FlutterEngine和IOSUI的一个管理逻辑类,提供给FlutterEngine进行绘制处理
 
 3.启动SplashScreenView
 
-5. createShell
+5. createShell:FlutterEngine和不同平台直接的统一接口
 
 6.performCommonViewControllerInitialization
 
@@ -364,6 +405,8 @@ FlutterEngine初始化过程主要是在`FlutterViewController`中进行UI事件
 ```
 
 ### FlutterEngine
+
+在FlutterEngine初始化是，主要是查找到相关的资源录用，四个线程、消息队列进行初始化操作，主要是FlutterEngine内部进行初始化，并没有正在加载太作的业务代码逻辑
 
 1.FlutterDartProject:主要初始化整个FlutterEngine初始化过程中Flutter_asset相关的文件路径解析，同时解析命令行参数，构建默认的进程参数
 
@@ -427,8 +470,11 @@ FlutterEngine初始化过程主要是在`FlutterViewController`中进行UI事件
 }
 
 ```
+
 #### DefaultSettingsForProcess
-设置Flutter_asset加载路径，设置FlutterEngine在这些过程中，如何查找可执行的文件路径
+
+设置Flutter_asset加载路径，设置FlutterEngine在这些过程中，如何查找可执行的文件路径，在上面的App的包结构中，我们可以看到，Flutter相关的资源文件，那么在FlutterEngine启动的时候，我们就可以加载相关的Flutter代码和相关资源文件路径
+
 ```c++
 static blink::Settings DefaultSettingsForProcess(NSBundle* bundle = nil) {
   auto command_line = shell::CommandLineFromNSProcessInfo();
@@ -551,6 +597,8 @@ static blink::Settings DefaultSettingsForProcess(NSBundle* bundle = nil) {
 }
 
 ```
+
+
 ### setupNotificationCenterObservers
 
 ```c
@@ -644,6 +692,7 @@ static blink::Settings DefaultSettingsForProcess(NSBundle* bundle = nil) {
 
 ```
 #### setupChannels
+
 engine/src/flutter/shell/platform/darwin/ios/framework/Source/FlutterEngine.mm中注册FlutterUI层和IOS层之间的Plugin，这些Plugin是系统级别的
 
 ```c++
@@ -694,7 +743,21 @@ engine/src/flutter/shell/platform/darwin/ios/framework/Source/FlutterEngine.mm�
   _platformPlugin.reset([[FlutterPlatformPlugin alloc] initWithEngine:[self getWeakPtr]]);
 }
 ```
+
+#### FlutterViewcontroller和FlutterEngine.mm实例进行绑定
+
+```c
+- (void)setViewController:(FlutterViewController*)viewController {
+  FML_DCHECK(self.iosPlatformView);
+  _viewController = [viewController getWeakPtr];
+  self.iosPlatformView->SetOwnerViewController(_viewController);
+  [self maybeSetupPlatformViewChannels];
+}
+```
+
+
 ### FlutterView
+
 接着回到`flutter/shell/platform/darwin/ios/framework/Source/FlutterViewController.mm`的`initWithProject`继续往下分析,初始化`flutter/shell/platform/darwin/ios/framework/Source/FlutterView.mm`可说初始化Frame
 ```c++
 - (instancetype)initWithDelegate:(id<FlutterViewEngineDelegate>)delegate opaque:(BOOL)opaque {
@@ -709,6 +772,7 @@ engine/src/flutter/shell/platform/darwin/ios/framework/Source/FlutterEngine.mm�
   return self;
 }
 ```
+
 ### FlutterEngine: createShell
 
 这个方法在Android启动流程中有详细介绍过,这里不做更加详细的说明
@@ -718,6 +782,8 @@ engine/src/flutter/shell/platform/darwin/ios/framework/Source/FlutterEngine.mm�
 2.创建栅格化类Rasterizer
 
 3.启动消息队列`MessageLoop`
+
+4.创建platform、gpu、ui、io
 
 
 ```c++
@@ -827,38 +893,8 @@ _shell = shell::Shell::Create(std::move(task_runners),  // task runners
                               on_create_rasterizer      // rasterzier creation
 );
 ```
+上面的部分是在IOS端进行初始化，当调用`shell::Shell::Create`方法时，就真正进入了FlutterEngine的所有平台统一的处理逻辑
 
-## FlutterView
-
-FlutterView 继承`UIView`提供给FlutterEngine进行绘制，前面的分析过程中已经初始化完成`FlutterView`,`FlutterView`持有`FlutterPlatformViewsController`的引用，就可以和FlutterEngine进行交互
-
-### 初始化
-
-在`FlutterViewController`初始化是调用`initWithProject`方法进行初始化，FlutterView也是在这个时候进行初始化，在`FlutterViewController`创建之后，并且在View显示之前在`FlutterViewController`的生命周期方法中，把`FlutterView`和`FlutterEngine`进行初始化操作
-
-
-```c
-- (instancetype)initWithProject:(FlutterDartProject*)projectOrNil
-                        nibName:(NSString*)nibNameOrNil
-                         bundle:(NSBundle*)nibBundleOrNil {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  if (self) {
-    _viewOpaque = YES;
-    _weakFactory = std::make_unique<fml::WeakPtrFactory<FlutterViewController>>(self);
-    _engine.reset([[FlutterEngine alloc] initWithName:@"io.flutter"
-                                              project:projectOrNil
-                               allowHeadlessExecution:NO]);
-    _flutterView.reset([[FlutterView alloc] initWithDelegate:_engine opaque:self.isViewOpaque]);
-    [_engine.get() createShell:nil libraryURI:nil];
-    _engineNeedsLaunch = YES;
-    [self loadDefaultSplashScreenView];
-    [self performCommonViewControllerInitialization];
-  }
-
-  return self;
-}
-
-```
 
 ### loadView
 
@@ -898,7 +934,7 @@ FlutterView 继承`UIView`提供给FlutterEngine进行绘制，前面的分析�
 }
 ```
 
-### FlutterEngine:Run
+#### FlutterEngine:Run
 
 1.加载配置，查找到指定的FlutterEngine的入口点，也就是指点的FlutterUI层的启动函数的入口
 
@@ -924,3 +960,18 @@ FlutterView 继承`UIView`提供给FlutterEngine进行绘制，前面的分析�
 ```
 
 在目前为止，IOS和Android端有差异的代码就是上面的部分，在调用`engine->Run`函数之后，就进入FlutteREngine的核心部分，所有的Android和IOS运行的代码逻辑都是一样的了，请参考Android的启动流程
+
+
+## 小结
+
+
+FlutterEngine在IOS上的初始化操作比在Android上的操作感觉逻辑简单了不少,汇总中一下在App启动过程中，是怎么初始化FlutterEngine相关的逻辑的，上面的分析和Android相关的部分已经没有进行分析，具体的请看一下Android端相关的分享`hell::Shell::Create`调用之后，启动过程`FlutterEngine:Run`之后的代码都是到了FlutterEngine核心代码逻辑，所有的平台基本一致
+
+
+1.在AppDelegate中继承了`FlutterAppDelegate`APP启动的时候，调用`init`方法，初始化全局相关的逻辑和生命周期
+
+2.FlutterViewController启动，在`init`中开始初始化FlutterEngine
+
+3.在`loadView`把FlutterView赋值个FlutterViewController的view进行显示
+
+4.`viewWillAppear`方法中调用引擎启动，加载FlutterUI层相关的代码，其实就是查找FlutterUI层相关的`main()`进行调用你
