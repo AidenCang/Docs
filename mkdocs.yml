@@ -172,6 +172,7 @@ nav:
       - FlutterUI通信Android&IOS: android/flutter/fluttercommunicationAndroidorIOS.md
       - FlutterEngine源码编译: android/flutter/flutterEngine.md
       - Flutter引擎目录: android/flutter/flutterenginedir.md
+      - Navigator: android/flutterdev/navigator.md
 
 
     - ReactNative:
