@@ -1541,6 +1541,7 @@ RuntimeController::RuntimeController(
 
 ### DartIsolate
 调用`shared_embedder_isolate->SetWindow(std::move(window));`对象传递`RuntimeController`到`Window`类中进行绑定
+
 ```C
 
 std::weak_ptr<DartIsolate> DartIsolate::CreateRootIsolate(
@@ -1646,6 +1647,8 @@ RuntimeController::RuntimeController(.....)
   FML_DCHECK(Dart_CurrentIsolate() == nullptr);
 }
 ```
+
+
 ### Android Native层与libFlutter通信接口:
 
 
