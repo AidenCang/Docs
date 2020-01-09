@@ -142,6 +142,7 @@ nav:
       - Flutter常见问题: android/flutter/FlutterQuestion.md
       - FlutterUI: android/flutter/flutterUI.md
       - 面试资料: android/flutter/interview.md
+      - Navigator: android/flutterdev/navigator.md
     - FlutterEngine:
       - Engine源代码下载: android/flutter/downEngine.md
       - Flutter编译环境安装: android/flutter/flutterenv.md
@@ -157,6 +158,9 @@ nav:
       - Android初始化View: android/flutter/AndroidViewinit.md
       - Engine初始化: android/flutter/EngineInit.md
       - EngineView初始化: android/flutter/EngineView.md
+      - Engine启动过程: android/flutter/FlutterEngineLauncher.md
+      - FlutterUI渲染过程: android/flutter/flutterWindow.md
+      - iOS启动过程: android/flutter/iosstart.md
       - C++智能指针: android/flutter/SmartPtr.md
       - NativeExtensions: android/flutter/NativeExtensions.md
       - MessageLoop: android/flutter/MessageLoop.md
@@ -172,6 +176,9 @@ nav:
       - Flutter引擎目录: android/flutter/flutterenginedir.md
     - flutterTools:
       - Flutter开始运行: android/flutterrun/fluttertools.md
+
+
+
     - ReactNative:
       - ReactNative: android/rn/react_native.md
     - Awsamplify:

@@ -16,6 +16,8 @@
 ## Android&IOS中植入代码
 [IOS中植入代码](http://www.xjishu.com/zhuanli/55/201610388563.html)
 
+NotificationCenter
+DispatchQueue
 
 ## android逆向基础
 
