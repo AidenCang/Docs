@@ -149,9 +149,11 @@ nav:
       - dartbase: android/flutterdev/dartbase.md
       - assertGet: android/flutterdev/assertGet.md
       - 面试资料: android/flutter/interview.md
+      - Navigator: android/flutterdev/navigator.md
 
     - FlutterEngine:
       - Engine源代码下载: android/flutter/downEngine.md
+      - Flutter编译环境安装: android/flutter/flutterenv.md
       - 编译模式: android/flutter/ComplieMode.md
       - FlutterEngine编译: android/flutter/EngineCompile.md
       - GNTools: android/flutter/GNTools.md
@@ -180,7 +182,9 @@ nav:
       - FlutterUI通信Android&IOS: android/flutter/fluttercommunicationAndroidorIOS.md
       - FlutterEngine源码编译: android/flutter/flutterEngine.md
       - Flutter引擎目录: android/flutter/flutterenginedir.md
-      - Navigator: android/flutterdev/navigator.md
+    - flutterTools:
+      - Flutter开始运行: android/flutterrun/fluttertools.md
+
 
 
     - ReactNative:
