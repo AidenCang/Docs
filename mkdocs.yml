@@ -141,7 +141,15 @@ nav:
       - example: android/flutter/flutterexample.md
       - Flutter常见问题: android/flutter/FlutterQuestion.md
       - FlutterUI: android/flutter/flutterUI.md
+      - mixin: android/flutterdev/mixin.md
+      - ListView: android/flutterdev/listview.md
+      - flutterzone: android/flutterdev/flutterzone.md
+      - flutterissue : android/flutterdev/flutterissue.md
+      - flutter_drawer: android/flutterdev/flutter_drawer.md
+      - dartbase: android/flutterdev/dartbase.md
+      - assertGet: android/flutterdev/assertGet.md
       - 面试资料: android/flutter/interview.md
+
     - FlutterEngine:
       - Engine源代码下载: android/flutter/downEngine.md
       - 编译模式: android/flutter/ComplieMode.md
@@ -212,6 +220,9 @@ nav:
         - zappa: python/server/zappa.md
 
     - 开发工具: python/pythonTools.md
+
+  - protobuf&JSON&XML
+      - Protobuf: android/flutterdev/protobuf.md
 
 
   - IoT:
