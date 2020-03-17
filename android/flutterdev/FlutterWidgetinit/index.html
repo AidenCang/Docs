@@ -305,6 +305,19 @@
   
     <li class="md-tabs__item">
       
+        <a href="../protobuf/" title="protobuf&JSON&XML" class="md-tabs__link">
+          protobuf&JSON&XML
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
         <a href="../../../iot/Alexa/" title="IoT" class="md-tabs__link">
           IoT
         </a>
@@ -604,7 +617,14 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="引擎绘制原理" class="md-nav__link">
+  <a href="#_1" title="概要" class="md-nav__link">
+    概要
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="引擎绘制原理" class="md-nav__link">
     引擎绘制原理
   </a>
   
@@ -612,7 +632,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" title="大象装进冰箱里" class="md-nav__link">
+  <a href="#_3" title="大象装进冰箱里" class="md-nav__link">
     大象装进冰箱里
   </a>
   
@@ -646,15 +666,43 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" title="核心问题点" class="md-nav__link">
+  <a href="#_4" title="核心问题点" class="md-nav__link">
     核心问题点
   </a>
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="系统层初始化过程" class="md-nav__link">
+    系统层初始化过程
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
-  <a href="#_4" title="输出的渲染对象" class="md-nav__link">
-    输出的渲染对象
+  <a href="#widget" title="Widget初始化过程" class="md-nav__link">
+    Widget初始化过程
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" title="1.生成静态数据的关联对象:(只是保存一下逻辑数据)" class="md-nav__link">
+    1.生成静态数据的关联对象:(只是保存一下逻辑数据)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" title="2.动态数据:" class="md-nav__link">
+    2.动态数据:
   </a>
   
 </li>
@@ -671,8 +719,14 @@
     RenderObjectToWidgetAdapter的构造函数中的参数冲那里来的？
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attachrootwidget" title="attachRootWidget 完成三件事:" class="md-nav__link">
+    attachRootWidget 完成三件事:
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#renderview" title="renderView对象" class="md-nav__link">
@@ -682,22 +736,36 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#buildowner" title="BuildOwner：" class="md-nav__link">
-    BuildOwner：
+  <a href="#viewconfiguration" title="ViewConfiguration" class="md-nav__link">
+    ViewConfiguration
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#reassemble" title="reassemble：" class="md-nav__link">
-    reassemble：
+  <a href="#window" title="Window" class="md-nav__link">
+    Window
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#buildscope" title="buildScope：" class="md-nav__link">
-    buildScope：
+  <a href="#scheduleinitialframe" title="scheduleInitialFrame" class="md-nav__link">
+    scheduleInitialFrame
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layer" title="Layer" class="md-nav__link">
+    Layer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="小结" class="md-nav__link">
+    小结
   </a>
   
 </li>
@@ -713,7 +781,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#widget" title="初始化Widget" class="md-nav__link">
+  <a href="#widget_1" title="用户层的Widget初始化过程" class="md-nav__link">
+    用户层的Widget初始化过程
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#widget_2" title="初始化Widget" class="md-nav__link">
     初始化Widget
   </a>
   
@@ -725,11 +801,31 @@
     初始化Element
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#_5" title="是否创建节点的核心算法:" class="md-nav__link">
+  <a href="#elementmountrenderobject" title="Element.mount，创建RenderObject" class="md-nav__link">
+    Element.mount，创建RenderObject
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renderobjectelementmount" title="RenderObjectElement.mount()" class="md-nav__link">
+    RenderObjectElement.mount()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatechild" title="updateChild" class="md-nav__link">
+    updateChild
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="是否创建节点的核心算法:" class="md-nav__link">
     是否创建节点的核心算法:
   </a>
   
@@ -748,22 +844,74 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" title="绘制第一帧" class="md-nav__link">
+  <a href="#buildowner" title="BuildOwner：" class="md-nav__link">
+    BuildOwner：
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reassemblehotreload" title="reassemble：自有在hotreload上调用" class="md-nav__link">
+    reassemble：自有在hotreload上调用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buildscope" title="buildScope：" class="md-nav__link">
+    buildScope：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#widget_3" title="小结Widget初始化过程" class="md-nav__link">
+    小结Widget初始化过程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="绘制第一帧" class="md-nav__link">
     绘制第一帧
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pipeline" title="Pipeline" class="md-nav__link">
-    Pipeline
+  <a href="#handlebeginframe" title="handleBeginFrame" class="md-nav__link">
+    handleBeginFrame
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#pipeline_1" title="pipeline" class="md-nav__link">
-    pipeline
+  <a href="#drawframe" title="drawFrame()" class="md-nav__link">
+    drawFrame()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline" title="Pipeline" class="md-nav__link">
+    Pipeline
   </a>
   
     <nav class="md-nav">
@@ -772,6 +920,13 @@
           <li class="md-nav__item">
   <a href="#flushlayout" title="flushLayout" class="md-nav__link">
     flushLayout
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renderview_1" title="如何计算渲染对象的摆放位置和自定义控件RenderView" class="md-nav__link">
+    如何计算渲染对象的摆放位置和自定义控件RenderView
   </a>
   
 </li>
@@ -791,14 +946,23 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#layer_1" title="Layer" class="md-nav__link">
+    Layer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#renderviewcompositeframe" title="renderView.compositeFrame()" class="md-nav__link">
     renderView.compositeFrame()
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#scheduleframe" title="scheduleFrame" class="md-nav__link">
+    scheduleFrame
+  </a>
   
 </li>
         
@@ -808,14 +972,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" title="如何计算渲染对象的摆放位置和自定义控件" class="md-nav__link">
-    如何计算渲染对象的摆放位置和自定义控件
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" title="总结" class="md-nav__link">
+  <a href="#_9" title="总结" class="md-nav__link">
     总结
   </a>
   
@@ -1078,8 +1235,104 @@
 
 
   <li class="md-nav__item">
+    <a href="../mixin/" title="mixin" class="md-nav__link">
+      mixin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../listview/" title="ListView" class="md-nav__link">
+      ListView
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterzone/" title="flutterzone" class="md-nav__link">
+      flutterzone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterissue/" title="flutterissue" class="md-nav__link">
+      flutterissue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutter_drawer/" title="flutter_drawer" class="md-nav__link">
+      flutter_drawer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dartbase/" title="dartbase" class="md-nav__link">
+      dartbase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../assertGet/" title="assertGet" class="md-nav__link">
+      assertGet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../flutter/interview/" title="面试资料" class="md-nav__link">
       面试资料
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../navigator/" title="Navigator" class="md-nav__link">
+      Navigator
     </a>
   </li>
 
@@ -1116,6 +1369,18 @@
   <li class="md-nav__item">
     <a href="../../flutter/downEngine/" title="Engine源代码下载" class="md-nav__link">
       Engine源代码下载
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterenv/" title="Flutter编译环境安装" class="md-nav__link">
+      Flutter编译环境安装
     </a>
   </li>
 
@@ -1260,6 +1525,42 @@
   <li class="md-nav__item">
     <a href="../../flutter/EngineView/" title="EngineView初始化" class="md-nav__link">
       EngineView初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterEngineLauncher/" title="Engine启动过程" class="md-nav__link">
+      Engine启动过程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterWindow/" title="FlutterUI渲染过程" class="md-nav__link">
+      FlutterUI渲染过程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/iosstart/" title="iOS启动过程" class="md-nav__link">
+      iOS启动过程
     </a>
   </li>
 
@@ -1435,10 +1736,46 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
     
     <label class="md-nav__link" for="nav-4-3">
-      ReactNative
+      flutterTools
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
       <label class="md-nav__title" for="nav-4-3">
+        flutterTools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterrun/fluttertools/" title="Flutter开始运行" class="md-nav__link">
+      Flutter开始运行
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
+    
+    <label class="md-nav__link" for="nav-4-4">
+      ReactNative
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-4">
         ReactNative
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1468,13 +1805,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-5" type="checkbox" id="nav-4-5">
     
-    <label class="md-nav__link" for="nav-4-4">
+    <label class="md-nav__link" for="nav-4-5">
       Awsamplify
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-4-4">
+      <label class="md-nav__title" for="nav-4-5">
         Awsamplify
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1992,10 +2329,46 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
-      IoT
+      protobuf&JSON&XML
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
       <label class="md-nav__title" for="nav-6">
+        protobuf&JSON&XML
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../protobuf/" title="Protobuf" class="md-nav__link">
+      Protobuf
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      IoT
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
         IoT
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -2097,13 +2470,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
     
-    <label class="md-nav__link" for="nav-7">
+    <label class="md-nav__link" for="nav-8">
       Secret
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-7">
+      <label class="md-nav__title" for="nav-8">
         Secret
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -2145,13 +2518,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
     
-    <label class="md-nav__link" for="nav-8">
+    <label class="md-nav__link" for="nav-9">
       Linux
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-8">
+      <label class="md-nav__title" for="nav-9">
         Linux
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -2181,13 +2554,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
     
-    <label class="md-nav__link" for="nav-9">
+    <label class="md-nav__link" for="nav-10">
       Shell
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-9">
+      <label class="md-nav__title" for="nav-10">
         Shell
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -2217,13 +2590,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
     
-    <label class="md-nav__link" for="nav-10">
+    <label class="md-nav__link" for="nav-11">
       Tools
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-10">
+      <label class="md-nav__title" for="nav-11">
         Tools
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -2349,13 +2722,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
     
-    <label class="md-nav__link" for="nav-11">
+    <label class="md-nav__link" for="nav-12">
       Download
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-11">
+      <label class="md-nav__title" for="nav-12">
         Download
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -2399,7 +2772,14 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="引擎绘制原理" class="md-nav__link">
+  <a href="#_1" title="概要" class="md-nav__link">
+    概要
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" title="引擎绘制原理" class="md-nav__link">
     引擎绘制原理
   </a>
   
@@ -2407,7 +2787,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" title="大象装进冰箱里" class="md-nav__link">
+  <a href="#_3" title="大象装进冰箱里" class="md-nav__link">
     大象装进冰箱里
   </a>
   
@@ -2441,15 +2821,43 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_3" title="核心问题点" class="md-nav__link">
+  <a href="#_4" title="核心问题点" class="md-nav__link">
     核心问题点
   </a>
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" title="系统层初始化过程" class="md-nav__link">
+    系统层初始化过程
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
-  <a href="#_4" title="输出的渲染对象" class="md-nav__link">
-    输出的渲染对象
+  <a href="#widget" title="Widget初始化过程" class="md-nav__link">
+    Widget初始化过程
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" title="1.生成静态数据的关联对象:(只是保存一下逻辑数据)" class="md-nav__link">
+    1.生成静态数据的关联对象:(只是保存一下逻辑数据)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" title="2.动态数据:" class="md-nav__link">
+    2.动态数据:
   </a>
   
 </li>
@@ -2466,8 +2874,14 @@
     RenderObjectToWidgetAdapter的构造函数中的参数冲那里来的？
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attachrootwidget" title="attachRootWidget 完成三件事:" class="md-nav__link">
+    attachRootWidget 完成三件事:
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#renderview" title="renderView对象" class="md-nav__link">
@@ -2477,22 +2891,36 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#buildowner" title="BuildOwner：" class="md-nav__link">
-    BuildOwner：
+  <a href="#viewconfiguration" title="ViewConfiguration" class="md-nav__link">
+    ViewConfiguration
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#reassemble" title="reassemble：" class="md-nav__link">
-    reassemble：
+  <a href="#window" title="Window" class="md-nav__link">
+    Window
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#buildscope" title="buildScope：" class="md-nav__link">
-    buildScope：
+  <a href="#scheduleinitialframe" title="scheduleInitialFrame" class="md-nav__link">
+    scheduleInitialFrame
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#layer" title="Layer" class="md-nav__link">
+    Layer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="小结" class="md-nav__link">
+    小结
   </a>
   
 </li>
@@ -2508,7 +2936,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#widget" title="初始化Widget" class="md-nav__link">
+  <a href="#widget_1" title="用户层的Widget初始化过程" class="md-nav__link">
+    用户层的Widget初始化过程
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#widget_2" title="初始化Widget" class="md-nav__link">
     初始化Widget
   </a>
   
@@ -2520,11 +2956,31 @@
     初始化Element
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#_5" title="是否创建节点的核心算法:" class="md-nav__link">
+  <a href="#elementmountrenderobject" title="Element.mount，创建RenderObject" class="md-nav__link">
+    Element.mount，创建RenderObject
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renderobjectelementmount" title="RenderObjectElement.mount()" class="md-nav__link">
+    RenderObjectElement.mount()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatechild" title="updateChild" class="md-nav__link">
+    updateChild
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="是否创建节点的核心算法:" class="md-nav__link">
     是否创建节点的核心算法:
   </a>
   
@@ -2543,22 +2999,74 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" title="绘制第一帧" class="md-nav__link">
+  <a href="#buildowner" title="BuildOwner：" class="md-nav__link">
+    BuildOwner：
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reassemblehotreload" title="reassemble：自有在hotreload上调用" class="md-nav__link">
+    reassemble：自有在hotreload上调用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buildscope" title="buildScope：" class="md-nav__link">
+    buildScope：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#widget_3" title="小结Widget初始化过程" class="md-nav__link">
+    小结Widget初始化过程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="绘制第一帧" class="md-nav__link">
     绘制第一帧
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pipeline" title="Pipeline" class="md-nav__link">
-    Pipeline
+  <a href="#handlebeginframe" title="handleBeginFrame" class="md-nav__link">
+    handleBeginFrame
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#pipeline_1" title="pipeline" class="md-nav__link">
-    pipeline
+  <a href="#drawframe" title="drawFrame()" class="md-nav__link">
+    drawFrame()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipeline" title="Pipeline" class="md-nav__link">
+    Pipeline
   </a>
   
     <nav class="md-nav">
@@ -2567,6 +3075,13 @@
           <li class="md-nav__item">
   <a href="#flushlayout" title="flushLayout" class="md-nav__link">
     flushLayout
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renderview_1" title="如何计算渲染对象的摆放位置和自定义控件RenderView" class="md-nav__link">
+    如何计算渲染对象的摆放位置和自定义控件RenderView
   </a>
   
 </li>
@@ -2586,14 +3101,23 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#layer_1" title="Layer" class="md-nav__link">
+    Layer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#renderviewcompositeframe" title="renderView.compositeFrame()" class="md-nav__link">
     renderView.compositeFrame()
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#scheduleframe" title="scheduleFrame" class="md-nav__link">
+    scheduleFrame
+  </a>
   
 </li>
         
@@ -2603,14 +3127,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" title="如何计算渲染对象的摆放位置和自定义控件" class="md-nav__link">
-    如何计算渲染对象的摆放位置和自定义控件
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_8" title="总结" class="md-nav__link">
+  <a href="#_9" title="总结" class="md-nav__link">
     总结
   </a>
   
@@ -2634,19 +3151,33 @@
                 
                 
                 <h1 id="flutter-widget">Flutter Widget初始化<a class="headerlink" href="#flutter-widget" title="Permanent link">&para;</a></h1>
-<h2 id="_1">引擎绘制原理<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>在上一篇FlutterEngine引擎启动的时候，我们已经分析了，从andorid端架子dart相关的代码和资源开发，分析FlutterEngine中的初始化过程，最终调用FlutterUI层的入口main()方法，在main()方法调用之前，我们就已经在FlutterEngine初始化时，架子了Window.Dart文件，在运行main(),函数之后，就是把FlutterUI层产生的每一帧添加到FlutterEngine上，接下来我们会进一步分析FlutterEngine架子FlutterUI层代码，已经FlutterUI层的初始化逻辑</p>
+<h2 id="_1">概要<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>核心类:</p>
+<p>RenderObject:RenderBox实现类</p>
+<p>Element:管理widget在树中的逻辑关系</p>
+<p>Wideget:配置每一个节点在的数据</p>
+<p>BuildContext:提供的Element树中进行查找的用户接口</p>
+<p>Window:FlutterEngine提供给FlutterUI通信的接口</p>
+<p>RenderView:FlutterUI框架的第一个RenderObject，同时和window的Scene进行关联</p>
+<p>Layer:每一个渲染对象对应的一个逻辑表示</p>
+<p>Scene：最终FlutterUI层经过一系列布局、合成、汇总最终生成Scene提供给SkyEngine</p>
+<p>RenderObjectToWidgetAdapter:FlutterUI的第一个Widget对象</p>
+<p>BuildOwner:记录Element树中添加和删除的节点、并且记录那些Element需要重新计算</p>
+<p>PipelineOwner:记录RenderObject的在整棵树中的关系和变化请求，最终通过调用PipelineOwner来遍历整个渲染对象树进行每一帧的逻辑处理</p>
+<h2 id="_2">引擎绘制原理<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>在分析FlutterUI框架之前，先来分析一下Flutter引擎是怎么用最少步骤把一帧绘制在屏幕上的</p>
-<h3 id="_2">大象装进冰箱里<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h3 id="_3">大象装进冰箱里<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>1.Flutter启动时调用scheduleFrame()会触发ui.window.onBeginFrame()回调方法调用</p>
 <p>2.sceneBuilder 生成场景</p>
 <p>3.数据回传到渲染引擎:ui.window.render(scene);</p>
-<p>4.手势回调事件:ui.window.onPointerDataPacket = handlePointerDataPacket;，通过手势事件来触发不断的调用第三步骤中的方法</p>
+<p>4.手势回调事件:ui.window.onPointerDataPacket = handlePointerDataPacket;，通过手势事件来触发不间断的调用第三步骤中的方法</p>
 <p>5.刷新一帧:ui.window.scheduleFrame();</p>
 <p>通过上面的三个步骤，就可以实现一帧一帧的绘制的屏幕上，主要的一个内容是如何管理<code>Scene</code>对象的数据变化处理逻辑，不断的更新数据回传到渲染引擎进行计算</p>
 <h3 id="demo">官方Demo<a class="headerlink" href="#demo" title="Permanent link">&para;</a></h3>
 <p><img alt="pic" src="../img/WechatIMG2.jpeg" /></p>
 <h3 id="demo_1">官方Demo 源码<a class="headerlink" href="#demo_1" title="Permanent link">&para;</a></h3>
-<div class="codehilite"><pre><span></span><span class="n">ui</span><span class="p">.</span><span class="n">Picture</span> <span class="n">paint</span><span class="p">(</span><span class="n">ui</span><span class="p">.</span><span class="n">Rect</span> <span class="n">paintBounds</span><span class="p">)</span> <span class="p">{</span>
+<p><div class="codehilite"><pre><span></span><span class="n">ui</span><span class="p">.</span><span class="n">Picture</span> <span class="n">paint</span><span class="p">(</span><span class="n">ui</span><span class="p">.</span><span class="n">Rect</span> <span class="n">paintBounds</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">final</span> <span class="n">ui</span><span class="p">.</span><span class="n">PictureRecorder</span> <span class="n">recorder</span> <span class="o">=</span> <span class="n">ui</span><span class="p">.</span><span class="n">PictureRecorder</span><span class="p">();</span>
   <span class="kd">final</span> <span class="n">ui</span><span class="p">.</span><span class="n">Canvas</span> <span class="n">canvas</span> <span class="o">=</span> <span class="n">ui</span><span class="p">.</span><span class="n">Canvas</span><span class="p">(</span><span class="n">recorder</span><span class="p">,</span> <span class="n">paintBounds</span><span class="p">);</span>
   <span class="kd">final</span> <span class="n">ui</span><span class="p">.</span><span class="n">Size</span> <span class="n">size</span> <span class="o">=</span> <span class="n">paintBounds</span><span class="p">.</span><span class="n">size</span><span class="p">;</span>
@@ -2704,16 +3235,17 @@
   <span class="n">ui</span><span class="p">.</span><span class="n">window</span><span class="p">.</span><span class="n">scheduleFrame</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
-
+上面的逻辑来看，FlutterUI层最终的目的就是提供一帧内容传递个图像渲染引擎，不断驱动，来修改Widget相关的属性，从而改动FlutterRenderObject相关的数据，提供给FlutterEngine进行处理，最终渲染到平台提供的View上</p>
 <h2 id="flutter">Flutter架构<a class="headerlink" href="#flutter" title="Permanent link">&para;</a></h2>
-<h3 id="_3">核心问题点<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="_4">核心问题点<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>通过上面的分析，我们知道Flutter引擎对UI层的绘制，最关心的是:</p>
 <p>1.输出的渲染对象</p>
 <p>2.渲染对象如何改变</p>
 <p>3.如何管理渲染对象的生成</p>
 <p>4.如何管理树中对象的变化</p>
 <p><img alt="pic" src="../img/tree.png" /></p>
-<h3 id="_4">输出的渲染对象<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h2 id="_5">系统层初始化过程<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="widget">Widget初始化过程<a class="headerlink" href="#widget" title="Permanent link">&para;</a></h3>
 <p>Flutter 层UI初始化过程，是在入口文件中调用<code>runApp</code>把应用Widget和系统的渲染引擎进行关联</p>
 <p><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">runApp</span><span class="p">(</span><span class="n">Widget</span> <span class="n">app</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">WidgetsFlutterBinding</span><span class="p">.</span><span class="n">ensureInitialized</span><span class="p">()</span>
@@ -2722,12 +3254,11 @@
 <span class="p">}</span>
 </pre></div>
 上一篇文章中，我们已经介绍了Window事件是如何分解到不同的"BaseBind"对象的子类上，并进行初始化的，继续分析用户层的widget如何和系统成的Window框架进行关联的。</p>
-<p><code>attachRootWidget</code>完成了RenderObject和Element进行绑定，同时调用<code>BuilderOwer</code>来对屏幕上显示的区域和那些需要进行重新绘制的<code>Widget</code>计算。</p>
-<p><code>scheduleWarmUpFrame</code>所有的数据准备好了之后，需要把一帧的数据传递到系统FlutterEngine中继续渲染出来发展屏幕上。<code>pipeline</code>是对已经计算好的数据进行处理提交到FluuterEngine上进行渲染</p>
+<p><code>attachRootWidget</code>完成了RenderObject和Element进行绑定，也就是和Window对象关联的第一个渲染对象，同时调用<code>BuilderOwer</code>来对屏幕上显示的区域和那些需要进行重新绘制的<code>Widget</code>计算。<code>BuilderOwer</code>管理树根到树叶的Element对象，记录那些是需要改变的(如果一棵树有10个节点，那么在第一次绘制完成只用，如果树中的有几个节点有改变，第二次构建渲染对象的过程中，从Root节点开始构建，那边需要遍历整棵树才能找到其中那个是已经改变的节点，在Root渲染对象中使用<code>BuilderOwer</code>保存每一个节点是否有变动，在进行下一次构建渲染对象的时候:1.管理Widget框架，2.管理没有inactive的Element,3.管理整棵Widget树的reassemble命令，build/layout/paint pipeline)，分配<code>BuilderOwer</code>给整棵树，通过<code>RootRenderObjectElement.assignOwner</code></p>
+<p><code>scheduleWarmUpFrame</code>所有的数据准备好了之后，需要把一帧的数据传递到系统FlutterEngine中继续渲染出来发展屏幕上。<code>pipeline</code>是对已经计算好的数据进行处理提交到FluuterEngine上进行渲染一个管理逻辑</p>
 <p>以上逻辑主要做了两个操作:</p>
-<div class="codehilite"><pre><span></span>生成静态数据的关联对象:(只是保存一下逻辑数据)
-
-1:RenderView:对应系统层渲染框架的Surface对象的数据抽象
+<h4 id="1">1.生成静态数据的关联对象:(只是保存一下逻辑数据)<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<div class="codehilite"><pre><span></span>1:RenderView:对应系统层渲染框架的Surface对象的数据抽象，FlutterUI层的第一个渲染对象
 
 2.Element: Widget的实例对象，Widget保存了控制自身的数据结构类型，Element对象是对是Widget的一个抽象表示，用在告诉BuilderOwer如何配置Widget，Element的生命周期_ElementLifecycle {initial,active,inactive,defunct,},调用`attachRenderObject`把渲染对象挂载到渲染树中
 
@@ -2743,7 +3274,7 @@
 </pre></div>
 
 
-<p>2.动态数据:</p>
+<h4 id="2">2.动态数据:<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
 <div class="codehilite"><pre><span></span>1.buildOwner:从`RenderView`开始计算整个UI树中显示的是那一部分已经是哪一部分是需要更新，保存相关的`List&amp;lt;Element&amp;gt;`对象
 
 2.[PipelineOwner](../flutterdev/FlutterWidgetinit/#pipeline):每一个`Element`中都会有一个`RenderObject`，主要使用来处理渲染引擎在FlutterUI层的逻辑数据,上一步已经把需要更新的数据添加到`List&amp;lt;RenderObject&amp;gt;`
@@ -2752,7 +3283,7 @@
 </pre></div>
 
 
-<h3 id="renderobjectelement">RenderObject和Element关系<a class="headerlink" href="#renderobjectelement" title="Permanent link">&para;</a></h3>
+<h4 id="renderobjectelement">RenderObject和Element关系<a class="headerlink" href="#renderobjectelement" title="Permanent link">&para;</a></h4>
 <p>通过调用runApp中<code>attachRootWidget</code>把<code>Element</code>和<code>RenderObject</code>进行关联
 <code>RenderObjectToWidgetAdapter</code>是<code>Widget</code>的一个子类，主要实现两个方法:</p>
 <div class="codehilite"><pre><span></span>1.`createElement`
@@ -2760,15 +3291,16 @@
 </pre></div>
 
 
-<p><code>createElement</code>主要的功能是对<code>Widget</code>进行管理，<code>Element</code>是Widget的一个实例对象,Elment有不同的子类型
-<code>createRenderObject</code>主要功能是产生<code>RenderObject</code>的对象，主要功能是完成坐标系统的构建，对<code>Element</code>提供配置参数，实现类是<code>RenderBox</code></p>
-<p>每一个<code>Element</code>对应一个<code>RenderObject</code>对象，<code>RenderObject</code>作为<code>Element</code>的成员变量进行使用</p>
-<h3 id="renderobjecttowidgetadapter"><code>RenderObjectToWidgetAdapter</code>的构造函数中的参数冲那里来的？<a class="headerlink" href="#renderobjecttowidgetadapter" title="Permanent link">&para;</a></h3>
+<p><code>createElement</code>主要的功能是对<code>Widget</code>进行管理，<code>Element</code>是Widget的一个实例对象,Elment有不同的子类型，Element作为树中单一节点，管理RenderObject和Widget，Widget提供第一节点的数据配置Element，Element同时还管理过个节点在树中的逻辑关系，多个Widget通过Element来串联，构成一棵树，Element作为一个图纸的作用，相当于地图功能，而真正可以提供个汽车同行的路，就是RenderObject的主要功能</p>
+<p><code>createRenderObject</code>主要功能是产生<code>RenderObject</code>的对象，主要功能是完成坐标系统的构建，对<code>Element</code>提供配置参数，实现类是<code>RenderBox</code>，多个渲染对象的变化情况通过<code>Pipeline</code>进行记录管理，在查找RenderObject需要变化是就可以从<code>Pipeline</code>中进行查找而不用遍历整棵树</p>
+<p>每一个<code>Element</code>对应一个<code>RenderObject</code>对象，<code>RenderObject</code>作为<code>Element</code>的成员变量进行使用，多个Element进行关联形成一棵树，每一个Element节点上的RenderObject对象通过合成就可以提供到FlutterEngine上的每一帧
+Element主要是实现逻辑功能，RenderObject实现真正的数据渲染功能</p>
+<h4 id="renderobjecttowidgetadapter"><code>RenderObjectToWidgetAdapter</code>的构造函数中的参数冲那里来的？<a class="headerlink" href="#renderobjecttowidgetadapter" title="Permanent link">&para;</a></h4>
 <p><code>renderView</code>: WidgetsBinding 继承 RendererBinding，在<code>RendererBinding</code>的<code>initInstances</code>方法中初始化<code>renderView</code>,系统<code>surface</code>,成员变量<code>RenderBox</code>是整个绘图的<code>Root</code>
 顶层<code>RootRenderObjectElement</code>,只用顶层对象使用<code>BuildOwner</code></p>
 <p><code>RenderObjectToWidgetAdapter</code> 类作为Flutter系统顶层的UI，作为用户UI和Flutter框架层的联合点
 在<code>WidgetsBinding</code>中调用<code>attachRootWidget</code>进行渲染对象和Element对象进行关联,<code>RenderView</code>成为<code>RootRenderObjectElement</code>的成员变量,渲染对象和Element对象进行关联，可以同步更新UI</p>
-<p>attachRootWidget 完成三件事:</p>
+<h4 id="attachrootwidget">attachRootWidget 完成三件事:<a class="headerlink" href="#attachrootwidget" title="Permanent link">&para;</a></h4>
 <p>RenderObjectToWidgetAdapter: 关联renderView和rootWidget</p>
 <p>关联PipelineOwner</p>
 <p>关联BuildOwner</p>
@@ -2800,61 +3332,63 @@ RenderObject:
 <span class="p">}</span>
 </pre></div>
 
-<p>通过上面的初始化过程已经把渲染对象初始化完成，并且关联自己到PipelineOwner对象中，详细的信息在后续介绍(owner._nodesNeedingLayout.add(this);)</p>
-<h4 id="buildowner">BuildOwner：<a class="headerlink" href="#buildowner" title="Permanent link">&para;</a></h4>
-<p>widgets框架的manager类。此类跟踪需要重建的小部件，并处理其他任务作为一个整体应用于小部件树，例如管理非活动元素列出树并在必要时触发“重新组合”命令调试时热重新加载。main build owner通常由[widgetsbinding]拥有，并且是与build/layout/paint管道。可以生成其他生成所有者来管理屏幕外小部件树。若要将生成所有者分配给树，请使用的根元素上的[rootrenderobjectelement.assignowner]方法。</p>
-<p>BuildOwner: 主要是查找PipelineOwner中记录的那些需要改变的渲染对象进行渲染，<code>查找有哪些</code>Element<code>是污染了，需要进行从新布局和绘制的</code></p>
-<p>进行提取=======================</p>
-<h4 id="reassemble">reassemble：<a class="headerlink" href="#reassemble" title="Permanent link">&para;</a></h4>
-<p>使根在给定[element]的整个子树完全重建。当应用程序代码已更改并正在热重新加载，以使小部件树获取任何更改了实现。这很昂贵，除非在开发期间，否则不应该调用它。
-RendererBinding的initInstances方法中调用<code>drawFrame</code></p>
-<h4 id="buildscope">buildScope：<a class="headerlink" href="#buildscope" title="Permanent link">&para;</a></h4>
-<p>查找在屏幕上显示的区域的Element,确定哪些元素是要进行处理，画布是一个没有边界的区域，所以在在绘制之前是需要进行确认哪些区域是需要进行处理的
-<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">drawFrame</span><span class="p">()</span> <span class="p">{</span>
-  <span class="p">.....</span>
-
-  <span class="k">try</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">renderViewElement</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
-    <span class="c1">///开始计算在屏幕上显示一帧的范围</span>
-      <span class="n">buildOwner</span><span class="p">.</span><span class="n">buildScope</span><span class="p">(</span><span class="n">renderViewElement</span><span class="p">);</span>
-    <span class="k">super</span><span class="p">.</span><span class="n">drawFrame</span><span class="p">();</span>
-    <span class="n">buildOwner</span><span class="p">.</span><span class="n">finalizeTree</span><span class="p">();</span>
-  <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-    <span class="err">。。。。。。</span>
-  <span class="p">}</span>
-  <span class="p">.......</span>
+<h4 id="viewconfiguration">ViewConfiguration<a class="headerlink" href="#viewconfiguration" title="Permanent link">&para;</a></h4>
+<p>配置FlutterUI框架第一个渲染对象显示在屏幕上的大小</p>
+<p>1.设备像素缩放比例</p>
+<p>2.设备的时间物理像素</p>
+<div class="codehilite"><pre><span></span><span class="n">ViewConfiguration</span> <span class="n">createViewConfiguration</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">final</span> <span class="kt">double</span> <span class="n">devicePixelRatio</span> <span class="o">=</span> <span class="n">window</span><span class="p">.</span><span class="n">devicePixelRatio</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ViewConfiguration</span><span class="p">(</span>
+    <span class="nl">size:</span> <span class="n">window</span><span class="p">.</span><span class="n">physicalSize</span> <span class="o">/</span> <span class="n">devicePixelRatio</span><span class="p">,</span>
+    <span class="nl">devicePixelRatio:</span> <span class="n">devicePixelRatio</span><span class="p">,</span>
+  <span class="p">);</span>
 <span class="p">}</span>
-</pre></div></p>
-<h2 id="widget">初始化<code>Widget</code><a class="headerlink" href="#widget" title="Permanent link">&para;</a></h2>
+</pre></div>
+
+<h4 id="window">Window<a class="headerlink" href="#window" title="Permanent link">&para;</a></h4>
+<p>BindingBase 对象初始化时，获取ui.window对象最为和Flutter通信的对象</p>
+<p>ui.Window get window =&gt; ui.window;</p>
+<h4 id="scheduleinitialframe">scheduleInitialFrame<a class="headerlink" href="#scheduleinitialframe" title="Permanent link">&para;</a></h4>
+<p>RenderView初始化完成之后，初始化标记当前的渲染对象的状态</p>
+<p>1.添加当前对象到Pipline中，标记为需要布局<code>_nodesNeedingLayout</code></p>
+<p>2.初始化Layer对象，所有的RenderObject对象最终会合并到当前对象，并且传递个Window.render上</p>
+<p>3.通知Pipline进行可视化更新</p>
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">scheduleInitialFrame</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">assert</span><span class="p">(</span><span class="n">owner</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
+  <span class="k">assert</span><span class="p">(</span><span class="n">_rootTransform</span> <span class="o">==</span> <span class="kc">null</span><span class="p">);</span>
+  <span class="n">scheduleInitialLayout</span><span class="p">();</span>
+  <span class="n">scheduleInitialPaint</span><span class="p">(</span><span class="n">_updateMatricesAndCreateNewRootLayer</span><span class="p">());</span>
+  <span class="k">assert</span><span class="p">(</span><span class="n">_rootTransform</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
+  <span class="n">owner</span><span class="p">.</span><span class="n">requestVisualUpdate</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+<h4 id="layer">Layer<a class="headerlink" href="#layer" title="Permanent link">&para;</a></h4>
+<p>Layer 是所有RenderObject对象合成在一起最终传递到Window.render中</p>
+<p>1.初始化一个Layer对象</p>
+<p>2.绑定RootLayer和当前的渲染对象<code>rootLayer.attach(this);</code>,每一个renderObject对象持有RootLayer对象的引用</p>
+<p><div class="codehilite"><pre><span></span><span class="n">Layer</span> <span class="n">_updateMatricesAndCreateNewRootLayer</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">_rootTransform</span> <span class="o">=</span> <span class="n">configuration</span><span class="p">.</span><span class="n">toMatrix</span><span class="p">();</span>
+  <span class="kd">final</span> <span class="n">ContainerLayer</span> <span class="n">rootLayer</span> <span class="o">=</span> <span class="n">TransformLayer</span><span class="p">(</span><span class="nl">transform:</span> <span class="n">_rootTransform</span><span class="p">);</span>
+  <span class="n">rootLayer</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="k">assert</span><span class="p">(</span><span class="n">_rootTransform</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">rootLayer</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+通过上面的初始化过程已经把渲染对象初始化完成，并且关联自己到PipelineOwner对象中，详细的信息在后续介绍(owner._nodesNeedingLayout.add(this);)，RenderView初始化话过去设置当前FlutterUI显示在屏幕上的大小，和FlutterEngine层的对象进行关联，可以把一帧的数据传递到Window对象的本地方法中</p>
+<h4 id="_6">小结<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>RenderView对象进行初始化过程:</p>
+<p>1.在RendererBinding对象初始化时调用<code>initRenderView()</code>初始化RootRenderView</p>
+<p>2.获取设备的ViewConfiguration对象来配置FlutterUI在窗口上显示的大小</p>
+<p>3.获取ui.window对象引用，FlutterUI层的帧可以合成到window.render方法上</p>
+<p>4.创建一个Layer对象作为RootLayer，并且调用attch方法传递到每一个节点上的RenderObject对象上</p>
+<h2 id="widget_1">用户层的Widget初始化过程<a class="headerlink" href="#widget_1" title="Permanent link">&para;</a></h2>
+<h3 id="widget_2">初始化<code>Widget</code><a class="headerlink" href="#widget_2" title="Permanent link">&para;</a></h3>
 <p>上面介绍了初始化系统框架成的渲染对象<code>renderView</code>,和记录Widget变化信息的<code>PipelineOwner</code>,真正执行测量、布局、绘制、的整个过程，并且已经初始化不同的BaseBind对象的子类，分解了Window对象的事件</p>
 <p><code>RenderObjectToWidgetAdapter.attachToRenderTree</code>对Element进行创建
 将这个Widget进行填充，并实际将结果[renderobject]设置为[容器]的子级。如果element为空，则此函数将创建一个新元素。否则，给定元素将有一个计划好的更新以切换到此小部件。由[runapp]用于引导应用程序。
  Only one [buildScope] can be active at a time.</p>
-<div class="codehilite"><pre><span></span><span class="n">RenderObjectToWidgetElement</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">attachToRenderTree</span><span class="p">(</span><span class="n">BuildOwner</span> <span class="n">owner</span><span class="p">,</span> <span class="p">[</span> <span class="n">RenderObjectToWidgetElement</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">element</span> <span class="p">])</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">element</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">owner</span><span class="p">.</span><span class="n">lockState</span><span class="p">(()</span> <span class="p">{</span>
-      <span class="n">element</span> <span class="o">=</span> <span class="n">createElement</span><span class="p">();</span>
-      <span class="k">assert</span><span class="p">(</span><span class="n">element</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
-      <span class="n">element</span><span class="p">.</span><span class="n">assignOwner</span><span class="p">(</span><span class="n">owner</span><span class="p">);</span>
-    <span class="p">});</span>
-    <span class="n">owner</span><span class="p">.</span><span class="n">buildScope</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="p">()</span> <span class="p">{</span>
-      <span class="n">element</span><span class="p">.</span><span class="n">mount</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
-    <span class="p">});</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="n">element</span><span class="p">.</span><span class="n">_newWidget</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-    <span class="n">element</span><span class="p">.</span><span class="n">markNeedsBuild</span><span class="p">();</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="n">element</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="err">@</span><span class="n">override</span>
-<span class="kt">String</span> <span class="n">toStringShort</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="n">debugShortDescription</span> <span class="o">??</span> <span class="k">super</span><span class="p">.</span><span class="n">toStringShort</span><span class="p">();</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>渲染RenderObject到RenderObjectToWidgetElement</p>
-<p>在上一步中调用<code>mount</code>方法进行静态数据的处理操作
-核心步骤:主要是在树中使用，遍历整棵树对每一个节点进行处理</p>
+<p>调用attach对象是renderViewElement对象为null(可以自己打断点调试查看)，递归从树的根节点进行遍历，所有的树中的Widget进行填充，父子、兄弟节点的依赖关系通过Element对象来保存，每一个节点的配置信息是通过Widget接口给提供操作整棵树的接口，渲染RenderObject到RenderObjectToWidgetElement</p>
 <h4 id="element">初始化Element<a class="headerlink" href="#element" title="Permanent link">&para;</a></h4>
 <p>在绑定渲染对象和跟Element之后进行，开始初始化Element对象
 <div class="codehilite"><pre><span></span><span class="n">RenderObjectToWidgetElement</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">attachToRenderTree</span><span class="p">(</span><span class="n">BuildOwner</span> <span class="n">owner</span><span class="p">,</span> <span class="p">[</span> <span class="n">RenderObjectToWidgetElement</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">element</span> <span class="p">])</span> <span class="p">{</span>
@@ -2862,6 +3396,7 @@ RendererBinding的initInstances方法中调用<code>drawFrame</code></p>
     <span class="n">owner</span><span class="p">.</span><span class="n">lockState</span><span class="p">(()</span> <span class="p">{</span>
       <span class="n">element</span> <span class="o">=</span> <span class="n">createElement</span><span class="p">();</span>
       <span class="k">assert</span><span class="p">(</span><span class="n">element</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
+      <span class="c1">///只用根节点会调用该方法，其他节点的Element不会为空</span>
       <span class="n">element</span><span class="p">.</span><span class="n">assignOwner</span><span class="p">(</span><span class="n">owner</span><span class="p">);</span>
     <span class="p">});</span>
     <span class="n">owner</span><span class="p">.</span><span class="n">buildScope</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="p">()</span> <span class="p">{</span>
@@ -2873,8 +3408,31 @@ RendererBinding的initInstances方法中调用<code>drawFrame</code></p>
   <span class="p">}</span>
   <span class="k">return</span> <span class="n">element</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div></p>
-<h5 id="_5">是否创建节点的核心算法:<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h5>
+</pre></div>
+createElement 方法创建rootElement对象，RenderObjectToWidgetElement，Element对象中有四个成员变量:</p>
+<p>1.renderObject:当前Widget对象的RenderObject对象</p>
+<p>2._newWidget:提供给开发者控制RenderObject的接口</p>
+<p>3._child:如果当前Element对象有子节点，那么使用当前变量保存当前子节点引用</p>
+<h4 id="elementmountrenderobject">Element.mount，创建RenderObject<a class="headerlink" href="#elementmountrenderobject" title="Permanent link">&para;</a></h4>
+<p>调用createElement()创建一个Element对象的时候，Element对象是孤立存在的，父Element对象是不负责处理挂载，通过子节点的Element对象mount方法执行两个操作:</p>
+<p>1.调用super.mount()，通知父Element把自己添加在整棵树中，并且创建渲染对象</p>
+<p>2.更新子节点的Element对象，不断重复上述过程</p>
+<h4 id="renderobjectelementmount">RenderObjectElement.mount()<a class="headerlink" href="#renderobjectelementmount" title="Permanent link">&para;</a></h4>
+<p>在创建<code>RenderObjectToWidgetElement</code>对象的时候，构造方法中调用  RenderObjectToWidgetElement(RenderObjectToWidgetAdapter<T> widget) : super(widget);,传递当前节点的widget对象，在调用mount方法时进行初始化操作，调用<code>createRenderObject</code>方法创建渲染对象，并且<code>attachRenderObject(newSlot);</code>对象到渲染树中，Element已经创建完成，明确通过mount挂载自己到整个Element树中，同时创建RenderObject对象，并且添加到渲染树中，完成了当前节点的初始化，如果当前节点都有子节点，那么就会初始化当前的节点的子节点。</p>
+<div class="codehilite"><pre><span></span><span class="err">@</span><span class="n">override</span>
+<span class="kt">void</span> <span class="n">mount</span><span class="p">(</span><span class="n">Element</span> <span class="n">parent</span><span class="p">,</span> <span class="kt">dynamic</span> <span class="n">newSlot</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">super</span><span class="p">.</span><span class="n">mount</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">newSlot</span><span class="p">);</span>
+  <span class="n">_renderObject</span> <span class="o">=</span> <span class="n">widget</span><span class="p">.</span><span class="n">createRenderObject</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="k">assert</span><span class="p">(()</span> <span class="p">{</span> <span class="n">_debugUpdateRenderObjectOwner</span><span class="p">();</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">}());</span>
+  <span class="k">assert</span><span class="p">(</span><span class="n">_slot</span> <span class="o">==</span> <span class="n">newSlot</span><span class="p">);</span>
+  <span class="n">attachRenderObject</span><span class="p">(</span><span class="n">newSlot</span><span class="p">);</span>
+  <span class="n">_dirty</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h4 id="updatechild">updateChild<a class="headerlink" href="#updatechild" title="Permanent link">&para;</a></h4>
+<p>从根节点开始，不断的创建子Element对象,不断的通过mount方法添加到Element树中,通过updateChild初始化自己的子节点，在更新子节点是有一条件就是，当前的子节点是否要更新，是创建一个新的还是使用当前的节点复用</p>
+<h4 id="_7">是否创建节点的核心算法:<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
 <div class="codehilite"><pre><span></span>/// The following table summarizes the above:
 ///
 /// |                     | **newWidget == null**  | **newWidget != null**   |
@@ -2921,8 +3479,8 @@ RendererBinding的initInstances方法中调用<code>drawFrame</code></p>
 <span class="p">}</span>
 </pre></div>
 
-<h5 id="inflatewidget-element">inflateWidget 真正创建Element的地方<a class="headerlink" href="#inflatewidget-element" title="Permanent link">&para;</a></h5>
-<p>//为给定的小部件创建一个元素，并将其添加为给定槽中的元素。此方法通常由[updatechild]调用，但可以调用直接通过需要对创建进行更细粒度控制的子类元素。
+<h4 id="inflatewidget-element">inflateWidget 真正创建Element的地方<a class="headerlink" href="#inflatewidget-element" title="Permanent link">&para;</a></h4>
+<p>为给定的小部件创建一个元素，并将其添加为给定槽中的元素。此方法通常由[updatechild]调用，但可以调用直接通过需要对创建进行更细粒度控制的子类元素。
 如果给定的小部件有一个全局键并且已经存在一个元素具有具有该全局键的小部件，此函数将重用该元素可能从树上的另一个位置嫁接或重新激活(it from the list of inactive elements）而不是创建一个新元素。
 此函数返回的元素已经被装入将处于活动生命周期状态。注:以上是对UI架构中使用到的逻辑继续分析，主要是把整个UI框架的数据表示和关联进行拆分和组合，能够提供UI变化是数据的跟踪和记录(静态数据保存逻辑)</p>
 <p><code>final Element newChild = newWidget.createElement();</code>遍历树，为每一个Widget生成实例对象<code>Element</code>,调用<code>mount</code>方法把<code>Elment</code>添加到树中</p>
@@ -2949,7 +3507,68 @@ RendererBinding的initInstances方法中调用<code>drawFrame</code></p>
 <span class="p">}</span>
 </pre></div>
 
-<h4 id="_6">绘制第一帧<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<h3 id="buildowner">BuildOwner：<a class="headerlink" href="#buildowner" title="Permanent link">&para;</a></h3>
+<p>widgets框架的manager类。此类跟踪需要重建的小部件，并处理其他任务作为一个整体应用于小部件树，例如管理非活动元素列出树并在必要时触发“重新组合”命令调试时热重新加载。</p>
+<ol>
+<li>
+<p>通常由[widgetsbinding]拥有，并且是与build/layout/paint管道。可以生成其他生成所有者来管理屏幕外小部件树。若要将生成所有者分配给树</p>
+</li>
+<li>
+<p>请使用的根元素上的[rootrenderobjectelement.assignowner]方法。</p>
+</li>
+</ol>
+<p>BuildOwner: 主要是记录Element树中的那些需要改变的渲染对象进行渲染，<code>查找有哪些</code>Element<code>是污染了，需要进行从新布局和绘制的</code>，通过查看BuildOwner对象的成员变量:</p>
+<p>1.记录整棵树中添加或移除的信息记录</p>
+<p>final _InactiveElements _inactiveElements = _InactiveElements();</p>
+<p>2.记录以及添加到树中的Element对象那些Widget对象以及有改变了</p>
+<p>final List<Element> _dirtyElements = <Element>[];</p>
+<h4 id="reassemblehotreload">reassemble：自有在hotreload上调用<a class="headerlink" href="#reassemblehotreload" title="Permanent link">&para;</a></h4>
+<p>使根在给定[element]的整个子树完全重建。当应用程序代码已更改并正在热重新加载，以使小部件树获取任何更改了实现。这很昂贵，除非在开发期间，否则不应该调用它。
+RendererBinding的initInstances方法中调用<code>drawFrame</code></p>
+<h4 id="buildscope">buildScope：<a class="headerlink" href="#buildscope" title="Permanent link">&para;</a></h4>
+<p>查找在屏幕上显示的区域的Element,确定哪些元素是要进行处理，画布是一个没有边界的区域，所以在在绘制之前是需要进行确认哪些区域是需要进行处理的
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">drawFrame</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">.....</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">renderViewElement</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="c1">///开始计算在屏幕上显示一帧的范围</span>
+      <span class="n">buildOwner</span><span class="p">.</span><span class="n">buildScope</span><span class="p">(</span><span class="n">renderViewElement</span><span class="p">);</span>
+    <span class="k">super</span><span class="p">.</span><span class="n">drawFrame</span><span class="p">();</span>
+    <span class="n">buildOwner</span><span class="p">.</span><span class="n">finalizeTree</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="err">。。。。。。</span>
+  <span class="p">}</span>
+  <span class="p">.......</span>
+<span class="p">}</span>
+</pre></div></p>
+<h3 id="widget_3">小结Widget初始化过程<a class="headerlink" href="#widget_3" title="Permanent link">&para;</a></h3>
+<p>通过上面的我们知道整个Widget初始化过程:</p>
+<p>1.调用Widget对象的createElement方法创建一个当前节点的Element对象</p>
+<p>2.调用Element对象的mount方法，</p>
+<div class="codehilite"><pre><span></span>1.调用父类的mount方法，把自己添加到整棵Element对象中
+
+2.在父类的mount方法中调用widget.createRenderObject创建当前节点的RenderOb对象
+
+3.调用updateChild方法，遍历所有的子节点的Widget对象，添加到Element树中和RenderObject树中
+</pre></div>
+
+
+<p>3.WidgetsBinding的成员变量BuildOwner来记录整个Element对象树添加和移除，记录已添加的Element有改变的信息(提高遍历效率，主要处理以及改变的对象)</p>
+<p>到目前为止整个widget树已经初始化完成，整个树的配置信息已经初始化完成，这一部分属于<code>静态数据</code>，在屏幕上看到的每一帧的数据是从这些静态数据中收集计算出来的。</p>
+<h2 id="_8">绘制第一帧<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>在调用main()时，初始化runApp()，加载整个FlutterUI框架，渲染当前的RenderObject到FlutterEngine中</p>
+<ol>
+<li>attachRootWidget:创建Element树和RenderObject树，同时创建了<code>BuildOwner</code>来跟踪整个Element对象的变化情况,<code>Pipline</code>记录RenderObject变化情况</li>
+</ol>
+<p>2.RenderObject对象初始化完成，需要主动汇总在屏幕上<code>scheduleWarmUpFrame</code>,接下来分析一下第一帧是怎么显示在屏幕上的</p>
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">runApp</span><span class="p">(</span><span class="n">Widget</span> <span class="n">app</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">WidgetsFlutterBinding</span><span class="p">.</span><span class="n">ensureInitialized</span><span class="p">()</span>
+    <span class="p">..</span><span class="n">attachRootWidget</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+    <span class="p">..</span><span class="n">scheduleWarmUpFrame</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
 <p>触发第一帧尽快执行，而不是等待引擎请求帧以响应系统“vsync”信号。这在应用程序启动期间使用，以便第一个帧（即可能很贵）得到一些额外的毫秒来运行。锁定事件调度，直到调度的帧完成。
 如果已经用[scheduleFrame]计划了一个帧，或者[scheduleForcedFrame]，此调用可能会延迟该帧。
 如果任何计划的帧已经开始，或者如果另一个已经调用了[schedulewarmupframe]，此调用将被忽略。prefer[scheduleframe]在正常操作中更新显示。
@@ -2979,15 +3598,84 @@ RendererBinding的initInstances方法中调用<code>drawFrame</code></p>
 <span class="p">}</span>
 </pre></div>
 
-<p>在<code>RendererBinding</code>初始化<code>initInstances</code>时，<code>addPersistentFrameCallback</code>添加处理一帧的回调函数<code>_handlePersistentFrameCallback</code>,一下方法很简单，上一步中调用<code>scheduleFrame()</code>触发<code>window.onDrawFrame</code>回调函数执行</p>
-<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">_handlePersistentFrameCallback</span><span class="p">(</span><span class="n">Duration</span> <span class="n">timeStamp</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">drawFrame</span><span class="p">();</span>
+<h3 id="handlebeginframe">handleBeginFrame<a class="headerlink" href="#handlebeginframe" title="Permanent link">&para;</a></h3>
+<p>在<code>RendererBinding</code>初始化<code>initInstances</code>时，<code>addPersistentFrameCallback</code>添加处理一帧的回调函数<code>_handlePersistentFrameCallback</code>,上一步中调用<code>scheduleFrame()</code>触发<code>window.onDrawFrame</code>回调函数执行</p>
+<p><code>handleBeginFrame</code>方法预处理一帧到FlutterEngine中，</p>
+<p><div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">handleBeginFrame</span><span class="p">(</span><span class="n">Duration</span> <span class="n">rawTimeStamp</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Timeline</span><span class="p">.</span><span class="n">startSync</span><span class="p">(</span><span class="s1">&#39;Frame&#39;</span><span class="p">,</span> <span class="nl">arguments:</span> <span class="n">timelineWhitelistArguments</span><span class="p">);</span>
+  <span class="n">_firstRawTimeStampInEpoch</span> <span class="o">??=</span> <span class="n">rawTimeStamp</span><span class="p">;</span>
+  <span class="n">_currentFrameTimeStamp</span> <span class="o">=</span> <span class="n">_adjustForEpoch</span><span class="p">(</span><span class="n">rawTimeStamp</span> <span class="o">??</span> <span class="n">_lastRawTimeStamp</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">rawTimeStamp</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="n">_lastRawTimeStamp</span> <span class="o">=</span> <span class="n">rawTimeStamp</span><span class="p">;</span>
+
+<span class="err">。。。。。。。。</span>
+
+  <span class="k">assert</span><span class="p">(</span><span class="n">schedulerPhase</span> <span class="o">==</span> <span class="n">SchedulerPhase</span><span class="p">.</span><span class="n">idle</span><span class="p">);</span>
+  <span class="n">_hasScheduledFrame</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// TRANSIENT FRAME CALLBACKS</span>
+    <span class="n">Timeline</span><span class="p">.</span><span class="n">startSync</span><span class="p">(</span><span class="s1">&#39;Animate&#39;</span><span class="p">,</span> <span class="nl">arguments:</span> <span class="n">timelineWhitelistArguments</span><span class="p">);</span>
+    <span class="n">_schedulerPhase</span> <span class="o">=</span> <span class="n">SchedulerPhase</span><span class="p">.</span><span class="n">transientCallbacks</span><span class="p">;</span>
+    <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">_FrameCallbackEntry</span><span class="o">&gt;</span> <span class="n">callbacks</span> <span class="o">=</span> <span class="n">_transientCallbacks</span><span class="p">;</span>
+    <span class="n">_transientCallbacks</span> <span class="o">=</span> <span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">_FrameCallbackEntry</span><span class="o">&gt;</span><span class="p">{};</span>
+    <span class="n">callbacks</span><span class="p">.</span><span class="n">forEach</span><span class="p">((</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="n">_FrameCallbackEntry</span> <span class="n">callbackEntry</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">_removedIds</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">id</span><span class="p">))</span>
+        <span class="n">_invokeFrameCallback</span><span class="p">(</span><span class="n">callbackEntry</span><span class="p">.</span><span class="n">callback</span><span class="p">,</span> <span class="n">_currentFrameTimeStamp</span><span class="p">,</span> <span class="n">callbackEntry</span><span class="p">.</span><span class="n">debugStack</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="n">_removedIds</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="n">_schedulerPhase</span> <span class="o">=</span> <span class="n">SchedulerPhase</span><span class="p">.</span><span class="n">midFrameMicrotasks</span><span class="p">;</span>
   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<code>handleDrawFrame</code>先调用一下FlutterUI层的变化信息，在<code>RendererBinding</code>初始化是添加回调方法到持久化回调集合中
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">_handlePersistentFrameCallback</span><span class="p">(</span><span class="n">Duration</span> <span class="n">timeStamp</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">drawFrame</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div></p>
+<h3 id="drawframe">drawFrame()<a class="headerlink" href="#drawframe" title="Permanent link">&para;</a></h3>
+<p>在下面的方法中调用回调帧的方法，就是调用了<code>drawFrame()</code>方法绘制第一帧，上面分析的过程中，分析过PipLine是保存了RenderObject对象的变化信息，接下来就是调用PipLine进行RenderObject的查找，布局、合成、绘制等一系列操作，最终这边好一帧，然后通知FlutterEngine已经准备好数据帧可以渲染了。。。。。</p>
+<div class="codehilite"><pre><span></span><span class="c1">/// Called by the engine to produce a new frame.</span>
+<span class="c1">///</span>
+<span class="c1">/// This method is called immediately after [handleBeginFrame]. It calls all</span>
+<span class="c1">/// the callbacks registered by [addPersistentFrameCallback], which typically</span>
+<span class="c1">/// drive the rendering pipeline, and then calls the callbacks registered by</span>
+<span class="c1">/// [addPostFrameCallback].</span>
+<span class="c1">///</span>
+<span class="c1">/// See [handleBeginFrame] for a discussion about debugging hooks that may be</span>
+<span class="c1">/// useful when working with frame callbacks.</span>
+<span class="kt">void</span> <span class="n">handleDrawFrame</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">assert</span><span class="p">(</span><span class="n">_schedulerPhase</span> <span class="o">==</span> <span class="n">SchedulerPhase</span><span class="p">.</span><span class="n">midFrameMicrotasks</span><span class="p">);</span>
+  <span class="n">Timeline</span><span class="p">.</span><span class="n">finishSync</span><span class="p">();</span> <span class="c1">// end the &quot;Animate&quot; phase</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// PERSISTENT FRAME CALLBACKS</span>
+    <span class="n">_schedulerPhase</span> <span class="o">=</span> <span class="n">SchedulerPhase</span><span class="p">.</span><span class="n">persistentCallbacks</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">FrameCallback</span> <span class="n">callback</span> <span class="k">in</span> <span class="n">_persistentCallbacks</span><span class="p">)</span>
+      <span class="n">_invokeFrameCallback</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">_currentFrameTimeStamp</span><span class="p">);</span>
+
+    <span class="c1">// POST-FRAME CALLBACKS</span>
+    <span class="n">_schedulerPhase</span> <span class="o">=</span> <span class="n">SchedulerPhase</span><span class="p">.</span><span class="n">postFrameCallbacks</span><span class="p">;</span>
+    <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">FrameCallback</span><span class="o">&gt;</span> <span class="n">localPostFrameCallbacks</span> <span class="o">=</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">FrameCallback</span><span class="o">&gt;</span><span class="p">.</span><span class="n">from</span><span class="p">(</span><span class="n">_postFrameCallbacks</span><span class="p">);</span>
+    <span class="n">_postFrameCallbacks</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">FrameCallback</span> <span class="n">callback</span> <span class="k">in</span> <span class="n">localPostFrameCallbacks</span><span class="p">)</span>
+      <span class="n">_invokeFrameCallback</span><span class="p">(</span><span class="n">callback</span><span class="p">,</span> <span class="n">_currentFrameTimeStamp</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="n">_schedulerPhase</span> <span class="o">=</span> <span class="n">SchedulerPhase</span><span class="p">.</span><span class="n">idle</span><span class="p">;</span>
+    <span class="n">Timeline</span><span class="p">.</span><span class="n">finishSync</span><span class="p">();</span> <span class="c1">// end the Frame</span>
+    <span class="k">assert</span><span class="p">(()</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">debugPrintEndFrameBanner</span><span class="p">)</span>
+        <span class="n">debugPrint</span><span class="p">(</span><span class="s1">&#39;▀&#39;</span> <span class="o">*</span> <span class="n">_debugBanner</span><span class="p">.</span><span class="n">length</span><span class="p">);</span>
+      <span class="n">_debugBanner</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}());</span>
+    <span class="n">_currentFrameTimeStamp</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 
-<h4 id="pipeline">Pipeline<a class="headerlink" href="#pipeline" title="Permanent link">&para;</a></h4>
-<h3 id="pipeline_1">pipeline<a class="headerlink" href="#pipeline_1" title="Permanent link">&para;</a></h3>
-<p>管道所有者管理呈现管道。管道所有者提供了一个接口，用于驱动呈现管道并存储已请求访问的渲染对象的状态在管道的每个阶段。要刷新管道，请调用以下命令函数顺序：</p>
+<h2 id="pipeline">Pipeline<a class="headerlink" href="#pipeline" title="Permanent link">&para;</a></h2>
+<p>PipelineOwner提供了一个接口，用于驱动PipelineOwner并存储已请求访问的渲染对象的状态在管道的每个阶段。要刷新PipelineOwner，请调用以下命令函数顺序：</p>
 <p>1.[flushlayout]更新任何需要计算其布局。在此阶段中，每个渲染的大小和位置计算对象。渲染对象可能会弄脏其绘画或此阶段的合成状态。</p>
 <p>2.[flushcompositingbits]更新任何已脏的渲染对象合成位。在此阶段中，每个渲染对象都将学习它的任何子级都需要合成。此信息用于选择如何实现视觉效果时的绘制阶段，例如剪辑。如果渲染对象有合成子对象，则需要使用[层]创建剪辑以便剪辑应用于composited child（将被绘制到它自己的[layer]）。</p>
 <p>3.[flushpaint]访问任何需要绘制的渲染对象。在此期间阶段，渲染对象有机会将绘制命令记录到[PictureLayer]和构造其他合成的[Layer]s。</p>
@@ -2999,14 +3687,14 @@ RendererBinding的initInstances方法中调用<code>drawFrame</code></p>
     <span class="p">..</span><span class="n">scheduleWarmUpFrame</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div></p>
-<p>此方法由[handleDrawFrame]调用，它本身被调用在布局和绘制框架时由引擎自动执行。每个帧由以下阶段组成：</p>
-<p>1.动画阶段：注册的[handlebeginframe]方法with[window.onbeginframe]，调用所有临时帧回调按注册顺序向[scheduleFrameCallback]注册。这个包含正在驱动的所有实例objects，这意味着所有活动的[animation]对象点。</p>
-<p>2.Microtasks：在[handlebeginframe]返回后，任何由临时帧回调安排的运行。这通常包括[ticker]和[animationcontroller]的期货回调完成此帧。在[handlebeginframe]之后，[handledrawframe]，注册于调用了[window.onDrawFrame]，它调用所有的持久帧callbacks，其中最值得注意的是这个方法，[drawFrame]，它</p>
-<p>3.布局阶段：系统中所有脏的[renderobject]都被放置out（参见[renderObject.performlayout]）。参见[renderobject.markneedslayout]有关将对象标记为脏的布局的详细信息。</p>
-<p>4.合成位阶段：任何脏文件上的合成位[renderObject]对象已更新。湖[renderObject.markneedscompositingbitsupdate]。</p>
-<p>5.绘制阶段：系统中所有脏的[renderobject]都是重新绘制（参见[renderobject.paint]）。这将生成[层]树。湖[renderbject.markneedspaint]了解有关标记对象的详细信息油漆脏了。</p>
-<p>6.合成阶段：图层树变成一个场景发送到GPU。7。语义阶段：系统中所有脏的[renderobject]都有它们的语义已更新（请参见[renderobject.semanticsannotator]）。这个生成[semanticsnode]树。湖[renderbject.markneedssemanticsupdate]了解有关标记语义的脏对象。有关步骤3-7的更多详细信息，请参见[PipelineOwner]。</p>
-<p>8.定稿阶段：在[DrawFrame]返回后，[HandleDrawFrame]然后调用后帧回调（使用[addPostFrameCallback]注册）。一些绑定（例如，[widgetsbinding]）为此添加了额外的步骤list（例如，请参见[widgetsbinding.drawframe]）。</p>
+<p>此方法由handleDrawFrame调用，它本身被调用在布局和绘制框架时由引擎自动执行。每个帧由以下阶段组成：</p>
+<p>1.动画阶段：注册的handlebeginframe方法window.onbeginframe，调用所有临时帧回调按注册顺序向scheduleFrameCallback注册。这个包含正在驱动的所有实例objects，这意味着所有活动的animation对象点。</p>
+<p>2.Microtasks：在handlebeginframe返回后，任何由临时帧回调安排的运行。这通常包括ticker和animationcontroller的期货回调完成此帧。在handlebeginframe之后，handledrawframe，注册于调用了window.onDrawFrame，它调用所有的持久帧callbacks，其中最值得注意的是这个方法，drawFrame，它</p>
+<p>3.布局阶段：系统中所有脏的renderobject都被放置out（参见renderObject.performlayout）。参见renderobject.markneedslayout有关将对象标记为脏的布局的详细信息。</p>
+<p>4.合成位阶段：任何脏文件上的合成位renderObject对象已更新。renderObject.markneedscompositingbitsupdate。</p>
+<p>5.绘制阶段：系统中所有脏的renderobject都是重新绘制（参见renderobject.paint）。这将生成Layer树。renderbject.markneedspaint了解有关标记对象的详细信息油漆脏了。</p>
+<p>6.合成阶段：图层树变成一个场景发送到GPU。7。语义阶段：系统中所有脏的renderobject都有它们的语义已更新（请参见renderobject.semanticsannotator）。这个生成semanticsnode树。湖renderbject.markneedssemanticsupdate了解有关标记语义的脏对象。有关步骤3-7的更多详细信息，请参见PipelineOwner。</p>
+<p>8.定稿阶段：在DrawFrame返回后，HandleDrawFrame然后调用后帧回调（使用addPostFrameCallback注册）。一些绑定（例如widgetsbinding）为此添加了额外的步骤list（例如，请参见widgetsbinding.drawframe）。</p>
 <div class="codehilite"><pre><span></span><span class="err">@</span><span class="n">protected</span>
 <span class="kt">void</span> <span class="n">drawFrame</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">assert</span><span class="p">(</span><span class="n">renderView</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
@@ -3018,12 +3706,13 @@ RendererBinding的initInstances方法中调用<code>drawFrame</code></p>
 <span class="p">}</span>
 </pre></div>
 
-<h5 id="flushlayout">flushLayout<a class="headerlink" href="#flushlayout" title="Permanent link">&para;</a></h5>
-<p>BuildOwner在执行的过程中把需要会在的<code>RenderObject</code>对象查找出来保存在<code>_nodesNeedingLayout</code>列表中，通过树的深度来进行排序遍历，调用<code>_layoutWithoutResize</code>方法进行布局大小的改变，同时把需要绘制的<code>RenderObject</code>添加到<code>_nodesNeedingPaint</code>集合中便于下一个阶段进行绘制，改变<code>_needsPaint</code>为true</p>
+<h3 id="flushlayout">flushLayout<a class="headerlink" href="#flushlayout" title="Permanent link">&para;</a></h3>
+<p>PipelineOwner在执行的过程中把需要会在的<code>RenderObject</code>对象查找出来保存在<code>_nodesNeedingLayout</code>列表中，通过树的深度来进行排序遍历，调用<code>_layoutWithoutResize</code>方法进行布局大小的改变，同时把需要绘制的<code>RenderObject</code>添加到<code>_nodesNeedingPaint</code>集合中便于下一个阶段进行绘制，改变<code>_needsPaint</code>为true</p>
 <div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">flushLayout</span><span class="p">()</span> <span class="p">{</span>
 <span class="p">....</span>
   <span class="k">try</span> <span class="p">{</span>
     <span class="c1">// TODO(ianh): assert that we&#39;re not allowing previously dirty nodes to redirty themselves</span>
+    <span class="err">第一次创建</span><span class="n">RenderObject</span><span class="err">对象是，都是需要</span><span class="n">Layout</span><span class="err">的</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">_nodesNeedingLayout</span><span class="p">.</span><span class="n">isNotEmpty</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">RenderObject</span><span class="o">&gt;</span> <span class="n">dirtyNodes</span> <span class="o">=</span> <span class="n">_nodesNeedingLayout</span><span class="p">;</span>
       <span class="n">_nodesNeedingLayout</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">RenderObject</span><span class="o">&gt;</span><span class="p">[];</span>
@@ -3038,7 +3727,53 @@ RendererBinding的initInstances方法中调用<code>drawFrame</code></p>
 <span class="p">}</span>
 </pre></div>
 
-<h5 id="flushcompositingbits"><code>flushCompositingBits</code><a class="headerlink" href="#flushcompositingbits" title="Permanent link">&para;</a></h5>
+<p>在上面的分析过程中，我们已经知道，FlutterUI的第一个渲染对象是<code>RenderView</code>,那么当布局开始时当然是第一个调用的渲染对象(可以自己断点调试一下),<code>RenderView</code>对象继承RenderView对象，执行RenderObject对象的<code>_layoutWithoutResize</code>调用RenderView的<code>performLayout</code>方法，开始从RootRenderObject开始绘制整个屏幕的渲染对象。</p>
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">_layoutWithoutResize</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">assert</span><span class="p">(</span><span class="n">_relayoutBoundary</span> <span class="o">==</span> <span class="k">this</span><span class="p">);</span>
+  <span class="n">RenderObject</span> <span class="n">debugPreviousActiveLayout</span><span class="p">;</span>
+  <span class="k">assert</span><span class="p">(</span><span class="o">!</span><span class="n">_debugMutationsLocked</span><span class="p">);</span>
+  <span class="k">assert</span><span class="p">(</span><span class="o">!</span><span class="n">_doingThisLayoutWithCallback</span><span class="p">);</span>
+  <span class="k">assert</span><span class="p">(</span><span class="n">_debugCanParentUseSize</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
+  <span class="k">assert</span><span class="p">(()</span> <span class="p">{</span>
+    <span class="n">_debugMutationsLocked</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="n">_debugDoingThisLayout</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="n">debugPreviousActiveLayout</span> <span class="o">=</span> <span class="n">_debugActiveLayout</span><span class="p">;</span>
+    <span class="n">_debugActiveLayout</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">debugPrintLayouts</span><span class="p">)</span>
+      <span class="n">debugPrint</span><span class="p">(</span><span class="s1">&#39;Laying out (without resize) </span><span class="si">$</span><span class="n">this</span><span class="s1">&#39;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}());</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">performLayout</span><span class="p">();</span>
+    <span class="n">markNeedsSemanticsUpdate</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">stack</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">_debugReportException</span><span class="p">(</span><span class="s1">&#39;performLayout&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">stack</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">assert</span><span class="p">(()</span> <span class="p">{</span>
+    <span class="n">_debugActiveLayout</span> <span class="o">=</span> <span class="n">debugPreviousActiveLayout</span><span class="p">;</span>
+    <span class="n">_debugDoingThisLayout</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="n">_debugMutationsLocked</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}());</span>
+  <span class="n">_needsLayout</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="n">markNeedsPaint</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="renderview_1">如何计算渲染对象的摆放位置和自定义控件RenderView<a class="headerlink" href="#renderview_1" title="Permanent link">&para;</a></h3>
+<p>计算此渲染对象的布局。此方法是父控件要求子控件执行的主要入口点更新他们的布局信息。父对象传递约束对象它通知子级哪些布局是允许的。这子控件是必须遵守给定的约束。如果父级读取子级布局期间计算的信息，则“parentUseSSize”的父级必须传递true。在这种情况下，父母将：只要子项被标记为需要布局，就被标记为需要布局因为父级的布局信息依赖于子级的布局信息。如果父项使用默认值（false）“parentUseSSize”，子项可以更改其布局信息（根据给定的约束）而不通知父级。子类不应直接重写[Layout]。相反，他们应该重写[PerformResize]和/或[performLayout]。delegates将实际工作委托给[performResize]和[performLayout]。父级的[Performance Layout]方法应调用其所有无条件的子项。这是[布局]方法的责任在此处实现）如果子项不需要执行任何操作，则提前返回更新其布局信息。</p>
+<p><code>flushLayout</code>调用<code>node._layoutWithoutResize();</code>进行渲染对象的位置计算<code>RenderView</code>中的<code>performLayout</code>进行layout进行处理
+<div class="codehilite"><pre><span></span><span class="err">@</span><span class="n">override</span>
+  <span class="kt">void</span> <span class="n">performLayout</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">_rootTransform</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="n">_size</span> <span class="o">=</span> <span class="n">configuration</span><span class="p">.</span><span class="n">size</span><span class="p">;</span>
+    <span class="k">assert</span><span class="p">(</span><span class="n">_size</span><span class="p">.</span><span class="n">isFinite</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">child</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="n">child</span><span class="p">.</span><span class="n">layout</span><span class="p">(</span><span class="n">BoxConstraints</span><span class="p">.</span><span class="n">tight</span><span class="p">(</span><span class="n">_size</span><span class="p">));</span>
+  <span class="p">}</span>
+</pre></div></p>
+<h3 id="flushcompositingbits"><code>flushCompositingBits</code><a class="headerlink" href="#flushcompositingbits" title="Permanent link">&para;</a></h3>
 <p>上一步中把相关的位置大小确认好之后，如果有多个控件有重叠的部分，需要进行合并,如何调用<code>markNeedsPaint</code>准备后续需要汇总的内容
 <div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">flushCompositingBits</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">kReleaseMode</span><span class="p">)</span> <span class="p">{</span>
@@ -3054,8 +3789,27 @@ RendererBinding的initInstances方法中调用<code>drawFrame</code></p>
     <span class="n">Timeline</span><span class="p">.</span><span class="n">finishSync</span><span class="p">();</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</pre></div></p>
-<h5 id="flushpaint"><code>flushPaint</code><a class="headerlink" href="#flushpaint" title="Permanent link">&para;</a></h5>
+</pre></div>
+遍历Layout的时候标记需要合成的渲染对象。调用渲染自身的参数来判断是否呀合成，在下面的处理逻辑是有一个优化过程，在屏幕上摆放的Widget，有的是会有重叠和覆盖，在覆盖的情况下，如果被完全覆盖掉，就没有必要合成这些RenderObject对象,标记当前的渲染对象是需要绘制的。</p>
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">_updateCompositingBits</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">_needsCompositingBitsUpdate</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="kd">final</span> <span class="kt">bool</span> <span class="n">oldNeedsCompositing</span> <span class="o">=</span> <span class="n">_needsCompositing</span><span class="p">;</span>
+  <span class="n">_needsCompositing</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="n">visitChildren</span><span class="p">((</span><span class="n">RenderObject</span> <span class="n">child</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">child</span><span class="p">.</span><span class="n">_updateCompositingBits</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">child</span><span class="p">.</span><span class="n">needsCompositing</span><span class="p">)</span>
+      <span class="n">_needsCompositing</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">});</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">isRepaintBoundary</span> <span class="o">||</span> <span class="n">alwaysNeedsCompositing</span><span class="p">)</span>
+    <span class="n">_needsCompositing</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">oldNeedsCompositing</span> <span class="o">!=</span> <span class="n">_needsCompositing</span><span class="p">)</span>
+    <span class="n">markNeedsPaint</span><span class="p">();</span>
+  <span class="n">_needsCompositingBitsUpdate</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="flushpaint"><code>flushPaint</code><a class="headerlink" href="#flushpaint" title="Permanent link">&para;</a></h3>
 <p>更新所有渲染对象的显示列表。此函数是渲染管道的核心阶段之一。在布局之后和重新放置场景之前进行绘制，以便场景与每个渲染对象的最新显示列表合成。有关如何使用此函数的示例，请参见[RenderBinding]。
 通过布局和合成两步的计算操作，已经把需要汇总的数据计算出来，提供给画笔对象把<code>RenderObject</code>对象绘制在<code>layer</code>上，Window对象中<code>render(Scene scene)</code>就是在为此函数准备数据
 <div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">flushPaint</span><span class="p">()</span> <span class="p">{</span>
@@ -3064,11 +3818,12 @@ RendererBinding的initInstances方法中调用<code>drawFrame</code></p>
     <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">RenderObject</span><span class="o">&gt;</span> <span class="n">dirtyNodes</span> <span class="o">=</span> <span class="n">_nodesNeedingPaint</span><span class="p">;</span>
     <span class="n">_nodesNeedingPaint</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">RenderObject</span><span class="o">&gt;</span><span class="p">[];</span>
     <span class="c1">// Sort the dirty nodes in reverse order (deepest first).</span>
+    <span class="c1">///从树叶开始计算</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">RenderObject</span> <span class="n">node</span> <span class="k">in</span> <span class="n">dirtyNodes</span><span class="p">..</span><span class="n">sort</span><span class="p">((</span><span class="n">RenderObject</span> <span class="n">a</span><span class="p">,</span> <span class="n">RenderObject</span> <span class="n">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">b</span><span class="p">.</span><span class="n">depth</span> <span class="o">-</span> <span class="n">a</span><span class="p">.</span><span class="n">depth</span><span class="p">))</span> <span class="p">{</span>
       <span class="k">assert</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">_layer</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">_needsPaint</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="p">.</span><span class="n">owner</span> <span class="o">==</span> <span class="k">this</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">_layer</span><span class="p">.</span><span class="n">attached</span><span class="p">)</span> <span class="p">{</span>
-          <span class="c1">///此步骤是汇总的详细过程，发到后面在进行解析</span>
+          <span class="c1">///此步骤是汇总的详细过程，放在后面在进行解析</span>
           <span class="n">PaintingContext</span><span class="p">.</span><span class="n">repaintCompositedChild</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
           <span class="n">node</span><span class="p">.</span><span class="n">_skippedPaintingOnLayer</span><span class="p">();</span>
@@ -3081,12 +3836,34 @@ RendererBinding的initInstances方法中调用<code>drawFrame</code></p>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div></p>
-<h5 id="renderviewcompositeframe"><code>renderView.compositeFrame()</code><a class="headerlink" href="#renderviewcompositeframe" title="Permanent link">&para;</a></h5>
-<p>上一步中已经把需要汇总的<code>RenderObject</code>进行了绘制，每一个<code>RenderObject</code>中都有一个<code>ContainerLayer</code>对象，作为每一个渲染对象的<code>Layer</code>,现在需要处理的是在Flutter已经做好了逻辑操作，需要把Dart对象转换为渲染引擎能够识别的对象:
-Window对象中<code>render(Scene scene)</code>就是在为此函数准备数据，通过Navtive调用把数据传递到底层绘制
-1.使用SceneBuilder对象来创建场景
-2.把<code>RenderObject</code>对象中数据取出来构建Scene的原始数据
-3.调用<code>_window.render(scene);</code>实现真正的数据传递到渲染引擎</p>
+<h3 id="layer_1">Layer<a class="headerlink" href="#layer_1" title="Permanent link">&para;</a></h3>
+<p>每一个RenderObject对象在Layer对应，需要</p>
+<p><div class="codehilite"><pre><span></span><span class="kd">static</span> <span class="kt">void</span> <span class="n">_repaintCompositedChild</span><span class="p">(</span>
+  <span class="n">RenderObject</span> <span class="n">child</span><span class="p">,</span> <span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">debugAlsoPaintedParent</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="n">PaintingContext</span> <span class="n">childContext</span><span class="p">,</span>
+<span class="p">})</span> <span class="p">{</span>
+  <span class="n">OffsetLayer</span> <span class="n">childLayer</span> <span class="o">=</span> <span class="n">child</span><span class="p">.</span><span class="n">_layer</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">childLayer</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">child</span><span class="p">.</span><span class="n">_layer</span> <span class="o">=</span> <span class="n">childLayer</span> <span class="o">=</span> <span class="n">OffsetLayer</span><span class="p">();</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">childLayer</span><span class="p">.</span><span class="n">removeAllChildren</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="n">childContext</span> <span class="o">??=</span> <span class="n">PaintingContext</span><span class="p">(</span><span class="n">child</span><span class="p">.</span><span class="n">_layer</span><span class="p">,</span> <span class="n">child</span><span class="p">.</span><span class="n">paintBounds</span><span class="p">);</span>
+  <span class="n">child</span><span class="p">.</span><span class="n">_paintWithContext</span><span class="p">(</span><span class="n">childContext</span><span class="p">,</span> <span class="n">Offset</span><span class="p">.</span><span class="n">zero</span><span class="p">);</span>
+  <span class="n">childContext</span><span class="p">.</span><span class="n">stopRecordingIfNeeded</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+下图是每一个渲染对象的一个抽象显示，真正显示的是需要从当前的的层合并为一帧，解析来就可以开始开始合并，每一个RenderObject对象的数据，把一个立体的链表拼接成为一个平面。</p>
+<p>layer:三维展示</p>
+<p>frame：二维数据</p>
+<p><img alt="pic" src="../img/layer.png" /></p>
+<h3 id="renderviewcompositeframe"><code>renderView.compositeFrame()</code><a class="headerlink" href="#renderviewcompositeframe" title="Permanent link">&para;</a></h3>
+<p>上一步中已经把需要的<code>RenderObject</code>进行了绘制，每一个<code>RenderObject</code>中都有一个<code>ContainerLayer</code>对象，作为每一个渲染对象的<code>Layer</code>,现在需要处理的是在Flutter已经做好了逻辑操作，需要把Dart对象转换为渲染引擎能够识别的对象:</p>
+<p>Window对象中<code>render(Scene scene)</code>就是在为此函数准备数据，通过Navtive调用把数据传递到底层绘制</p>
+<p>1.使用SceneBuilder对象来创建场景</p>
+<p>2.把<code>RenderObject</code>对象中数据取出来构建Scene的原始数据</p>
+<p>3.调用<code>_window.render(scene);</code>实现真正的数据传递到渲染引擎，调用sky引擎进行渲染</p>
 <div class="codehilite"><pre><span></span><span class="c1">/// Uploads the composited layer tree to the engine.</span>
 <span class="c1">///</span>
 <span class="c1">/// Actually causes the output of the rendering pipeline to appear on screen.</span>
@@ -3108,31 +3885,37 @@ Window对象中<code>render(Scene scene)</code>就是在为此函数准备数据
 <span class="p">}</span>
 </pre></div>
 
-<h2 id="_7">如何计算渲染对象的摆放位置和自定义控件<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p>计算此渲染对象的布局。此方法是父控件要求子控件执行的主要入口点更新他们的布局信息。父对象传递约束对象它通知子级哪些布局是允许的。这子控件是必须遵守给定的约束。如果父级读取子级布局期间计算的信息，则“parentUseSSize”的父级必须传递true。在这种情况下，父母将：只要子项被标记为需要布局，就被标记为需要布局因为父级的布局信息依赖于子级的布局信息。如果父项使用默认值（false）“parentUseSSize”，子项可以更改其布局信息（根据给定的约束）而不通知父级。子类不应直接重写[Layout]。相反，他们应该重写[PerformResize]和/或[performLayout]。delegates将实际工作委托给[performResize]和[performLayout]。父级的[Performance Layout]方法应调用其所有无条件的子项。这是[布局]方法的责任在此处实现）如果子项不需要执行任何操作，则提前返回更新其布局信息。</p>
-<p><code>flushLayout</code>调用<code>node._layoutWithoutResize();</code>进行渲染对象的位置计算<code>RenderView</code>中的<code>performLayout</code>进行layout进行处理
-<div class="codehilite"><pre><span></span><span class="err">@</span><span class="n">override</span>
-  <span class="kt">void</span> <span class="n">performLayout</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">assert</span><span class="p">(</span><span class="n">_rootTransform</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">);</span>
-    <span class="n">_size</span> <span class="o">=</span> <span class="n">configuration</span><span class="p">.</span><span class="n">size</span><span class="p">;</span>
-    <span class="k">assert</span><span class="p">(</span><span class="n">_size</span><span class="p">.</span><span class="n">isFinite</span><span class="p">);</span>
+<h3 id="scheduleframe">scheduleFrame<a class="headerlink" href="#scheduleframe" title="Permanent link">&para;</a></h3>
+<p>上面分析了整个<code>Scene</code>数据的准备过程，在接下来的就是开始执行FlutterEngine进行渲染到平台的UI上</p>
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">scheduleFrame</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">_hasScheduledFrame</span> <span class="o">||</span> <span class="o">!</span><span class="n">_framesEnabled</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="k">assert</span><span class="p">(()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">debugPrintScheduleFrameStacks</span><span class="p">)</span>
+      <span class="n">debugPrintStack</span><span class="p">(</span><span class="nl">label:</span> <span class="s1">&#39;scheduleFrame() called. Current phase is </span><span class="si">$</span><span class="n">schedulerPhase</span><span class="s1">.&#39;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}());</span>
+  <span class="n">window</span><span class="p">.</span><span class="n">scheduleFrame</span><span class="p">();</span>
+  <span class="n">_hasScheduledFrame</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">child</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
-      <span class="n">child</span><span class="p">.</span><span class="n">layout</span><span class="p">(</span><span class="n">BoxConstraints</span><span class="p">.</span><span class="n">tight</span><span class="p">(</span><span class="n">_size</span><span class="p">));</span>
-  <span class="p">}</span>
-</pre></div></p>
-<h2 id="_8">总结<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h2 id="_9">总结<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <p>1.通过上面的分析我们知道，Widget出现在屏幕上执行执行四个步骤就可以显示。FlutterUI框架中对Widow类进行拆分，对不同的回调事件进行不同的mixin类来进行处理</p>
-<p>2.通过runApp把开发的Widget和系统框架层关联：1.Element和RenderObject对象进行绑定。2.触发系统绘制一帧</p>
+<p>2.通过runApp把开发的Widget和系统框架层关联：</p>
+<p>1.Element和RenderObject对象进行绑定。</p>
+<p>2.触发系统绘制一帧</p>
 <p>3.分别处理不同的实际功能<a href="../../flutter/flutterUIframework/">BindingBase</a>GestureBinding, ServicesBinding, SchedulerBinding, PaintingBinding, SemanticsBinding, RendererBinding, WidgetsBinding</p>
 <p>4.通过<code>RenderObjectToWidgetAdapter</code>对象来进行Element、RenderObject对象进行关联，主要是处理Widget的数据和RenderView中的数据</p>
 <p>5.Element管理Widget数据</p>
 <p>6.RenderObject面向Flutter引擎接口，提供绘制UI数据的Layters</p>
 <p>7.BuildContext提供了Widget中访问RenderObject对象的接口</p>
-<p>8.BuildOwer主要是变量Element查找出那些Element是需要重新进行绘制的</p>
-<p>9.Pipeline插座RenderObject对象，处理那些事渲染对象是需要在Layer进行Layout、填充、绘制的</p>
+<p>8.BuildOwer主要是Element查找出那些Element是需要重新进行绘制的</p>
+<p>9.Pipeline查找RenderObject对象，处理那些事渲染对象是需要在Layer进行Layout、填充、绘制的</p>
 <p>10.调用RenderView中的方法，把生成的数据调用window.render(scene)传递到渲染引擎</p>
-<p>11.RenderObject是如何摆放在正确的位置上的<a href="./EngineCompile.md">自定义控件</a></p>
+<p>11.RenderObject是如何摆放在正确的位置上的</p>
+<p>上面的分析过程是接着上一篇进行分析的，上一篇分析的是FlutterEngine：Run调用的过程，调用main()从而进入FlutterUI层开始初始化，接着是把UI层汇总好的一帧回传到FlutterEngine中进行处理，下一篇我们接接着分析一下FlutterUI层是怎么把一个UI界面传递到Android的SurfaceView进行显示的。</p>
+<p>···</p>
                 
                   
                 

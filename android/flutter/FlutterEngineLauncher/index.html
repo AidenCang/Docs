@@ -1,0 +1,3135 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="苍成坤的 blog">
+      
+      
+        <link rel="canonical" href="https://squidfunk.github.io/mkdocs-material/android/flutter/FlutterEngineLauncher/">
+      
+      
+        <meta name="author" content="Aige">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
+    
+    
+      
+        <title>Engine启动过程 - Aige  Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "None", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#flutterenginerun" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Aige  Docs
+            </span>
+            <span class="md-header-nav__topic">
+              Engine启动过程
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." title="Home" class="md-tabs__link">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../project/websocket/" title="Project" class="md-tabs__link">
+          Project
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../flutterdev/flutteradvance/" title="Android" class="md-tabs__link">
+          Android
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../python/base/pythonlang/" title="Python" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../flutterdev/protobuf/" title="protobuf&JSON&XML" class="md-tabs__link">
+          protobuf&JSON&XML
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../iot/Alexa/" title="IoT" class="md-tabs__link">
+          IoT
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../secret/reousrce/" title="Secret" class="md-tabs__link">
+          Secret
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../linux/resource/" title="Linux" class="md-tabs__link">
+          Linux
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../shell/shellresource/" title="Shell" class="md-tabs__link">
+          Shell
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../extensions/admonition/" title="Tools" class="md-tabs__link">
+          Tools
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../download/download/" title="Download" class="md-tabs__link">
+          Download
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Aige  Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../getting-started/" title="Getting started" class="md-nav__link">
+      Getting started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Project
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Project
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      SkyRoad
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        SkyRoad
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../project/websocket/" title="WebSocket" class="md-nav__link">
+      WebSocket
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Android
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Android
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Flutter
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        Flutter
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/flutteradvance/" title="Flutter学习路线" class="md-nav__link">
+      Flutter学习路线
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterUIframework/" title="FlutterUI和Engine关联" class="md-nav__link">
+      FlutterUI和Engine关联
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/FlutterWidgetinit/" title="FlutterUI框架绘制过程" class="md-nav__link">
+      FlutterUI框架绘制过程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/platform_channels/" title="PlatformChannel" class="md-nav__link">
+      PlatformChannel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/isolatedev/" title="ISOlate使用" class="md-nav__link">
+      ISOlate使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/futterStream/" title="Future&Stream" class="md-nav__link">
+      Future&Stream
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/applifecyclestate/" title="Flutter生命周期管理" class="md-nav__link">
+      Flutter生命周期管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/flutterNavigator/" title="FlutterNavigator" class="md-nav__link">
+      FlutterNavigator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterLib/" title="Flutter库" class="md-nav__link">
+      Flutter库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/fluttersnip/" title="代码片段" class="md-nav__link">
+      代码片段
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterKey/" title="FlutterKey" class="md-nav__link">
+      FlutterKey
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutter/" title="Flutter" class="md-nav__link">
+      Flutter
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterTools/" title="FlutterSdk" class="md-nav__link">
+      FlutterSdk
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter_project/flutterApp/" title="Flutter项目经验" class="md-nav__link">
+      Flutter项目经验
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/customWidget/" title="自定义Widget" class="md-nav__link">
+      自定义Widget
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/flutterImageProvider/" title="Flutter图片加载" class="md-nav__link">
+      Flutter图片加载
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/Flutterdeployment/" title="FlutterAndroid&IOS打包" class="md-nav__link">
+      FlutterAndroid&IOS打包
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/flutterTest/" title="Flutter测试" class="md-nav__link">
+      Flutter测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterDev/" title="Flutter开发" class="md-nav__link">
+      Flutter开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterexample/" title="example" class="md-nav__link">
+      example
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterQuestion/" title="Flutter常见问题" class="md-nav__link">
+      Flutter常见问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterUI/" title="FlutterUI" class="md-nav__link">
+      FlutterUI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/mixin/" title="mixin" class="md-nav__link">
+      mixin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/listview/" title="ListView" class="md-nav__link">
+      ListView
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/flutterzone/" title="flutterzone" class="md-nav__link">
+      flutterzone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/flutterissue/" title="flutterissue" class="md-nav__link">
+      flutterissue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/flutter_drawer/" title="flutter_drawer" class="md-nav__link">
+      flutter_drawer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/dartbase/" title="dartbase" class="md-nav__link">
+      dartbase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/assertGet/" title="assertGet" class="md-nav__link">
+      assertGet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../interview/" title="面试资料" class="md-nav__link">
+      面试资料
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/navigator/" title="Navigator" class="md-nav__link">
+      Navigator
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2" checked>
+    
+    <label class="md-nav__link" for="nav-4-2">
+      FlutterEngine
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        FlutterEngine
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../downEngine/" title="Engine源代码下载" class="md-nav__link">
+      Engine源代码下载
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterenv/" title="Flutter编译环境安装" class="md-nav__link">
+      Flutter编译环境安装
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ComplieMode/" title="编译模式" class="md-nav__link">
+      编译模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../EngineCompile/" title="FlutterEngine编译" class="md-nav__link">
+      FlutterEngine编译
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../GNTools/" title="GNTools" class="md-nav__link">
+      GNTools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../NinjaSystem/" title="Ninja编译系统" class="md-nav__link">
+      Ninja编译系统
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../EngineCompile/" title="Engine编译构建" class="md-nav__link">
+      Engine编译构建
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterComplieFile/" title="Engine编译产物" class="md-nav__link">
+      Engine编译产物
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ComplieMode/" title="编译模式" class="md-nav__link">
+      编译模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../apkfile/" title="Apk&ipd包分析" class="md-nav__link">
+      Apk&ipd包分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterAndroidInit/" title="Android加载Dart文件" class="md-nav__link">
+      Android加载Dart文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../AndroidViewinit/" title="Android初始化View" class="md-nav__link">
+      Android初始化View
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../EngineInit/" title="Engine初始化" class="md-nav__link">
+      Engine初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../EngineView/" title="EngineView初始化" class="md-nav__link">
+      EngineView初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Engine启动过程
+      </label>
+    
+    <a href="./" title="Engine启动过程" class="md-nav__link md-nav__link--active">
+      Engine启动过程
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#nativerunbundleandsnapshotfromlibrary" title="nativeRunBundleAndSnapshotFromLibrary" class="md-nav__link">
+    nativeRunBundleAndSnapshotFromLibrary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platformviewandroid" title="PlatformViewAndroid 初始化" class="md-nav__link">
+    PlatformViewAndroid 初始化
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runbundleandsnapshotfromlibrary" title="RunBundleAndSnapshotFromLibrary" class="md-nav__link">
+    RunBundleAndSnapshotFromLibrary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#androidshellholder-uiflutterengine" title="AndroidShellHolder 在UI线程启动FlutterEngine" class="md-nav__link">
+    AndroidShellHolder 在UI线程启动FlutterEngine
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enginerun" title="Engine::Run" class="md-nav__link">
+    Engine::Run
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dartisolate-run" title="DartIsolate Run方法" class="md-nav__link">
+    DartIsolate Run方法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dartisolate-invokemainentrypoint" title="DartIsolate InvokeMainEntrypoint" class="md-nav__link">
+    DartIsolate InvokeMainEntrypoint
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flutterui-main" title="FlutterUI main()启动" class="md-nav__link">
+    FlutterUI main()启动
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="总结" class="md-nav__link">
+    总结
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterWindow/" title="FlutterUI渲染过程" class="md-nav__link">
+      FlutterUI渲染过程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../iosstart/" title="iOS启动过程" class="md-nav__link">
+      iOS启动过程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../SmartPtr/" title="C++智能指针" class="md-nav__link">
+      C++智能指针
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../NativeExtensions/" title="NativeExtensions" class="md-nav__link">
+      NativeExtensions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../MessageLoop/" title="MessageLoop" class="md-nav__link">
+      MessageLoop
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DartVM/" title="初始化DartVM" class="md-nav__link">
+      初始化DartVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../platformplugin/" title="PlatformChannel" class="md-nav__link">
+      PlatformChannel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DartVMServiceProtocol/" title="DartVMServiceProtocol" class="md-nav__link">
+      DartVMServiceProtocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../FlutterSupportView/" title="FlutterSupportView" class="md-nav__link">
+      FlutterSupportView
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../profile/" title="性能优化" class="md-nav__link">
+      性能优化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reviewCode/" title="reviewCode" class="md-nav__link">
+      reviewCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DevResource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fluttercommunicationAndroidorIOS/" title="FlutterUI通信Android&IOS" class="md-nav__link">
+      FlutterUI通信Android&IOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterEngine/" title="FlutterEngine源码编译" class="md-nav__link">
+      FlutterEngine源码编译
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../flutterenginedir/" title="Flutter引擎目录" class="md-nav__link">
+      Flutter引擎目录
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      flutterTools
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        flutterTools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterrun/fluttertools/" title="Flutter开始运行" class="md-nav__link">
+      Flutter开始运行
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
+    
+    <label class="md-nav__link" for="nav-4-4">
+      ReactNative
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-4">
+        ReactNative
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rn/react_native/" title="ReactNative" class="md-nav__link">
+      ReactNative
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-5" type="checkbox" id="nav-4-5">
+    
+    <label class="md-nav__link" for="nav-4-5">
+      Awsamplify
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-5">
+        Awsamplify
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../aws-android/awsamplify/" title="Awsamplify" class="md-nav__link">
+      Awsamplify
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../androidTools/" title="AndroidTools" class="md-nav__link">
+      AndroidTools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../issue/Androidissue/" title="Issue常见问题" class="md-nav__link">
+      Issue常见问题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Python
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      基础
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        基础
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/pythonlang/" title="语言基础" class="md-nav__link">
+      语言基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/advancesPython/" title="高级开发" class="md-nav__link">
+      高级开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/pythoninspect/" title="Python反射" class="md-nav__link">
+      Python反射
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1-4" type="checkbox" id="nav-5-1-4">
+    
+    <label class="md-nav__link" for="nav-5-1-4">
+      开发环境
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-1-4">
+        开发环境
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/pythonEnv/" title="环境" class="md-nav__link">
+      环境
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      爬虫
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        爬虫
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/scrapyBase/" title="爬虫基础" class="md-nav__link">
+      爬虫基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/scrapylib/" title="爬虫库" class="md-nav__link">
+      爬虫库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/spiderdemo/" title="爬虫实战" class="md-nav__link">
+      爬虫实战
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      服务器开发
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-3">
+        服务器开发
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-1" type="checkbox" id="nav-5-3-1">
+    
+    <label class="md-nav__link" for="nav-5-3-1">
+      WEB
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-1">
+        WEB
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/pythonweb/" title="主流服务器介绍" class="md-nav__link">
+      主流服务器介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/serverbase/" title="服务器常用软件" class="md-nav__link">
+      服务器常用软件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/pythonOauth/" title="Oauth2服务器搭建" class="md-nav__link">
+      Oauth2服务器搭建
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-2" type="checkbox" id="nav-5-3-2">
+    
+    <label class="md-nav__link" for="nav-5-3-2">
+      aws
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-2">
+        aws
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/aws/pyaws/" title="AWSpython使用" class="md-nav__link">
+      AWSpython使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/aws/serverless/" title="无服务" class="md-nav__link">
+      无服务
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-3" type="checkbox" id="nav-5-3-3">
+    
+    <label class="md-nav__link" for="nav-5-3-3">
+      Django开发
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-3">
+        Django开发
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangosignals/" title="Dajngo信号机制" class="md-nav__link">
+      Dajngo信号机制
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangoLogger/" title="日志配置" class="md-nav__link">
+      日志配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangosignals/" title="Djangomessage" class="md-nav__link">
+      Djangomessage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/JSONEncoder/" title="JsonEncoder" class="md-nav__link">
+      JsonEncoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/middleware/" title="中间件" class="md-nav__link">
+      中间件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/question/" title="常见问题" class="md-nav__link">
+      常见问题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-4" type="checkbox" id="nav-5-3-4">
+    
+    <label class="md-nav__link" for="nav-5-3-4">
+      部署
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-4">
+        部署
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/zappa/" title="zappa" class="md-nav__link">
+      zappa
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pythonTools/" title="开发工具" class="md-nav__link">
+      开发工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      protobuf&JSON&XML
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        protobuf&JSON&XML
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/protobuf/" title="Protobuf" class="md-nav__link">
+      Protobuf
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      IoT
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        IoT
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/Alexa/" title="Alexa" class="md-nav__link">
+      Alexa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/awsiot/" title="AWSIOT" class="md-nav__link">
+      AWSIOT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/iotCore/" title="IotCore" class="md-nav__link">
+      IotCore
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/program/" title="program" class="md-nav__link">
+      program
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/protocol/" title="protocol" class="md-nav__link">
+      protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/usermanager/" title="UserManager" class="md-nav__link">
+      UserManager
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/developerTools/" title="aws开发工具" class="md-nav__link">
+      aws开发工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Secret
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Secret
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../secret/reousrce/" title="安全" class="md-nav__link">
+      安全
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/networktools/" title="端口扫描工具" class="md-nav__link">
+      端口扫描工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Linux
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Linux
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../linux/resource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      Shell
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        Shell
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../shell/shellresource/" title="Shell" class="md-nav__link">
+      Shell
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+    
+    <label class="md-nav__link" for="nav-11">
+      Tools
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-11">
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../extensions/admonition/" title="AndroidStudio" class="md-nav__link">
+      AndroidStudio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/atom/" title="Atom" class="md-nav__link">
+      Atom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/vim/" title="Vim" class="md-nav__link">
+      Vim
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../extensions/metadata/" title="Chrome" class="md-nav__link">
+      Chrome
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/markdown/" title="Markdown" class="md-nav__link">
+      Markdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/material/" title="Material for MkDocs" class="md-nav__link">
+      Material for MkDocs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/git/" title="Git" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/VSCode/" title="VSCode" class="md-nav__link">
+      VSCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/datareporting/" title="数据分析" class="md-nav__link">
+      数据分析
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
+    
+    <label class="md-nav__link" for="nav-12">
+      Download
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-12">
+        Download
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../download/download/" title="download" class="md-nav__link">
+      download
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#nativerunbundleandsnapshotfromlibrary" title="nativeRunBundleAndSnapshotFromLibrary" class="md-nav__link">
+    nativeRunBundleAndSnapshotFromLibrary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platformviewandroid" title="PlatformViewAndroid 初始化" class="md-nav__link">
+    PlatformViewAndroid 初始化
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runbundleandsnapshotfromlibrary" title="RunBundleAndSnapshotFromLibrary" class="md-nav__link">
+    RunBundleAndSnapshotFromLibrary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#androidshellholder-uiflutterengine" title="AndroidShellHolder 在UI线程启动FlutterEngine" class="md-nav__link">
+    AndroidShellHolder 在UI线程启动FlutterEngine
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enginerun" title="Engine::Run" class="md-nav__link">
+    Engine::Run
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dartisolate-run" title="DartIsolate Run方法" class="md-nav__link">
+    DartIsolate Run方法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dartisolate-invokemainentrypoint" title="DartIsolate InvokeMainEntrypoint" class="md-nav__link">
+    DartIsolate InvokeMainEntrypoint
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flutterui-main" title="FlutterUI main()启动" class="md-nav__link">
+    FlutterUI main()启动
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="总结" class="md-nav__link">
+    总结
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="flutterenginerun">FlutterEngine:run  启动过程<a class="headerlink" href="#flutterenginerun" title="Permanent link">&para;</a></h1>
+<p>在Android端启动过程中<code>io/flutter/app/FlutterActivityDelegate.class</code>调用onCreate进行初始化,在FlutterEngine初始化的时候已经分析了FlutterEngine初始化的过程，Android的SurferView也已经添加到了Flutter引擎中，但是此时、flutterengine还没有启动，接下继续分析一下Flutter真正加载Dart代码的过程</p>
+<p><img alt="pic" src="../img/flutterenginerun.png" />
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span> <span class="o">&gt;=</span> <span class="mi">21</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Window</span> <span class="n">window</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">activity</span><span class="o">.</span><span class="na">getWindow</span><span class="o">();</span>
+        <span class="n">window</span><span class="o">.</span><span class="na">addFlags</span><span class="o">(-</span><span class="mi">2147483648</span><span class="o">);</span>
+        <span class="n">window</span><span class="o">.</span><span class="na">setStatusBarColor</span><span class="o">(</span><span class="mi">1073741824</span><span class="o">);</span>
+        <span class="n">window</span><span class="o">.</span><span class="na">getDecorView</span><span class="o">().</span><span class="na">setSystemUiVisibility</span><span class="o">(</span><span class="mi">1280</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">=</span> <span class="n">getArgsFromIntent</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">activity</span><span class="o">.</span><span class="na">getIntent</span><span class="o">());</span>
+    <span class="n">FlutterMain</span><span class="o">.</span><span class="na">ensureInitializationComplete</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">activity</span><span class="o">.</span><span class="na">getApplicationContext</span><span class="o">(),</span> <span class="n">args</span><span class="o">);</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">flutterView</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">viewFactory</span><span class="o">.</span><span class="na">createFlutterView</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">activity</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">flutterView</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">FlutterNativeView</span> <span class="n">nativeView</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">viewFactory</span><span class="o">.</span><span class="na">createFlutterNativeView</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">flutterView</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FlutterView</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">activity</span><span class="o">,</span> <span class="o">(</span><span class="n">AttributeSet</span><span class="o">)</span><span class="kc">null</span><span class="o">,</span> <span class="n">nativeView</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">flutterView</span><span class="o">.</span><span class="na">setLayoutParams</span><span class="o">(</span><span class="n">matchParent</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">activity</span><span class="o">.</span><span class="na">setContentView</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">flutterView</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">launchView</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">createLaunchView</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">launchView</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">addLaunchView</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="c1">///开始正在加载Dart代码</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="na">loadIntent</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">activity</span><span class="o">.</span><span class="na">getIntent</span><span class="o">()))</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">appBundlePath</span> <span class="o">=</span> <span class="n">FlutterMain</span><span class="o">.</span><span class="na">findAppBundlePath</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">appBundlePath</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">runBundle</span><span class="o">(</span><span class="n">appBundlePath</span><span class="o">);</span>
+        <span class="o">}</span>
+
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="err">##</span> <span class="n">loadIntent</span> <span class="n">可以在启动Activity的时候这顶初始化路由</span>
+
+<span class="err">```</span><span class="n">java</span>
+<span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">loadIntent</span><span class="o">(</span><span class="n">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">String</span> <span class="n">action</span> <span class="o">=</span> <span class="n">intent</span><span class="o">.</span><span class="na">getAction</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="s">&quot;android.intent.action.RUN&quot;</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">action</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">route</span> <span class="o">=</span> <span class="n">intent</span><span class="o">.</span><span class="na">getStringExtra</span><span class="o">(</span><span class="s">&quot;route&quot;</span><span class="o">);</span>
+        <span class="n">String</span> <span class="n">appBundlePath</span> <span class="o">=</span> <span class="n">intent</span><span class="o">.</span><span class="na">getDataString</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">appBundlePath</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">appBundlePath</span> <span class="o">=</span> <span class="n">FlutterMain</span><span class="o">.</span><span class="na">findAppBundlePath</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">route</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">flutterView</span><span class="o">.</span><span class="na">setInitialRoute</span><span class="o">(</span><span class="n">route</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">this</span><span class="o">.</span><span class="na">runBundle</span><span class="o">(</span><span class="n">appBundlePath</span><span class="o">);</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+<div class="codehilite"><pre><span></span>Engine: run的相关参数
+
+FlutterIU层中的入口就是在这里设置的，下面这些地方是我们通过配置来改变，flutter参数的地方
+
+1.Apk中抽取的代码保存的位置
+
+2.FlutterUI  main函数的入口，也就是说我们可以随意的改动Flutter代码的入口函数名称，后面在分析Engine侧查找Main函数的逻辑
+
+```java
+///Apk中抽取的代码保存的位置
+private static String sFlutterAssetsDir = &quot;flutter_assets&quot;;
+
+private void runBundle(String appBundlePath) {
+    if (!this.flutterView.getFlutterNativeView().isApplicationRunning()) {
+        FlutterRunArguments args = new FlutterRunArguments();
+        args.bundlePath = appBundlePath;
+        ///Flutter  main函数的入口，也就是说我们可以随意的改动Flutter代码的入口函数名称，后面在分析Engine侧查找Main函数的逻辑
+        args.entrypoint = &quot;main&quot;;
+        this.flutterView.runFromBundle(args);
+    }
+}
+</pre></div></p>
+<h2 id="nativerunbundleandsnapshotfromlibrary">nativeRunBundleAndSnapshotFromLibrary<a class="headerlink" href="#nativerunbundleandsnapshotfromlibrary" title="Permanent link">&para;</a></h2>
+<p>FlutterJNI中调用native方法进行调用FlutterEngine的本地方法</p>
+<div class="codehilite"><pre><span></span><span class="nd">@UiThread</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">runBundleAndSnapshotFromLibrary</span><span class="o">(</span><span class="nd">@NonNull</span> <span class="n">String</span> <span class="n">bundlePath</span><span class="o">,</span> <span class="nd">@Nullable</span> <span class="n">String</span> <span class="n">entrypointFunctionName</span><span class="o">,</span> <span class="nd">@Nullable</span> <span class="n">String</span> <span class="n">pathToEntrypointFunction</span><span class="o">,</span> <span class="nd">@NonNull</span> <span class="n">AssetManager</span> <span class="n">assetManager</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">ensureRunningOnMainThread</span><span class="o">();</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">ensureAttachedToNative</span><span class="o">();</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">nativeRunBundleAndSnapshotFromLibrary</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">nativePlatformViewId</span><span class="o">,</span> <span class="n">bundlePath</span><span class="o">,</span> <span class="n">entrypointFunctionName</span><span class="o">,</span> <span class="n">pathToEntrypointFunction</span><span class="o">,</span> <span class="n">assetManager</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+
+<h2 id="platformviewandroid">PlatformViewAndroid 初始化<a class="headerlink" href="#platformviewandroid" title="Permanent link">&para;</a></h2>
+<p>Android启动的时候回使用System.library加载Flutter.so库，加载完成会自动调用<code>JNI_OnLoad</code>进行初始化
+<div class="codehilite"><pre><span></span><span class="c1">// This is called by the VM when the shared library is first loaded.</span>
+<span class="n">JNIEXPORT</span> <span class="n">jint</span> <span class="nf">JNI_OnLoad</span><span class="p">(</span><span class="n">JavaVM</span><span class="o">*</span> <span class="n">vm</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">reserved</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Initialize the Java VM.</span>
+  <span class="n">fml</span><span class="o">::</span><span class="n">jni</span><span class="o">::</span><span class="n">InitJavaVM</span><span class="p">(</span><span class="n">vm</span><span class="p">);</span>
+
+  <span class="n">JNIEnv</span><span class="o">*</span> <span class="n">env</span> <span class="o">=</span> <span class="n">fml</span><span class="o">::</span><span class="n">jni</span><span class="o">::</span><span class="n">AttachCurrentThread</span><span class="p">();</span>
+  <span class="kt">bool</span> <span class="n">result</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+  <span class="c1">// Register FlutterMain.</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">shell</span><span class="o">::</span><span class="n">FlutterMain</span><span class="o">::</span><span class="n">Register</span><span class="p">(</span><span class="n">env</span><span class="p">);</span>
+  <span class="n">FML_CHECK</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+
+  <span class="c1">// Register PlatformView</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">shell</span><span class="o">::</span><span class="n">PlatformViewAndroid</span><span class="o">::</span><span class="n">Register</span><span class="p">(</span><span class="n">env</span><span class="p">);</span>
+  <span class="n">FML_CHECK</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+
+  <span class="c1">// Register VSyncWaiter.</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">shell</span><span class="o">::</span><span class="n">VsyncWaiterAndroid</span><span class="o">::</span><span class="n">Register</span><span class="p">(</span><span class="n">env</span><span class="p">);</span>
+  <span class="n">FML_CHECK</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">JNI_VERSION_1_4</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></p>
+<p>platform_view_android_jni 中注册的本地方法代码<code>engine/src/flutter/shell/platform/android/platform_view_android_jni.cc</code>注册本地代码回调逻辑</p>
+<div class="codehilite"><pre><span></span>  {  ///这个是我们真正关心的FlutterEngine启动过程中调用的逻辑
+      .name = &quot;nativeRunBundleAndSnapshotFromLibrary&quot;,
+      .signature = &quot;(J[Ljava/lang/String;Ljava/lang/String;&quot;
+                   &quot;Ljava/lang/String;Landroid/content/res/AssetManager;)V&quot;,
+      .fnPtr =
+          reinterpret_cast&amp;lt;void*&amp;gt;(&amp;amp;shell::RunBundleAndSnapshotFromLibrary),
+  },
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="kt">bool</span> <span class="nf">RegisterApi</span><span class="p">(</span><span class="n">JNIEnv</span><span class="o">*</span> <span class="n">env</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">static</span> <span class="k">const</span> <span class="n">JNINativeMethod</span> <span class="n">flutter_jni_methods</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="c1">// Start of methods from FlutterNativeView</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeAttach&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(Lio/flutter/embedding/engine/FlutterJNI;Z)J&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">AttachJNI</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeDestroy&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(J)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">DestroyJNI</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>  <span class="c1">///这个是我们真正关心的FlutterEngine启动过程中调用的逻辑</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeRunBundleAndSnapshotFromLibrary&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(J[Ljava/lang/String;Ljava/lang/String;&quot;</span>
+                       <span class="s">&quot;Ljava/lang/String;Landroid/content/res/AssetManager;)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span>
+              <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">RunBundleAndSnapshotFromLibrary</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeGetObservatoryUri&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;()Ljava/lang/String;&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">GetObservatoryUri</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeDispatchEmptyPlatformMessage&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(JLjava/lang/String;I)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span>
+              <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">DispatchEmptyPlatformMessage</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeDispatchPlatformMessage&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(JLjava/lang/String;Ljava/nio/ByteBuffer;II)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">DispatchPlatformMessage</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeInvokePlatformMessageResponseCallback&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(JILjava/nio/ByteBuffer;I)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span>
+              <span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">InvokePlatformMessageResponseCallback</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeInvokePlatformMessageEmptyResponseCallback&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(JI)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span>
+              <span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">InvokePlatformMessageEmptyResponseCallback</span><span class="p">),</span>
+      <span class="p">},</span>
+
+      <span class="c1">// Start of methods from FlutterView</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeGetBitmap&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(J)Landroid/graphics/Bitmap;&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">GetBitmap</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeSurfaceCreated&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(JLandroid/view/Surface;)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">SurfaceCreated</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeSurfaceChanged&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(JII)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">SurfaceChanged</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeSurfaceDestroyed&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(J)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">SurfaceDestroyed</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeSetViewportMetrics&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(JFIIIIIIIIII)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">SetViewportMetrics</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeDispatchPointerDataPacket&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(JLjava/nio/ByteBuffer;I)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">DispatchPointerDataPacket</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeDispatchSemanticsAction&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(JIILjava/nio/ByteBuffer;I)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">DispatchSemanticsAction</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeSetSemanticsEnabled&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(JZ)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">SetSemanticsEnabled</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeSetAccessibilityFeatures&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(JI)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">SetAccessibilityFeatures</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeGetIsSoftwareRenderingEnabled&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;()Z&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">GetIsSoftwareRendering</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeRegisterTexture&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(JJLandroid/graphics/SurfaceTexture;)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">RegisterTexture</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeMarkTextureFrameAvailable&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(JJ)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">MarkTextureFrameAvailable</span><span class="p">),</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+          <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&quot;nativeUnregisterTexture&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">signature</span> <span class="o">=</span> <span class="s">&quot;(JJ)V&quot;</span><span class="p">,</span>
+          <span class="p">.</span><span class="n">fnPtr</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shell</span><span class="o">::</span><span class="n">UnregisterTexture</span><span class="p">),</span>
+      <span class="p">},</span>
+  <span class="p">};</span>
+</pre></div>
+
+<h2 id="runbundleandsnapshotfromlibrary">RunBundleAndSnapshotFromLibrary<a class="headerlink" href="#runbundleandsnapshotfromlibrary" title="Permanent link">&para;</a></h2>
+<p>1.加载配置文件</p>
+<p>2.启动FlutterEngine</p>
+<p>3.在前面介绍的android传入的参数，设置FlutterEngine真正加载Dart代码，执行第一个FlutterUI框架的入口文件</p>
+<div class="codehilite"><pre><span></span><span class="k">static</span> <span class="kt">void</span> <span class="nf">RunBundleAndSnapshotFromLibrary</span><span class="p">(</span><span class="n">JNIEnv</span><span class="o">*</span> <span class="n">env</span><span class="p">,</span>
+                                            <span class="n">jobject</span> <span class="n">jcaller</span><span class="p">,</span>
+                                            <span class="n">jlong</span> <span class="n">shell_holder</span><span class="p">,</span>
+                                            <span class="n">jobjectArray</span> <span class="n">jbundlepaths</span><span class="p">,</span>
+                                            <span class="n">jstring</span> <span class="n">jEntrypoint</span><span class="p">,</span>
+                                            <span class="n">jstring</span> <span class="n">jLibraryUrl</span><span class="p">,</span>
+                                            <span class="n">jobject</span> <span class="n">jAssetManager</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">auto</span> <span class="n">asset_manager</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">blink</span><span class="o">::</span><span class="n">AssetManager</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">bundlepath</span> <span class="p">:</span>
+       <span class="n">fml</span><span class="o">::</span><span class="n">jni</span><span class="o">::</span><span class="n">StringArrayToVector</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">jbundlepaths</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">bundlepath</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+      <span class="k">continue</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// If we got a bundle path, attempt to use that as a directory asset</span>
+    <span class="c1">// bundle or a zip asset bundle.</span>
+    <span class="k">const</span> <span class="k">auto</span> <span class="n">file_ext_index</span> <span class="o">=</span> <span class="n">bundlepath</span><span class="p">.</span><span class="n">rfind</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">bundlepath</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">file_ext_index</span><span class="p">)</span> <span class="o">==</span> <span class="s">&quot;.zip&quot;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">asset_manager</span><span class="o">-&gt;</span><span class="n">PushBack</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">blink</span><span class="o">::</span><span class="n">ZipAssetStore</span><span class="o">&gt;</span><span class="p">(</span>
+          <span class="n">bundlepath</span><span class="p">,</span> <span class="s">&quot;assets/flutter_assets&quot;</span><span class="p">));</span>
+
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">asset_manager</span><span class="o">-&gt;</span><span class="n">PushBack</span><span class="p">(</span>
+          <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">blink</span><span class="o">::</span><span class="n">DirectoryAssetBundle</span><span class="o">&gt;</span><span class="p">(</span><span class="n">fml</span><span class="o">::</span><span class="n">OpenDirectory</span><span class="p">(</span>
+              <span class="n">bundlepath</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="nb">false</span><span class="p">,</span> <span class="n">fml</span><span class="o">::</span><span class="n">FilePermission</span><span class="o">::</span><span class="n">kRead</span><span class="p">)));</span>
+
+      <span class="c1">// Use the last path component of the bundle path to determine the</span>
+      <span class="c1">// directory in the APK assets.</span>
+      <span class="k">const</span> <span class="k">auto</span> <span class="n">last_slash_index</span> <span class="o">=</span> <span class="n">bundlepath</span><span class="p">.</span><span class="n">rfind</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="n">bundlepath</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">last_slash_index</span> <span class="o">!=</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">npos</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">auto</span> <span class="n">apk_asset_dir</span> <span class="o">=</span> <span class="n">bundlepath</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span>
+            <span class="n">last_slash_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">bundlepath</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="n">last_slash_index</span><span class="p">);</span>
+
+        <span class="n">asset_manager</span><span class="o">-&gt;</span><span class="n">PushBack</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">blink</span><span class="o">::</span><span class="n">APKAssetProvider</span><span class="o">&gt;</span><span class="p">(</span>
+            <span class="n">env</span><span class="p">,</span>                       <span class="c1">// jni environment</span>
+            <span class="n">jAssetManager</span><span class="p">,</span>             <span class="c1">// asset manager</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">apk_asset_dir</span><span class="p">))</span>  <span class="c1">// apk asset dir</span>
+        <span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">auto</span> <span class="n">isolate_configuration</span> <span class="o">=</span> <span class="n">CreateIsolateConfiguration</span><span class="p">(</span><span class="o">*</span><span class="n">asset_manager</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isolate_configuration</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">FML_DLOG</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span>
+        <span class="o">&lt;&lt;</span> <span class="s">&quot;Isolate configuration could not be determined for engine launch.&quot;</span><span class="p">;</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">RunConfiguration</span> <span class="n">config</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">isolate_configuration</span><span class="p">),</span>
+                          <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">asset_manager</span><span class="p">));</span>
+
+  <span class="p">{</span>
+    <span class="k">auto</span> <span class="n">entrypoint</span> <span class="o">=</span> <span class="n">fml</span><span class="o">::</span><span class="n">jni</span><span class="o">::</span><span class="n">JavaStringToString</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">jEntrypoint</span><span class="p">);</span>
+    <span class="k">auto</span> <span class="n">libraryUrl</span> <span class="o">=</span> <span class="n">fml</span><span class="o">::</span><span class="n">jni</span><span class="o">::</span><span class="n">JavaStringToString</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">jLibraryUrl</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="n">entrypoint</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">libraryUrl</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">config</span><span class="p">.</span><span class="n">SetEntrypointAndLibrary</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">entrypoint</span><span class="p">),</span>
+                                     <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">libraryUrl</span><span class="p">));</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">entrypoint</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">config</span><span class="p">.</span><span class="n">SetEntrypoint</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">entrypoint</span><span class="p">));</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="n">ANDROID_SHELL_HOLDER</span><span class="o">-&gt;</span><span class="n">Launch</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">config</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="androidshellholder-uiflutterengine">AndroidShellHolder 在UI线程启动FlutterEngine<a class="headerlink" href="#androidshellholder-uiflutterengine" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="n">AndroidShellHolder</span><span class="o">::</span><span class="n">Launch</span><span class="p">(</span><span class="n">RunConfiguration</span> <span class="n">config</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">IsValid</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">shell_</span><span class="o">-&gt;</span><span class="n">GetTaskRunners</span><span class="p">().</span><span class="n">GetUITaskRunner</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">PostTask</span><span class="p">(</span>
+      <span class="n">fml</span><span class="o">::</span><span class="n">MakeCopyable</span><span class="p">([</span><span class="n">engine</span> <span class="o">=</span> <span class="n">shell_</span><span class="o">-&gt;</span><span class="n">GetEngine</span><span class="p">(),</span>  <span class="c1">//</span>
+                         <span class="n">config</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>     <span class="c1">//</span>
+  <span class="p">]()</span> <span class="k">mutable</span> <span class="p">{</span>
+        <span class="n">FML_LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Attempting to launch engine configuration...&quot;</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">engine</span> <span class="o">||</span> <span class="n">engine</span><span class="o">-&gt;</span><span class="n">Run</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">config</span><span class="p">))</span> <span class="o">==</span>
+                           <span class="n">shell</span><span class="o">::</span><span class="n">Engine</span><span class="o">::</span><span class="n">RunStatus</span><span class="o">::</span><span class="n">Failure</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">FML_LOG</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Could not launch engine in configuration.&quot;</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="n">FML_LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Isolate for engine configuration successfully &quot;</span>
+                           <span class="s">&quot;started and run.&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}));</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="enginerun">Engine::Run<a class="headerlink" href="#enginerun" title="Permanent link">&para;</a></h2>
+<p>1.<code>PrepareAndLaunchIsolate</code> 预处理一下运行环境</p>
+<p>2.获取初始化的<code>GetRootIsolate</code></p>
+<p>3.获取<code>DartState</code>状态</p>
+<p>4.添加<code>AddIsolateShutdownCallback</code>回调方法</p>
+<div class="codehilite"><pre><span></span><span class="n">Engine</span><span class="o">::</span><span class="n">RunStatus</span> <span class="n">Engine</span><span class="o">::</span><span class="n">Run</span><span class="p">(</span><span class="n">RunConfiguration</span> <span class="n">configuration</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">configuration</span><span class="p">.</span><span class="n">IsValid</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">FML_LOG</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Engine run configuration was invalid.&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">RunStatus</span><span class="o">::</span><span class="n">Failure</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">auto</span> <span class="n">isolate_launch_status</span> <span class="o">=</span>
+      <span class="n">PrepareAndLaunchIsolate</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">configuration</span><span class="p">));</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">isolate_launch_status</span> <span class="o">==</span> <span class="n">Engine</span><span class="o">::</span><span class="n">RunStatus</span><span class="o">::</span><span class="n">Failure</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">FML_LOG</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Engine not prepare and launch isolate.&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">isolate_launch_status</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">isolate_launch_status</span> <span class="o">==</span>
+             <span class="n">Engine</span><span class="o">::</span><span class="n">RunStatus</span><span class="o">::</span><span class="n">FailureAlreadyRunning</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">isolate_launch_status</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">blink</span><span class="o">::</span><span class="n">DartIsolate</span><span class="o">&gt;</span> <span class="n">isolate</span> <span class="o">=</span>
+      <span class="n">runtime_controller_</span><span class="o">-&gt;</span><span class="n">GetRootIsolate</span><span class="p">().</span><span class="n">lock</span><span class="p">();</span>
+
+  <span class="kt">bool</span> <span class="n">isolate_running</span> <span class="o">=</span>
+      <span class="n">isolate</span> <span class="o">&amp;&amp;</span> <span class="n">isolate</span><span class="o">-&gt;</span><span class="n">GetPhase</span><span class="p">()</span> <span class="o">==</span> <span class="n">blink</span><span class="o">::</span><span class="n">DartIsolate</span><span class="o">::</span><span class="n">Phase</span><span class="o">::</span><span class="n">Running</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">isolate_running</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">tonic</span><span class="o">::</span><span class="n">DartState</span><span class="o">::</span><span class="n">Scope</span> <span class="n">scope</span><span class="p">(</span><span class="n">isolate</span><span class="p">.</span><span class="n">get</span><span class="p">());</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">settings_</span><span class="p">.</span><span class="n">root_isolate_create_callback</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">settings_</span><span class="p">.</span><span class="n">root_isolate_create_callback</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">settings_</span><span class="p">.</span><span class="n">root_isolate_shutdown_callback</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">isolate</span><span class="o">-&gt;</span><span class="n">AddIsolateShutdownCallback</span><span class="p">(</span>
+          <span class="n">settings_</span><span class="p">.</span><span class="n">root_isolate_shutdown_callback</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">isolate_running</span> <span class="o">?</span> <span class="n">Engine</span><span class="o">::</span><span class="n">RunStatus</span><span class="o">::</span><span class="nl">Success</span>
+                         <span class="p">:</span> <span class="n">Engine</span><span class="o">::</span><span class="n">RunStatus</span><span class="o">::</span><span class="n">Failure</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="dartisolate-run">DartIsolate Run方法<a class="headerlink" href="#dartisolate-run" title="Permanent link">&para;</a></h2>
+<p>1.初始化当前的<code>Scope</code></p>
+<p>2.获取加载的Dart库文件<code>Dart_RootLibrary</code>上一篇中已经介绍了加载库文件</p>
+<p>3.解析入口文件</p>
+<div class="codehilite"><pre><span></span><span class="n">FML_WARN_UNUSED_RESULT</span>
+<span class="kt">bool</span> <span class="n">DartIsolate</span><span class="o">::</span><span class="n">Run</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">entrypoint_name</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">TRACE_EVENT0</span><span class="p">(</span><span class="s">&quot;flutter&quot;</span><span class="p">,</span> <span class="s">&quot;DartIsolate::Run&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">phase_</span> <span class="o">!=</span> <span class="n">Phase</span><span class="o">::</span><span class="n">Ready</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">tonic</span><span class="o">::</span><span class="n">DartState</span><span class="o">::</span><span class="n">Scope</span> <span class="n">scope</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+  <span class="k">auto</span> <span class="n">user_entrypoint_function</span> <span class="o">=</span>
+      <span class="n">Dart_GetField</span><span class="p">(</span><span class="n">Dart_RootLibrary</span><span class="p">(),</span> <span class="n">tonic</span><span class="o">::</span><span class="n">ToDart</span><span class="p">(</span><span class="n">entrypoint_name</span><span class="p">.</span><span class="n">c_str</span><span class="p">()));</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">InvokeMainEntrypoint</span><span class="p">(</span><span class="n">user_entrypoint_function</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">phase_</span> <span class="o">=</span> <span class="n">Phase</span><span class="o">::</span><span class="n">Running</span><span class="p">;</span>
+  <span class="n">FML_DLOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;New isolate is in the running state.&quot;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="dartisolate-invokemainentrypoint">DartIsolate InvokeMainEntrypoint<a class="headerlink" href="#dartisolate-invokemainentrypoint" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>_getStartMainIsolateFunction 查找主Isolate文件句柄</p>
+</li>
+<li>
+<p>查找dart:ui库中的入口文件<code>_runMainZoned</code></p>
+</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="k">static</span> <span class="kt">bool</span> <span class="nf">InvokeMainEntrypoint</span><span class="p">(</span><span class="n">Dart_Handle</span> <span class="n">user_entrypoint_function</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">tonic</span><span class="o">::</span><span class="n">LogIfError</span><span class="p">(</span><span class="n">user_entrypoint_function</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">FML_LOG</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Could not resolve main entrypoint function.&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">Dart_Handle</span> <span class="n">start_main_isolate_function</span> <span class="o">=</span>
+      <span class="n">tonic</span><span class="o">::</span><span class="n">DartInvokeField</span><span class="p">(</span><span class="n">Dart_LookupLibrary</span><span class="p">(</span><span class="n">tonic</span><span class="o">::</span><span class="n">ToDart</span><span class="p">(</span><span class="s">&quot;dart:isolate&quot;</span><span class="p">)),</span>
+                             <span class="s">&quot;_getStartMainIsolateFunction&quot;</span><span class="p">,</span> <span class="p">{});</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">tonic</span><span class="o">::</span><span class="n">LogIfError</span><span class="p">(</span><span class="n">start_main_isolate_function</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">FML_LOG</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Could not resolve main entrypoint trampoline.&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">tonic</span><span class="o">::</span><span class="n">LogIfError</span><span class="p">(</span><span class="n">tonic</span><span class="o">::</span><span class="n">DartInvokeField</span><span class="p">(</span>
+          <span class="n">Dart_LookupLibrary</span><span class="p">(</span><span class="n">tonic</span><span class="o">::</span><span class="n">ToDart</span><span class="p">(</span><span class="s">&quot;dart:ui&quot;</span><span class="p">)),</span> <span class="s">&quot;_runMainZoned&quot;</span><span class="p">,</span>
+          <span class="p">{</span><span class="n">start_main_isolate_function</span><span class="p">,</span> <span class="n">user_entrypoint_function</span><span class="p">})))</span> <span class="p">{</span>
+    <span class="n">FML_LOG</span><span class="p">(</span><span class="n">ERROR</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Could not invoke the main entrypoint.&quot;</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="flutterui-main">FlutterUI main()启动<a class="headerlink" href="#flutterui-main" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="k">import</span> <span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="n">main</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="n">runApp</span><span class="p">(</span><span class="n">MyApp</span><span class="p">());</span>
+
+<span class="kd">class</span> <span class="nc">MyApp</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="p">{</span>
+  <span class="c1">// This widget is the root of your application.</span>
+  <span class="err">@</span><span class="n">override</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">MaterialApp</span><span class="p">(</span>
+      <span class="nl">title:</span> <span class="s1">&#39;Flutter Demo&#39;</span><span class="p">,</span>
+      <span class="nl">theme:</span> <span class="n">ThemeData</span><span class="p">(</span>
+<span class="c1">//          primarySwatch: Colors.blue,</span>
+          <span class="p">),</span>
+      <span class="nl">home:</span> <span class="n">Scaffold</span><span class="p">(</span>
+        <span class="nl">body:</span> <span class="p">...,</span>
+      <span class="p">),</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="_1">总结<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>通过两篇文件的分析，我们已经介绍了Flutter引擎的初始化过程和FlutterEngine的运行过程。</p>
+<p>1.FlutterEngine初始化四种不同的线程，初始化DartVM，初始化Engine，加载Dart相关的代码，创建运行环境
+2.FlutterEngine真正运行起来，加载编译完成的Dart相关的代码，调用FlutterUI中的main()方法，初始化FlutterUI代码</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../EngineView/" title="EngineView初始化" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                EngineView初始化
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../flutterWindow/" title="FlutterUI渲染过程" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                FlutterUI渲染过程
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019  Aige
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="http://struct.cc" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/cangchengkun/Docs" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/Aige25868905" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.facebook.com/cangck.danmo" class="md-footer-social__link fa fa-facebook"></a>
+    
+      <a href="https://www.youtube.com/" class="md-footer-social__link fa fa-youtube"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.43ad2ac2.js"></script>
+      
+        
+        
+          
+          <script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>
