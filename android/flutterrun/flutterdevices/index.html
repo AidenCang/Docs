@@ -1,0 +1,3066 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="苍成坤的 blog">
+      
+      
+        <link rel="canonical" href="https://squidfunk.github.io/mkdocs-material/android/flutterrun/flutterdevices/">
+      
+      
+        <meta name="author" content="Aige">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="jp">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.1">
+    
+    
+      
+        <title>device - Aige  Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "None", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#device" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Aige  Docs
+            </span>
+            <span class="md-header-nav__topic">
+              device
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../../.." title="Home" class="md-tabs__link md-tabs__link--active">
+        Home
+      </a>
+    
+  </li>
+
+      
+        
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../project/websocket/" title="Project" class="md-tabs__link">
+          Project
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../flutterdev/flutteradvance/" title="Android" class="md-tabs__link">
+          Android
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../python/base/pythonlang/" title="Python" class="md-tabs__link">
+          Python
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../flutterdev/protobuf/" title="protobuf&JSON&XML" class="md-tabs__link">
+          protobuf&JSON&XML
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../iot/Alexa/" title="IoT" class="md-tabs__link">
+          IoT
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../secret/reousrce/" title="Secret" class="md-tabs__link">
+          Secret
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../linux/resource/" title="Linux" class="md-tabs__link">
+          Linux
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../shell/shellresource/" title="Shell" class="md-tabs__link">
+          Shell
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../extensions/admonition/" title="Tools" class="md-tabs__link">
+          Tools
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../download/download/" title="Download" class="md-tabs__link">
+          Download
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://squidfunk.github.io/mkdocs-material/" title="Aige  Docs" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Aige  Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/cangchengkun/Docs" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Aige github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../../getting-started/" title="Getting started" class="md-nav__link">
+      Getting started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Project
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Project
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1">
+    
+    <label class="md-nav__link" for="nav-3-1">
+      SkyRoad
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        SkyRoad
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../project/websocket/" title="WebSocket" class="md-nav__link">
+      WebSocket
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Android
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Android
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1">
+    
+    <label class="md-nav__link" for="nav-4-1">
+      Flutter
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-1">
+        Flutter
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/flutteradvance/" title="Flutter学习路线" class="md-nav__link">
+      Flutter学习路线
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterUIframework/" title="FlutterUI和Engine关联" class="md-nav__link">
+      FlutterUI和Engine关联
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/FlutterWidgetinit/" title="FlutterUI框架绘制过程" class="md-nav__link">
+      FlutterUI框架绘制过程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/platform_channels/" title="PlatformChannel" class="md-nav__link">
+      PlatformChannel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/isolatedev/" title="ISOlate使用" class="md-nav__link">
+      ISOlate使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/futterStream/" title="Future&Stream" class="md-nav__link">
+      Future&Stream
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/applifecyclestate/" title="Flutter生命周期管理" class="md-nav__link">
+      Flutter生命周期管理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/flutterNavigator/" title="FlutterNavigator" class="md-nav__link">
+      FlutterNavigator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterLib/" title="Flutter库" class="md-nav__link">
+      Flutter库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/fluttersnip/" title="代码片段" class="md-nav__link">
+      代码片段
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterKey/" title="FlutterKey" class="md-nav__link">
+      FlutterKey
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutter/" title="Flutter" class="md-nav__link">
+      Flutter
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterTools/" title="FlutterSdk" class="md-nav__link">
+      FlutterSdk
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter_project/flutterApp/" title="Flutter项目经验" class="md-nav__link">
+      Flutter项目经验
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/customWidget/" title="自定义Widget" class="md-nav__link">
+      自定义Widget
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/flutterImageProvider/" title="Flutter图片加载" class="md-nav__link">
+      Flutter图片加载
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/Flutterdeployment/" title="FlutterAndroid&IOS打包" class="md-nav__link">
+      FlutterAndroid&IOS打包
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/flutterTest/" title="Flutter测试" class="md-nav__link">
+      Flutter测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/Architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterDev/" title="Flutter开发" class="md-nav__link">
+      Flutter开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterexample/" title="example" class="md-nav__link">
+      example
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterQuestion/" title="Flutter常见问题" class="md-nav__link">
+      Flutter常见问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterUI/" title="FlutterUI" class="md-nav__link">
+      FlutterUI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/mixin/" title="mixin" class="md-nav__link">
+      mixin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/listview/" title="ListView" class="md-nav__link">
+      ListView
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/flutterzone/" title="flutterzone" class="md-nav__link">
+      flutterzone
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/flutterissue/" title="flutterissue" class="md-nav__link">
+      flutterissue
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/flutter_drawer/" title="flutter_drawer" class="md-nav__link">
+      flutter_drawer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/dartbase/" title="dartbase" class="md-nav__link">
+      dartbase
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/assertGet/" title="assertGet" class="md-nav__link">
+      assertGet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/interview/" title="面试资料" class="md-nav__link">
+      面试资料
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/navigator/" title="Navigator" class="md-nav__link">
+      Navigator
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-2" type="checkbox" id="nav-4-2">
+    
+    <label class="md-nav__link" for="nav-4-2">
+      FlutterEngine
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-2">
+        FlutterEngine
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/downEngine/" title="Engine源代码下载" class="md-nav__link">
+      Engine源代码下载
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterenv/" title="Flutter编译环境安装" class="md-nav__link">
+      Flutter编译环境安装
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/ComplieMode/" title="编译模式" class="md-nav__link">
+      编译模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/EngineCompile/" title="FlutterEngine编译" class="md-nav__link">
+      FlutterEngine编译
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/GNTools/" title="GNTools" class="md-nav__link">
+      GNTools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/NinjaSystem/" title="Ninja编译系统" class="md-nav__link">
+      Ninja编译系统
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/EngineCompile/" title="Engine编译构建" class="md-nav__link">
+      Engine编译构建
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterComplieFile/" title="Engine编译产物" class="md-nav__link">
+      Engine编译产物
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/ComplieMode/" title="编译模式" class="md-nav__link">
+      编译模式
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/apkfile/" title="Apk&ipd包分析" class="md-nav__link">
+      Apk&ipd包分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterAndroidInit/" title="Android加载Dart文件" class="md-nav__link">
+      Android加载Dart文件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/AndroidViewinit/" title="Android初始化View" class="md-nav__link">
+      Android初始化View
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/EngineInit/" title="Engine初始化" class="md-nav__link">
+      Engine初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/EngineView/" title="EngineView初始化" class="md-nav__link">
+      EngineView初始化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterEngineLauncher/" title="Engine启动过程" class="md-nav__link">
+      Engine启动过程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterWindow/" title="FlutterUI渲染过程" class="md-nav__link">
+      FlutterUI渲染过程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/iosstart/" title="iOS启动过程" class="md-nav__link">
+      iOS启动过程
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/SmartPtr/" title="C++智能指针" class="md-nav__link">
+      C++智能指针
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/NativeExtensions/" title="NativeExtensions" class="md-nav__link">
+      NativeExtensions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/MessageLoop/" title="MessageLoop" class="md-nav__link">
+      MessageLoop
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/DartVM/" title="初始化DartVM" class="md-nav__link">
+      初始化DartVM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/platformplugin/" title="PlatformChannel" class="md-nav__link">
+      PlatformChannel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/DartVMServiceProtocol/" title="DartVMServiceProtocol" class="md-nav__link">
+      DartVMServiceProtocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/FlutterSupportView/" title="FlutterSupportView" class="md-nav__link">
+      FlutterSupportView
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/profile/" title="性能优化" class="md-nav__link">
+      性能优化
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/reviewCode/" title="reviewCode" class="md-nav__link">
+      reviewCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/DevResource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/fluttercommunicationAndroidorIOS/" title="FlutterUI通信Android&IOS" class="md-nav__link">
+      FlutterUI通信Android&IOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterEngine/" title="FlutterEngine源码编译" class="md-nav__link">
+      FlutterEngine源码编译
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutter/flutterenginedir/" title="Flutter引擎目录" class="md-nav__link">
+      Flutter引擎目录
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3">
+    
+    <label class="md-nav__link" for="nav-4-3">
+      flutterTools
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-3">
+        flutterTools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fluttertools/" title="Flutter开始运行" class="md-nav__link">
+      Flutter开始运行
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-4" type="checkbox" id="nav-4-4">
+    
+    <label class="md-nav__link" for="nav-4-4">
+      ReactNative
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-4">
+        ReactNative
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rn/react_native/" title="ReactNative" class="md-nav__link">
+      ReactNative
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4-5" type="checkbox" id="nav-4-5">
+    
+    <label class="md-nav__link" for="nav-4-5">
+      Awsamplify
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-4-5">
+        Awsamplify
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../aws-android/awsamplify/" title="Awsamplify" class="md-nav__link">
+      Awsamplify
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../androidTools/" title="AndroidTools" class="md-nav__link">
+      AndroidTools
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../issue/Androidissue/" title="Issue常见问题" class="md-nav__link">
+      Issue常见问题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Python
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      基础
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        基础
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/pythonlang/" title="语言基础" class="md-nav__link">
+      语言基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/advancesPython/" title="高级开发" class="md-nav__link">
+      高级开发
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/pythoninspect/" title="Python反射" class="md-nav__link">
+      Python反射
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1-4" type="checkbox" id="nav-5-1-4">
+    
+    <label class="md-nav__link" for="nav-5-1-4">
+      开发环境
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-1-4">
+        开发环境
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/base/pythonEnv/" title="环境" class="md-nav__link">
+      环境
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      爬虫
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        爬虫
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/scrapyBase/" title="爬虫基础" class="md-nav__link">
+      爬虫基础
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/scrapylib/" title="爬虫库" class="md-nav__link">
+      爬虫库
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/scrapy/spiderdemo/" title="爬虫实战" class="md-nav__link">
+      爬虫实战
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      服务器开发
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-3">
+        服务器开发
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-1" type="checkbox" id="nav-5-3-1">
+    
+    <label class="md-nav__link" for="nav-5-3-1">
+      WEB
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-1">
+        WEB
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/pythonweb/" title="主流服务器介绍" class="md-nav__link">
+      主流服务器介绍
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/serverbase/" title="服务器常用软件" class="md-nav__link">
+      服务器常用软件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/pythonOauth/" title="Oauth2服务器搭建" class="md-nav__link">
+      Oauth2服务器搭建
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-2" type="checkbox" id="nav-5-3-2">
+    
+    <label class="md-nav__link" for="nav-5-3-2">
+      aws
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-2">
+        aws
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/aws/pyaws/" title="AWSpython使用" class="md-nav__link">
+      AWSpython使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/aws/serverless/" title="无服务" class="md-nav__link">
+      无服务
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-3" type="checkbox" id="nav-5-3-3">
+    
+    <label class="md-nav__link" for="nav-5-3-3">
+      Django开发
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-3">
+        Django开发
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangosignals/" title="Dajngo信号机制" class="md-nav__link">
+      Dajngo信号机制
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangoLogger/" title="日志配置" class="md-nav__link">
+      日志配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/djangosignals/" title="Djangomessage" class="md-nav__link">
+      Djangomessage
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/JSONEncoder/" title="JsonEncoder" class="md-nav__link">
+      JsonEncoder
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/middleware/" title="中间件" class="md-nav__link">
+      中间件
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/django/question/" title="常见问题" class="md-nav__link">
+      常见问题
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-4" type="checkbox" id="nav-5-3-4">
+    
+    <label class="md-nav__link" for="nav-5-3-4">
+      部署
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-4">
+        部署
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/server/zappa/" title="zappa" class="md-nav__link">
+      zappa
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../python/pythonTools/" title="开发工具" class="md-nav__link">
+      开发工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      protobuf&JSON&XML
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        protobuf&JSON&XML
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../flutterdev/protobuf/" title="Protobuf" class="md-nav__link">
+      Protobuf
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      IoT
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        IoT
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/Alexa/" title="Alexa" class="md-nav__link">
+      Alexa
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/awsiot/" title="AWSIOT" class="md-nav__link">
+      AWSIOT
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/iotCore/" title="IotCore" class="md-nav__link">
+      IotCore
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/program/" title="program" class="md-nav__link">
+      program
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/protocol/" title="protocol" class="md-nav__link">
+      protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/usermanager/" title="UserManager" class="md-nav__link">
+      UserManager
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../iot/developerTools/" title="aws开发工具" class="md-nav__link">
+      aws开发工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Secret
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Secret
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../secret/reousrce/" title="安全" class="md-nav__link">
+      安全
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/networktools/" title="端口扫描工具" class="md-nav__link">
+      端口扫描工具
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Linux
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Linux
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../linux/resource/" title="资料" class="md-nav__link">
+      资料
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      Shell
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        Shell
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../shell/shellresource/" title="Shell" class="md-nav__link">
+      Shell
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-11" type="checkbox" id="nav-11">
+    
+    <label class="md-nav__link" for="nav-11">
+      Tools
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-11">
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../extensions/admonition/" title="AndroidStudio" class="md-nav__link">
+      AndroidStudio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/atom/" title="Atom" class="md-nav__link">
+      Atom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/vim/" title="Vim" class="md-nav__link">
+      Vim
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../extensions/metadata/" title="Chrome" class="md-nav__link">
+      Chrome
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/markdown/" title="Markdown" class="md-nav__link">
+      Markdown
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/material/" title="Material for MkDocs" class="md-nav__link">
+      Material for MkDocs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/git/" title="Git" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/VSCode/" title="VSCode" class="md-nav__link">
+      VSCode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../tools/datareporting/" title="数据分析" class="md-nav__link">
+      数据分析
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
+    
+    <label class="md-nav__link" for="nav-12">
+      Download
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-12">
+        Download
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../download/download/" title="download" class="md-nav__link">
+      download
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#runcommand" title="RunCommand" class="md-nav__link">
+    RunCommand
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#devicemanagerdevicediscovery" title="DeviceManager&amp;DeviceDiscovery" class="md-nav__link">
+    DeviceManager&amp;DeviceDiscovery
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flutterdevice" title="FlutterDevice" class="md-nav__link">
+    FlutterDevice
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#codegeneratingresidentcompiler" title="CodeGeneratingResidentCompiler" class="md-nav__link">
+    CodeGeneratingResidentCompiler
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buildrunnerdaemon" title="BuildRunner:daemon" class="md-nav__link">
+    BuildRunner:daemon
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buildrunnergeneratebuildscript" title="BuildRunner:generateBuildScript" class="md-nav__link">
+    BuildRunner:generateBuildScript
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#targetplatform" title="TargetPlatform" class="md-nav__link">
+    TargetPlatform
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hostplatform" title="HostPlatform" class="md-nav__link">
+    HostPlatform
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#androidarch" title="AndroidArch" class="md-nav__link">
+    AndroidArch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#darwinarch" title="DarwinArch" class="md-nav__link">
+    DarwinArch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buildinfo" title="BuildInfo" class="md-nav__link">
+    BuildInfo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#buildmode" title="BuildMode" class="md-nav__link">
+    BuildMode
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platformtype" title="PlatformType" class="md-nav__link">
+    PlatformType
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="device">device<a class="headerlink" href="#device" title="Permanent link">&para;</a></h1>
+<p>fluttertools 使用Devices来对不同平台进行处理平台之间的差异</p>
+<h2 id="runcommand">RunCommand<a class="headerlink" href="#runcommand" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="err">@</span><span class="n">override</span>
+<span class="n">Future</span><span class="o">&lt;</span><span class="n">FlutterCommandResult</span><span class="o">&gt;</span> <span class="n">runCommand</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="n">Cache</span><span class="p">.</span><span class="n">releaseLockEarly</span><span class="p">();</span>
+  <span class="kd">final</span> <span class="kt">bool</span> <span class="n">hotMode</span> <span class="o">=</span> <span class="n">shouldUseHotMode</span><span class="p">();</span>
+<span class="p">........</span>
+  <span class="c1">///FlutterDevice不同平台的设备</span>
+  <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">FlutterDevice</span><span class="o">&gt;</span> <span class="n">flutterDevices</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">FlutterDevice</span><span class="o">&gt;</span><span class="p">[];</span>
+  <span class="c1">///获取开发的工程目录</span>
+  <span class="kd">final</span> <span class="n">FlutterProject</span> <span class="n">flutterProject</span> <span class="o">=</span> <span class="n">FlutterProject</span><span class="p">.</span><span class="n">current</span><span class="p">();</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">Device</span> <span class="n">device</span> <span class="k">in</span> <span class="n">devices</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">final</span> <span class="n">FlutterDevice</span> <span class="n">flutterDevice</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">FlutterDevice</span><span class="p">.</span><span class="n">create</span><span class="p">(</span>
+      <span class="n">device</span><span class="p">,</span>
+      <span class="nl">flutterProject:</span> <span class="n">flutterProject</span><span class="p">,</span>
+      <span class="nl">trackWidgetCreation:</span> <span class="n">argResults</span><span class="p">[</span><span class="s1">&#39;track-widget-creation&#39;</span><span class="p">],</span>
+      <span class="nl">fileSystemRoots:</span> <span class="n">argResults</span><span class="p">[</span><span class="s1">&#39;filesystem-root&#39;</span><span class="p">],</span>
+      <span class="nl">fileSystemScheme:</span> <span class="n">argResults</span><span class="p">[</span><span class="s1">&#39;filesystem-scheme&#39;</span><span class="p">],</span>
+      <span class="nl">viewFilter:</span> <span class="n">argResults</span><span class="p">[</span><span class="s1">&#39;isolate-filter&#39;</span><span class="p">],</span>
+      <span class="nl">experimentalFlags:</span> <span class="n">expFlags</span><span class="p">,</span>
+      <span class="nl">target:</span> <span class="n">argResults</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span>
+      <span class="nl">buildMode:</span> <span class="n">getBuildMode</span><span class="p">(),</span>
+    <span class="p">);</span>
+    <span class="n">flutterDevices</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">flutterDevice</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="c1">// Only support &quot;web mode&quot; with a single web device due to resident runner</span>
+  <span class="c1">// refactoring required otherwise.</span>
+  <span class="kd">final</span> <span class="kt">bool</span> <span class="n">webMode</span> <span class="o">=</span> <span class="n">featureFlags</span><span class="p">.</span><span class="n">isWebEnabled</span> <span class="o">&amp;&amp;</span>
+                       <span class="n">devices</span><span class="p">.</span><span class="n">length</span> <span class="o">==</span> <span class="m">1</span>  <span class="o">&amp;&amp;</span>
+                       <span class="kd">await</span> <span class="n">devices</span><span class="p">.</span><span class="n">single</span><span class="p">.</span><span class="n">targetPlatform</span> <span class="o">==</span> <span class="n">TargetPlatform</span><span class="p">.</span><span class="n">web_javascript</span><span class="p">;</span>
+
+  <span class="n">ResidentRunner</span> <span class="n">runner</span><span class="p">;</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">applicationBinaryPath</span> <span class="o">=</span> <span class="n">argResults</span><span class="p">[</span><span class="s1">&#39;use-application-binary&#39;</span><span class="p">];</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">hotMode</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">webMode</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">runner</span> <span class="o">=</span> <span class="n">HotRunner</span><span class="p">(</span>
+      <span class="n">flutterDevices</span><span class="p">,</span>
+      <span class="nl">target:</span> <span class="n">targetFile</span><span class="p">,</span>
+      <span class="nl">debuggingOptions:</span> <span class="n">_createDebuggingOptions</span><span class="p">(),</span>
+      <span class="nl">benchmarkMode:</span> <span class="n">argResults</span><span class="p">[</span><span class="s1">&#39;benchmark&#39;</span><span class="p">],</span>
+      <span class="nl">applicationBinary:</span> <span class="n">applicationBinaryPath</span> <span class="o">==</span> <span class="kc">null</span>
+          <span class="o">?</span> <span class="kc">null</span>
+          <span class="o">:</span> <span class="n">fs</span><span class="p">.</span><span class="n">file</span><span class="p">(</span><span class="n">applicationBinaryPath</span><span class="p">),</span>
+      <span class="nl">projectRootPath:</span> <span class="n">argResults</span><span class="p">[</span><span class="s1">&#39;project-root&#39;</span><span class="p">],</span>
+      <span class="nl">packagesFilePath:</span> <span class="n">globalResults</span><span class="p">[</span><span class="s1">&#39;packages&#39;</span><span class="p">],</span>
+      <span class="nl">dillOutputPath:</span> <span class="n">argResults</span><span class="p">[</span><span class="s1">&#39;output-dill&#39;</span><span class="p">],</span>
+      <span class="nl">stayResident:</span> <span class="n">stayResident</span><span class="p">,</span>
+      <span class="nl">ipv6:</span> <span class="n">ipv6</span><span class="p">,</span>
+    <span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">webMode</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">runner</span> <span class="o">=</span> <span class="n">webRunnerFactory</span><span class="p">.</span><span class="n">createWebRunner</span><span class="p">(</span>
+      <span class="n">devices</span><span class="p">.</span><span class="n">single</span><span class="p">,</span>
+      <span class="nl">target:</span> <span class="n">targetFile</span><span class="p">,</span>
+      <span class="nl">flutterProject:</span> <span class="n">flutterProject</span><span class="p">,</span>
+      <span class="nl">ipv6:</span> <span class="n">ipv6</span><span class="p">,</span>
+      <span class="nl">debuggingOptions:</span> <span class="n">_createDebuggingOptions</span><span class="p">(),</span>
+    <span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">runner</span> <span class="o">=</span> <span class="n">ColdRunner</span><span class="p">(</span>
+      <span class="n">flutterDevices</span><span class="p">,</span>
+      <span class="nl">target:</span> <span class="n">targetFile</span><span class="p">,</span>
+      <span class="nl">debuggingOptions:</span> <span class="n">_createDebuggingOptions</span><span class="p">(),</span>
+      <span class="nl">traceStartup:</span> <span class="n">traceStartup</span><span class="p">,</span>
+      <span class="nl">awaitFirstFrameWhenTracing:</span> <span class="n">awaitFirstFrameWhenTracing</span><span class="p">,</span>
+      <span class="nl">applicationBinary:</span> <span class="n">applicationBinaryPath</span> <span class="o">==</span> <span class="kc">null</span>
+          <span class="o">?</span> <span class="kc">null</span>
+          <span class="o">:</span> <span class="n">fs</span><span class="p">.</span><span class="n">file</span><span class="p">(</span><span class="n">applicationBinaryPath</span><span class="p">),</span>
+      <span class="nl">ipv6:</span> <span class="n">ipv6</span><span class="p">,</span>
+      <span class="nl">stayResident:</span> <span class="n">stayResident</span><span class="p">,</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">DateTime</span> <span class="n">appStartedTime</span><span class="p">;</span>
+  <span class="c1">// Sync completer so the completing agent attaching to the resident doesn&#39;t</span>
+  <span class="c1">// need to know about analytics.</span>
+  <span class="c1">//</span>
+  <span class="c1">// Do not add more operations to the future.</span>
+  <span class="kd">final</span> <span class="n">Completer</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">appStartedTimeRecorder</span> <span class="o">=</span> <span class="n">Completer</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="p">.</span><span class="kd">sync</span><span class="p">();</span>
+  <span class="c1">// This callback can&#39;t throw.</span>
+  <span class="n">unawaited</span><span class="p">(</span><span class="n">appStartedTimeRecorder</span><span class="p">.</span><span class="n">future</span><span class="p">.</span><span class="n">then</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">appStartedTime</span> <span class="o">=</span> <span class="n">systemClock</span><span class="p">.</span><span class="n">now</span><span class="p">();</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">stayResident</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">TerminalHandler</span><span class="p">(</span><span class="n">runner</span><span class="p">)</span>
+          <span class="p">..</span><span class="n">setupTerminal</span><span class="p">()</span>
+          <span class="p">..</span><span class="n">registerSignalHandlers</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">));</span>
+
+  <span class="kd">final</span> <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">runner</span><span class="p">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="nl">appStartedCompleter:</span> <span class="n">appStartedTimeRecorder</span><span class="p">,</span>
+    <span class="nl">route:</span> <span class="n">route</span><span class="p">,</span>
+  <span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">!=</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">throwToolExit</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nl">exitCode:</span> <span class="n">result</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">FlutterCommandResult</span><span class="p">(</span>
+    <span class="n">ExitStatus</span><span class="p">.</span><span class="n">success</span><span class="p">,</span>
+    <span class="nl">timingLabelParts:</span> <span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">[</span>
+      <span class="n">hotMode</span> <span class="o">?</span> <span class="s1">&#39;hot&#39;</span> <span class="o">:</span> <span class="s1">&#39;cold&#39;</span><span class="p">,</span>
+      <span class="n">getModeName</span><span class="p">(</span><span class="n">getBuildMode</span><span class="p">()),</span>
+      <span class="n">devices</span><span class="p">.</span><span class="n">length</span> <span class="o">==</span> <span class="m">1</span>
+          <span class="o">?</span> <span class="n">getNameForTargetPlatform</span><span class="p">(</span><span class="kd">await</span> <span class="n">devices</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">targetPlatform</span><span class="p">)</span>
+          <span class="o">:</span> <span class="s1">&#39;multiple&#39;</span><span class="p">,</span>
+      <span class="n">devices</span><span class="p">.</span><span class="n">length</span> <span class="o">==</span> <span class="m">1</span> <span class="o">&amp;&amp;</span> <span class="kd">await</span> <span class="n">devices</span><span class="p">[</span><span class="m">0</span><span class="p">].</span><span class="n">isLocalEmulator</span> <span class="o">?</span> <span class="s1">&#39;emulator&#39;</span> <span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="nl">endTimeOverride:</span> <span class="n">appStartedTime</span><span class="p">,</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="devicemanagerdevicediscovery">DeviceManager&amp;DeviceDiscovery<a class="headerlink" href="#devicemanagerdevicediscovery" title="Permanent link">&para;</a></h2>
+<p>FlutterTools 来管理不同的运行平台，每一个平台的通过Device来实现设备的查找,PollingDeviceDiscovery类进行设备的发现协议的管理，DeviceManager管理所有平台的设备，提供给不同平台的Device实现</p>
+<p><div class="codehilite"><pre><span></span><span class="n">AndroidDevices</span> <span class="p">(</span><span class="n">android_device</span><span class="p">.</span><span class="n">dart</span><span class="p">)</span>
+<span class="n">FlutterTesterDevices</span> <span class="p">(</span><span class="n">flutter_tester</span><span class="p">.</span><span class="n">dart</span><span class="p">)</span>
+<span class="n">WebDevices</span> <span class="p">(</span><span class="n">web_device</span><span class="p">.</span><span class="n">dart</span><span class="p">)</span>
+<span class="n">FuchsiaDevices</span> <span class="p">(</span><span class="n">fuchsia_device</span><span class="p">.</span><span class="n">dart</span><span class="p">)</span>
+<span class="n">IOSDevices</span> <span class="p">(</span><span class="n">devices</span><span class="p">.</span><span class="n">dart</span><span class="p">)</span>
+<span class="n">IOSSimulators</span> <span class="p">(</span><span class="n">simulators</span><span class="p">.</span><span class="n">dart</span><span class="p">)</span>
+<span class="n">LinuxDevices</span> <span class="p">(</span><span class="n">linux_device</span><span class="p">.</span><span class="n">dart</span><span class="p">)</span>
+<span class="n">MacOSDevices</span> <span class="p">(</span><span class="n">macos_device</span><span class="p">.</span><span class="n">dart</span><span class="p">)</span>
+<span class="n">WindowsDevices</span> <span class="p">(</span><span class="n">windows_device</span><span class="p">.</span><span class="n">dart</span><span class="p">)</span>
+<span class="n">MockPollingDeviceDiscovery</span> <span class="p">(</span><span class="n">mocks</span><span class="p">.</span><span class="n">dart</span><span class="p">)</span>
+</pre></div>
+下面接着实现不同平台Device实现相关的管理
+1.查询不同的设备运行环境</p>
+<p>2.FlutterDevice进行不同平台的运行管理，进行Flutter编译</p>
+<div class="codehilite"><pre><span></span><span class="n">DeviceManager</span> <span class="kd">get</span> <span class="n">deviceManager</span> <span class="o">=&gt;</span> <span class="n">context</span><span class="p">.</span><span class="kd">get</span><span class="o">&lt;</span><span class="n">DeviceManager</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="c1">/// Find and return all target [Device]s based upon currently connected</span>
+  <span class="c1">/// devices and criteria entered by the user on the command line.</span>
+  <span class="c1">/// If no device can be found that meets specified criteria,</span>
+  <span class="c1">/// then print an error message and return null.</span>
+  <span class="n">Future</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Device</span><span class="o">&gt;&gt;</span> <span class="n">findAllTargetDevices</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">doctor</span><span class="p">.</span><span class="n">canLaunchAnything</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">printError</span><span class="p">(</span><span class="n">userMessages</span><span class="p">.</span><span class="n">flutterNoDevelopmentDevice</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Device</span><span class="o">&gt;</span> <span class="n">devices</span> <span class="o">=</span>
+        <span class="kd">await</span> <span class="n">deviceManager</span><span class="p">.</span><span class="n">findTargetDevices</span><span class="p">(</span><span class="n">FlutterProject</span><span class="p">.</span><span class="n">current</span><span class="p">());</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">devices</span><span class="p">.</span><span class="n">isEmpty</span> <span class="o">&amp;&amp;</span> <span class="n">deviceManager</span><span class="p">.</span><span class="n">hasSpecifiedDeviceId</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">printStatus</span><span class="p">(</span><span class="n">userMessages</span>
+          <span class="p">.</span><span class="n">flutterNoMatchingDevice</span><span class="p">(</span><span class="n">deviceManager</span><span class="p">.</span><span class="n">specifiedDeviceId</span><span class="p">));</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">devices</span><span class="p">.</span><span class="n">isEmpty</span> <span class="o">&amp;&amp;</span> <span class="n">deviceManager</span><span class="p">.</span><span class="n">hasSpecifiedAllDevices</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">printStatus</span><span class="p">(</span><span class="n">userMessages</span><span class="p">.</span><span class="n">flutterNoDevicesFound</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">devices</span><span class="p">.</span><span class="n">isEmpty</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">printStatus</span><span class="p">(</span><span class="n">userMessages</span><span class="p">.</span><span class="n">flutterNoSupportedDevices</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">devices</span><span class="p">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="m">1</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">deviceManager</span><span class="p">.</span><span class="n">hasSpecifiedAllDevices</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">deviceManager</span><span class="p">.</span><span class="n">hasSpecifiedDeviceId</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printStatus</span><span class="p">(</span><span class="n">userMessages</span><span class="p">.</span><span class="n">flutterFoundSpecifiedDevices</span><span class="p">(</span>
+            <span class="n">devices</span><span class="p">.</span><span class="n">length</span><span class="p">,</span> <span class="n">deviceManager</span><span class="p">.</span><span class="n">specifiedDeviceId</span><span class="p">));</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">printStatus</span><span class="p">(</span><span class="n">userMessages</span><span class="p">.</span><span class="n">flutterSpecifyDeviceWithAllOption</span><span class="p">);</span>
+        <span class="n">devices</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">deviceManager</span><span class="p">.</span><span class="n">getAllConnectedDevices</span><span class="p">().</span><span class="n">toList</span><span class="p">();</span>
+      <span class="p">}</span>
+      <span class="n">printStatus</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+      <span class="kd">await</span> <span class="n">Device</span><span class="p">.</span><span class="n">printDevices</span><span class="p">(</span><span class="n">devices</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">devices</span><span class="p">;</span>
+  <span class="p">}</span>
+</pre></div>
+
+<h2 id="flutterdevice">FlutterDevice<a class="headerlink" href="#flutterdevice" title="Permanent link">&para;</a></h2>
+<p>1.CodeGeneratingResidentCompiler:管理Dart代码的编译过程</p>
+<p>2.CodeGenerator的实现类<code>BuildRunner</code>正在的编译执行过程</p>
+<div class="codehilite"><pre><span></span><span class="c1">/// Create a [FlutterDevice] with optional code generation enabled.</span>
+<span class="kd">static</span> <span class="n">Future</span><span class="o">&lt;</span><span class="n">FlutterDevice</span><span class="o">&gt;</span> <span class="n">create</span><span class="p">(</span>
+  <span class="n">Device</span> <span class="n">device</span><span class="p">,</span> <span class="p">{</span>
+  <span class="err">@</span><span class="n">required</span> <span class="n">FlutterProject</span> <span class="n">flutterProject</span><span class="p">,</span>
+  <span class="err">@</span><span class="n">required</span> <span class="kt">bool</span> <span class="n">trackWidgetCreation</span><span class="p">,</span>
+  <span class="err">@</span><span class="n">required</span> <span class="kt">String</span> <span class="n">target</span><span class="p">,</span>
+  <span class="err">@</span><span class="n">required</span> <span class="n">BuildMode</span> <span class="n">buildMode</span><span class="p">,</span>
+  <span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="n">fileSystemRoots</span><span class="p">,</span>
+  <span class="kt">String</span> <span class="n">fileSystemScheme</span><span class="p">,</span>
+  <span class="kt">String</span> <span class="n">viewFilter</span><span class="p">,</span>
+  <span class="n">TargetModel</span> <span class="n">targetModel</span> <span class="o">=</span> <span class="n">TargetModel</span><span class="p">.</span><span class="n">flutter</span><span class="p">,</span>
+  <span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="n">experimentalFlags</span><span class="p">,</span>
+  <span class="n">ResidentCompiler</span> <span class="n">generator</span><span class="p">,</span>
+<span class="p">})</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="n">ResidentCompiler</span> <span class="n">generator</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">flutterProject</span><span class="p">.</span><span class="n">hasBuilders</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">generator</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">CodeGeneratingResidentCompiler</span><span class="p">.</span><span class="n">create</span><span class="p">(</span>
+      <span class="nl">flutterProject:</span> <span class="n">flutterProject</span><span class="p">,</span>
+    <span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">generator</span> <span class="o">=</span> <span class="n">ResidentCompiler</span><span class="p">(</span>
+      <span class="n">artifacts</span><span class="p">.</span><span class="n">getArtifactPath</span><span class="p">(</span><span class="n">Artifact</span><span class="p">.</span><span class="n">flutterPatchedSdkPath</span><span class="p">,</span> <span class="nl">mode:</span> <span class="n">buildMode</span><span class="p">),</span>
+      <span class="nl">trackWidgetCreation:</span> <span class="n">trackWidgetCreation</span><span class="p">,</span>
+      <span class="nl">fileSystemRoots:</span> <span class="n">fileSystemRoots</span><span class="p">,</span>
+      <span class="nl">fileSystemScheme:</span> <span class="n">fileSystemScheme</span><span class="p">,</span>
+      <span class="nl">targetModel:</span> <span class="n">targetModel</span><span class="p">,</span>
+      <span class="nl">experimentalFlags:</span> <span class="n">experimentalFlags</span><span class="p">,</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">FlutterDevice</span><span class="p">(</span>
+    <span class="n">device</span><span class="p">,</span>
+    <span class="nl">trackWidgetCreation:</span> <span class="n">trackWidgetCreation</span><span class="p">,</span>
+    <span class="nl">fileSystemRoots:</span> <span class="n">fileSystemRoots</span><span class="p">,</span>
+    <span class="nl">fileSystemScheme:</span><span class="n">fileSystemScheme</span><span class="p">,</span>
+    <span class="nl">viewFilter:</span> <span class="n">viewFilter</span><span class="p">,</span>
+    <span class="nl">experimentalFlags:</span> <span class="n">experimentalFlags</span><span class="p">,</span>
+    <span class="nl">targetModel:</span> <span class="n">targetModel</span><span class="p">,</span>
+    <span class="nl">generator:</span> <span class="n">generator</span><span class="p">,</span>
+    <span class="nl">buildMode:</span> <span class="n">buildMode</span><span class="p">,</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="codegeneratingresidentcompiler">CodeGeneratingResidentCompiler<a class="headerlink" href="#codegeneratingresidentcompiler" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="kd">static</span> <span class="n">Future</span><span class="o">&lt;</span><span class="n">ResidentCompiler</span><span class="o">&gt;</span> <span class="n">create</span><span class="p">({</span>
+    <span class="err">@</span><span class="n">required</span> <span class="n">FlutterProject</span> <span class="n">flutterProject</span><span class="p">,</span>
+    <span class="kt">bool</span> <span class="n">trackWidgetCreation</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="n">CompilerMessageConsumer</span> <span class="n">compilerMessageConsumer</span> <span class="o">=</span> <span class="n">printError</span><span class="p">,</span>
+    <span class="kt">bool</span> <span class="n">unsafePackageSerialization</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="kt">String</span> <span class="n">outputPath</span><span class="p">,</span>
+    <span class="kt">String</span> <span class="n">initializeFromDill</span><span class="p">,</span>
+    <span class="kt">bool</span> <span class="n">runCold</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="p">})</span> <span class="kd">async</span> <span class="p">{</span>
+    <span class="n">codeGenerator</span><span class="p">.</span><span class="n">updatePackages</span><span class="p">(</span><span class="n">flutterProject</span><span class="p">);</span>
+    <span class="kd">final</span> <span class="n">ResidentCompiler</span> <span class="n">residentCompiler</span> <span class="o">=</span> <span class="n">ResidentCompiler</span><span class="p">(</span>
+      <span class="n">artifacts</span><span class="p">.</span><span class="n">getArtifactPath</span><span class="p">(</span><span class="n">Artifact</span><span class="p">.</span><span class="n">flutterPatchedSdkPath</span><span class="p">),</span>
+      <span class="nl">trackWidgetCreation:</span> <span class="n">trackWidgetCreation</span><span class="p">,</span>
+      <span class="nl">packagesPath:</span> <span class="n">PackageMap</span><span class="p">.</span><span class="n">globalGeneratedPackagesPath</span><span class="p">,</span>
+      <span class="nl">fileSystemRoots:</span> <span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">[</span>
+        <span class="n">fs</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">flutterProject</span><span class="p">.</span><span class="n">generated</span><span class="p">.</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;lib</span><span class="si">${</span><span class="n">platform</span><span class="p">.</span><span class="n">pathSeparator</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span>
+        <span class="n">fs</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">flutterProject</span><span class="p">.</span><span class="n">directory</span><span class="p">.</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;lib</span><span class="si">${</span><span class="n">platform</span><span class="p">.</span><span class="n">pathSeparator</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span>
+      <span class="p">],</span>
+      <span class="nl">fileSystemScheme:</span> <span class="n">kMultiRootScheme</span><span class="p">,</span>
+      <span class="nl">targetModel:</span> <span class="n">TargetModel</span><span class="p">.</span><span class="n">flutter</span><span class="p">,</span>
+      <span class="nl">unsafePackageSerialization:</span> <span class="n">unsafePackageSerialization</span><span class="p">,</span>
+      <span class="nl">initializeFromDill:</span> <span class="n">initializeFromDill</span><span class="p">,</span>
+    <span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">runCold</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">residentCompiler</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">///开始编译</span>
+    <span class="kd">final</span> <span class="n">CodegenDaemon</span> <span class="n">codegenDaemon</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">codeGenerator</span><span class="p">.</span><span class="n">daemon</span><span class="p">(</span><span class="n">flutterProject</span><span class="p">);</span>
+    <span class="n">codegenDaemon</span><span class="p">.</span><span class="n">startBuild</span><span class="p">();</span>
+    <span class="kd">final</span> <span class="n">CodegenStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">codegenDaemon</span><span class="p">.</span><span class="n">buildResults</span><span class="p">.</span><span class="n">firstWhere</span><span class="p">((</span><span class="n">CodegenStatus</span> <span class="n">status</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">status</span> <span class="o">==</span> <span class="n">CodegenStatus</span><span class="p">.</span><span class="n">Succeeded</span> <span class="o">||</span> <span class="n">status</span> <span class="o">==</span> <span class="n">CodegenStatus</span><span class="p">.</span><span class="n">Failed</span><span class="p">;</span>
+    <span class="p">});</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="n">CodegenStatus</span><span class="p">.</span><span class="n">Failed</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">printError</span><span class="p">(</span><span class="s1">&#39;Code generation failed, build may have compile errors.&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">CodeGeneratingResidentCompiler</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="n">residentCompiler</span><span class="p">,</span> <span class="n">codegenDaemon</span><span class="p">,</span> <span class="n">flutterProject</span><span class="p">);</span>
+  <span class="p">}</span>
+</pre></div>
+
+<h2 id="buildrunnerdaemon">BuildRunner:daemon<a class="headerlink" href="#buildrunnerdaemon" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="err">@</span><span class="n">override</span>
+<span class="n">Future</span><span class="o">&lt;</span><span class="n">CodegenDaemon</span><span class="o">&gt;</span> <span class="n">daemon</span><span class="p">(</span>
+  <span class="n">FlutterProject</span> <span class="n">flutterProject</span><span class="p">,</span> <span class="p">{</span>
+  <span class="kt">String</span> <span class="n">mainPath</span><span class="p">,</span>
+  <span class="kt">bool</span> <span class="n">linkPlatformKernelIn</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="kt">bool</span> <span class="n">targetProductVm</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="kt">bool</span> <span class="n">trackWidgetCreation</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="n">extraFrontEndOptions</span> <span class="o">=</span> <span class="kd">const</span> <span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">[],</span>
+<span class="p">})</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="kd">await</span> <span class="n">generateBuildScript</span><span class="p">(</span><span class="n">flutterProject</span><span class="p">);</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">engineDartBinaryPath</span> <span class="o">=</span>
+      <span class="n">artifacts</span><span class="p">.</span><span class="n">getArtifactPath</span><span class="p">(</span><span class="n">Artifact</span><span class="p">.</span><span class="n">engineDartBinary</span><span class="p">);</span>
+  <span class="kd">final</span> <span class="n">File</span> <span class="n">buildSnapshot</span> <span class="o">=</span> <span class="n">flutterProject</span><span class="p">.</span><span class="n">dartTool</span>
+      <span class="p">.</span><span class="n">childDirectory</span><span class="p">(</span><span class="s1">&#39;build&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">childDirectory</span><span class="p">(</span><span class="s1">&#39;entrypoint&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">childFile</span><span class="p">(</span><span class="s1">&#39;build.dart.snapshot&#39;</span><span class="p">);</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">scriptPackagesPath</span> <span class="o">=</span> <span class="n">flutterProject</span><span class="p">.</span><span class="n">dartTool</span>
+      <span class="p">.</span><span class="n">childDirectory</span><span class="p">(</span><span class="s1">&#39;flutter_tool&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">childFile</span><span class="p">(</span><span class="s1">&#39;.packages&#39;</span><span class="p">)</span>
+      <span class="p">.</span><span class="n">path</span><span class="p">;</span>
+  <span class="kd">final</span> <span class="n">Status</span> <span class="n">status</span> <span class="o">=</span>
+      <span class="n">logger</span><span class="p">.</span><span class="n">startProgress</span><span class="p">(</span><span class="s1">&#39;starting build daemon...&#39;</span><span class="p">,</span> <span class="nl">timeout:</span> <span class="kc">null</span><span class="p">);</span>
+  <span class="n">BuildDaemonClient</span> <span class="n">buildDaemonClient</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span> <span class="n">command</span> <span class="o">=</span> <span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">[</span>
+      <span class="n">engineDartBinaryPath</span><span class="p">,</span>
+      <span class="s1">&#39;--packages=</span><span class="si">$</span><span class="n">scriptPackagesPath</span><span class="s1">&#39;</span><span class="p">,</span>
+      <span class="n">buildSnapshot</span><span class="p">.</span><span class="n">path</span><span class="p">,</span>
+      <span class="s1">&#39;daemon&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;--skip-build-script-check&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;--delete-conflicting-outputs&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+    <span class="n">buildDaemonClient</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">BuildDaemonClient</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="n">flutterProject</span><span class="p">.</span><span class="n">directory</span><span class="p">.</span><span class="n">path</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="nl">logHandler:</span> <span class="p">(</span><span class="n">ServerLog</span> <span class="n">log</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">log</span><span class="p">.</span><span class="n">message</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printTrace</span><span class="p">(</span><span class="n">log</span><span class="p">.</span><span class="n">message</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="n">status</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="c1">// Empty string indicates we should build everything.</span>
+  <span class="kd">final</span> <span class="n">OutputLocation</span> <span class="n">outputLocation</span> <span class="o">=</span> <span class="n">OutputLocation</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">OutputLocationBuilder</span> <span class="n">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">b</span>
+      <span class="p">..</span><span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+      <span class="p">..</span><span class="n">useSymlinks</span> <span class="o">=</span> <span class="kc">false</span>
+      <span class="p">..</span><span class="n">hoist</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="p">);</span>
+  <span class="n">buildDaemonClient</span><span class="p">.</span><span class="n">registerBuildTarget</span><span class="p">(</span>
+      <span class="n">DefaultBuildTarget</span><span class="p">((</span><span class="n">DefaultBuildTargetBuilder</span> <span class="n">builder</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">builder</span><span class="p">.</span><span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;lib&#39;</span><span class="p">;</span>
+    <span class="n">builder</span><span class="p">.</span><span class="n">outputLocation</span> <span class="o">=</span> <span class="n">outputLocation</span><span class="p">.</span><span class="n">toBuilder</span><span class="p">();</span>
+  <span class="p">}));</span>
+  <span class="n">buildDaemonClient</span><span class="p">.</span><span class="n">registerBuildTarget</span><span class="p">(</span>
+      <span class="n">DefaultBuildTarget</span><span class="p">((</span><span class="n">DefaultBuildTargetBuilder</span> <span class="n">builder</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">builder</span><span class="p">.</span><span class="n">target</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span><span class="p">;</span>
+    <span class="n">builder</span><span class="p">.</span><span class="n">outputLocation</span> <span class="o">=</span> <span class="n">outputLocation</span><span class="p">.</span><span class="n">toBuilder</span><span class="p">();</span>
+  <span class="p">}));</span>
+  <span class="k">return</span> <span class="n">_BuildRunnerCodegenDaemon</span><span class="p">(</span><span class="n">buildDaemonClient</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="buildrunnergeneratebuildscript">BuildRunner:generateBuildScript<a class="headerlink" href="#buildrunnergeneratebuildscript" title="Permanent link">&para;</a></h2>
+<p>1.下载Flutter相关的package</p>
+<p>2.读取Flutter项目下的包依赖图谱关系</p>
+<p>3.构建编译脚本</p>
+<p>4.读取项目下的build.yaml</p>
+<p>5.开启多线程编译项目文件</p>
+<div class="codehilite"><pre><span></span><span class="err">@</span><span class="n">override</span>
+<span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">generateBuildScript</span><span class="p">(</span><span class="n">FlutterProject</span> <span class="n">flutterProject</span><span class="p">)</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="kd">final</span> <span class="n">Directory</span> <span class="n">entrypointDirectory</span> <span class="o">=</span> <span class="n">fs</span><span class="p">.</span><span class="n">directory</span><span class="p">(</span>
+      <span class="n">fs</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">flutterProject</span><span class="p">.</span><span class="n">dartTool</span><span class="p">.</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;build&#39;</span><span class="p">,</span> <span class="s1">&#39;entrypoint&#39;</span><span class="p">));</span>
+  <span class="kd">final</span> <span class="n">Directory</span> <span class="n">generatedDirectory</span> <span class="o">=</span> <span class="n">fs</span>
+      <span class="p">.</span><span class="n">directory</span><span class="p">(</span><span class="n">fs</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">flutterProject</span><span class="p">.</span><span class="n">dartTool</span><span class="p">.</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;flutter_tool&#39;</span><span class="p">));</span>
+  <span class="kd">final</span> <span class="n">File</span> <span class="n">buildScript</span> <span class="o">=</span> <span class="n">entrypointDirectory</span><span class="p">.</span><span class="n">childFile</span><span class="p">(</span><span class="s1">&#39;build.dart&#39;</span><span class="p">);</span>
+  <span class="kd">final</span> <span class="n">File</span> <span class="n">buildSnapshot</span> <span class="o">=</span>
+      <span class="n">entrypointDirectory</span><span class="p">.</span><span class="n">childFile</span><span class="p">(</span><span class="s1">&#39;build.dart.snapshot&#39;</span><span class="p">);</span>
+  <span class="kd">final</span> <span class="n">File</span> <span class="n">scriptIdFile</span> <span class="o">=</span> <span class="n">entrypointDirectory</span><span class="p">.</span><span class="n">childFile</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+  <span class="kd">final</span> <span class="n">File</span> <span class="n">syntheticPubspec</span> <span class="o">=</span> <span class="n">generatedDirectory</span><span class="p">.</span><span class="n">childFile</span><span class="p">(</span><span class="s1">&#39;pubspec.yaml&#39;</span><span class="p">);</span>
+
+  <span class="c1">// Check if contents of builders changed. If so, invalidate build script</span>
+  <span class="c1">// and regenerate.</span>
+  <span class="kd">final</span> <span class="n">YamlMap</span> <span class="n">builders</span> <span class="o">=</span> <span class="n">flutterProject</span><span class="p">.</span><span class="n">builders</span><span class="p">;</span>
+  <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">appliedBuilderDigest</span> <span class="o">=</span> <span class="n">_produceScriptId</span><span class="p">(</span><span class="n">builders</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">scriptIdFile</span><span class="p">.</span><span class="n">existsSync</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">buildSnapshot</span><span class="p">.</span><span class="n">existsSync</span><span class="p">())</span> <span class="p">{</span>
+    <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">previousAppliedBuilderDigest</span> <span class="o">=</span>
+        <span class="n">scriptIdFile</span><span class="p">.</span><span class="n">readAsBytesSync</span><span class="p">();</span>
+    <span class="kt">bool</span> <span class="n">digestsAreEqual</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">appliedBuilderDigest</span><span class="p">.</span><span class="n">length</span> <span class="o">==</span> <span class="n">previousAppliedBuilderDigest</span><span class="p">.</span><span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">digestsAreEqual</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">appliedBuilderDigest</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">appliedBuilderDigest</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">previousAppliedBuilderDigest</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
+          <span class="n">digestsAreEqual</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+          <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">digestsAreEqual</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="c1">// Clean-up all existing artifacts.</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">flutterProject</span><span class="p">.</span><span class="n">dartTool</span><span class="p">.</span><span class="n">existsSync</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">flutterProject</span><span class="p">.</span><span class="n">dartTool</span><span class="p">.</span><span class="n">deleteSync</span><span class="p">(</span><span class="nl">recursive:</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="kd">final</span> <span class="n">Status</span> <span class="n">status</span> <span class="o">=</span>
+      <span class="n">logger</span><span class="p">.</span><span class="n">startProgress</span><span class="p">(</span><span class="s1">&#39;generating build script...&#39;</span><span class="p">,</span> <span class="nl">timeout:</span> <span class="kc">null</span><span class="p">);</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">generatedDirectory</span><span class="p">.</span><span class="n">createSync</span><span class="p">(</span><span class="nl">recursive:</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="n">entrypointDirectory</span><span class="p">.</span><span class="n">createSync</span><span class="p">(</span><span class="nl">recursive:</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="n">flutterProject</span><span class="p">.</span><span class="n">dartTool</span>
+        <span class="p">.</span><span class="n">childDirectory</span><span class="p">(</span><span class="s1">&#39;build&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">childDirectory</span><span class="p">(</span><span class="s1">&#39;generated&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">createSync</span><span class="p">(</span><span class="nl">recursive:</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="kd">final</span> <span class="n">StringBuffer</span> <span class="n">stringBuffer</span> <span class="o">=</span> <span class="n">StringBuffer</span><span class="p">();</span>
+
+    <span class="n">stringBuffer</span><span class="p">.</span><span class="n">writeln</span><span class="p">(</span><span class="s1">&#39;name: flutter_tool&#39;</span><span class="p">);</span>
+    <span class="n">stringBuffer</span><span class="p">.</span><span class="n">writeln</span><span class="p">(</span><span class="s1">&#39;dependencies:&#39;</span><span class="p">);</span>
+    <span class="kd">final</span> <span class="n">YamlMap</span> <span class="n">builders</span> <span class="o">=</span> <span class="n">flutterProject</span><span class="p">.</span><span class="n">builders</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">builders</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">String</span> <span class="n">name</span> <span class="k">in</span> <span class="n">builders</span><span class="p">.</span><span class="n">keys</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">final</span> <span class="kt">Object</span> <span class="n">node</span> <span class="o">=</span> <span class="n">builders</span><span class="p">[</span><span class="n">name</span><span class="p">];</span>
+        <span class="c1">// For relative paths, make sure it is accounted for</span>
+        <span class="c1">// parent directories.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="k">is</span> <span class="n">YamlMap</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+          <span class="kd">final</span> <span class="kt">String</span> <span class="n">path</span> <span class="o">=</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">];</span>
+          <span class="k">if</span> <span class="p">(</span><span class="n">fs</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">isRelative</span><span class="p">(</span><span class="n">path</span><span class="p">))</span> <span class="p">{</span>
+            <span class="kd">final</span> <span class="kt">String</span> <span class="n">convertedPath</span> <span class="o">=</span>
+                <span class="n">fs</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="n">node</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]);</span>
+            <span class="n">stringBuffer</span><span class="p">.</span><span class="n">writeln</span><span class="p">(</span><span class="s1">&#39;  </span><span class="si">$</span><span class="n">name</span><span class="s1">:&#39;</span><span class="p">);</span>
+            <span class="n">stringBuffer</span><span class="p">.</span><span class="n">writeln</span><span class="p">(</span><span class="s1">&#39;    path: </span><span class="si">$</span><span class="n">convertedPath</span><span class="s1">&#39;</span><span class="p">);</span>
+          <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">stringBuffer</span><span class="p">.</span><span class="n">writeln</span><span class="p">(</span><span class="s1">&#39;  </span><span class="si">$</span><span class="n">name</span><span class="s1">: </span><span class="si">$</span><span class="n">node</span><span class="s1">&#39;</span><span class="p">);</span>
+          <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="n">stringBuffer</span><span class="p">.</span><span class="n">writeln</span><span class="p">(</span><span class="s1">&#39;  </span><span class="si">$</span><span class="n">name</span><span class="s1">: </span><span class="si">$</span><span class="n">node</span><span class="s1">&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">stringBuffer</span><span class="p">.</span><span class="n">writeln</span><span class="p">(</span><span class="s1">&#39;  build_runner: ^</span><span class="si">$</span><span class="n">kMinimumBuildRunnerVersion</span><span class="s1">&#39;</span><span class="p">);</span>
+    <span class="n">stringBuffer</span><span class="p">.</span><span class="n">writeln</span><span class="p">(</span><span class="s1">&#39;  build_daemon: </span><span class="si">$</span><span class="n">kSupportedBuildDaemonVersion</span><span class="s1">&#39;</span><span class="p">);</span>
+    <span class="kd">await</span> <span class="n">syntheticPubspec</span><span class="p">.</span><span class="n">writeAsString</span><span class="p">(</span><span class="n">stringBuffer</span><span class="p">.</span><span class="n">toString</span><span class="p">());</span>
+
+    <span class="c1">///下载Flutter相关的package</span>
+    <span class="kd">await</span> <span class="n">pubGet</span><span class="p">(</span>
+      <span class="nl">context:</span> <span class="n">PubContext</span><span class="p">.</span><span class="n">pubGet</span><span class="p">,</span>
+      <span class="nl">directory:</span> <span class="n">generatedDirectory</span><span class="p">.</span><span class="n">path</span><span class="p">,</span>
+      <span class="nl">upgrade:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nl">checkLastModified:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">scriptIdFile</span><span class="p">.</span><span class="n">existsSync</span><span class="p">())</span> <span class="p">{</span>
+      <span class="n">scriptIdFile</span><span class="p">.</span><span class="n">createSync</span><span class="p">(</span><span class="nl">recursive:</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">scriptIdFile</span><span class="p">.</span><span class="n">writeAsBytesSync</span><span class="p">(</span><span class="n">appliedBuilderDigest</span><span class="p">);</span>
+
+    <span class="c1">///读取Flutter项目下的包依赖图谱关系</span>
+    <span class="kd">final</span> <span class="n">PackageGraph</span> <span class="n">packageGraph</span> <span class="o">=</span>
+        <span class="n">PackageGraph</span><span class="p">.</span><span class="n">forPath</span><span class="p">(</span><span class="n">syntheticPubspec</span><span class="p">.</span><span class="n">parent</span><span class="p">.</span><span class="n">path</span><span class="p">);</span>
+
+    <span class="c1">///构建编译脚本</span>
+    <span class="kd">final</span> <span class="n">BuildScriptGenerator</span> <span class="n">buildScriptGenerator</span> <span class="o">=</span>
+        <span class="kd">const</span> <span class="n">BuildScriptGeneratorFactory</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">flutterProject</span><span class="p">,</span> <span class="n">packageGraph</span><span class="p">);</span>
+
+    <span class="c1">///读取项目下的build.yaml</span>
+    <span class="kd">await</span> <span class="n">buildScriptGenerator</span><span class="p">.</span><span class="n">generateBuildScript</span><span class="p">();</span>
+
+    <span class="c1">///开启多线程编译项目文件</span>
+    <span class="kd">final</span> <span class="n">ProcessResult</span> <span class="n">result</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">processManager</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">[</span>
+      <span class="n">artifacts</span><span class="p">.</span><span class="n">getArtifactPath</span><span class="p">(</span><span class="n">Artifact</span><span class="p">.</span><span class="n">engineDartBinary</span><span class="p">),</span>
+      <span class="s1">&#39;--snapshot=</span><span class="si">${</span><span class="n">buildSnapshot</span><span class="p">.</span><span class="n">path</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;--snapshot-kind=app-jit&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;--packages=</span><span class="si">${</span><span class="n">fs</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">generatedDirectory</span><span class="p">.</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;.packages&#39;</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+      <span class="n">buildScript</span><span class="p">.</span><span class="n">path</span><span class="p">,</span>
+    <span class="p">]);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">exitCode</span> <span class="o">!=</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">throwToolExit</span><span class="p">(</span>
+          <span class="s1">&#39;Error generating build_script snapshot: </span><span class="si">${</span><span class="n">result</span><span class="p">.</span><span class="n">stderr</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="n">status</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="targetplatform">TargetPlatform<a class="headerlink" href="#targetplatform" title="Permanent link">&para;</a></h2>
+<p>enum TargetPlatform {
+  android_arm,
+  android_arm64,
+  android_x64,
+  android_x86,
+  ios,
+  darwin_x64,
+  linux_x64,
+  windows_x64,
+  fuchsia,
+  tester,
+  web_javascript,
+}</p>
+<h2 id="hostplatform">HostPlatform<a class="headerlink" href="#hostplatform" title="Permanent link">&para;</a></h2>
+<p>enum HostPlatform {
+  darwin_x64,
+  linux_x64,
+  windows_x64,
+}</p>
+<h2 id="androidarch">AndroidArch<a class="headerlink" href="#androidarch" title="Permanent link">&para;</a></h2>
+<p>enum AndroidArch {
+  armeabi_v7a,
+  arm64_v8a,
+  x86,
+  x86_64,
+}</p>
+<h2 id="darwinarch">DarwinArch<a class="headerlink" href="#darwinarch" title="Permanent link">&para;</a></h2>
+<p>enum DarwinArch {
+  armv7,
+  arm64,
+  x86_64,
+}</p>
+<h2 id="buildinfo">BuildInfo<a class="headerlink" href="#buildinfo" title="Permanent link">&para;</a></h2>
+<p>const BuildInfo(
+  this.mode,
+  this.flavor, {
+  this.trackWidgetCreation = false,
+  this.extraFrontEndOptions,
+  this.extraGenSnapshotOptions,
+  this.fileSystemRoots,
+  this.fileSystemScheme,
+  this.buildNumber,
+  this.buildName,
+});</p>
+<h2 id="buildmode">BuildMode<a class="headerlink" href="#buildmode" title="Permanent link">&para;</a></h2>
+<p>/// The type of build.
+enum BuildMode {
+  debug,
+  profile,
+  release,
+}</p>
+<h2 id="platformtype">PlatformType<a class="headerlink" href="#platformtype" title="Permanent link">&para;</a></h2>
+<p>/// The platform sub-folder that a device type supports.
+class PlatformType {
+  const PlatformType._(this.value);</p>
+<p>static const PlatformType web = PlatformType.<em>('web');
+  static const PlatformType android = PlatformType.</em>('android');
+  static const PlatformType ios = PlatformType.<em>('ios');
+  static const PlatformType linux = PlatformType.</em>('linux');
+  static const PlatformType macos = PlatformType.<em>('macos');
+  static const PlatformType windows = PlatformType.</em>('windows');
+  static const PlatformType fuchsia = PlatformType._('fuchsia');</p>
+<p>final String value;</p>
+<p><a class="magiclink magiclink-github magiclink-mention" href="https://github.com/override" title="GitHub User: override">@override</a>
+  String toString() =&gt; value;
+}</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2016 - 2019  Aige
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="http://struct.cc" class="md-footer-social__link fa fa-globe"></a>
+    
+      <a href="https://github.com/cangchengkun/Docs" class="md-footer-social__link fa fa-github-alt"></a>
+    
+      <a href="https://twitter.com/Aige25868905" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.facebook.com/cangck.danmo" class="md-footer-social__link fa fa-facebook"></a>
+    
+      <a href="https://www.youtube.com/" class="md-footer-social__link fa fa-youtube"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.43ad2ac2.js"></script>
+      
+        
+        
+          
+          <script src="../../../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../../../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../../../assets/javascripts/lunr/lunr.jp.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+    
+  </body>
+</html>

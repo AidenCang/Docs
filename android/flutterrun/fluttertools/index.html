@@ -1446,8 +1446,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fluttercommandrunnerruncommandrunnerruncommand" title="FlutterCommandRunner:run&amp;CommandRunner:runCommand" class="md-nav__link">
-    FlutterCommandRunner:run&amp;CommandRunner:runCommand
+  <a href="#fluttercommandrunnerrun" title="FlutterCommandRunner:run" class="md-nav__link">
+    FlutterCommandRunner:run
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commandrunnerruncommand" title="CommandRunner:runCommand" class="md-nav__link">
+    CommandRunner:runCommand
   </a>
   
 </li>
@@ -1467,15 +1474,15 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fluttercommandverifythenruncommand" title="FlutterCommand:verifyThenRunCommand" class="md-nav__link">
     FlutterCommand:verifyThenRunCommand
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2587,8 +2594,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fluttercommandrunnerruncommandrunnerruncommand" title="FlutterCommandRunner:run&amp;CommandRunner:runCommand" class="md-nav__link">
-    FlutterCommandRunner:run&amp;CommandRunner:runCommand
+  <a href="#fluttercommandrunnerrun" title="FlutterCommandRunner:run" class="md-nav__link">
+    FlutterCommandRunner:run
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commandrunnerruncommand" title="CommandRunner:runCommand" class="md-nav__link">
+    CommandRunner:runCommand
   </a>
   
 </li>
@@ -2608,15 +2622,15 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fluttercommandverifythenruncommand" title="FlutterCommand:verifyThenRunCommand" class="md-nav__link">
     FlutterCommand:verifyThenRunCommand
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2994,10 +3008,10 @@
 </pre></div>
 
 <h2 id="appcontext">AppContext<a class="headerlink" href="#appcontext" title="Permanent link">&para;</a></h2>
-<p><code>lib/executable.dart</code>中的run方法中构建的<code>overrides</code>
-<code>lib/runner.dart</code>的runInContext方法中传入的回调函数作为<code>body</code>
-<code>lib/src/context_runner.dart</code>的<code>context.run</code>中的<code>fallbacks</code>传入环境参数工具链、开发工具的加载的内容
-<code>AppContext</code>:负责作为Zone和外部逻辑的的沟通渠道</p>
+<p><code>lib/executable.dart</code>中的run方法中构建的<code>overrides</code></p>
+<p><code>lib/runner.dart</code>的runInContext方法中传入的回调函数作为<code>body</code></p>
+<p><code>lib/src/context_runner.dart</code>的<code>context.run</code>中的<code>fallbacks</code>传入环境参数工具链、开发工具的加载的内容</p>
+<p><code>AppContext</code>:负责作为Zone和外部逻辑的的沟通渠道</p>
 <p><div class="codehilite"><pre><span></span><span class="n">Future</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">run</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="p">({</span>
   <span class="err">@</span><span class="n">required</span> <span class="n">FutureOr</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">body</span><span class="p">(),</span>
   <span class="kt">String</span> <span class="n">name</span><span class="p">,</span>
@@ -3115,7 +3129,189 @@
   <span class="p">},</span> <span class="nl">overrides:</span> <span class="n">overrides</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div></p>
-<h2 id="fluttercommandrunnerruncommandrunnerruncommand">FlutterCommandRunner:run&amp;CommandRunner:runCommand<a class="headerlink" href="#fluttercommandrunnerruncommandrunnerruncommand" title="Permanent link">&para;</a></h2>
+<h2 id="fluttercommandrunnerrun">FlutterCommandRunner:run<a class="headerlink" href="#fluttercommandrunnerrun" title="Permanent link">&para;</a></h2>
+<p>1.初始化日志管理工具<code>VerboseLogger</code>
+2.日志输出配置<code>OutputPreferences</code>
+3.初始化本地文件系统<code>LocalFileSystem</code>
+4.日志压缩管理<code>addShutdownHook</code>
+5.缓存清理
+6.查找FlutterEngine<code>getLocalEngine</code>(自己编译或者是SDK自己编译的都是在这里进行查找)</p>
+<div class="codehilite"><pre><span></span><span class="err">@</span><span class="n">override</span>
+<span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">runCommand</span><span class="p">(</span><span class="n">ArgResults</span> <span class="n">topLevelResults</span><span class="p">)</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Type</span><span class="p">,</span> <span class="kt">dynamic</span><span class="o">&gt;</span> <span class="n">contextOverrides</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">Type</span><span class="p">,</span> <span class="kt">dynamic</span><span class="o">&gt;</span><span class="p">{</span>
+    <span class="nl">Flags:</span> <span class="n">Flags</span><span class="p">(</span><span class="n">topLevelResults</span><span class="p">),</span>
+  <span class="p">};</span>
+
+  <span class="c1">// Check for verbose.</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;verbose&#39;</span><span class="p">])</span> <span class="p">{</span>
+    <span class="c1">// Override the logger.</span>
+    <span class="n">contextOverrides</span><span class="p">[</span><span class="n">Logger</span><span class="p">]</span> <span class="o">=</span> <span class="n">VerboseLogger</span><span class="p">(</span><span class="n">logger</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Don&#39;t set wrapColumns unless the user said to: if it&#39;s set, then all</span>
+  <span class="c1">// wrapping will occur at this width explicitly, and won&#39;t adapt if the</span>
+  <span class="c1">// terminal size changes during a run.</span>
+  <span class="kt">int</span> <span class="n">wrapColumn</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">topLevelResults</span><span class="p">.</span><span class="n">wasParsed</span><span class="p">(</span><span class="s1">&#39;wrap-column&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="n">wrapColumn</span> <span class="o">=</span> <span class="kt">int</span><span class="p">.</span><span class="n">parse</span><span class="p">(</span><span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;wrap-column&#39;</span><span class="p">]);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">wrapColumn</span> <span class="o">&lt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">throwToolExit</span><span class="p">(</span><span class="n">userMessages</span>
+            <span class="p">.</span><span class="n">runnerWrapColumnInvalid</span><span class="p">(</span><span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;wrap-column&#39;</span><span class="p">]));</span>
+      <span class="p">}</span>
+    <span class="p">}</span> <span class="n">on</span> <span class="n">FormatException</span> <span class="p">{</span>
+      <span class="n">throwToolExit</span><span class="p">(</span><span class="n">userMessages</span>
+          <span class="p">.</span><span class="n">runnerWrapColumnParseError</span><span class="p">(</span><span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;wrap-column&#39;</span><span class="p">]));</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// If we&#39;re not writing to a terminal with a defined width, then don&#39;t wrap</span>
+  <span class="c1">// anything, unless the user explicitly said to.</span>
+  <span class="kd">final</span> <span class="kt">bool</span> <span class="n">useWrapping</span> <span class="o">=</span> <span class="n">topLevelResults</span><span class="p">.</span><span class="n">wasParsed</span><span class="p">(</span><span class="s1">&#39;wrap&#39;</span><span class="p">)</span>
+      <span class="o">?</span> <span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;wrap&#39;</span><span class="p">]</span>
+      <span class="o">:</span> <span class="n">io</span><span class="p">.</span><span class="n">stdio</span><span class="p">.</span><span class="n">terminalColumns</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="kc">false</span> <span class="o">:</span> <span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;wrap&#39;</span><span class="p">];</span>
+  <span class="n">contextOverrides</span><span class="p">[</span><span class="n">OutputPreferences</span><span class="p">]</span> <span class="o">=</span> <span class="n">OutputPreferences</span><span class="p">(</span>
+    <span class="nl">wrapText:</span> <span class="n">useWrapping</span><span class="p">,</span>
+    <span class="nl">showColor:</span> <span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">],</span>
+    <span class="nl">wrapColumn:</span> <span class="n">wrapColumn</span><span class="p">,</span>
+  <span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;show-test-device&#39;</span><span class="p">]</span> <span class="o">||</span>
+      <span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;device-id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">FlutterTesterDevices</span><span class="p">.</span><span class="n">kTesterDeviceId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">FlutterTesterDevices</span><span class="p">.</span><span class="n">showFlutterTesterDevice</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kt">String</span> <span class="n">recordTo</span> <span class="o">=</span> <span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;record-to&#39;</span><span class="p">];</span>
+  <span class="kt">String</span> <span class="n">replayFrom</span> <span class="o">=</span> <span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;replay-from&#39;</span><span class="p">];</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;bug-report&#39;</span><span class="p">])</span> <span class="p">{</span>
+    <span class="c1">// --bug-report implies --record-to=&lt;tmp_path&gt;</span>
+    <span class="kd">final</span> <span class="n">Directory</span> <span class="n">tempDir</span> <span class="o">=</span> <span class="kd">const</span> <span class="n">LocalFileSystem</span><span class="p">()</span>
+        <span class="p">.</span><span class="n">systemTempDirectory</span>
+        <span class="p">.</span><span class="n">createTempSync</span><span class="p">(</span><span class="s1">&#39;flutter_tools_bug_report.&#39;</span><span class="p">);</span>
+    <span class="n">recordTo</span> <span class="o">=</span> <span class="n">tempDir</span><span class="p">.</span><span class="n">path</span><span class="p">;</span>
+
+    <span class="c1">// Record the arguments that were used to invoke this runner.</span>
+    <span class="kd">final</span> <span class="n">File</span> <span class="n">manifest</span> <span class="o">=</span> <span class="n">tempDir</span><span class="p">.</span><span class="n">childFile</span><span class="p">(</span><span class="s1">&#39;MANIFEST.txt&#39;</span><span class="p">);</span>
+    <span class="kd">final</span> <span class="n">StringBuffer</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">StringBuffer</span><span class="p">()</span>
+      <span class="p">..</span><span class="n">writeln</span><span class="p">(</span><span class="s1">&#39;# arguments&#39;</span><span class="p">)</span>
+      <span class="p">..</span><span class="n">writeln</span><span class="p">(</span><span class="n">topLevelResults</span><span class="p">.</span><span class="n">arguments</span><span class="p">)</span>
+      <span class="p">..</span><span class="n">writeln</span><span class="p">()</span>
+      <span class="p">..</span><span class="n">writeln</span><span class="p">(</span><span class="s1">&#39;# rest&#39;</span><span class="p">)</span>
+      <span class="p">..</span><span class="n">writeln</span><span class="p">(</span><span class="n">topLevelResults</span><span class="p">.</span><span class="n">rest</span><span class="p">);</span>
+    <span class="kd">await</span> <span class="n">manifest</span><span class="p">.</span><span class="n">writeAsString</span><span class="p">(</span><span class="n">buffer</span><span class="p">.</span><span class="n">toString</span><span class="p">(),</span> <span class="nl">flush:</span> <span class="kc">true</span><span class="p">);</span>
+
+    <span class="c1">// ZIP the recording up once the recording has been serialized.</span>
+    <span class="n">addShutdownHook</span><span class="p">(()</span> <span class="kd">async</span> <span class="p">{</span>
+      <span class="kd">final</span> <span class="n">File</span> <span class="n">zipFile</span> <span class="o">=</span>
+      <span class="n">getUniqueFile</span><span class="p">(</span><span class="n">fs</span><span class="p">.</span><span class="n">currentDirectory</span><span class="p">,</span> <span class="s1">&#39;bugreport&#39;</span><span class="p">,</span> <span class="s1">&#39;zip&#39;</span><span class="p">);</span>
+      <span class="n">os</span><span class="p">.</span><span class="n">zip</span><span class="p">(</span><span class="n">tempDir</span><span class="p">,</span> <span class="n">zipFile</span><span class="p">);</span>
+      <span class="n">printStatus</span><span class="p">(</span><span class="n">userMessages</span><span class="p">.</span><span class="n">runnerBugReportFinished</span><span class="p">(</span><span class="n">zipFile</span><span class="p">.</span><span class="n">basename</span><span class="p">));</span>
+    <span class="p">},</span> <span class="n">ShutdownStage</span><span class="p">.</span><span class="n">POST_PROCESS_RECORDING</span><span class="p">);</span>
+    <span class="n">addShutdownHook</span><span class="p">(</span>
+            <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">tempDir</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="nl">recursive:</span> <span class="kc">true</span><span class="p">),</span> <span class="n">ShutdownStage</span><span class="p">.</span><span class="n">CLEANUP</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">assert</span><span class="p">(</span><span class="n">recordTo</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">replayFrom</span> <span class="o">==</span> <span class="kc">null</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">recordTo</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">recordTo</span> <span class="o">=</span> <span class="n">recordTo</span><span class="p">.</span><span class="n">trim</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">recordTo</span><span class="p">.</span><span class="n">isEmpty</span><span class="p">)</span> <span class="n">throwToolExit</span><span class="p">(</span><span class="n">userMessages</span><span class="p">.</span><span class="n">runnerNoRecordTo</span><span class="p">);</span>
+    <span class="n">contextOverrides</span><span class="p">.</span><span class="n">addAll</span><span class="p">(</span><span class="o">&lt;</span><span class="n">Type</span><span class="p">,</span> <span class="kt">dynamic</span><span class="o">&gt;</span><span class="p">{</span>
+      <span class="nl">ProcessManager:</span> <span class="n">getRecordingProcessManager</span><span class="p">(</span><span class="n">recordTo</span><span class="p">),</span>
+      <span class="nl">FileSystem:</span> <span class="n">getRecordingFileSystem</span><span class="p">(</span><span class="n">recordTo</span><span class="p">),</span>
+      <span class="nl">Platform:</span> <span class="kd">await</span> <span class="n">getRecordingPlatform</span><span class="p">(</span><span class="n">recordTo</span><span class="p">),</span>
+    <span class="p">});</span>
+    <span class="n">VMService</span><span class="p">.</span><span class="n">enableRecordingConnection</span><span class="p">(</span><span class="n">recordTo</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">replayFrom</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">replayFrom</span> <span class="o">=</span> <span class="n">replayFrom</span><span class="p">.</span><span class="n">trim</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">replayFrom</span><span class="p">.</span><span class="n">isEmpty</span><span class="p">)</span> <span class="n">throwToolExit</span><span class="p">(</span><span class="n">userMessages</span><span class="p">.</span><span class="n">runnerNoReplayFrom</span><span class="p">);</span>
+    <span class="n">contextOverrides</span><span class="p">.</span><span class="n">addAll</span><span class="p">(</span><span class="o">&lt;</span><span class="n">Type</span><span class="p">,</span> <span class="kt">dynamic</span><span class="o">&gt;</span><span class="p">{</span>
+      <span class="nl">ProcessManager:</span> <span class="kd">await</span> <span class="n">getReplayProcessManager</span><span class="p">(</span><span class="n">replayFrom</span><span class="p">),</span>
+      <span class="nl">FileSystem:</span> <span class="n">getReplayFileSystem</span><span class="p">(</span><span class="n">replayFrom</span><span class="p">),</span>
+      <span class="nl">Platform:</span> <span class="kd">await</span> <span class="n">getReplayPlatform</span><span class="p">(</span><span class="n">replayFrom</span><span class="p">),</span>
+    <span class="p">});</span>
+    <span class="n">VMService</span><span class="p">.</span><span class="n">enableReplayConnection</span><span class="p">(</span><span class="n">replayFrom</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// We must set Cache.flutterRoot early because other features use it (e.g.</span>
+  <span class="c1">// enginePath&#39;s initializer uses it).</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">flutterRoot</span> <span class="o">=</span>
+      <span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;flutter-root&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="n">defaultFlutterRoot</span><span class="p">;</span>
+  <span class="n">Cache</span><span class="p">.</span><span class="n">flutterRoot</span> <span class="o">=</span> <span class="n">fs</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">fs</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">flutterRoot</span><span class="p">));</span>
+
+  <span class="c1">// Set up the tooling configuration.</span>
+  <span class="kd">final</span> <span class="kt">String</span> <span class="n">enginePath</span> <span class="o">=</span> <span class="n">_findEnginePath</span><span class="p">(</span><span class="n">topLevelResults</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">enginePath</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">contextOverrides</span><span class="p">.</span><span class="n">addAll</span><span class="p">(</span><span class="o">&lt;</span><span class="n">Type</span><span class="p">,</span> <span class="kt">dynamic</span><span class="o">&gt;</span><span class="p">{</span>
+      <span class="nl">Artifacts:</span> <span class="n">Artifacts</span><span class="p">.</span><span class="n">getLocalEngine</span><span class="p">(</span>
+          <span class="n">enginePath</span><span class="p">,</span> <span class="n">_findEngineBuildPath</span><span class="p">(</span><span class="n">topLevelResults</span><span class="p">,</span> <span class="n">enginePath</span><span class="p">)),</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="kd">await</span> <span class="n">context</span><span class="p">.</span><span class="n">run</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="p">(</span>
+    <span class="nl">overrides:</span>
+    <span class="n">contextOverrides</span><span class="p">.</span><span class="n">map</span><span class="o">&lt;</span><span class="n">Type</span><span class="p">,</span> <span class="n">Generator</span><span class="o">&gt;</span><span class="p">((</span><span class="n">Type</span> <span class="n">type</span><span class="p">,</span> <span class="kt">dynamic</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">MapEntry</span><span class="o">&lt;</span><span class="n">Type</span><span class="p">,</span> <span class="n">Generator</span><span class="o">&gt;</span><span class="p">(</span><span class="n">type</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">value</span><span class="p">);</span>
+    <span class="p">}),</span>
+    <span class="nl">body:</span> <span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+      <span class="n">logger</span><span class="p">.</span><span class="n">quiet</span> <span class="o">=</span> <span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;quiet&#39;</span><span class="p">];</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">platform</span><span class="p">.</span><span class="n">environment</span><span class="p">[</span><span class="s1">&#39;FLUTTER_ALREADY_LOCKED&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;true&#39;</span><span class="p">)</span>
+        <span class="kd">await</span> <span class="n">Cache</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;suppress-analytics&#39;</span><span class="p">])</span>
+        <span class="n">flutterUsage</span><span class="p">.</span><span class="n">suppressAnalytics</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+      <span class="n">_checkFlutterCopy</span><span class="p">();</span>
+      <span class="k">try</span> <span class="p">{</span>
+        <span class="kd">await</span> <span class="n">FlutterVersion</span><span class="p">.</span><span class="n">instance</span><span class="p">.</span><span class="n">ensureVersionFile</span><span class="p">();</span>
+      <span class="p">}</span> <span class="n">on</span> <span class="n">FileSystemException</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printError</span><span class="p">(</span>
+            <span class="s1">&#39;Failed to write the version file to the artifact cache: &quot;</span><span class="si">$</span><span class="n">e</span><span class="s1">&quot;.&#39;</span><span class="p">);</span>
+        <span class="n">printError</span><span class="p">(</span>
+            <span class="s1">&#39;Please ensure you have permissions in the artifact cache directory.&#39;</span><span class="p">);</span>
+        <span class="n">throwToolExit</span><span class="p">(</span><span class="s1">&#39;Failed to write the version file&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">topLevelResults</span><span class="p">.</span><span class="n">command</span><span class="o">?</span><span class="p">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s1">&#39;upgrade&#39;</span> <span class="o">&amp;&amp;</span>
+          <span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;version-check&#39;</span><span class="p">])</span> <span class="p">{</span>
+        <span class="kd">await</span> <span class="n">FlutterVersion</span><span class="p">.</span><span class="n">instance</span><span class="p">.</span><span class="n">checkFlutterVersionFreshness</span><span class="p">();</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">topLevelResults</span><span class="p">.</span><span class="n">wasParsed</span><span class="p">(</span><span class="s1">&#39;packages&#39;</span><span class="p">))</span>
+        <span class="n">PackageMap</span><span class="p">.</span><span class="n">globalPackagesPath</span> <span class="o">=</span>
+            <span class="n">fs</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">fs</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;packages&#39;</span><span class="p">]));</span>
+
+      <span class="c1">// See if the user specified a specific device.</span>
+      <span class="n">deviceManager</span><span class="p">.</span><span class="n">specifiedDeviceId</span> <span class="o">=</span> <span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;device-id&#39;</span><span class="p">];</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">])</span> <span class="p">{</span>
+        <span class="n">flutterUsage</span><span class="p">.</span><span class="n">sendCommand</span><span class="p">(</span><span class="s1">&#39;version&#39;</span><span class="p">);</span>
+        <span class="kt">String</span> <span class="n">status</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;machine&#39;</span><span class="p">])</span> <span class="p">{</span>
+          <span class="n">status</span> <span class="o">=</span> <span class="kd">const</span> <span class="n">JsonEncoder</span><span class="p">.</span><span class="n">withIndent</span><span class="p">(</span><span class="s1">&#39;  &#39;</span><span class="p">)</span>
+              <span class="p">.</span><span class="n">convert</span><span class="p">(</span><span class="n">FlutterVersion</span><span class="p">.</span><span class="n">instance</span><span class="p">.</span><span class="n">toJson</span><span class="p">());</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="n">status</span> <span class="o">=</span> <span class="n">FlutterVersion</span><span class="p">.</span><span class="n">instance</span><span class="p">.</span><span class="n">toString</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="n">printStatus</span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">topLevelResults</span><span class="p">[</span><span class="s1">&#39;machine&#39;</span><span class="p">])</span> <span class="p">{</span>
+        <span class="n">throwToolExit</span><span class="p">(</span>
+            <span class="s1">&#39;The --machine flag is only valid with the --version flag.&#39;</span><span class="p">,</span>
+            <span class="nl">exitCode:</span> <span class="m">2</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="kd">await</span> <span class="k">super</span><span class="p">.</span><span class="n">runCommand</span><span class="p">(</span><span class="n">topLevelResults</span><span class="p">);</span>
+    <span class="p">},</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="commandrunnerruncommand">CommandRunner:runCommand<a class="headerlink" href="#commandrunnerruncommand" title="Permanent link">&para;</a></h2>
 <p>1.解析命令行传入的，并且进行解析构建运行命令</p>
 <p>2.调用Command的子类FlutterCommand中的run方法
 <div class="codehilite"><pre><span></span><span class="n">Future</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">runCommand</span><span class="p">(</span><span class="n">ArgResults</span> <span class="n">topLevelResults</span><span class="p">)</span> <span class="kd">async</span> <span class="p">{</span>
@@ -3184,7 +3380,7 @@
 <span class="n">AppContext</span> <span class="kd">get</span> <span class="n">context</span> <span class="o">=&gt;</span>
     <span class="n">Zone</span><span class="p">.</span><span class="n">current</span><span class="p">[</span><span class="n">_Key</span><span class="p">.</span><span class="n">key</span><span class="p">]</span> <span class="o">as</span> <span class="n">AppContext</span> <span class="o">??</span> <span class="n">AppContext</span><span class="p">.</span><span class="n">_root</span><span class="p">;</span>
 </pre></div></p>
-<h3 id="fluttercommandverifythenruncommand">FlutterCommand:verifyThenRunCommand<a class="headerlink" href="#fluttercommandverifythenruncommand" title="Permanent link">&para;</a></h3>
+<h2 id="fluttercommandverifythenruncommand">FlutterCommand:verifyThenRunCommand<a class="headerlink" href="#fluttercommandverifythenruncommand" title="Permanent link">&para;</a></h2>
 <p>1.验证<code>pubspec.yaml</code></p>
 <p>2.验证<code>flutter.yaml</code></p>
 <p>3.加载不同平台的Artifacts</p>
@@ -3226,8 +3422,8 @@
 </pre></div>
 
 <h2 id="runcommandruncommand">RunCommand:runCommand<a class="headerlink" href="#runcommandruncommand" title="Permanent link">&para;</a></h2>
-<p>真正运行打包的过程，不同的平台都是在这个方法中开始进行打包，上面的执行构成都是在构成环境信息和相关的路径信息
-1.初始化相关的运行设备</p>
+<p>真正运行打包的过程，不同的平台都是在这个方法中开始进行打包，上面的执行构成都是在构成环境信息和相关的路径信息</p>
+<p>1.初始化相关的运行设备</p>
 <p>2.两种模式运行代码HotRunner、ColdRunner</p>
 <p>3.调用上面的两种运行模式其中一种的<code>runner.run</code>方法开始调用本地编译环境开始编译不同平台的包</p>
 <div class="codehilite"><pre><span></span><span class="err">@</span><span class="n">override</span>
