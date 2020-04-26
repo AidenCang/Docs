@@ -260,6 +260,11 @@ Animation
 Flutter全屏适配指南
 Flutter折叠屏适配指南
 
+## 搞应用内升级、日活检测、crash率修复、三方登录等
+
+## 各大平台对app的审核力度
+对开发者上线app审核的力
+
 
 # 常用插件
 [网络缓存插件](cached_network_image)

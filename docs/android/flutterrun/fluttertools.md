@@ -375,9 +375,13 @@ Future<T> runInContext<T>(
 }
 ```
 ## AppContext
+
 `lib/executable.dart`中的run方法中构建的`overrides`
+
 `lib/runner.dart`的runInContext方法中传入的回调函数作为`body`
+
 `lib/src/context_runner.dart`的`context.run`中的`fallbacks`传入环境参数工具链、开发工具的加载的内容
+
 `AppContext`:负责作为Zone和外部逻辑的的沟通渠道
 
 ```dart
@@ -429,6 +433,7 @@ T get<T>() {
 ```
 
 ### lib/runner.dart:body
+
 1.设置系统环境
 
 2.添加实现的命令行工具，进行初始化
@@ -511,7 +516,192 @@ Future<int> run(
 
 ```
 
-## FlutterCommandRunner:run&CommandRunner:runCommand
+## FlutterCommandRunner:run
+
+1.初始化日志管理工具`VerboseLogger`
+2.日志输出配置`OutputPreferences`
+3.初始化本地文件系统`LocalFileSystem`
+4.日志压缩管理`addShutdownHook`
+5.缓存清理
+6.查找FlutterEngine`getLocalEngine`(自己编译或者是SDK自己编译的都是在这里进行查找)
+
+```dart
+@override
+Future<void> runCommand(ArgResults topLevelResults) async {
+  final Map<Type, dynamic> contextOverrides = <Type, dynamic>{
+    Flags: Flags(topLevelResults),
+  };
+
+  // Check for verbose.
+  if (topLevelResults['verbose']) {
+    // Override the logger.
+    contextOverrides[Logger] = VerboseLogger(logger);
+  }
+
+  // Don't set wrapColumns unless the user said to: if it's set, then all
+  // wrapping will occur at this width explicitly, and won't adapt if the
+  // terminal size changes during a run.
+  int wrapColumn;
+  if (topLevelResults.wasParsed('wrap-column')) {
+    try {
+      wrapColumn = int.parse(topLevelResults['wrap-column']);
+      if (wrapColumn < 0) {
+        throwToolExit(userMessages
+            .runnerWrapColumnInvalid(topLevelResults['wrap-column']));
+      }
+    } on FormatException {
+      throwToolExit(userMessages
+          .runnerWrapColumnParseError(topLevelResults['wrap-column']));
+    }
+  }
+
+  // If we're not writing to a terminal with a defined width, then don't wrap
+  // anything, unless the user explicitly said to.
+  final bool useWrapping = topLevelResults.wasParsed('wrap')
+      ? topLevelResults['wrap']
+      : io.stdio.terminalColumns == null ? false : topLevelResults['wrap'];
+  contextOverrides[OutputPreferences] = OutputPreferences(
+    wrapText: useWrapping,
+    showColor: topLevelResults['color'],
+    wrapColumn: wrapColumn,
+  );
+
+  if (topLevelResults['show-test-device'] ||
+      topLevelResults['device-id'] == FlutterTesterDevices.kTesterDeviceId) {
+    FlutterTesterDevices.showFlutterTesterDevice = true;
+  }
+
+  String recordTo = topLevelResults['record-to'];
+  String replayFrom = topLevelResults['replay-from'];
+
+  if (topLevelResults['bug-report']) {
+    // --bug-report implies --record-to=<tmp_path>
+    final Directory tempDir = const LocalFileSystem()
+        .systemTempDirectory
+        .createTempSync('flutter_tools_bug_report.');
+    recordTo = tempDir.path;
+
+    // Record the arguments that were used to invoke this runner.
+    final File manifest = tempDir.childFile('MANIFEST.txt');
+    final StringBuffer buffer = StringBuffer()
+      ..writeln('# arguments')
+      ..writeln(topLevelResults.arguments)
+      ..writeln()
+      ..writeln('# rest')
+      ..writeln(topLevelResults.rest);
+    await manifest.writeAsString(buffer.toString(), flush: true);
+
+    // ZIP the recording up once the recording has been serialized.
+    addShutdownHook(() async {
+      final File zipFile =
+      getUniqueFile(fs.currentDirectory, 'bugreport', 'zip');
+      os.zip(tempDir, zipFile);
+      printStatus(userMessages.runnerBugReportFinished(zipFile.basename));
+    }, ShutdownStage.POST_PROCESS_RECORDING);
+    addShutdownHook(
+            () => tempDir.delete(recursive: true), ShutdownStage.CLEANUP);
+  }
+
+  assert(recordTo == null || replayFrom == null);
+
+  if (recordTo != null) {
+    recordTo = recordTo.trim();
+    if (recordTo.isEmpty) throwToolExit(userMessages.runnerNoRecordTo);
+    contextOverrides.addAll(<Type, dynamic>{
+      ProcessManager: getRecordingProcessManager(recordTo),
+      FileSystem: getRecordingFileSystem(recordTo),
+      Platform: await getRecordingPlatform(recordTo),
+    });
+    VMService.enableRecordingConnection(recordTo);
+  }
+
+  if (replayFrom != null) {
+    replayFrom = replayFrom.trim();
+    if (replayFrom.isEmpty) throwToolExit(userMessages.runnerNoReplayFrom);
+    contextOverrides.addAll(<Type, dynamic>{
+      ProcessManager: await getReplayProcessManager(replayFrom),
+      FileSystem: getReplayFileSystem(replayFrom),
+      Platform: await getReplayPlatform(replayFrom),
+    });
+    VMService.enableReplayConnection(replayFrom);
+  }
+
+  // We must set Cache.flutterRoot early because other features use it (e.g.
+  // enginePath's initializer uses it).
+  final String flutterRoot =
+      topLevelResults['flutter-root'] ?? defaultFlutterRoot;
+  Cache.flutterRoot = fs.path.normalize(fs.path.absolute(flutterRoot));
+
+  // Set up the tooling configuration.
+  final String enginePath = _findEnginePath(topLevelResults);
+  if (enginePath != null) {
+    contextOverrides.addAll(<Type, dynamic>{
+      Artifacts: Artifacts.getLocalEngine(
+          enginePath, _findEngineBuildPath(topLevelResults, enginePath)),
+    });
+  }
+
+  await context.run<void>(
+    overrides:
+    contextOverrides.map<Type, Generator>((Type type, dynamic value) {
+      return MapEntry<Type, Generator>(type, () => value);
+    }),
+    body: () async {
+      logger.quiet = topLevelResults['quiet'];
+
+      if (platform.environment['FLUTTER_ALREADY_LOCKED'] != 'true')
+        await Cache.lock();
+
+      if (topLevelResults['suppress-analytics'])
+        flutterUsage.suppressAnalytics = true;
+
+      _checkFlutterCopy();
+      try {
+        await FlutterVersion.instance.ensureVersionFile();
+      } on FileSystemException catch (e) {
+        printError(
+            'Failed to write the version file to the artifact cache: "$e".');
+        printError(
+            'Please ensure you have permissions in the artifact cache directory.');
+        throwToolExit('Failed to write the version file');
+      }
+      if (topLevelResults.command?.name != 'upgrade' &&
+          topLevelResults['version-check']) {
+        await FlutterVersion.instance.checkFlutterVersionFreshness();
+      }
+
+      if (topLevelResults.wasParsed('packages'))
+        PackageMap.globalPackagesPath =
+            fs.path.normalize(fs.path.absolute(topLevelResults['packages']));
+
+      // See if the user specified a specific device.
+      deviceManager.specifiedDeviceId = topLevelResults['device-id'];
+
+      if (topLevelResults['version']) {
+        flutterUsage.sendCommand('version');
+        String status;
+        if (topLevelResults['machine']) {
+          status = const JsonEncoder.withIndent('  ')
+              .convert(FlutterVersion.instance.toJson());
+        } else {
+          status = FlutterVersion.instance.toString();
+        }
+        printStatus(status);
+        return;
+      }
+
+      if (topLevelResults['machine']) {
+        throwToolExit(
+            'The --machine flag is only valid with the --version flag.',
+            exitCode: 2);
+      }
+      await super.runCommand(topLevelResults);
+    },
+  );
+}
+```
+## CommandRunner:runCommand
+
 1.解析命令行传入的，并且进行解析构建运行命令
 
 2.调用Command的子类FlutterCommand中的run方法
@@ -540,6 +730,7 @@ Future<T> runCommand(ArgResults topLevelResults) async {
 ```
 
 ## FlutterCommand:run()
+
 1.获取AppContext
 
 2.运行代码到Zone中执行，初始化相关的上下文环境
@@ -576,6 +767,7 @@ Future<void> run() {
 }
 ```
 ### AppContext
+
 获取加载到Zone中的资源
 ```dart
 /// The current [AppContext], as determined by the [Zone] hierarchy.
@@ -589,7 +781,7 @@ AppContext get context =>
     Zone.current[_Key.key] as AppContext ?? AppContext._root;
 ```
 
-### FlutterCommand:verifyThenRunCommand
+## FlutterCommand:verifyThenRunCommand
 1.验证`pubspec.yaml`
 
 2.验证`flutter.yaml`
@@ -640,6 +832,7 @@ Future<FlutterCommandResult> verifyThenRunCommand(String commandPath) async {
 ```
 ## RunCommand:runCommand
 真正运行打包的过程，不同的平台都是在这个方法中开始进行打包，上面的执行构成都是在构成环境信息和相关的路径信息
+
 1.初始化相关的运行设备
 
 2.两种模式运行代码HotRunner、ColdRunner
